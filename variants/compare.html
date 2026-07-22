@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>תמי שני - 3 כיווני עיצוב לאתר</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          "Heebo",
+          -apple-system,
+          system-ui,
+          sans-serif;
+        background: #f2eee8;
+        color: #2b2520;
+        padding: 32px 20px 64px;
+      }
+      header {
+        max-width: 1480px;
+        margin: 0 auto 28px;
+      }
+      h1 {
+        font-size: 1.7rem;
+        font-weight: 800;
+      }
+      header p {
+        color: #6b6158;
+        margin-top: 6px;
+        font-size: 1rem;
+      }
+      .grid {
+        max-width: 1480px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      @media (max-width: 1100px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+        display: flex;
+        flex-direction: column;
+      }
+      .card-head {
+        padding: 16px 18px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .titlerow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .name {
+        font-size: 1.15rem;
+        font-weight: 800;
+      }
+      .tag {
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 99px;
+        white-space: nowrap;
+      }
+      .tag.rec {
+        background: #2e4036;
+        color: #fff;
+      }
+      .tag.alt {
+        background: #322d5e;
+        color: #fff;
+      }
+      .tag.plain {
+        background: #ede7de;
+        color: #5a5148;
+      }
+      .dots {
+        display: flex;
+        gap: 6px;
+      }
+      .dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+      }
+      .why {
+        font-size: 0.9rem;
+        color: #5a5148;
+        line-height: 1.5;
+      }
+      .frame-wrap {
+        position: relative;
+        background: #e8e2d9;
+        border-block: 1px solid #e2dbd0;
+      }
+      .frame-clip {
+        height: 540px;
+        overflow: hidden;
+        position: relative;
+      }
+      .frame-clip iframe {
+        width: 1440px;
+        height: 1800px;
+        border: 0;
+        transform: scale(0.305);
+        transform-origin: top right;
+        pointer-events: none;
+      }
+      .scrollhint {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        height: 64px;
+        background: linear-gradient(
+          to top,
+          rgba(43, 37, 32, 0.28),
+          transparent
+        );
+        pointer-events: none;
+      }
+      .actions {
+        padding: 14px 18px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 10px 16px;
+        border-radius: 99px;
+        min-height: 44px;
+        line-height: 1.6;
+      }
+      .btn.primary {
+        background: #2b2520;
+        color: #fff;
+      }
+      .btn.ghost {
+        background: #ede7de;
+        color: #2b2520;
+      }
+      .foot {
+        max-width: 1480px;
+        margin: 28px auto 0;
+        background: #fff;
+        border-radius: 14px;
+        padding: 18px 20px;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+      }
+      .foot b {
+        font-weight: 800;
+      }
+      code {
+        direction: ltr;
+        unicode-bidi: embed;
+        font-family: ui-monospace, Menlo, monospace;
+        font-size: 0.85em;
+        background: #f2eee8;
+        padding: 1px 6px;
+        border-radius: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>האתר של תמי - 3 כיוונים, אותו תוכן</h1>
+      <p>
+        כל כרטיס הוא האתר האמיתי, חי (לחצו "פתח בגודל מלא" כדי לגלול ולהרגיש את
+        האנימציות). הקופי זהה בשלושתם - רק השפה העיצובית משתנה.
+      </p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-head">
+          <div class="titlerow">
+            <span class="name">A · אדמה חמה</span>
+            <span class="tag rec">ההמלצה שלי</span>
+          </div>
+          <div class="dots">
+            <span class="dot" style="background: #fbf3ea"></span>
+            <span class="dot" style="background: #de9c6b"></span>
+            <span class="dot" style="background: #7e9471"></span>
+            <span class="dot" style="background: #3f2e26"></span>
+          </div>
+          <p class="why">
+            ההמשך הטבעי של המותג הקיים שלה (קרם-חום-בלאש), רק פרימיום. אלמנט
+            חתימה: זריחה "נושמת" מאחורי ההירו. הכי בטוח מול הקהל שכבר מכיר אותה.
+          </p>
+        </div>
+        <div class="frame-wrap">
+          <div class="frame-clip">
+            <iframe src="a.html" title="Variant A" loading="lazy"></iframe>
+            <div class="scrollhint"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="a.html" target="_blank">פתח בגודל מלא</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="titlerow">
+            <span class="name">B · מרווה ושקד</span>
+            <span class="tag plain">רגוע-יוקרתי</span>
+          </div>
+          <div class="dots">
+            <span class="dot" style="background: #f8f2e8"></span>
+            <span class="dot" style="background: #e9a87c"></span>
+            <span class="dot" style="background: #a8bfa0"></span>
+            <span class="dot" style="background: #35493c"></span>
+          </div>
+          <p class="why">
+            ספא-קליניקה יוקרתית: סריף עדין, ירוק מרווה עמוק, עננים נסחפים. משדר
+            "מומחית שקטה ובטוחה". הכי מרוחק מהפיד הקיים שלה - וזה יכול להיות
+            יתרון או חיסרון.
+          </p>
+        </div>
+        <div class="frame-wrap">
+          <div class="frame-clip">
+            <iframe src="b.html" title="Variant B" loading="lazy"></iframe>
+            <div class="scrollhint"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="b.html" target="_blank">פתח בגודל מלא</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="titlerow">
+            <span class="name">C · לילה ולבנדר</span>
+            <span class="tag alt">הקלף הפרוע</span>
+          </div>
+          <div class="dots">
+            <span class="dot" style="background: #faf7f0"></span>
+            <span class="dot" style="background: #b3a5e8"></span>
+            <span class="dot" style="background: #8678c9"></span>
+            <span class="dot" style="background: #322d5e"></span>
+          </div>
+          <p class="why">
+            היחיד בנישה שנראה ככה: ההירו לילה כחול עם ירח וכוכבים, והדף מתבהר
+            תוך כדי גלילה עד "בוקר" בקרם. הגלילה עצמה מספרת את הסיפור: הלילה
+            נגמר. הכי מובחן, הכי אמיץ.
+          </p>
+        </div>
+        <div class="frame-wrap">
+          <div class="frame-clip">
+            <iframe src="c.html" title="Variant C" loading="lazy"></iframe>
+            <div class="scrollhint"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="c.html" target="_blank">פתח בגודל מלא</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <b>איך בוחרים?</b> תגיד אות (A / B / C) - ואני בונה את כל שאר האתר (קורס,
+      מדריכים, עליי, ייעוץ, עמודים משפטיים) בשפה שנבחרה ומעלה לאוויר. אפשר גם
+      לערבב: למשל "A אבל עם ההירו הלילי של C". הפלטה הזוכה הופכת לצבעי המותג
+      הרשמיים של תמי.
+    </div>
+  </body>
+</html>

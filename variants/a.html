@@ -1,0 +1,1720 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>תמי שני | יועצת שינה והתפתחות</title>
+    <meta
+      name="description"
+      content="15 שנים אני עוזרת לאמהות עייפות ללמד את הבייבי להירדם לבד. בלי להשאיר אותו לבכות. בלי לנחש. עם דרך ברורה, שלב אחרי שלב."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&family=Heebo:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #fbf3ea;
+        --cream-2: #f6e9d9;
+        --peach: #f2dac0;
+        --ink: #3f2e26;
+        --ink-soft: #6a544a;
+        --terracotta: #de9c6b;
+        --terracotta-deep: #b96f3d;
+        --terracotta-ink: #9a5226;
+        --sage: #7e9471;
+        --sage-deep: #566b4a;
+        --line: rgba(63, 46, 38, 0.12);
+        --shadow-sm: 0 8px 24px -14px rgba(63, 46, 38, 0.35);
+        --shadow: 0 22px 55px -24px rgba(63, 46, 38, 0.34);
+        --shadow-card: 0 16px 40px -22px rgba(63, 46, 38, 0.3);
+        --radius: 20px;
+        --radius-lg: 32px;
+        --radius-pill: 999px;
+        --maxw: 1120px;
+        --pad-block: clamp(3.5rem, 9vw, 6.5rem);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "Heebo", system-ui, sans-serif;
+        font-size: clamp(1rem, 0.95rem + 0.3vw, 1.08rem);
+        line-height: 1.72;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        overflow-x: hidden;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Rubik", system-ui, sans-serif;
+        margin: 0;
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      ::selection {
+        background: var(--terracotta);
+        color: var(--ink);
+      }
+
+      .wrap {
+        width: 100%;
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: clamp(1.15rem, 5vw, 2.5rem);
+      }
+      section {
+        position: relative;
+      }
+      .ltr {
+        direction: ltr;
+        unicode-bidi: isolate;
+        display: inline-block;
+      }
+
+      /* focus */
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid var(--terracotta-ink);
+        outline-offset: 3px;
+        border-radius: 8px;
+      }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 52px;
+        padding: 0.85rem 1.6rem;
+        font-family: "Rubik", sans-serif;
+        font-weight: 700;
+        font-size: 1.02rem;
+        border-radius: var(--radius-pill);
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          background 0.18s ease,
+          color 0.18s ease;
+        text-align: center;
+        line-height: 1.2;
+      }
+      .btn-primary {
+        background: var(--terracotta);
+        color: var(--ink);
+        box-shadow: var(--shadow-sm);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 30px -14px rgba(185, 111, 61, 0.6);
+        background: #e7a874;
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--ink);
+        border-color: var(--ink);
+      }
+      .btn-ghost:hover {
+        background: var(--ink);
+        color: var(--cream);
+        transform: translateY(-2px);
+      }
+      .btn-lg {
+        min-height: 58px;
+        font-size: 1.08rem;
+        padding: 1rem 1.9rem;
+      }
+
+      /* ---------- nav ---------- */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(251, 243, 234, 0.82);
+        backdrop-filter: saturate(1.4) blur(14px);
+        -webkit-backdrop-filter: saturate(1.4) blur(14px);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav-in {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-height: 68px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: "Rubik", sans-serif;
+        font-weight: 800;
+        font-size: 1.28rem;
+        letter-spacing: -0.02em;
+      }
+      .logo .dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--terracotta);
+        box-shadow: 0 0 0 4px rgba(222, 156, 107, 0.28);
+      }
+      .nav-links {
+        display: none;
+        gap: 1.6rem;
+        margin-inline-start: auto;
+        font-weight: 500;
+        font-size: 1rem;
+      }
+      .nav-links a {
+        color: var(--ink-soft);
+        position: relative;
+        padding-block: 0.3rem;
+        transition: color 0.18s;
+      }
+      .nav-links a:hover {
+        color: var(--terracotta-ink);
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        bottom: -2px;
+        height: 2px;
+        background: var(--terracotta);
+        border-radius: 2px;
+        transform: scaleX(0);
+        transition: transform 0.2s ease;
+      }
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+      .nav-cta {
+        margin-inline-start: auto;
+      }
+      .nav-links + .nav-cta {
+        margin-inline-start: 0;
+      }
+      .nav .btn {
+        min-height: 44px;
+        padding: 0.55rem 1.15rem;
+        font-size: 0.95rem;
+      }
+      @media (min-width: 820px) {
+        .nav-links {
+          display: flex;
+        }
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        padding-block: clamp(3rem, 8vw, 5.5rem) clamp(4rem, 10vw, 7rem);
+      }
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+        background: linear-gradient(
+          180deg,
+          #fbf3ea 0%,
+          #fbeedf 42%,
+          #f5dfc6 78%,
+          #f1d3b4 100%
+        );
+      }
+      .hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .sun {
+        position: absolute;
+        left: 50%;
+        bottom: -46vw;
+        translate: -50% 0;
+        width: min(120vw, 1180px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 50% 50%,
+          rgba(255, 225, 190, 0.95) 0%,
+          rgba(244, 193, 143, 0.7) 34%,
+          rgba(230, 163, 116, 0.32) 56%,
+          rgba(230, 163, 116, 0) 70%
+        );
+        filter: blur(2px);
+        transform-origin: 50% 50%;
+      }
+      .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(46px);
+        opacity: 0.55;
+        mix-blend-mode: multiply;
+      }
+      .blob-1 {
+        width: 340px;
+        height: 340px;
+        top: -60px;
+        inset-inline-end: -70px;
+        background: radial-gradient(
+          circle,
+          rgba(222, 156, 107, 0.55),
+          transparent 68%
+        );
+      }
+      .blob-2 {
+        width: 300px;
+        height: 300px;
+        top: 40%;
+        inset-inline-start: -90px;
+        background: radial-gradient(
+          circle,
+          rgba(126, 148, 113, 0.42),
+          transparent 68%
+        );
+      }
+      .blob-3 {
+        width: 260px;
+        height: 260px;
+        bottom: 2%;
+        inset-inline-end: 8%;
+        background: radial-gradient(
+          circle,
+          rgba(242, 193, 143, 0.5),
+          transparent 70%
+        );
+      }
+
+      .hero-inner {
+        max-width: 760px;
+        margin-inline: auto;
+        text-align: center;
+        position: relative;
+      }
+      .hero-inner::before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        inset: -8% -10%;
+        background: radial-gradient(
+          60% 55% at 50% 42%,
+          rgba(251, 243, 234, 0.85),
+          rgba(251, 243, 234, 0) 72%
+        );
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "Rubik", sans-serif;
+        font-weight: 500;
+        font-size: 0.86rem;
+        letter-spacing: 0.04em;
+        color: var(--terracotta-ink);
+        background: rgba(255, 255, 255, 0.55);
+        border: 1px solid rgba(185, 111, 61, 0.28);
+        padding: 0.4rem 0.95rem;
+        border-radius: var(--radius-pill);
+        margin-bottom: 1.4rem;
+      }
+      .eyebrow .sep {
+        opacity: 0.5;
+      }
+      .hero h1 {
+        font-weight: 800;
+        font-size: clamp(2.35rem, 8.4vw, 4.15rem);
+        letter-spacing: -0.028em;
+      }
+      .hero h1 .l2 {
+        display: block;
+        font-weight: 700;
+        font-size: 0.62em;
+        color: var(--terracotta-ink);
+        margin-top: 0.35rem;
+        letter-spacing: -0.02em;
+      }
+      .hero-sub {
+        margin: 1.5rem auto 0;
+        max-width: 33ch;
+        font-size: clamp(1.05rem, 1rem + 0.5vw, 1.24rem);
+        color: var(--ink-soft);
+        line-height: 1.65;
+      }
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+      .hero-cta .btn {
+        flex: 1 1 auto;
+        min-width: min(100%, 260px);
+      }
+      @media (min-width: 520px) {
+        .hero-cta .btn {
+          flex: 0 1 auto;
+        }
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem 0.9rem;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.9rem;
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .chips .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .chips .chip::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--sage);
+      }
+      .chips .chip:first-child::before {
+        background: var(--terracotta);
+      }
+      .chips .chip:last-child::before {
+        background: var(--terracotta-deep);
+      }
+
+      /* ---------- pain ---------- */
+      .pain {
+        background: var(--cream-2);
+        padding-block: var(--pad-block);
+      }
+      .pain-in {
+        max-width: 720px;
+        margin-inline: auto;
+        text-align: center;
+      }
+      .pain h2 {
+        font-weight: 800;
+        font-size: clamp(1.75rem, 5.2vw, 2.7rem);
+        letter-spacing: -0.02em;
+      }
+      .nights {
+        list-style: none;
+        margin: 2rem auto 0;
+        padding: 0;
+        max-width: 520px;
+        display: grid;
+        gap: 0.75rem;
+        text-align: start;
+      }
+      .nights li {
+        background: var(--cream);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 0.95rem 1.15rem;
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--ink);
+        display: flex;
+        gap: 0.75rem;
+        align-items: flex-start;
+        box-shadow: var(--shadow-sm);
+      }
+      .nights li .mk {
+        flex: none;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: rgba(222, 156, 107, 0.24);
+        color: var(--terracotta-ink);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-family: "Rubik", sans-serif;
+        margin-top: 1px;
+        font-size: 0.95rem;
+      }
+      .relate {
+        font-family: "Rubik", sans-serif;
+        font-weight: 800;
+        color: var(--terracotta-deep);
+        font-size: clamp(2rem, 7vw, 3rem);
+        margin: 2.1rem 0 0.2rem;
+        letter-spacing: -0.02em;
+      }
+      .pain-body {
+        color: var(--ink-soft);
+        font-size: 1.08rem;
+        max-width: 44ch;
+        margin-inline: auto;
+      }
+      .pain-body + .pain-body {
+        margin-top: 1.3rem;
+      }
+      .truth {
+        margin-top: 2rem;
+        background: var(--cream);
+        border: 2px solid rgba(126, 148, 113, 0.4);
+        border-radius: var(--radius-lg);
+        padding: 1.6rem 1.5rem;
+        box-shadow: var(--shadow-card);
+      }
+      .truth .lead {
+        font-family: "Rubik", sans-serif;
+        font-weight: 500;
+        color: var(--sage-deep);
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.5rem;
+      }
+      .truth .big {
+        font-family: "Rubik", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.35rem, 4.6vw, 1.9rem);
+        color: var(--ink);
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .truth .small {
+        margin-top: 0.7rem;
+        color: var(--ink-soft);
+        font-size: 1.02rem;
+      }
+
+      /* ---------- section head ---------- */
+      .head {
+        text-align: center;
+        max-width: 640px;
+        margin-inline: auto;
+        margin-bottom: clamp(2.2rem, 5vw, 3.2rem);
+      }
+      .kicker {
+        font-family: "Rubik", sans-serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.14em;
+        color: var(--sage-deep);
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 0.85rem;
+      }
+      .head h2 {
+        font-weight: 800;
+        font-size: clamp(1.75rem, 5.4vw, 2.7rem);
+        letter-spacing: -0.024em;
+      }
+      .head p {
+        margin-top: 0.9rem;
+        color: var(--ink-soft);
+        font-size: 1.08rem;
+      }
+
+      /* ---------- method ---------- */
+      .method {
+        padding-block: var(--pad-block);
+      }
+      .pillars {
+        display: grid;
+        gap: 1.1rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 640px) {
+        .pillars {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1000px) {
+        .pillars {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .pillar {
+        background: linear-gradient(180deg, #fff 0%, var(--cream) 100%);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 1.6rem 1.4rem;
+        box-shadow: var(--shadow-card);
+        position: relative;
+        overflow: hidden;
+      }
+      .pillar::before {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        top: 0;
+        height: 5px;
+        background: var(--terracotta);
+      }
+      .pillar:nth-child(2)::before {
+        background: var(--sage);
+      }
+      .pillar:nth-child(3)::before {
+        background: var(--terracotta-deep);
+      }
+      .pillar:nth-child(4)::before {
+        background: var(--sage-deep);
+      }
+      .pillar .seal {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        background: rgba(222, 156, 107, 0.18);
+        display: grid;
+        place-items: center;
+        margin-bottom: 1rem;
+      }
+      .pillar:nth-child(2) .seal {
+        background: rgba(126, 148, 113, 0.2);
+      }
+      .pillar:nth-child(3) .seal {
+        background: rgba(185, 111, 61, 0.16);
+      }
+      .pillar:nth-child(4) .seal {
+        background: rgba(86, 107, 74, 0.16);
+      }
+      .pillar .seal svg {
+        width: 24px;
+        height: 24px;
+      }
+      .pillar h3 {
+        font-size: 1.18rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.55rem;
+        line-height: 1.2;
+      }
+      .pillar p {
+        color: var(--ink-soft);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      /* ---------- authority ---------- */
+      .authority {
+        padding-block: var(--pad-block);
+      }
+      .auth-band {
+        background: linear-gradient(
+          135deg,
+          #f5dfc6 0%,
+          #f0d0b0 55%,
+          #ebc49e 100%
+        );
+        border-radius: var(--radius-lg);
+        padding: clamp(2rem, 5vw, 3rem) clamp(1.2rem, 4vw, 2.5rem);
+        box-shadow: var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+      .auth-band::after {
+        content: "";
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 231, 201, 0.7),
+          transparent 70%
+        );
+        top: -90px;
+        inset-inline-start: -60px;
+        pointer-events: none;
+      }
+      .auth-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem 1rem;
+        position: relative;
+      }
+      @media (min-width: 900px) {
+        .auth-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .auth-item {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .auth-num {
+        font-family: "Rubik", sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.5rem, 8vw, 3.6rem);
+        line-height: 1;
+        color: var(--ink);
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
+      }
+      .auth-item .label {
+        font-size: 0.98rem;
+        color: #5c4436;
+        font-weight: 500;
+        max-width: 16ch;
+        line-height: 1.35;
+      }
+      .auth-badge {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.15rem;
+        background: var(--ink);
+        color: var(--cream);
+        border-radius: 18px;
+        padding: 0.7rem 1.2rem;
+        font-family: "Rubik", sans-serif;
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease;
+        box-shadow: 0 12px 26px -14px rgba(63, 46, 38, 0.7);
+        min-height: 66px;
+      }
+      .auth-badge:hover {
+        transform: translateY(-3px);
+      }
+      .auth-badge .r13 {
+        font-weight: 800;
+        font-size: 1.6rem;
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .auth-badge .r13 small {
+        font-weight: 700;
+        font-size: 0.62em;
+      }
+      .auth-badge .sub {
+        font-size: 0.72rem;
+        font-weight: 500;
+        opacity: 0.85;
+        letter-spacing: 0.02em;
+      }
+
+      /* ---------- course ---------- */
+      .course {
+        padding-block: var(--pad-block);
+      }
+      .course-card {
+        background: var(--ink);
+        color: var(--cream);
+        border-radius: var(--radius-lg);
+        padding: clamp(2rem, 5.5vw, 3.4rem);
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+      .course-card::before {
+        content: "";
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        bottom: -220px;
+        inset-inline-start: -120px;
+        background: radial-gradient(
+          circle,
+          rgba(222, 156, 107, 0.5),
+          transparent 68%
+        );
+        pointer-events: none;
+      }
+      .course-grid {
+        display: grid;
+        gap: 1.8rem;
+        position: relative;
+        align-items: center;
+      }
+      @media (min-width: 840px) {
+        .course-grid {
+          grid-template-columns: 1.35fr 1fr;
+          gap: 2.4rem;
+        }
+      }
+      .course-card .kicker {
+        color: var(--terracotta);
+      }
+      .course-card h2 {
+        font-weight: 800;
+        font-size: clamp(1.7rem, 5vw, 2.5rem);
+        letter-spacing: -0.024em;
+        color: #fff;
+      }
+      .course-card .body {
+        margin-top: 1.1rem;
+        color: rgba(251, 243, 234, 0.85);
+        font-size: 1.08rem;
+        line-height: 1.7;
+      }
+      .course-card .free {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        margin-top: 1.4rem;
+        background: rgba(126, 148, 113, 0.28);
+        border: 1px solid rgba(168, 191, 160, 0.5);
+        color: #d9e4cf;
+        font-weight: 500;
+        font-size: 0.98rem;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-pill);
+      }
+      .price-box {
+        background: rgba(251, 243, 234, 0.07);
+        border: 1px solid rgba(251, 243, 234, 0.18);
+        border-radius: var(--radius);
+        padding: 1.6rem;
+        text-align: center;
+      }
+      .price-now {
+        font-family: "Rubik", sans-serif;
+        font-weight: 800;
+        font-size: clamp(3rem, 9vw, 4rem);
+        color: var(--terracotta);
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      .price-now .cur {
+        font-size: 0.4em;
+        font-weight: 700;
+        margin-inline-start: 0.15em;
+      }
+      .price-was {
+        margin-top: 0.4rem;
+        color: rgba(251, 243, 234, 0.6);
+        font-size: 1.05rem;
+      }
+      .price-was s {
+        text-decoration-color: var(--terracotta);
+        text-decoration-thickness: 2px;
+      }
+      .price-box .btn {
+        margin-top: 1.3rem;
+        width: 100%;
+      }
+
+      /* ---------- guides ---------- */
+      .guides {
+        padding-block: var(--pad-block);
+        background: var(--cream-2);
+      }
+      .guides-card {
+        display: grid;
+        gap: 1.6rem;
+        align-items: center;
+      }
+      @media (min-width: 820px) {
+        .guides-card {
+          grid-template-columns: 1.1fr 1fr;
+          gap: 3rem;
+        }
+      }
+      .guides-copy h2 {
+        font-weight: 800;
+        font-size: clamp(1.7rem, 5vw, 2.5rem);
+        letter-spacing: -0.024em;
+      }
+      .guides-copy p {
+        margin-top: 1rem;
+        color: var(--ink-soft);
+        font-size: 1.08rem;
+      }
+      .guides-copy .btn {
+        margin-top: 1.6rem;
+      }
+      .drawer {
+        background: var(--cream);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 1.6rem;
+        box-shadow: var(--shadow-card);
+        display: grid;
+        gap: 0.75rem;
+      }
+      .drawer .slip {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 0.9rem 1.05rem;
+      }
+      .drawer .slip .t {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: rgba(222, 156, 107, 0.22);
+        display: grid;
+        place-items: center;
+        flex: none;
+      }
+      .drawer .slip .t svg {
+        width: 18px;
+        height: 18px;
+      }
+      .drawer .slip .txt {
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--ink);
+      }
+      .drawer .slip.soon {
+        opacity: 0.62;
+      }
+      .drawer .slip.soon .t {
+        background: rgba(63, 46, 38, 0.08);
+      }
+      .drawer .slip .soon-tag {
+        margin-inline-start: auto;
+        font-size: 0.72rem;
+        font-weight: 700;
+        font-family: "Rubik", sans-serif;
+        color: var(--ink-soft);
+        background: rgba(63, 46, 38, 0.07);
+        padding: 0.15rem 0.6rem;
+        border-radius: 999px;
+      }
+
+      /* ---------- about ---------- */
+      .about {
+        padding-block: var(--pad-block);
+      }
+      .about-in {
+        display: grid;
+        gap: 1.8rem;
+        justify-items: center;
+        text-align: center;
+        max-width: 640px;
+        margin-inline: auto;
+      }
+      .about-photo {
+        width: clamp(130px, 40vw, 160px);
+        height: clamp(130px, 40vw, 160px);
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 50% 32%;
+        border: 5px solid #fff;
+        box-shadow:
+          var(--shadow),
+          0 0 0 2px rgba(222, 156, 107, 0.4);
+      }
+      .about h2 {
+        font-weight: 800;
+        font-size: clamp(1.7rem, 5vw, 2.5rem);
+        letter-spacing: -0.024em;
+      }
+      .about-story {
+        color: var(--ink-soft);
+        font-size: 1.1rem;
+        line-height: 1.75;
+      }
+      .about-story .hl {
+        color: var(--terracotta-ink);
+        font-weight: 600;
+      }
+
+      /* ---------- final ---------- */
+      .final {
+        padding-block: var(--pad-block);
+      }
+      .final-band {
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+        background: linear-gradient(
+          180deg,
+          #f6e1c8 0%,
+          #f1d2b0 60%,
+          #efcba4 100%
+        );
+        border-radius: var(--radius-lg);
+        padding: clamp(2.5rem, 7vw, 4.5rem) clamp(1.4rem, 5vw, 3rem);
+        text-align: center;
+        box-shadow: var(--shadow);
+      }
+      .final-sun {
+        position: absolute;
+        z-index: -1;
+        left: 50%;
+        bottom: -42%;
+        translate: -50% 0;
+        width: min(120%, 760px);
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 234, 205, 0.95) 0%,
+          rgba(244, 193, 143, 0.55) 40%,
+          transparent 66%
+        );
+      }
+      .final-band h2 {
+        font-weight: 800;
+        font-size: clamp(1.8rem, 5.6vw, 2.9rem);
+        letter-spacing: -0.024em;
+        max-width: 20ch;
+        margin-inline: auto;
+      }
+      .final-band .body {
+        margin: 1.1rem auto 0;
+        max-width: 42ch;
+        color: #5c4436;
+        font-size: 1.1rem;
+      }
+      .final-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
+        margin-top: 2rem;
+      }
+      .final-cta .btn {
+        flex: 1 1 auto;
+        min-width: min(100%, 240px);
+      }
+      @media (min-width: 520px) {
+        .final-cta .btn {
+          flex: 0 1 auto;
+        }
+      }
+      .sign {
+        margin-top: 2rem;
+        font-family: "Rubik", sans-serif;
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: var(--terracotta-ink);
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        background: var(--ink);
+        color: var(--cream);
+        padding-block: clamp(2.5rem, 6vw, 3.5rem);
+      }
+      .foot-in {
+        display: grid;
+        gap: 1.4rem;
+        text-align: center;
+      }
+      .foot-brand {
+        font-family: "Rubik", sans-serif;
+        font-weight: 800;
+        font-size: 1.3rem;
+      }
+      .foot-brand .dot {
+        display: inline-block;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--terracotta);
+        margin-inline-end: 0.3rem;
+        vertical-align: middle;
+      }
+      .foot-line {
+        color: rgba(251, 243, 234, 0.72);
+        font-size: 0.98rem;
+      }
+      .foot-line a {
+        color: var(--terracotta);
+        font-weight: 500;
+      }
+      .foot-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.1rem;
+        justify-content: center;
+        font-size: 0.92rem;
+      }
+      .foot-nav a {
+        color: rgba(251, 243, 234, 0.8);
+        transition: color 0.16s;
+      }
+      .foot-nav a:hover {
+        color: #fff;
+      }
+      .foot-sep {
+        color: rgba(251, 243, 234, 0.3);
+      }
+      .foot-fine {
+        color: rgba(251, 243, 234, 0.5);
+        font-size: 0.86rem;
+      }
+
+      /* ---------- reveal (progressive-enhancement, JS-gated) ---------- */
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .js .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ---------- motion (breathing scene) ---------- */
+      @media (prefers-reduced-motion: no-preference) {
+        .sun {
+          animation: breath 8s ease-in-out infinite;
+        }
+        .blob-1 {
+          animation: drift1 26s ease-in-out infinite;
+        }
+        .blob-2 {
+          animation: drift2 32s ease-in-out infinite;
+        }
+        .blob-3 {
+          animation: drift3 22s ease-in-out infinite;
+        }
+        .hero-media {
+          animation: sky 22s ease-in-out infinite alternate;
+        }
+      }
+      @keyframes breath {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.9;
+        }
+        50% {
+          transform: scale(1.07);
+          opacity: 1;
+        }
+      }
+      @keyframes drift1 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(-26px, 20px);
+        }
+      }
+      @keyframes drift2 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(30px, -18px);
+        }
+      }
+      @keyframes drift3 {
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(-18px, -22px);
+        }
+      }
+      @keyframes sky {
+        0% {
+          filter: hue-rotate(0deg) saturate(1);
+        }
+        100% {
+          filter: hue-rotate(-6deg) saturate(1.08);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .js .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        * {
+          scroll-behavior: auto !important;
+        }
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      :where(section[id]) {
+        scroll-margin-top: 84px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============ NAV ============ -->
+    <header class="nav">
+      <div class="wrap nav-in">
+        <a class="logo" href="#top" aria-label="תמי שני, לדף הבית"
+          ><span class="dot" aria-hidden="true"></span>תמי שני</a
+        >
+        <nav class="nav-links" aria-label="ניווט ראשי">
+          <a href="#method">השיטה</a>
+          <a href="#course">הקורס</a>
+          <a href="#guides">מדריכים</a>
+          <a href="#about">עליי</a>
+        </nav>
+        <a
+          class="btn btn-primary nav-cta"
+          href="https://ig.me/m/baby.tammy.time"
+          target="_blank"
+          rel="noopener"
+          >שיחת ייעוץ ללא עלות</a
+        >
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <div class="hero-media" aria-hidden="true">
+          <!-- Hero video slot: drop hero.mp4 + hero-poster.jpg into ../assets/ to replace the CSS scene below.
+    <video class="hero-video" autoplay muted loop playsinline poster="../assets/hero-poster.jpg">
+      <source src="../assets/hero.mp4" type="video/mp4">
+    </video>
+    -->
+          <span class="blob blob-1"></span>
+          <span class="blob blob-2"></span>
+          <span class="blob blob-3"></span>
+          <span class="sun"></span>
+        </div>
+
+        <div class="wrap">
+          <div class="hero-inner">
+            <span class="eyebrow"
+              >תמי שני <span class="sep" aria-hidden="true">·</span> יועצת שינה
+              והתפתחות</span
+            >
+            <h1>
+              כולם ישנים בסוף.<span class="l2">השאלה איך, מתי ובאיזו דרך.</span>
+            </h1>
+            <p class="hero-sub">
+              אני תמי, ו-15 שנים אני עוזרת לאמהות עייפות ללמד את הבייבי להירדם
+              לבד. בלי להשאיר אותו לבכות. בלי לנחש. עם דרך ברורה, שלב אחרי שלב.
+            </p>
+            <div class="hero-cta">
+              <a
+                class="btn btn-primary btn-lg"
+                href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                target="_blank"
+                rel="noopener"
+                >אני רוצה לישון כבר עכשיו</a
+              >
+              <a
+                class="btn btn-ghost btn-lg"
+                href="https://ig.me/m/baby.tammy.time"
+                target="_blank"
+                rel="noopener"
+                >שיחת ייעוץ ללא עלות</a
+              >
+            </div>
+            <div class="chips">
+              <span class="chip">מעל 15 שנות ניסיון</span>
+              <span class="chip">אלפי תינוקות</span>
+              <span class="chip">בין המומלצים של רשת 13</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PAIN ============ -->
+      <section class="pain">
+        <div class="wrap pain-in">
+          <h2 class="reveal">את לא לבד. וזה לא באשמתך.</h2>
+          <ul class="nights reveal">
+            <li>
+              <span class="mk" aria-hidden="true">1</span
+              ><span>עוד לילה שנהרס ב-02:00.</span>
+            </li>
+            <li>
+              <span class="mk" aria-hidden="true">2</span
+              ><span>עוד הרדמה של שעה בשביל תנומה של 25 דקות.</span>
+            </li>
+            <li>
+              <span class="mk" aria-hidden="true">3</span
+              ><span>עוד בוקר שמתחיל בקפה שלישי.</span>
+            </li>
+          </ul>
+          <p class="relate reveal">מזדהה?</p>
+          <p class="pain-body reveal">
+            קראת הכל. שמעת הכל. אולי גם ניסית הכל. ובין כל הגישות, השיטות והדעות
+            (בעיקר של אמא והחמות) נשארת מבולבלת ועייפה.
+          </p>
+          <div class="truth reveal">
+            <p class="lead">אז הנה האמת הפשוטה:</p>
+            <p class="big">
+              לבייבי שלך אין בעיית שינה. יש לו הרגלים. והרגלים אפשר לשנות.
+            </p>
+            <p class="small">בעדינות, עם מענה לבכי, ובקצב שלך.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ METHOD ============ -->
+      <section class="method" id="method">
+        <div class="wrap">
+          <div class="head reveal">
+            <span class="kicker">שיטת תכלס</span>
+            <h2>שיטת תכלס: הדרך של תמי</h2>
+            <p>בלי תיאוריות מסובכות. ארבעה עקרונות שעובדים.</p>
+          </div>
+          <div class="pillars">
+            <article class="pillar reveal">
+              <span class="seal" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#B96F3D"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 12a9 9 0 0 1 9-9" />
+                  <path d="M12 21a9 9 0 0 0 9-9" />
+                  <circle cx="12" cy="12" r="3.2" />
+                </svg>
+              </span>
+              <h3>הרגלים, לא גזירת גורל</h3>
+              <p>
+                תינוק שנרדם רק על הידיים? רק עם בקבוק? זה הרגל. והרגל אפשר לשנות
+                בעדינות, שלב אחרי שלב.
+              </p>
+            </article>
+            <article class="pillar reveal">
+              <span class="seal" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#566B4A"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10Z"
+                  />
+                </svg>
+              </span>
+              <h3>מענה לבכי, תמיד</h3>
+              <p>
+                כל בכי מקבל מענה מיידי. גם בזמן תהליך. לומדים להרגיע, בלי לוותר
+                על הלמידה.
+              </p>
+            </article>
+            <article class="pillar reveal">
+              <span class="seal" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#9A5226"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M7 3v7a3 3 0 0 0 6 0V3" />
+                  <path d="M10 10v11" />
+                  <path d="M18 3c-1.6 0-3 2-3 5s1.4 4 3 4v9" />
+                </svg>
+              </span>
+              <h3>שינה נפרדת מאוכל</h3>
+              <p>
+                מפרידים בין הנקה או בקבוק לבין הירדמות. הבייבי אוכל כשהוא רעב,
+                ונרדם כי הוא יודע איך.
+              </p>
+            </article>
+            <article class="pillar reveal">
+              <span class="seal" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#566B4A"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 3l2.5 5 5.5.8-4 3.9 1 5.5-5-2.6-5 2.6 1-5.5-4-3.9 5.5-.8z"
+                  />
+                </svg>
+              </span>
+              <h3>דרך שמתאימה לך</h3>
+              <p>
+                אין דרך אחת נכונה. יש דרך שאת מאמינה בה. בשיחה קצרה נמצא את שלך.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ AUTHORITY ============ -->
+      <section class="authority">
+        <div class="wrap">
+          <div class="auth-band reveal">
+            <div class="auth-grid">
+              <div class="auth-item">
+                <span class="auth-num"
+                  ><span class="counter" data-to="15">0</span>+</span
+                >
+                <span class="label">שנות ניסיון</span>
+              </div>
+              <div class="auth-item">
+                <span class="auth-num">אלפי</span>
+                <span class="label">תינוקות שלמדו לישון</span>
+              </div>
+              <div class="auth-item">
+                <span class="auth-num"
+                  ><span class="counter" data-to="5">0</span></span
+                >
+                <span class="label">תעודות הכשרה</span>
+              </div>
+              <div class="auth-item">
+                <a
+                  class="auth-badge"
+                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="r13">רשת <small>13</small></span>
+                  <span class="sub">בין המומלצים</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ COURSE ============ -->
+      <section class="course" id="course">
+        <div class="wrap">
+          <div class="course-card reveal">
+            <div class="course-grid">
+              <div class="course-copy">
+                <span class="kicker">הקורס</span>
+                <h2>הקורס: תכלס - איך להרדים תינוק</h2>
+                <p class="body">
+                  כל השיטה, מסודרת בסרטונים קצרים. מהשלב הראשון ועד הירדמות
+                  עצמאית. והשיעור הראשון? במתנה. ככה תדעי אם זה בשבילך עוד לפני
+                  שהוצאת שקל.
+                </p>
+                <span class="free">
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="#D9E4CF"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                  השיעור הראשון במתנה
+                </span>
+              </div>
+              <div class="price-box">
+                <div class="price-now">197<span class="cur">ש"ח</span></div>
+                <p class="price-was">במקום <s>297 ש"ח</s></p>
+                <a
+                  class="btn btn-primary"
+                  href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                  target="_blank"
+                  rel="noopener"
+                  >אני רוצה את הקורס</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GUIDES ============ -->
+      <section class="guides" id="guides">
+        <div class="wrap">
+          <div class="guides-card">
+            <div class="guides-copy reveal">
+              <h2>שליף ליד המיטה</h2>
+              <p>
+                מדריכים קצרים ופרקטיים, בנויים בדיוק לרגעים שאת צריכה תשובה
+                עכשיו. ב-22:00 בלילה. וגם ב-02:00 לפנות בוקר.
+              </p>
+              <a class="btn btn-ghost" href="/guides/">לכל המדריכים</a>
+            </div>
+            <div class="drawer reveal" aria-hidden="true">
+              <div class="slip">
+                <span class="t"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#B96F3D"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M4 19.5V6a2 2 0 0 1 2-2h11l3 3v12.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 19.5Z"
+                    />
+                    <path d="M8 9h6" />
+                    <path d="M8 13h8" /></svg
+                ></span>
+                <span class="txt">טקס שינה ב-5 שלבים</span>
+              </div>
+              <div class="slip soon">
+                <span class="t"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#6A544A"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="8" />
+                    <path d="M12 8v4l2.5 2" /></svg
+                ></span>
+                <span class="txt">חלונות ערות לפי גיל</span>
+                <span class="soon-tag">בקרוב</span>
+              </div>
+              <div class="slip soon">
+                <span class="t"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#6A544A"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="8" />
+                    <path d="M12 8v4l2.5 2" /></svg
+                ></span>
+                <span class="txt">תנומות יום שנגמרות אחרי 25 דקות</span>
+                <span class="soon-tag">בקרוב</span>
+              </div>
+              <div class="slip soon">
+                <span class="t"
+                  ><svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#6A544A"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="8" />
+                    <path d="M12 8v4l2.5 2" /></svg
+                ></span>
+                <span class="txt">יקיצות לילה</span>
+                <span class="soon-tag">בקרוב</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section class="about" id="about">
+        <div class="wrap">
+          <div class="about-in">
+            <img
+              class="about-photo reveal"
+              src="../assets/tammy-profile.jpg"
+              width="160"
+              height="160"
+              alt="תמי שני מחזיקה תינוק"
+              loading="lazy"
+            />
+            <h2 class="reveal">נעים להכיר, אני תמי</h2>
+            <p class="about-story reveal">
+              התחלתי בדיוק איפה שאת נמצאת עכשיו: אמא עייפה, מבולבלת, עם תינוק
+              שלא ישן. היום, אחרי 15 שנים ואלפי תינוקות,
+              <span class="hl">אני הדרך הקצרה בין הלילה הזה ללילה רגוע.</span>
+            </p>
+            <a class="btn btn-ghost reveal" href="/about/">לסיפור המלא</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FINAL CTA ============ -->
+      <section class="final">
+        <div class="wrap">
+          <div class="final-band reveal">
+            <span class="final-sun" aria-hidden="true"></span>
+            <h2>הלילה הרגוע הראשון מתחיל בשיחה אחת</h2>
+            <p class="body">
+              שיחת ייעוץ ללא עלות. בלי התחייבות. נבין ביחד מה קורה, ואיך
+              מתקדמים.
+            </p>
+            <div class="final-cta">
+              <a
+                class="btn btn-primary btn-lg"
+                href="https://ig.me/m/baby.tammy.time"
+                target="_blank"
+                rel="noopener"
+                >קובעים שיחה ללא עלות</a
+              >
+              <a
+                class="btn btn-ghost btn-lg"
+                href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                target="_blank"
+                rel="noopener"
+                >מעדיפה להתחיל בקורס?</a
+              >
+            </div>
+            <p class="sign">באהבה ❤️ תמי</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+      <div class="wrap foot-in">
+        <div class="foot-brand">
+          <span class="dot" aria-hidden="true"></span>תמי שני · יועצת שינה
+          והתפתחות
+        </div>
+        <p class="foot-line">
+          אינסטגרם
+          <a
+            href="https://instagram.com/baby.tammy.time"
+            target="_blank"
+            rel="noopener"
+            ><span class="ltr">@baby.tammy.time</span></a
+          >
+          ·
+          <a
+            href="https://ig.me/m/baby.tammy.time"
+            target="_blank"
+            rel="noopener"
+            >שיחת ייעוץ ללא עלות</a
+          >
+        </p>
+        <nav class="foot-nav" aria-label="ניווט תחתון">
+          <a
+            href="https://tammyshani.ravpage.co.il/tammybabysleep"
+            target="_blank"
+            rel="noopener"
+            >הקורס</a
+          >
+          <span class="foot-sep" aria-hidden="true">·</span>
+          <a href="/guides/">מדריכים</a>
+          <span class="foot-sep" aria-hidden="true">·</span>
+          <a href="/about/">עליי</a>
+          <span class="foot-sep" aria-hidden="true">·</span>
+          <a
+            href="https://ig.me/m/baby.tammy.time"
+            target="_blank"
+            rel="noopener"
+            >שיחת ייעוץ</a
+          >
+          <span class="foot-sep" aria-hidden="true">·</span>
+          <a href="/accessibility/">הצהרת נגישות</a>
+          <span class="foot-sep" aria-hidden="true">·</span>
+          <a href="/privacy/">מדיניות פרטיות</a>
+          <span class="foot-sep" aria-hidden="true">·</span>
+          <a href="/terms/">תקנון</a>
+        </nav>
+        <p class="foot-fine">נבנה באהבה. כל הזכויות שמורות לתמי שני.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.documentElement.classList.add("js");
+      var reduce = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      // scroll reveal
+      var revs = document.querySelectorAll(".reveal");
+      if (reduce || !("IntersectionObserver" in window)) {
+        revs.forEach(function (el) {
+          el.classList.add("in");
+        });
+      } else {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.12 },
+        );
+        revs.forEach(function (el) {
+          io.observe(el);
+        });
+      }
+
+      // count-up
+      var counters = document.querySelectorAll(".counter");
+      function countUp(el) {
+        var to = +el.dataset.to,
+          dur = 1200,
+          start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(eased * to);
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      if (reduce || !("IntersectionObserver" in window)) {
+        counters.forEach(function (el) {
+          el.textContent = el.dataset.to;
+        });
+      } else {
+        var cio = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                countUp(e.target);
+                cio.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.6 },
+        );
+        counters.forEach(function (el) {
+          cio.observe(el);
+        });
+      }
+    </script>
+  </body>
+</html>

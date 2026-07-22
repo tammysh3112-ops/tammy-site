@@ -1,0 +1,1407 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      document.documentElement.className += " js";
+    </script>
+    <title>תמי שני - יועצת שינה והתפתחות</title>
+    <meta
+      name="description"
+      content="תמי שני, יועצת שינה והתפתחות. 15 שנים מלמדת אמהות עייפות להרדים את הבייבי לבד, בעדינות, עם מענה לבכי."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Suez+One&family=Heebo:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        /* night → morning ramp (matching section boundaries = seamless handoffs) */
+        --night-0: #211c42;
+        --night-1: #2c2757;
+        --night-2: #35306a;
+        --night-3: #403a78;
+        --night-4: #4c4589;
+        --dawn-bot: #e7e0f2;
+        --morn-1: #e7e0f2;
+        --morn-2: #efeaf5;
+        --morn-3: #f5f1f0;
+        --cream: #faf7f0;
+
+        --lav: #8678c9;
+        --lav-light: #b3a5e8;
+        --lav-deep: #574a93; /* accent for text on light */
+        --ink: #2e2a52; /* text on light */
+        --ink-soft: #4a456f;
+
+        --font-display: "Suez One", Georgia, serif;
+        --font-body: "Heebo", system-ui, sans-serif;
+
+        --maxw: 1080px;
+        --pad-inline: clamp(1.25rem, 5vw, 2rem);
+        --section-pad: clamp(4rem, 9vw, 6.5rem);
+        --radius: 22px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        overflow-x: hidden;
+        scroll-padding-top: 84px;
+      }
+      body {
+        font-family: var(--font-body);
+        background: var(--night-0);
+        color: var(--cream);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ---------- type ---------- */
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        line-height: 1.12;
+      }
+      .eyebrow {
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        color: var(--lav-light);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6ch;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 22px;
+        height: 1px;
+        background: var(--lav-light);
+        opacity: 0.7;
+      }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 0.5rem 1.7rem;
+        border-radius: 100px;
+        font-family: var(--font-body);
+        font-size: 1.02rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          background 0.25s ease;
+        text-align: center;
+      }
+      .btn:focus-visible {
+        outline: 3px solid var(--lav-light);
+        outline-offset: 3px;
+      }
+      /* filled primary on DARK sections */
+      .btn-primary {
+        background: var(--lav-light);
+        color: var(--ink);
+        box-shadow: 0 10px 30px -10px rgba(179, 165, 232, 0.55);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 38px -12px rgba(179, 165, 232, 0.7);
+      }
+      /* ghost on dark */
+      .btn-ghost {
+        background: transparent;
+        color: var(--cream);
+        border-color: rgba(250, 247, 240, 0.4);
+      }
+      .btn-ghost:hover {
+        border-color: var(--cream);
+        background: rgba(250, 247, 240, 0.06);
+      }
+      /* filled primary on LIGHT sections = night pill (the calm night you'll get) */
+      .btn-night {
+        background: var(--night-1);
+        color: var(--cream);
+        box-shadow: 0 12px 30px -12px rgba(44, 39, 87, 0.55);
+      }
+      .btn-night:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 40px -14px rgba(44, 39, 87, 0.65);
+      }
+      /* ghost on light */
+      .btn-ghost-dark {
+        background: transparent;
+        color: var(--ink);
+        border-color: rgba(87, 74, 147, 0.4);
+      }
+      .btn-ghost-dark:hover {
+        border-color: var(--lav-deep);
+        background: rgba(134, 120, 201, 0.08);
+      }
+
+      /* ---------- layout ---------- */
+      .wrap {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: var(--pad-inline);
+        width: 100%;
+      }
+      .section {
+        position: relative;
+        padding-block: var(--section-pad);
+      }
+      .section-narrow {
+        max-width: 760px;
+        margin-inline: auto;
+      }
+      .center {
+        text-align: center;
+      }
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-block-start: 2rem;
+      }
+      .center .cta-row {
+        justify-content: center;
+      }
+
+      /* ============ NAV ============ */
+      .nav {
+        position: fixed;
+        inset-block-start: 0;
+        inset-inline: 0;
+        z-index: 50;
+        transition:
+          background 0.35s ease,
+          backdrop-filter 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+      .nav-inner {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding: 1rem var(--pad-inline);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .nav.scrolled {
+        background: rgba(28, 23, 58, 0.82);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 1px 0 rgba(179, 165, 232, 0.14);
+      }
+      .logo {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        color: var(--cream);
+        letter-spacing: 0.01em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 1.6rem;
+        align-items: center;
+      }
+      .nav-links a {
+        font-size: 0.98rem;
+        font-weight: 500;
+        color: rgba(250, 247, 240, 0.86);
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--lav-light);
+      }
+      .nav-cta {
+        min-height: 44px;
+        padding: 0.45rem 1.25rem;
+        border-radius: 100px;
+        background: var(--lav-light);
+        color: var(--ink);
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .nav-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 26px -10px rgba(179, 165, 232, 0.7);
+      }
+      .nav a:focus-visible,
+      .nav-cta:focus-visible {
+        outline: 3px solid var(--lav-light);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      @media (max-width: 720px) {
+        .nav-links a:not(.nav-cta) {
+          display: none;
+        }
+      }
+
+      /* ============ HERO (night) ============ */
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: clamp(580px, 100svh, 880px);
+        display: flex;
+        align-items: center;
+        padding-block: 8rem 4rem;
+        background:
+          radial-gradient(120% 80% at 50% -10%, #3a3470 0%, transparent 55%),
+          linear-gradient(
+            180deg,
+            #1b1638 0%,
+            var(--night-0) 42%,
+            var(--night-1) 100%
+          );
+      }
+      .hero-media {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .hero-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.35;
+      }
+      .stars {
+        position: absolute;
+        inset: 0;
+      }
+      .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background: #fff;
+        opacity: 0.8;
+        box-shadow: 0 0 4px 1px rgba(255, 255, 255, 0.4);
+        animation: twinkle 4s ease-in-out infinite;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.15;
+        }
+        50% {
+          opacity: 0.9;
+        }
+      }
+      .moon {
+        position: absolute;
+        inset-block-start: 12%;
+        inset-inline-start: 9%;
+        width: 74px;
+        height: 74px;
+        border-radius: 50%;
+        background: #fbf3de;
+        box-shadow:
+          inset -20px -8px 0 0 rgba(30, 25, 60, 0.98),
+          0 0 34px 6px rgba(251, 243, 222, 0.35),
+          0 0 90px 26px rgba(179, 165, 232, 0.28);
+        animation: moonglow 8s ease-in-out infinite;
+      }
+      @keyframes moonglow {
+        0%,
+        100% {
+          filter: brightness(1);
+        }
+        50% {
+          filter: brightness(1.12);
+        }
+      }
+      .hero-glow {
+        position: absolute;
+        inset-block-end: -30%;
+        inset-inline: 0;
+        height: 60%;
+        background: radial-gradient(
+          60% 100% at 50% 100%,
+          rgba(134, 120, 201, 0.35),
+          transparent 70%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 760px;
+        margin-inline: auto;
+        text-align: center;
+      }
+      .hero h1 {
+        font-size: clamp(2.35rem, 8.2vw, 4.4rem);
+        color: var(--cream);
+        margin-block: 1.1rem 1.3rem;
+        letter-spacing: -0.01em;
+      }
+      .hero h1 .dim {
+        color: var(--lav-light);
+        display: block;
+        font-size: 0.62em;
+        margin-block-start: 0.35em;
+      }
+      .hero-sub {
+        font-size: clamp(1.08rem, 2.4vw, 1.32rem);
+        color: rgba(250, 247, 240, 0.92);
+        max-width: 34ch;
+        margin-inline: auto;
+        font-weight: 400;
+      }
+      .hero-sub b {
+        font-weight: 600;
+        color: var(--cream);
+      }
+      .trust {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.6rem;
+        margin-block-start: 2.4rem;
+      }
+      .chip {
+        font-size: 0.86rem;
+        font-weight: 500;
+        color: rgba(250, 247, 240, 0.9);
+        padding: 0.5rem 1rem;
+        border-radius: 100px;
+        border: 1px solid rgba(179, 165, 232, 0.32);
+        background: rgba(179, 165, 232, 0.07);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5ch;
+      }
+      .chip::before {
+        content: "✦";
+        color: var(--lav-light);
+        font-size: 0.7em;
+      }
+      .scroll-hint {
+        position: absolute;
+        inset-block-end: 1.6rem;
+        inset-inline: 0;
+        text-align: center;
+        z-index: 2;
+        color: rgba(179, 165, 232, 0.7);
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+      }
+      .scroll-hint span {
+        display: block;
+        font-size: 1.2rem;
+        animation: bob 2.4s ease-in-out infinite;
+      }
+      @keyframes bob {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(6px);
+        }
+      }
+
+      /* ============ PAIN (night, stars thinning) ============ */
+      .pain {
+        background: linear-gradient(
+          180deg,
+          var(--night-1) 0%,
+          var(--night-2) 100%
+        );
+        overflow: hidden;
+        position: relative;
+      }
+      .pain h2 {
+        font-size: clamp(1.9rem, 5.5vw, 3rem);
+        color: var(--cream);
+        margin-block-end: 2rem;
+      }
+      .pain-list {
+        font-size: clamp(1.05rem, 2.4vw, 1.24rem);
+        color: rgba(250, 247, 240, 0.94);
+        font-weight: 400;
+      }
+      .pain-list p {
+        margin-block: 0.35rem;
+      }
+      .identify {
+        display: block;
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 3.1rem);
+        color: var(--lav-light);
+        margin-block: 1.8rem;
+        letter-spacing: 0.01em;
+      }
+      .pain-truth {
+        margin-block-start: 2.4rem;
+        padding-block-start: 2rem;
+        border-block-start: 1px solid rgba(179, 165, 232, 0.2);
+        font-size: clamp(1.05rem, 2.4vw, 1.24rem);
+        color: rgba(250, 247, 240, 0.95);
+      }
+      .pain-truth strong {
+        color: var(--cream);
+        font-weight: 600;
+      }
+      .pain-truth .soft {
+        color: rgba(250, 247, 240, 0.9);
+        font-weight: 400;
+      }
+
+      /* ============ METHOD (deepening indigo) ============ */
+      .method {
+        background: linear-gradient(
+          180deg,
+          var(--night-2) 0%,
+          var(--night-3) 100%
+        );
+      }
+      .method .head {
+        text-align: center;
+        max-width: 640px;
+        margin-inline: auto;
+        margin-block-end: 3rem;
+      }
+      .method h2 {
+        font-size: clamp(1.9rem, 5.5vw, 3rem);
+        color: var(--cream);
+      }
+      .method .intro {
+        margin-block-start: 1rem;
+        color: rgba(250, 247, 240, 0.92);
+        font-size: 1.1rem;
+        font-weight: 400;
+      }
+      .pillars {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.1rem;
+      }
+      @media (min-width: 720px) {
+        .pillars {
+          grid-template-columns: 1fr 1fr;
+          gap: 1.4rem;
+        }
+      }
+      .pillar {
+        background: rgba(255, 255, 255, 0.085);
+        border: 1px solid rgba(179, 165, 232, 0.3);
+        border-radius: var(--radius);
+        padding: 2rem 1.7rem;
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
+          background 0.3s ease;
+      }
+      .pillar:hover {
+        transform: translateY(-4px);
+        border-color: rgba(179, 165, 232, 0.5);
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .pillar .crescent {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #fbf3de;
+        box-shadow:
+          inset -10px -3px 0 0 rgba(53, 48, 106, 1),
+          0 0 18px 2px rgba(179, 165, 232, 0.4);
+        margin-block-end: 1.1rem;
+      }
+      .pillar h3 {
+        font-size: 1.3rem;
+        color: var(--cream);
+        margin-block-end: 0.6rem;
+      }
+      .pillar p {
+        color: rgba(250, 247, 240, 0.93);
+        font-weight: 400;
+        font-size: 1.02rem;
+      }
+
+      /* ============ AUTHORITY (counters, indigo) ============ */
+      .authority {
+        background: linear-gradient(
+          180deg,
+          var(--night-3) 0%,
+          var(--night-4) 100%
+        );
+      }
+      .counters {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem 1rem;
+      }
+      @media (min-width: 820px) {
+        .counters {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .counter {
+        text-align: center;
+        padding: 1rem 0.5rem;
+        border-radius: var(--radius);
+      }
+      a.counter {
+        transition: background 0.25s;
+        display: block;
+      }
+      a.counter:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      a.counter:focus-visible {
+        outline: 3px solid var(--lav-light);
+        outline-offset: 3px;
+      }
+      .counter .num {
+        font-family: var(--font-display);
+        font-size: clamp(2.6rem, 9vw, 3.6rem);
+        color: var(--lav-light);
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+      }
+      .counter .num.word {
+        font-size: clamp(2rem, 7vw, 2.7rem);
+      }
+      .counter .label {
+        margin-block-start: 0.7rem;
+        font-size: 0.98rem;
+        color: rgba(250, 247, 240, 0.92);
+        font-weight: 400;
+      }
+      a.counter .num {
+        text-decoration: underline;
+        text-decoration-color: rgba(179, 165, 232, 0.4);
+        text-underline-offset: 6px;
+      }
+      a.counter .ext {
+        display: inline-block;
+        font-size: 0.75em;
+        margin-inline-start: 0.3ch;
+        opacity: 0.75;
+      }
+
+      /* ============ DAWN BAND (night → morning, decorative) ============ */
+      .dawn {
+        height: 170px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          180deg,
+          var(--night-4) 0%,
+          #6f64a6 34%,
+          #a99ed6 62%,
+          var(--dawn-bot) 100%
+        );
+      }
+      .dawn::after {
+        content: "";
+        position: absolute;
+        inset-block-end: 0;
+        inset-inline: 0;
+        height: 80%;
+        background: radial-gradient(
+          70% 130% at 50% 120%,
+          rgba(251, 231, 199, 0.55),
+          rgba(179, 165, 232, 0.15) 55%,
+          transparent 75%
+        );
+      }
+      .dawn .set-moon {
+        position: absolute;
+        inset-block-start: 26px;
+        inset-inline-start: 12%;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #fbf3de;
+        box-shadow:
+          inset -11px -4px 0 0 rgba(79, 73, 133, 0.9),
+          0 0 22px 4px rgba(251, 243, 222, 0.35);
+        opacity: 0.55;
+      }
+
+      /* ============ MORNING SECTIONS (ink text) ============ */
+      .course {
+        background: linear-gradient(
+          180deg,
+          var(--morn-1) 0%,
+          var(--morn-2) 100%
+        );
+        color: var(--ink);
+      }
+      .guides {
+        background: linear-gradient(
+          180deg,
+          var(--morn-2) 0%,
+          var(--morn-3) 100%
+        );
+        color: var(--ink);
+      }
+      .about {
+        background: linear-gradient(
+          180deg,
+          var(--morn-3) 0%,
+          var(--cream) 100%
+        );
+        color: var(--ink);
+      }
+      .morning h2 {
+        color: var(--ink);
+        font-size: clamp(1.85rem, 5vw, 2.7rem);
+      }
+      .morning p {
+        color: var(--ink-soft);
+      }
+
+      /* decorative crescent mark above headings (bg-independent) */
+      .crescent-mark {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: var(--lav);
+        -webkit-mask: radial-gradient(
+          circle at 70% 30%,
+          transparent 44%,
+          #000 46%
+        );
+        mask: radial-gradient(circle at 70% 30%, transparent 44%, #000 46%);
+        filter: drop-shadow(0 0 8px rgba(134, 120, 201, 0.45));
+        margin-inline: auto;
+        margin-block-end: 1.1rem;
+      }
+      .method .crescent-mark {
+        background: var(--lav-light);
+      }
+      .crescent-mark.start {
+        margin-inline: 0 auto;
+      }
+      @media (max-width: 759px) {
+        .crescent-mark.start {
+          margin-inline: auto;
+        }
+      }
+
+      /* course card */
+      .course-card {
+        background: #fff;
+        border-radius: 26px;
+        padding: clamp(2rem, 5vw, 3.2rem);
+        box-shadow: 0 30px 70px -30px rgba(46, 42, 82, 0.35);
+        border: 1px solid rgba(134, 120, 201, 0.16);
+        text-align: center;
+        max-width: 660px;
+        margin-inline: auto;
+      }
+      .course-card .eyebrow {
+        color: var(--lav-deep);
+      }
+      .course-card .eyebrow::before {
+        background: var(--lav-deep);
+      }
+      .course-card h2 {
+        margin-block: 1rem 0.9rem;
+      }
+      .course-card p {
+        font-size: 1.1rem;
+        font-weight: 300;
+        color: var(--ink-soft);
+      }
+      .course-card p b {
+        font-weight: 600;
+        color: var(--lav-deep);
+      }
+      .price {
+        margin-block: 2rem 0;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.7ch;
+        font-family: var(--font-display);
+      }
+      .price .now {
+        font-size: clamp(2.4rem, 8vw, 3.2rem);
+        color: var(--ink);
+      }
+      .price .cur {
+        font-size: 1.1rem;
+        color: var(--ink-soft);
+      }
+      .price s {
+        font-size: 1.3rem;
+        color: #a49fbd;
+        font-family: var(--font-body);
+        font-weight: 500;
+        text-decoration-thickness: 2px;
+      }
+
+      /* guides */
+      .guides .g-inner {
+        max-width: 680px;
+        margin-inline: auto;
+        text-align: center;
+      }
+      .guide-icon {
+        width: 60px;
+        height: 60px;
+        margin-inline: auto;
+        margin-block-end: 1.3rem;
+        border-radius: 18px;
+        background: rgba(134, 120, 201, 0.14);
+        display: grid;
+        place-items: center;
+        font-size: 1.7rem;
+      }
+      .guides p {
+        font-size: 1.15rem;
+        font-weight: 300;
+        margin-block-start: 1rem;
+      }
+      .guides .clock {
+        color: var(--lav-deep);
+        font-weight: 600;
+      }
+
+      /* about */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
+        justify-items: center;
+        text-align: center;
+      }
+      @media (min-width: 760px) {
+        .about-grid {
+          grid-template-columns: auto 1fr;
+          text-align: start;
+          gap: 3rem;
+        }
+      }
+      .about-photo {
+        width: clamp(140px, 42vw, 170px);
+        height: clamp(140px, 42vw, 170px);
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: 50% 32%;
+        border: 5px solid #fff;
+        box-shadow: 0 24px 50px -22px rgba(46, 42, 82, 0.5);
+        flex-shrink: 0;
+      }
+      .about h2 {
+        margin-block-end: 1.1rem;
+      }
+      .about p {
+        font-size: 1.15rem;
+        font-weight: 300;
+      }
+      .about .cta-row {
+        margin-block-start: 1.8rem;
+      }
+      @media (min-width: 760px) {
+        .about-grid .cta-row {
+          justify-content: flex-start;
+        }
+      }
+
+      /* ============ FINAL CTA (cream morning + sunrise) ============ */
+      .final {
+        background: var(--cream);
+        color: var(--ink);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        padding-block: clamp(5rem, 11vw, 8rem);
+      }
+      .final::before {
+        content: "";
+        position: absolute;
+        inset-block-end: -40%;
+        inset-inline: 0;
+        height: 80%;
+        z-index: 0;
+        background: radial-gradient(
+          60% 100% at 50% 100%,
+          rgba(243, 217, 166, 0.5),
+          rgba(179, 165, 232, 0.14) 55%,
+          transparent 78%
+        );
+      }
+      .final .wrap {
+        position: relative;
+        z-index: 1;
+      }
+      .final h2 {
+        font-size: clamp(2rem, 6vw, 3.1rem);
+        color: var(--ink);
+        max-width: 16ch;
+        margin-inline: auto;
+      }
+      .final p {
+        font-size: 1.15rem;
+        font-weight: 300;
+        color: var(--ink-soft);
+        margin-block-start: 1.2rem;
+        max-width: 40ch;
+        margin-inline: auto;
+      }
+      .sign {
+        margin-block-start: 2.6rem;
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        color: var(--lav-deep);
+      }
+
+      /* ============ FOOTER (night bookend) ============ */
+      .footer {
+        background: linear-gradient(
+          180deg,
+          var(--cream) 0px,
+          var(--night-0) 130px,
+          var(--night-0) 100%
+        );
+        color: rgba(250, 247, 240, 0.82);
+        padding-block: 9rem 3rem;
+      }
+      .footer .wrap {
+        text-align: center;
+      }
+      .footer .f-logo {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        color: var(--cream);
+        margin-block-end: 0.6rem;
+      }
+      .footer .f-tag {
+        font-size: 0.98rem;
+        color: rgba(250, 247, 240, 0.72);
+      }
+      .footer .f-tag a {
+        color: var(--lav-light);
+      }
+      .f-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem 1.3rem;
+        margin-block: 1.8rem;
+        padding-block: 1.6rem;
+        border-block: 1px solid rgba(179, 165, 232, 0.16);
+      }
+      .f-links a {
+        font-size: 0.94rem;
+        color: rgba(250, 247, 240, 0.8);
+        transition: color 0.2s;
+      }
+      .f-links a:hover {
+        color: var(--lav-light);
+      }
+      .footer a:focus-visible {
+        outline: 3px solid var(--lav-light);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      .copyright {
+        font-size: 0.86rem;
+        color: rgba(250, 247, 240, 0.55);
+      }
+      .ltr {
+        direction: ltr;
+        unicode-bidi: embed;
+        display: inline-block;
+      }
+
+      /* ============ REVEAL MOTION ============ */
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .star,
+        .moon,
+        .scroll-hint span {
+          animation: none !important;
+        }
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        .btn,
+        .pillar,
+        .nav-cta {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============ NAV ============ -->
+    <nav class="nav" id="nav" aria-label="ניווט ראשי">
+      <div class="nav-inner">
+        <a href="#top" class="logo">תמי שני</a>
+        <div class="nav-links">
+          <a href="#method">השיטה</a>
+          <a href="#course">הקורס</a>
+          <a href="#guides">מדריכים</a>
+          <a href="#about">עליי</a>
+          <a
+            class="nav-cta"
+            href="https://ig.me/m/baby.tammy.time"
+            target="_blank"
+            rel="noopener"
+            >שיחת ייעוץ ללא עלות</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <header class="hero">
+        <div class="hero-media" aria-hidden="true">
+          <!-- video-ready: wire hero.mp4 + hero-poster.jpg later
+    <video class="hero-video" autoplay muted loop playsinline poster="../assets/hero-poster.jpg">
+      <source src="../assets/hero.mp4" type="video/mp4">
+    </video>
+    -->
+          <div class="stars" id="heroStars"></div>
+          <div class="moon"></div>
+          <div class="hero-glow"></div>
+        </div>
+
+        <div class="hero-content">
+          <span class="eyebrow">תמי שני | יועצת שינה והתפתחות</span>
+          <h1>
+            כולם ישנים בסוף.<span class="dim">השאלה איך, מתי ובאיזו דרך.</span>
+          </h1>
+          <p class="hero-sub">
+            אני תמי, ו-15 שנים אני עוזרת לאמהות עייפות ללמד את הבייבי להירדם
+            לבד.
+            <b>בלי להשאיר אותו לבכות. בלי לנחש.</b> עם דרך ברורה, שלב אחרי שלב.
+          </p>
+          <div class="cta-row">
+            <a
+              class="btn btn-primary"
+              href="https://tammyshani.ravpage.co.il/tammybabysleep"
+              target="_blank"
+              rel="noopener"
+              >אני רוצה לישון כבר עכשיו</a
+            >
+            <a
+              class="btn btn-ghost"
+              href="https://ig.me/m/baby.tammy.time"
+              target="_blank"
+              rel="noopener"
+              >שיחת ייעוץ ללא עלות</a
+            >
+          </div>
+          <div class="trust">
+            <span class="chip">מעל 15 שנות ניסיון</span>
+            <span class="chip">אלפי תינוקות</span>
+            <span class="chip">בין המומלצים של רשת 13</span>
+          </div>
+        </div>
+
+        <div class="scroll-hint" aria-hidden="true">
+          הלילה נגמר, הבוקר מגיע<span>↓</span>
+        </div>
+      </header>
+
+      <!-- ============ PAIN ============ -->
+      <section class="section pain">
+        <div class="wrap section-narrow center">
+          <h2 class="reveal">את לא לבד. וזה לא באשמתך.</h2>
+          <div class="pain-list reveal">
+            <p>עוד לילה שנהרס ב-02:00.</p>
+            <p>עוד הרדמה של שעה בשביל תנומה של 25 דקות.</p>
+            <p>עוד בוקר שמתחיל בקפה שלישי.</p>
+          </div>
+          <span class="identify reveal">מזדהה?</span>
+          <div class="pain-truth reveal">
+            <p class="soft">
+              קראת הכל. שמעת הכל. אולי גם ניסית הכל.<br />
+              ובין כל הגישות, השיטות והדעות (בעיקר של אמא והחמות) נשארת מבולבלת
+              ועייפה.
+            </p>
+            <p style="margin-block-start: 1.6rem">
+              אז הנה האמת הפשוטה:<br />
+              <strong
+                >לבייבי שלך אין בעיית שינה. יש לו הרגלים. והרגלים אפשר
+                לשנות.</strong
+              ><br />
+              בעדינות, עם מענה לבכי, ובקצב שלך.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ METHOD ============ -->
+      <section class="section method" id="method">
+        <div class="wrap">
+          <div class="head">
+            <div class="crescent-mark reveal" aria-hidden="true"></div>
+            <h2 class="reveal">שיטת תכלס: הדרך של תמי</h2>
+            <p class="intro reveal">
+              בלי תיאוריות מסובכות. ארבעה עקרונות שעובדים.
+            </p>
+          </div>
+          <div class="pillars">
+            <article class="pillar reveal">
+              <div class="crescent" aria-hidden="true"></div>
+              <h3>הרגלים, לא גזירת גורל</h3>
+              <p>
+                תינוק שנרדם רק על הידיים? רק עם בקבוק? זה הרגל. והרגל אפשר לשנות
+                בעדינות, שלב אחרי שלב.
+              </p>
+            </article>
+            <article class="pillar reveal">
+              <div class="crescent" aria-hidden="true"></div>
+              <h3>מענה לבכי, תמיד</h3>
+              <p>
+                כל בכי מקבל מענה מיידי. גם בזמן תהליך. לומדים להרגיע, בלי לוותר
+                על הלמידה.
+              </p>
+            </article>
+            <article class="pillar reveal">
+              <div class="crescent" aria-hidden="true"></div>
+              <h3>שינה נפרדת מאוכל</h3>
+              <p>
+                מפרידים בין הנקה או בקבוק לבין הירדמות. הבייבי אוכל כשהוא רעב,
+                ונרדם כי הוא יודע איך.
+              </p>
+            </article>
+            <article class="pillar reveal">
+              <div class="crescent" aria-hidden="true"></div>
+              <h3>דרך שמתאימה לך</h3>
+              <p>
+                אין דרך אחת נכונה. יש דרך שאת מאמינה בה. בשיחה קצרה נמצא את שלך.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ AUTHORITY ============ -->
+      <section class="section authority">
+        <div class="wrap">
+          <div class="counters">
+            <div class="counter reveal">
+              <div class="num" data-count="15" data-suffix="+">0</div>
+              <div class="label">שנות ניסיון</div>
+            </div>
+            <div class="counter reveal">
+              <div class="num word">אלפי</div>
+              <div class="label">תינוקות שלמדו לישון</div>
+            </div>
+            <div class="counter reveal">
+              <div class="num" data-count="5">0</div>
+              <div class="label">תעודות הכשרה</div>
+            </div>
+            <a
+              class="counter reveal"
+              href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="num word">
+                רשת 13<span class="ext" aria-hidden="true">↗</span>
+              </div>
+              <div class="label">בין המומלצים</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ DAWN BAND ============ -->
+      <div class="dawn" aria-hidden="true">
+        <div class="set-moon"></div>
+      </div>
+
+      <!-- ============ COURSE ============ -->
+      <section class="section course morning" id="course">
+        <div class="wrap">
+          <div class="course-card reveal">
+            <div class="crescent-mark" aria-hidden="true"></div>
+            <h2>הקורס: תכלס - איך להרדים תינוק</h2>
+            <p>
+              כל השיטה, מסודרת בסרטונים קצרים. מהשלב הראשון ועד הירדמות עצמאית.
+              והשיעור הראשון? <b>במתנה.</b> ככה תדעי אם זה בשבילך עוד לפני
+              שהוצאת שקל.
+            </p>
+            <div class="price">
+              <span class="now">197</span><span class="cur">ש"ח</span>
+              <s>297 ש"ח</s>
+            </div>
+            <div
+              class="cta-row center"
+              style="justify-content: center; margin-block-start: 2rem"
+            >
+              <a
+                class="btn btn-night"
+                href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                target="_blank"
+                rel="noopener"
+                >אני רוצה את הקורס</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GUIDES ============ -->
+      <section class="section guides morning" id="guides">
+        <div class="wrap">
+          <div class="g-inner reveal">
+            <div class="guide-icon" aria-hidden="true">🌙</div>
+            <h2>שליף ליד המיטה</h2>
+            <p>
+              מדריכים קצרים ופרקטיים, בנויים בדיוק לרגעים שאת צריכה תשובה עכשיו.
+              <span class="clock">ב-22:00 בלילה. וגם ב-02:00 לפנות בוקר.</span>
+            </p>
+            <div class="cta-row center" style="justify-content: center">
+              <a class="btn btn-ghost-dark" href="/guides/">לכל המדריכים</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section class="section about morning" id="about">
+        <div class="wrap">
+          <div class="about-grid reveal">
+            <img
+              class="about-photo"
+              src="../assets/tammy-profile.jpg"
+              width="170"
+              height="170"
+              alt="תמי שני מחזיקה תינוק"
+            />
+            <div>
+              <div class="crescent-mark start" aria-hidden="true"></div>
+              <h2>נעים להכיר, אני תמי</h2>
+              <p>
+                התחלתי בדיוק איפה שאת נמצאת עכשיו: אמא עייפה, מבולבלת, עם תינוק
+                שלא ישן. היום, אחרי 15 שנים ואלפי תינוקות, אני הדרך הקצרה בין
+                הלילה הזה ללילה רגוע.
+              </p>
+              <div class="cta-row">
+                <a class="btn btn-ghost-dark" href="/about/">לסיפור המלא</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FINAL CTA ============ -->
+      <section class="section final">
+        <div class="wrap">
+          <h2 class="reveal">הלילה הרגוע הראשון מתחיל בשיחה אחת</h2>
+          <p class="reveal">
+            שיחת ייעוץ ללא עלות. בלי התחייבות. נבין ביחד מה קורה, ואיך מתקדמים.
+          </p>
+          <div class="cta-row center reveal" style="justify-content: center">
+            <a
+              class="btn btn-night"
+              href="https://ig.me/m/baby.tammy.time"
+              target="_blank"
+              rel="noopener"
+              >קובעים שיחה ללא עלות</a
+            >
+            <a
+              class="btn btn-ghost-dark"
+              href="https://tammyshani.ravpage.co.il/tammybabysleep"
+              target="_blank"
+              rel="noopener"
+              >מעדיפה להתחיל בקורס?</a
+            >
+          </div>
+          <div class="sign reveal">באהבה ❤️ תמי</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="wrap">
+        <div class="f-logo">תמי שני</div>
+        <div class="f-tag">יועצת שינה והתפתחות</div>
+        <div class="f-tag" style="margin-block-start: 0.4rem">
+          אינסטגרם
+          <a
+            class="ltr"
+            href="https://instagram.com/baby.tammy.time"
+            target="_blank"
+            rel="noopener"
+            >@baby.tammy.time</a
+          >
+          ·
+          <a
+            href="https://ig.me/m/baby.tammy.time"
+            target="_blank"
+            rel="noopener"
+            >שיחת ייעוץ ללא עלות</a
+          >
+        </div>
+        <nav class="f-links" aria-label="קישורי תחתית">
+          <a href="/course/">הקורס</a>
+          <a href="/guides/">מדריכים</a>
+          <a href="/about/">עליי</a>
+          <a href="/consult/">שיחת ייעוץ</a>
+          <a href="/accessibility/">הצהרת נגישות</a>
+          <a href="/privacy/">מדיניות פרטיות</a>
+          <a href="/terms/">תקנון</a>
+        </nav>
+        <div class="copyright">נבנה באהבה. כל הזכויות שמורות לתמי שני.</div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* --- starfield: dense in hero --- */
+        var host = document.getElementById("heroStars");
+        if (host) {
+          var n = 42,
+            html = "";
+          for (var i = 0; i < n; i++) {
+            var top = Math.random() * 88;
+            var left = Math.random() * 100;
+            var d = (Math.random() * 4).toFixed(2);
+            var s = (Math.random() * 1.6 + 1).toFixed(1);
+            var o = (Math.random() * 0.5 + 0.4).toFixed(2);
+            html +=
+              '<i class="star" style="top:' +
+              top +
+              "%;left:" +
+              left +
+              "%;width:" +
+              s +
+              "px;height:" +
+              s +
+              "px;opacity:" +
+              o +
+              ";animation-delay:" +
+              d +
+              's"></i>';
+          }
+          host.innerHTML = html;
+        }
+
+        /* --- reveal on scroll --- */
+        var reveals = document.querySelectorAll(".reveal");
+        if (reduce || !("IntersectionObserver" in window)) {
+          reveals.forEach(function (el) {
+            el.classList.add("is-visible");
+          });
+        } else {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("is-visible");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+          );
+          reveals.forEach(function (el) {
+            io.observe(el);
+          });
+        }
+
+        /* --- count-up --- */
+        var nums = document.querySelectorAll(".num[data-count]");
+        function countUp(el) {
+          var target = parseInt(el.getAttribute("data-count"), 10);
+          var suffix = el.getAttribute("data-suffix") || "";
+          if (reduce) {
+            el.textContent = target + suffix;
+            return;
+          }
+          var start = null,
+            dur = 1300;
+          function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(eased * target) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+        if (reduce || !("IntersectionObserver" in window)) {
+          nums.forEach(countUp);
+        } else {
+          var cio = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  countUp(e.target);
+                  cio.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.5 },
+          );
+          nums.forEach(function (el) {
+            cio.observe(el);
+          });
+        }
+
+        /* --- nav scrolled state --- */
+        var nav = document.getElementById("nav");
+        function onScroll() {
+          if (window.scrollY > 24) nav.classList.add("scrolled");
+          else nav.classList.remove("scrolled");
+        }
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      })();
+    </script>
+  </body>
+</html>
