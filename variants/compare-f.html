@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>תמי שני - 3 גרסאות F לבחירה</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          "Heebo",
+          -apple-system,
+          system-ui,
+          sans-serif;
+        background: #17141f;
+        color: #f3efe8;
+        padding: 32px 20px 64px;
+      }
+      header {
+        max-width: 1480px;
+        margin: 0 auto 26px;
+      }
+      h1 {
+        font-size: 1.7rem;
+        font-weight: 800;
+      }
+      header p {
+        color: #b9b2a6;
+        margin-top: 6px;
+        max-width: 70ch;
+      }
+      .grid {
+        max-width: 1480px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      @media (max-width: 1100px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: #221e2c;
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(243, 239, 232, 0.08);
+      }
+      .card-head {
+        padding: 16px 18px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .titlerow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .name {
+        font-size: 1.15rem;
+        font-weight: 800;
+      }
+      .tag {
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 99px;
+        white-space: nowrap;
+        background: #3a3350;
+        color: #e9e2f7;
+      }
+      .tag.rec {
+        background: #de9c6b;
+        color: #241505;
+      }
+      .why {
+        font-size: 0.9rem;
+        color: #b9b2a6;
+        line-height: 1.55;
+      }
+      .frame-wrap {
+        background: #141119;
+        border-block: 1px solid rgba(243, 239, 232, 0.07);
+      }
+      .frame-clip {
+        height: 540px;
+        overflow: hidden;
+        position: relative;
+      }
+      .frame-clip iframe {
+        width: 1440px;
+        height: 1800px;
+        border: 0;
+        transform: scale(0.305);
+        transform-origin: top right;
+        pointer-events: none;
+      }
+      .scrollhint {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        height: 64px;
+        background: linear-gradient(to top, rgba(10, 8, 14, 0.5), transparent);
+        pointer-events: none;
+      }
+      .actions {
+        padding: 14px 18px;
+      }
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 11px 18px;
+        border-radius: 99px;
+        background: #de9c6b;
+        color: #241505;
+      }
+      .foot {
+        max-width: 1480px;
+        margin: 26px auto 0;
+        background: #221e2c;
+        border-radius: 14px;
+        padding: 18px 20px;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        border: 1px solid rgba(243, 239, 232, 0.08);
+      }
+      .foot b {
+        color: #de9c6b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>שלוש גרסאות F - אחרי ביקורת של 3 מומחים</h1>
+      <p>
+        שלושה סוכנים ניתחו את דף הבית הנוכחי (המרה, עיצוב, UX) ושלושה בנו גרסה
+        משופרת. שלושתן שומרות על העולם של תמי (יום שהופך ללילה וחוזר לבוקר),
+        הלוגו, הפונט והתמונות. גללו לאט או פתחו בגודל מלא.
+      </p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-head">
+          <div class="titlerow">
+            <span class="name">F1 · המסע הרגשי</span>
+            <span class="tag rec">ההמלצה שלי</span>
+          </div>
+          <p class="why">
+            הסדר שה-UX המליץ עליו: הבטחה, ואז הכאב של 3 בלילה, השיטה שחזרה לדף,
+            ההוכחה מרשת 13, המחיר עם העוגן 197/297, תמי, מדריכים וסיום בזריחה.
+            הכי מאוזן: רגש, סמכות והמרה באותו דף.
+          </p>
+        </div>
+        <div class="frame-wrap">
+          <div class="frame-clip">
+            <iframe src="f1.html" title="F1" loading="lazy"></iframe>
+            <div class="scrollhint"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="f1.html" target="_blank">פתח בגודל מלא</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="titlerow">
+            <span class="name">F2 · מכונת המרה</span>
+            <span class="tag">הכי מוכר</span>
+          </div>
+          <p class="why">
+            הצעה אחת, היררכיה אחת: השיעור הראשון במתנה הוא הכפתור הראשי בכל הדף.
+            הוכחה מיד אחרי ההירו, כרטיס מחיר גדול, FAQ שעונה על ההתנגדויות, ובר
+            CTA צמוד למובייל. למי שרוצה שהדף ימכור.
+          </p>
+        </div>
+        <div class="frame-wrap">
+          <div class="frame-clip">
+            <iframe src="f2.html" title="F2" loading="lazy"></iframe>
+            <div class="scrollhint"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="f2.html" target="_blank">פתח בגודל מלא</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="titlerow">
+            <span class="name">F3 · לילה אחד איתה</span>
+            <span class="tag">הכי וואו</span>
+          </div>
+          <p class="why">
+            הגלילה היא לילה שלם עם תמי: ערב, שלוש בלילה, השיטה ככוכבים מחוברים
+            בקו זהב, ההצעה לפנות בוקר והסיום בזריחה. טקסטורת קטיפה, ציטוטים
+            ענקיים, תפריט מובייל. הכי קולנועי.
+          </p>
+        </div>
+        <div class="frame-wrap">
+          <div class="frame-clip">
+            <iframe src="f3.html" title="F3" loading="lazy"></iframe>
+            <div class="scrollhint"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="f3.html" target="_blank">פתח בגודל מלא</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <b>איך בוחרים?</b> תגיד F1 / F2 / F3, או שילוב (למשל "F1 עם ה-FAQ של F2").
+      הגרסה שתיבחר תהפוך לדף הבית, בלי לגעת בדף הנוכחי עד שתחליט. דוחות הביקורת
+      המלאים: research/critique/ (conversion, visual, ux).
+    </div>
+  </body>
+</html>
