@@ -1,0 +1,130 @@
+{
+ "totalHeight": 4045,
+ "viewport": {
+  "w": 1440,
+  "h": 900
+ },
+ "viewports": 4.49,
+ "gradient": "linear-gradient(rgb(154, 226, 231), rgb(130, 217, 223) 15%, rgb(233, 91, 130) 22%, rgb(160, 26, 129) 33%, rgb(13, 17, 58) 44%, rgb(13, 17, 58) 55%, rgb(33, 27, 97) 66%, rgb(39, 103, 128) 77%, rgb(163, 227, 231) 88%, rgb(130, 217, 223))",
+ "gradientElHeight": 3461,
+ "bgSize": "auto",
+ "sections": [
+  {
+   "cls": "panel _1",
+   "h": 802,
+   "padTop": "90px",
+   "padBottom": "90px"
+  },
+  {
+   "cls": "section al",
+   "h": 622,
+   "padTop": "80px",
+   "padBottom": "120px"
+  },
+  {
+   "cls": "panel _2",
+   "h": 981,
+   "padTop": "90px",
+   "padBottom": "90px"
+  },
+  {
+   "cls": "panel _3",
+   "h": 745,
+   "padTop": "90px",
+   "padBottom": "90px"
+  },
+  {
+   "cls": "panel bottom",
+   "h": 898,
+   "padTop": "90px",
+   "padBottom": "150px"
+  },
+  {
+   "cls": "section home",
+   "h": 658,
+   "padTop": "80px",
+   "padBottom": "120px"
+  },
+  {
+   "cls": "section footer",
+   "h": 408,
+   "padTop": "50px",
+   "padBottom": "50px"
+  }
+ ],
+ "type": {
+  "h1": "50px/65px",
+  "h2": "30px/39px"
+ },
+ "fixedLayers": [
+  {
+   "cls": "home-clouds",
+   "op": "1",
+   "z": "0"
+  },
+  {
+   "cls": "home-stars",
+   "op": "1",
+   "z": "0"
+  },
+  {
+   "cls": "numberland",
+   "op": "1",
+   "z": "auto"
+  },
+  {
+   "cls": "modal-wrapper",
+   "op": "1",
+   "z": "9999"
+  },
+  {
+   "cls": "back-to-top w-inline-block",
+   "op": "0.6",
+   "z": "1000"
+  }
+ ],
+ "opacityTrack": [
+  {
+   "at": 0,
+   "stars": 1,
+   "clouds": 1,
+   "land": 1
+  },
+  {
+   "at": 0.2,
+   "stars": 1,
+   "clouds": 1,
+   "land": 1
+  },
+  {
+   "at": 0.4,
+   "stars": 1,
+   "clouds": 1,
+   "land": 1
+  },
+  {
+   "at": 0.5,
+   "stars": 1,
+   "clouds": 1,
+   "land": 1
+  },
+  {
+   "at": 0.6,
+   "stars": 1,
+   "clouds": 1,
+   "land": 1
+  },
+  {
+   "at": 0.8,
+   "stars": 1,
+   "clouds": 1,
+   "land": 1
+  },
+  {
+   "at": 1,
+   "stars": 1,
+   "clouds": 1,
+   "land": 1
+  }
+ ]
+}
