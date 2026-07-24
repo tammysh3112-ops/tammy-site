@@ -87,10 +87,10 @@
         --shadow-lux: 0 30px 70px -30px rgba(4, 5, 16, 0.85);
         --shadow-soft: 0 22px 50px -26px rgba(20, 14, 30, 0.35);
 
-        /* ---- live layer opacities (rAF-driven; defaults = scroll 0 / twilight) ---- */
-        --op-stars: 0.15;
+        /* ---- live layer opacities (rAF-driven; defaults = scroll 0 / DAY) ---- */
+        --op-stars: 0;
         --op-hills: 1;
-        --op-tint: 0.1;
+        --op-tint: 0;
         --op-dawn: 0;
       }
 
@@ -309,12 +309,14 @@
         background-attachment: scroll;
         background-image: linear-gradient(
           180deg,
-          #211a3d 0%,
-          /* --- deep twilight indigo-plum: hero copy zone (white text) --- */
-          #241d42 9%,
-          #2b2249 15%,
-          #3a2b4d 20%,
-          /* a hint of warm dusk glow at the hero horizon */ #2c2247 25%,
+          /* --- DAY: soft calm morning blue, hero copy zone (ink text) --- */
+          #b6c8e4 0%,
+          #c3d2e8 7%,
+          #d5deec 13%,
+          /* warm ivory daylight near the horizon */ #e9dcc8 17.5%,
+          /* golden hour begins */ #d9ae85 21%,
+          /* sunset rose */ #9a6a6b 24.5%,
+          /* dusk plum */ #4c3a58 27.5%,
           #1c1a3a 30%,
           /* into velvet night (method) */ #121333 36%,
           #0d0f28 40%,
@@ -463,19 +465,32 @@
         mask-image: linear-gradient(180deg, #000 68%, rgba(0, 0, 0, 0) 100%);
         box-shadow: none;
       }
-      /* NAV = white/gold from the top (twilight sky is dark enough). */
+      /* NAV top state = ink on the DAY sky; scrolled = cream on velvet pill. */
       .logo {
-        display: inline-flex;
+        display: inline-grid;
         align-items: center;
       }
       .logo img {
+        grid-area: 1 / 1;
         block-size: 88px;
         inline-size: auto;
         display: block;
-        transition: height 0.35s ease;
+        transition:
+          height 0.35s ease,
+          opacity 0.35s ease;
       }
       .nav.scrolled .logo img {
         block-size: 54px;
+      }
+      /* brown logo over the day sky, cream logo once the velvet pill is on */
+      .logo .logo-cream {
+        opacity: 0;
+      }
+      .nav.scrolled .logo .logo-cream {
+        opacity: 1;
+      }
+      .nav.scrolled .logo .logo-brown {
+        opacity: 0;
       }
       .nav-links {
         display: flex;
@@ -485,18 +500,18 @@
       .nav-links a:not(.nav-cta) {
         font-size: 0.96rem;
         font-weight: 500;
-        color: var(--cream-dim);
+        color: var(--ink);
         transition: color 0.2s;
       }
       .nav-links a:not(.nav-cta):hover {
-        color: var(--gold-lite);
+        color: var(--gold-deep);
       }
       .nav-cta {
         min-height: 44px;
         padding: 0.45rem 1.4rem;
         border-radius: 999px;
-        border: 1px solid var(--hair-gold);
-        color: var(--gold-lite);
+        border: 1px solid rgba(138, 107, 46, 0.42);
+        color: var(--gold-deep);
         font-weight: 600;
         font-size: 0.92rem;
         display: inline-flex;
@@ -622,10 +637,10 @@
       }
       .hero .eyebrow {
         margin-block-end: 1.15rem;
-        color: var(--gold-lite); /* champagne on the twilight sky */
+        color: var(--gold-deep); /* antique gold on the day sky */
       }
       .hero h1 {
-        color: #fff; /* big WHITE Discovery against the twilight */
+        color: var(--ink); /* big INK Discovery against the morning sky */
         margin: 0;
       }
       /* line 1: enormous, right words run behind the figure */
@@ -636,7 +651,7 @@
         letter-spacing: -0.012em;
       }
       .hero h1 b {
-        color: var(--gold-lite);
+        color: var(--gold-deep);
       }
       /* line 2: stays on the clear (inline-start / RIGHT) side */
       .hero h1 .h1-dim {
@@ -644,7 +659,7 @@
         font-size: clamp(1.4rem, 3vw, 2.35rem);
         font-weight: 300;
         line-height: 1.24;
-        color: var(--cream);
+        color: var(--ink-soft);
         margin-block-start: 0.62em;
         max-width: 22ch;
         letter-spacing: 0.005em;
@@ -657,13 +672,13 @@
       }
       .hero-sub {
         font-size: clamp(1.05rem, 2.1vw, 1.24rem);
-        color: var(--cream);
+        color: var(--ink);
         font-weight: 400;
         max-width: 40ch;
       }
       .hero-sub b {
-        font-weight: 600;
-        color: #fff;
+        font-weight: 700;
+        color: var(--ink);
       }
       .hero .cta-row {
         justify-content: flex-start;
@@ -679,11 +694,11 @@
       .chip {
         font-size: 0.82rem;
         font-weight: 600;
-        color: #fff;
+        color: var(--ink);
         padding: 0.48rem 1.05rem;
         border-radius: 999px;
-        border: 1px solid var(--hair-gold);
-        background: rgba(23, 25, 52, 0.55);
+        border: 1px solid rgba(138, 107, 46, 0.32);
+        background: rgba(255, 250, 240, 0.5);
         backdrop-filter: blur(6px);
         display: inline-flex;
         align-items: center;
@@ -691,7 +706,7 @@
       }
       .chip::before {
         content: "✦";
-        color: var(--gold-lite);
+        color: var(--gold-deep);
         font-size: 0.66em;
       }
 
@@ -711,9 +726,9 @@
         inline-size: auto;
         width: auto;
         max-inline-size: 44vw;
-        /* clean cutout: quiet grounding shadow only, no glow */
+        /* clean cutout: quiet warm grounding shadow only, no glow */
         filter: saturate(1) brightness(1.01) contrast(1.02)
-          drop-shadow(0 16px 26px rgba(4, 5, 16, 0.38));
+          drop-shadow(0 16px 26px rgba(74, 60, 80, 0.28));
         -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 14%);
         mask-image: linear-gradient(to top, transparent 0%, #000 14%);
       }
@@ -2145,8 +2160,15 @@
       <div class="nav-inner">
         <a href="#top" class="logo"
           ><img
-            src="assets/brand/logo-cream.png"
+            class="logo-brown"
+            src="assets/brand/logo-brown.png"
             alt="baby TAMMY time - תמי שני"
+            width="600"
+            height="488" /><img
+            class="logo-cream"
+            src="assets/brand/logo-cream.png"
+            alt=""
+            aria-hidden="true"
             width="600"
             height="488"
         /></a>
@@ -2178,7 +2200,7 @@
 
       <main id="top">
         <!-- ============ HERO (now DAY light: ink-on-day, SUN in celestial slot) ============ -->
-        <header class="hero on-velvet" data-band>
+        <header class="hero on-day" data-band>
           <div class="wrap">
             <div class="hero-stage">
               <div class="hero-copy">
@@ -2205,7 +2227,7 @@
                       >אני רוצה לישון כבר עכשיו</a
                     >
                     <a
-                      class="btn btn-ghost-light"
+                      class="btn btn-ghost-dark"
                       href="https://ig.me/m/baby.tammy.time"
                       target="_blank"
                       rel="noopener"
@@ -2792,8 +2814,9 @@
           /* stars: faint in the twilight hero, peak through the night hold
              (method->proof), fade as the dawn glow rises */
           "--op-stars": [
-            [0, 0.15],
-            [10, 0.1],
+            [0, 0],
+            [16, 0],
+            [24, 0.25],
             [30, 0.55],
             [44, 1],
             [78, 1],
@@ -2807,8 +2830,9 @@
           /* night veil on the meadow: dark through the night, fades before
              the dawn glow takes over */
           "--op-tint": [
-            [0, 0.1],
-            [18, 0.25],
+            [0, 0],
+            [17, 0.05],
+            [22, 0.3],
             [27, 0.65],
             [34, 0.95],
             [80, 0.9],
