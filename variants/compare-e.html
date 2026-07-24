@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>תמי שני - 3 סגנונות פרימיום לבחירה</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          "Heebo",
+          -apple-system,
+          system-ui,
+          sans-serif;
+        background: #17141f;
+        color: #f3efe8;
+        padding: 32px 20px 64px;
+      }
+      header {
+        max-width: 1480px;
+        margin: 0 auto 26px;
+      }
+      h1 {
+        font-size: 1.7rem;
+        font-weight: 800;
+      }
+      header p {
+        color: #b9b2a6;
+        margin-top: 6px;
+      }
+      .grid {
+        max-width: 1480px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      @media (max-width: 1100px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: #221e2c;
+        border-radius: 16px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(243, 239, 232, 0.08);
+      }
+      .card-head {
+        padding: 16px 18px 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .titlerow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .name {
+        font-size: 1.15rem;
+        font-weight: 800;
+      }
+      .tag {
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 99px;
+        white-space: nowrap;
+        background: #3a3350;
+        color: #e9e2f7;
+      }
+      .tag.rec {
+        background: #de9c6b;
+        color: #241505;
+      }
+      .why {
+        font-size: 0.9rem;
+        color: #b9b2a6;
+        line-height: 1.55;
+      }
+      .frame-wrap {
+        background: #141119;
+        border-block: 1px solid rgba(243, 239, 232, 0.07);
+      }
+      .frame-clip {
+        height: 540px;
+        overflow: hidden;
+        position: relative;
+      }
+      .frame-clip iframe {
+        width: 1440px;
+        height: 1800px;
+        border: 0;
+        transform: scale(0.305);
+        transform-origin: top right;
+        pointer-events: none;
+      }
+      .scrollhint {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        height: 64px;
+        background: linear-gradient(to top, rgba(10, 8, 14, 0.5), transparent);
+        pointer-events: none;
+      }
+      .actions {
+        padding: 14px 18px;
+      }
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 11px 18px;
+        border-radius: 99px;
+        background: #de9c6b;
+        color: #241505;
+      }
+      .foot {
+        max-width: 1480px;
+        margin: 26px auto 0;
+        background: #221e2c;
+        border-radius: 14px;
+        padding: 18px 20px;
+        font-size: 0.95rem;
+        line-height: 1.7;
+        border: 1px solid rgba(243, 239, 232, 0.08);
+      }
+      .foot b {
+        color: #de9c6b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>הבית של תמי - 3 סגנונות, אותו עולם</h1>
+      <p>
+        שלושתם שומרים על הרקע שאהבת (לילה שנהיה בוקר), פונט דיסקברי, והתמונות
+        הגזורות של תמי במקום וידאו. המבנה בהשראת blocksuniverse. לחצו "פתח בגודל
+        מלא" וגללו לאט.
+      </p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-head">
+          <div class="titlerow">
+            <span class="name">E1 · מגזין ירחי</span
+            ><span class="tag">עריכתי-יוקרתי</span>
+          </div>
+          <p class="why">
+            כותרות דיסקברי ענקיות, המון אוויר, תמי עם התינוק כדמות מונומנטלית
+            מול הירח. מרגיש כמו שער מגזין. הכי "סמכות שקטה".
+          </p>
+        </div>
+        <div class="frame-wrap">
+          <div class="frame-clip">
+            <iframe src="e1.html" title="E1" loading="lazy"></iframe>
+            <div class="scrollhint"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="e1.html" target="_blank">פתח בגודל מלא</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="titlerow">
+            <span class="name">E2 · ספר לילה פרימיום</span
+            ><span class="tag rec">ההמלצה שלי</span>
+          </div>
+          <p class="why">
+            הכי קרוב לרפרנס: עולם מאויר עם רצועות תוכן גדולות, ותמי האמיתית
+            עומדת בתוכו על האחו. הטוויסט של צילום-אמת בתוך איור = חתימה שאין לאף
+            מתחרה. חם, מקצועי, בלתי נשכח.
+          </p>
+        </div>
+        <div class="frame-wrap">
+          <div class="frame-clip">
+            <iframe src="e2.html" title="E2" loading="lazy"></iframe>
+            <div class="scrollhint"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="e2.html" target="_blank">פתח בגודל מלא</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-head">
+          <div class="titlerow">
+            <span class="name">E3 · לילה יוקרתי</span
+            ><span class="tag">ספא 5 כוכבים</span>
+          </div>
+          <p class="why">
+            קטיפה כהה וזהב שמפניה, כותרות דיסקברי-לייט אווריריות, דמויות על כני
+            אור. הכי "יקר" ושקט. נשאר כהה לאורך רוב הדף ונמס לשנהב חם.
+          </p>
+        </div>
+        <div class="frame-wrap">
+          <div class="frame-clip">
+            <iframe src="e3.html" title="E3" loading="lazy"></iframe>
+            <div class="scrollhint"></div>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="btn" href="e3.html" target="_blank">פתח בגודל מלא</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <b>איך בוחרים?</b> תגיד E1 / E2 / E3 (או ערבוב, למשל "E2 עם הזהב של E3") -
+      ואני מקבע את הסגנון, בונה את כל שאר העמודים בשפה הזאת, מחבר את סרטון
+      הגלילה כשהרגליים מוכנות, ומעלה לאוויר.
+    </div>
+  </body>
+</html>
