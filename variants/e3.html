@@ -564,91 +564,94 @@
         filter: blur(26px);
       }
 
-      /* ============ HERO (dusk velvet, first ~150vh) ============ */
+      /* ============ HERO (dusk velvet, GLOWLY-style interlock) ============
+         Figure anchored bottom + inline-start (RIGHT in RTL), huge line-1
+         runs PARTIALLY BEHIND her (headline z-below figure), line-2 + sub +
+         CTA offset clear on the inline-end (LEFT). World budget (150vh) kept.
+         ============================================================ */
       .hero {
         position: relative;
         z-index: 10;
         min-height: 150vh;
         display: flex;
-        align-items: center;
-        padding-block: clamp(8.5rem, 18vh, 12rem) clamp(4rem, 10vh, 7rem);
+        align-items: flex-start;
+        padding-block: clamp(6rem, 12vh, 9rem) clamp(3rem, 8vh, 6rem);
       }
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: clamp(2.5rem, 6vw, 4rem);
-        align-items: center;
+      .hero .wrap {
         width: 100%;
       }
-      @media (min-width: 880px) {
-        .hero-grid {
-          grid-template-columns: 1.02fr 0.98fr;
-        }
+
+      /* the interlocking stage: containing block for the figure */
+      .hero-stage {
+        position: relative;
+        width: 100%;
+        min-height: clamp(540px, 80vh, 840px);
       }
+
+      /* headline + copy layer: sits UNDER the figure */
       .hero-copy {
-        text-align: center;
+        position: relative;
+        z-index: 2;
+        text-align: start;
+        padding-block-start: clamp(0.5rem, 4vh, 3rem);
       }
-      @media (min-width: 880px) {
-        .hero-copy {
-          text-align: start;
-        }
+      .hero .eyebrow {
+        margin-block-end: 1.15rem;
       }
       .hero h1 {
-        font-size: clamp(2.7rem, 6.4vw, 4.6rem);
-        line-height: 1.1;
         color: var(--cream);
-        margin-block: 1.3rem 1.4rem;
+        margin: 0;
       }
+      /* line 1: enormous, right words run behind the figure */
       .hero h1 .h1-lead {
         display: block;
+        font-size: clamp(2.7rem, 8.4vw, 5.2rem);
+        line-height: 1.02;
+        letter-spacing: -0.012em;
       }
       .hero h1 b {
         color: var(--gold-lite);
       }
+      /* line 2: offset toward the clear (inline-end / LEFT) side */
       .hero h1 .h1-dim {
         display: block;
-        font-size: 0.5em;
+        font-size: clamp(1.4rem, 3vw, 2.35rem);
         font-weight: 300;
-        line-height: 1.32;
+        line-height: 1.24;
         color: var(--cream-dim);
-        margin-block-start: 0.55em;
-        letter-spacing: 0.01em;
+        margin-block-start: 0.62em;
+        max-width: 22ch;
+        margin-inline-start: auto; /* push LEFT, clear of figure */
+        letter-spacing: 0.005em;
+      }
+      /* clear column: sub + CTA + trust hug the inline-end (LEFT) side.
+         52% cap means it can never slide under the ~44vw figure. */
+      .hero-lower {
+        max-width: min(33rem, 52%);
+        margin-inline-start: auto; /* push LEFT, clear of figure */
+        margin-block-start: 1.7rem;
       }
       .hero-sub {
-        font-size: clamp(1.08rem, 2.3vw, 1.3rem);
+        font-size: clamp(1.05rem, 2.1vw, 1.24rem);
         color: var(--cream-dim);
-        max-width: 40ch;
-        margin-inline: auto;
         font-weight: 300;
-      }
-      @media (min-width: 880px) {
-        .hero-sub {
-          margin-inline: 0;
-        }
+        max-width: 40ch;
+        margin-inline-start: auto;
       }
       .hero-sub b {
         font-weight: 500;
         color: var(--cream);
       }
       .hero .cta-row {
-        justify-content: center;
-      }
-      @media (min-width: 880px) {
-        .hero .cta-row {
-          justify-content: flex-start;
-        }
+        justify-content: flex-start;
+        margin-block-start: 1.7rem;
       }
       .trust {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: flex-start;
         gap: 0.6rem;
-        margin-block-start: 2.4rem;
-      }
-      @media (min-width: 880px) {
-        .trust {
-          justify-content: flex-start;
-        }
+        margin-block-start: 1.7rem;
       }
       .chip {
         font-size: 0.82rem;
@@ -668,12 +671,73 @@
         color: var(--gold);
         font-size: 0.66em;
       }
-      /* hero figure */
+
+      /* the figure: large, bottom-anchored, inline-start (RIGHT), ABOVE the
+         headline. Height-driven so aspect ratio never distorts. */
       .hero-figure {
-        min-height: 1px;
+        position: absolute;
+        z-index: 3;
+        inset-block-end: 0;
+        inset-inline-start: clamp(0px, 2vw, 48px);
+        pointer-events: none;
+        min-height: 0;
       }
       .hero-figure img {
-        max-block-size: min(62vh, 600px);
+        /* vw ceiling keeps her off the clear column on narrow desktops */
+        block-size: clamp(440px, min(74vh, 44vw), 720px);
+        inline-size: auto;
+        width: auto;
+        max-inline-size: 44vw;
+        /* warm velvet ambiance (respects alpha) + melt into the hero base */
+        filter: saturate(0.96) brightness(0.97) contrast(1.02) sepia(0.05);
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 14%);
+        mask-image: linear-gradient(to top, transparent 0%, #000 14%);
+      }
+
+      /* ---- MOBILE / narrow: stack gracefully, figure below the copy.
+         Interlock needs horizontal room, so stack up to 959px. ---- */
+      @media (max-width: 959px) {
+        .hero {
+          display: block;
+          /* start copy BELOW the fixed moon so the eyebrow stays legible */
+          padding-block: clamp(9rem, 27vh, 15rem) 0;
+        }
+        .hero-stage {
+          min-height: 0;
+        }
+        .hero-copy {
+          text-align: center;
+          padding-block-start: 0;
+        }
+        .hero h1 .h1-lead {
+          font-size: clamp(2.4rem, 10.8vw, 3.4rem);
+        }
+        .hero h1 .h1-dim,
+        .hero-lower,
+        .hero-sub {
+          max-width: 100%;
+          margin-inline: auto;
+        }
+        .hero .cta-row,
+        .trust {
+          justify-content: center;
+        }
+        .hero-figure {
+          position: relative;
+          inset: auto;
+          z-index: 1;
+          margin-block-start: 2.2rem;
+          display: flex;
+          justify-content: center;
+        }
+        .hero-figure img {
+          block-size: auto;
+          inline-size: min(80vw, 360px);
+          max-inline-size: none;
+        }
+        .hero-figure::after {
+          display: none;
+        }
       }
 
       /* legibility for velvet-zone display text */
@@ -1300,7 +1364,7 @@
         <!-- ============ HERO ============ -->
         <header class="hero on-velvet">
           <div class="wrap">
-            <div class="hero-grid">
+            <div class="hero-stage">
               <div class="hero-copy">
                 <span class="eyebrow"
                   >תמי שני &nbsp;|&nbsp; יועצת שינה והתפתחות</span
@@ -1309,31 +1373,33 @@
                   <span class="h1-lead">כולם ישנים <b>בסוף</b>.</span>
                   <span class="h1-dim">השאלה איך, מתי ובאיזו דרך.</span>
                 </h1>
-                <p class="hero-sub">
-                  אני תמי, ו-15 שנים אני עוזרת לאמהות עייפות ללמד את הבייבי
-                  להירדם לבד. <b>בלי להשאיר אותו לבכות. בלי לנחש.</b> עם דרך
-                  ברורה, שלב אחרי שלב.
-                </p>
-                <div class="cta-row">
-                  <a
-                    class="btn btn-gold"
-                    href="https://tammyshani.ravpage.co.il/tammybabysleep"
-                    target="_blank"
-                    rel="noopener"
-                    >אני רוצה לישון כבר עכשיו</a
-                  >
-                  <a
-                    class="btn btn-ghost-light"
-                    href="https://ig.me/m/baby.tammy.time"
-                    target="_blank"
-                    rel="noopener"
-                    >שיחת ייעוץ ללא עלות</a
-                  >
-                </div>
-                <div class="trust">
-                  <span class="chip">מעל 15 שנות ניסיון</span>
-                  <span class="chip">אלפי תינוקות</span>
-                  <span class="chip">בין המומלצים של רשת 13</span>
+                <div class="hero-lower">
+                  <p class="hero-sub">
+                    אני תמי, ו-15 שנים אני עוזרת לאמהות עייפות ללמד את הבייבי
+                    להירדם לבד. <b>בלי להשאיר אותו לבכות. בלי לנחש.</b> עם דרך
+                    ברורה, שלב אחרי שלב.
+                  </p>
+                  <div class="cta-row">
+                    <a
+                      class="btn btn-gold"
+                      href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                      target="_blank"
+                      rel="noopener"
+                      >אני רוצה לישון כבר עכשיו</a
+                    >
+                    <a
+                      class="btn btn-ghost-light"
+                      href="https://ig.me/m/baby.tammy.time"
+                      target="_blank"
+                      rel="noopener"
+                      >שיחת ייעוץ ללא עלות</a
+                    >
+                  </div>
+                  <div class="trust">
+                    <span class="chip">מעל 15 שנות ניסיון</span>
+                    <span class="chip">אלפי תינוקות</span>
+                    <span class="chip">בין המומלצים של רשת 13</span>
+                  </div>
                 </div>
               </div>
 
