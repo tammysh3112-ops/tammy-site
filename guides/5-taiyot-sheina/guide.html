@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5 טעויות שמעירות את הבייבי בלילה - תמי שני</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap");
+
+      @font-face {
+        font-family: "Discovery Fs";
+        src: url("fonts/Discovery_Fs-Light.woff2") format("woff2"),
+             url("fonts/Discovery_Fs-Light.woff") format("woff"),
+             url("file:///opt/data/brand/fonts/Discovery_Fs-Light.woff2") format("woff2");
+        font-weight: 300 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Discovery Fs";
+        src: url("fonts/Discovery_Fs-Bold.woff2") format("woff2"),
+             url("fonts/Discovery_Fs-Bold.woff") format("woff"),
+             url("file:///opt/data/brand/fonts/Discovery_Fs-Bold.woff2") format("woff2");
+        font-weight: 700 900;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      :root {
+        --cream: #fbf3ee;
+        --cream-2: #f5e9e2;
+        --ink: #4a342e;
+        --ink-soft: #6f524c;
+        --body: #5c453e;
+        --muted: #9c877f;
+        --clay: #c3998d;
+        --clay-deep: #9c6a5a;
+        --clay-cta: #8c5a4a;
+        --sage: #d2dbc8;
+        --sage-deep: #7e9471;
+        --blush: #f1dfdf;
+        --mauve: #cdbbb7;
+      }
+
+      body {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        background: var(--cream);
+        color: var(--ink);
+        line-height: 1.7;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      /* ---- Page structure ---- */
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        background: var(--cream);
+        padding: 46px 55px 60px;
+        page-break-after: always;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+      }
+
+      /* Logo tile strip - the signature element, echoes the logo blocks */
+      .tile-strip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 10px;
+        display: flex;
+      }
+      .tile-strip i {
+        flex: 1;
+        display: block;
+      }
+      .tile-strip i:nth-child(1) {
+        background: var(--sage);
+      }
+      .tile-strip i:nth-child(2) {
+        background: var(--clay);
+      }
+      .tile-strip i:nth-child(3) {
+        background: var(--mauve);
+      }
+      .tile-strip i:nth-child(4) {
+        background: var(--clay);
+      }
+      .tile-strip i:nth-child(5) {
+        background: var(--blush);
+      }
+
+      .page-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 26px;
+      }
+
+      .page-head .kicker {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        color: var(--muted);
+      }
+
+      .page-head img {
+        height: 42px;
+        width: auto;
+      }
+
+      /* Footer */
+      .page-footer {
+        position: absolute;
+        bottom: 30px;
+        left: 55px;
+        right: 55px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1.5px solid var(--mauve);
+        padding-top: 10px;
+      }
+
+      .page-footer .handle {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--muted);
+        direction: ltr;
+        letter-spacing: 0.4px;
+      }
+
+      .page-footer .page-num {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--ink-soft);
+        background: var(--blush);
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9px;
+      }
+
+      /* ---- Cover ---- */
+      .cover {
+        width: 210mm;
+        min-height: 297mm;
+        background: var(--cream);
+        padding: 40px 55px 60px;
+        page-break-after: always;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cover-blob {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.55;
+      }
+      .cover-blob.b1 {
+        width: 300px;
+        height: 300px;
+        background: var(--blush);
+        top: -90px;
+        left: -90px;
+      }
+      .cover-blob.b2 {
+        width: 210px;
+        height: 210px;
+        background: var(--sage);
+        top: 160px;
+        left: -70px;
+        opacity: 0.4;
+      }
+
+      .cover-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        position: relative;
+      }
+
+      .cover-logo {
+        height: 78px;
+        width: auto;
+      }
+
+      .cover-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--sage);
+        border-radius: 999px;
+        padding: 7px 16px;
+        margin-top: 12px;
+      }
+
+      .cover-badge .dot {
+        width: 8px;
+        height: 8px;
+        background: var(--sage-deep);
+        border-radius: 50%;
+      }
+
+      .cover-badge span {
+        font-size: 12px;
+        font-weight: 700;
+        color: #45533c;
+        letter-spacing: 1px;
+      }
+
+      .cover h1 {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-size: 48px;
+        font-weight: 800;
+        line-height: 1.14;
+        color: var(--ink);
+        margin-bottom: 16px;
+        position: relative;
+      }
+
+      .cover h1 em {
+        font-style: normal;
+        color: var(--clay-deep);
+      }
+
+      .cover-subtitle {
+        font-size: 16.5px;
+        font-weight: 400;
+        color: var(--body);
+        line-height: 1.85;
+        max-width: 470px;
+        margin-bottom: 18px;
+        position: relative;
+      }
+
+      /* What you'll learn box */
+      .learn-box {
+        background: var(--ink-soft);
+        border-radius: 20px;
+        padding: 20px 26px;
+        margin-bottom: 22px;
+        position: relative;
+      }
+
+      .learn-box-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .learn-box-header .line {
+        width: 22px;
+        height: 2px;
+        background: var(--clay);
+      }
+
+      .learn-box-header span:last-child {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: var(--blush);
+      }
+
+      .learn-box ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .learn-box li {
+        font-size: 13.5px;
+        color: #f6ede8;
+        padding: 3.5px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .learn-box .check {
+        width: 20px;
+        height: 20px;
+        background: var(--sage);
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: #45533c;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      /* ---- Section headers ---- */
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .section-header .num {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-size: 17px;
+        font-weight: 800;
+        color: var(--ink-soft);
+        background: var(--blush);
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+      }
+
+      .section-header h2 {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-size: 23px;
+        font-weight: 800;
+        color: var(--ink);
+      }
+
+      .section-rule {
+        width: 100%;
+        height: 2px;
+        background: var(--mauve);
+        margin-bottom: 18px;
+      }
+
+      /* ---- Body text ---- */
+      .body-text {
+        font-size: 15px;
+        font-weight: 400;
+        color: var(--body);
+        line-height: 1.9;
+        margin-bottom: 18px;
+        text-align: justify;
+      }
+
+      .body-text strong {
+        font-weight: 700;
+        color: var(--ink);
+      }
+
+      /* ---- Step / sub titles ---- */
+      .step-title {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--clay-deep);
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+
+      .step-title .chip {
+        background: var(--sage);
+        color: #45533c;
+        font-size: 12px;
+        font-weight: 800;
+        border-radius: 8px;
+        padding: 2px 9px;
+      }
+
+      /* ---- Callout (CTA blocks) ---- */
+      .callout-box {
+        background: var(--clay-cta);
+        border-radius: 20px;
+        padding: 26px 30px;
+        margin: 24px 0;
+        position: relative;
+        overflow: visible;
+      }
+
+      .callout-box h3 {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        color: #ffffff;
+        margin-bottom: 8px;
+        line-height: 1.35;
+      }
+
+      .callout-box p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.93);
+        line-height: 1.8;
+      }
+
+      .callout-box .link {
+        font-size: 14px;
+        font-weight: 700;
+        color: #ffffff;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.75);
+        padding-bottom: 2px;
+        margin-top: 12px;
+        display: inline-block;
+        direction: ltr;
+      }
+
+      /* ---- Info / insight ---- */
+      .insight-box {
+        background: var(--cream-2);
+        border-right: 5px solid var(--sage-deep);
+        border-radius: 16px;
+        padding: 22px 26px;
+        margin: 22px 0;
+      }
+
+      .insight-box-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+        color: #ffffff;
+        background: var(--sage-deep);
+        padding: 3px 11px;
+        border-radius: 7px;
+        display: inline-block;
+        margin-bottom: 9px;
+      }
+
+      .insight-box p {
+        font-size: 14.5px;
+        color: var(--body);
+        line-height: 1.85;
+      }
+
+      /* ---- Checklist ---- */
+      .checklist {
+        list-style: none;
+        padding: 0;
+        margin: 18px 0;
+      }
+
+      .checklist li {
+        font-size: 14.5px;
+        color: var(--body);
+        padding: 7px 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 11px;
+        line-height: 1.65;
+      }
+
+      .checklist .bullet {
+        width: 20px;
+        height: 20px;
+        background: var(--blush);
+        color: var(--clay-deep);
+        border-radius: 7px;
+        flex-shrink: 0;
+        margin-top: 3px;
+        font-size: 11px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tip {
+        font-size: 13px;
+        color: var(--muted);
+        font-style: italic;
+        margin: 10px 0 0;
+        padding-right: 14px;
+        border-right: 2px solid var(--mauve);
+      }
+
+      .spacer {
+        height: 18px;
+      }
+
+    
+  /* ---- Fix card (מה עושים במקום) ---- */
+  .fix-card {
+    background: var(--cream-2);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-top: 12px;
+    border-right: 5px solid var(--sage-deep);
+  }
+  .fix-card .label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    color: #FFFFFF;
+    background: var(--sage-deep);
+    padding: 3px 10px;
+    border-radius: 7px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .fix-card ul { list-style: none; padding: 0; }
+  .fix-card li {
+    font-size: 14px;
+    color: var(--body);
+    line-height: 1.6;
+    padding: 4px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+  }
+  .fix-card li b { color: var(--ink); font-weight: 700; }
+  .fix-card .mark {
+    width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px;
+    background: var(--sage); color: #45533C; border-radius: 6px;
+    font-size: 10px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  h3.sub-title-plain {
+    font-family: "Discovery Fs", "Heebo", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--clay-deep);
+    margin-bottom: 10px;
+  }
+
+  /* ---- Wake window table ---- */
+  .wake-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 6px;
+    margin: 6px 0 4px;
+  }
+  .wake-table th {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    text-align: right;
+    padding: 0 16px 4px;
+  }
+  .wake-table td {
+    background: var(--cream-2);
+    font-size: 14px;
+    color: var(--body);
+    padding: 11px 16px;
+    text-align: right;
+  }
+  .wake-table tr td:first-child {
+    border-radius: 0 12px 12px 0;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--blush);
+    width: 27%;
+  }
+  .wake-table tr td:last-child { border-radius: 12px 0 0 12px; width: 26%; }
+  .wake-table .win { font-weight: 700; color: var(--clay-deep); direction: ltr; text-align: right; }
+
+  /* ---- Cover byline ---- */
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 26px;
+    position: relative;
+  }
+  .byline img {
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--blush);
+  }
+  .byline .who { font-family: "Discovery Fs", "Heebo", sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); }
+  .byline .what { font-size: 13px; color: var(--muted); }
+
+      /* ---- Quote card ---- */
+      .quote-card {
+        background: var(--blush);
+        border-radius: 20px;
+        padding: 24px 30px;
+        margin: 26px 0 0;
+        text-align: center;
+      }
+      .quote-card p {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.55;
+      }
+      .quote-card .sig {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--clay-deep);
+        margin-top: 10px;
+      }
+
+      /* ---- Print nudge ---- */
+      .nudge {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--sage);
+        border-radius: 14px;
+        padding: 13px 18px;
+        margin-top: 18px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #3f4c38;
+      }
+
+      /* ---- Sign off ---- */
+      .signoff {
+        text-align: center;
+        margin-top: 26px;
+      }
+      .signoff .love {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .signoff .share {
+        font-size: 13.5px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .signoff .tiles {
+        display: flex;
+        justify-content: center;
+        gap: 7px;
+        margin-top: 14px;
+      }
+      .signoff .tiles i {
+        width: 26px;
+        height: 26px;
+        border-radius: 9px;
+        display: block;
+      }
+      .signoff .tiles i:nth-child(1) { background: var(--sage); }
+      .signoff .tiles i:nth-child(2) { background: var(--clay); }
+      .signoff .tiles i:nth-child(3) { background: var(--mauve); }
+      .signoff .tiles i:nth-child(4) { background: var(--blush); }
+
+  /* ---- CTA with photo ---- */
+      .cta-layout {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .cta-content {
+        flex: 1;
+      }
+      .cta-photo {
+        width: 170px;
+        flex-shrink: 0;
+        align-self: flex-end;
+        margin-bottom: -26px;
+      }
+      .cta-photo img {
+        width: 170px;
+        height: auto;
+        filter: drop-shadow(0 6px 14px rgba(74, 52, 46, 0.25));
+      }
+    </style>
+  </head>
+  <body>
+
+<!-- ==================== PAGE 1: COVER ==================== -->
+<div class="cover">
+  <div class="tile-strip"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="cover-blob b1"></div>
+  <div class="cover-blob b2"></div>
+
+  <div class="cover-top">
+    <img class="cover-logo" src="logo.png" alt="baby tammy time">
+    <div class="cover-badge">
+      <div class="dot"></div>
+      <span>מדריך שינה</span>
+    </div>
+  </div>
+
+  <h1>5 טעויות<br><em>שמעירות את הבייבי</em><br>בלילה</h1>
+
+  <p class="cover-subtitle">
+    את עושה הכל נכון, ובכל זאת הוא קם 4 פעמים בלילה. לפני שאת מחליפה שוב שיטה, יש 5 דברים קטנים שרוב האמהות מפספסות. את כולם אפשר להתחיל לתקן כבר הלילה, בעדינות ועם מענה לבכי.
+  </p>
+
+  <div class="byline">
+    <img src="profile.jpg" alt="תמי שני">
+    <div>
+      <div class="who">תמי שני</div>
+      <div class="what">יועצת שינה והתפתחות, ליוויתי אלפי משפחות בישראל</div>
+    </div>
+  </div>
+
+  <div class="learn-box">
+    <div class="learn-box-header">
+      <span class="line"></span>
+      <span>מה יש בפנים</span>
+    </div>
+    <ul>
+      <li><span class="check">✓</span> למה הוא קם בדיוק אחרי 40 דקות</li>
+      <li><span class="check">✓</span> איך יודעים שחלון הערות לא מתאים לגיל</li>
+      <li><span class="check">✓</span> איך יוצאים מהרגל ההרדמה על הידיים</li>
+      <li><span class="check">✓</span> מה עושים ביקיצה של 3 לפנות בוקר</li>
+      <li><span class="check">✓</span> טבלת חלונות ערות לפי גיל, להדפסה ולמקרר</li>
+    </ul>
+  </div>
+
+  <div class="section-header">
+    <span class="num">01</span>
+    <h2>אז למה זה קורה</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <p class="body-text">
+    אם את קוראת את זה עכשיו עם בייבי על היד, אני מכירה את ההרגשה. גם אני עבדתי שעה וחצי על הרדמה בשביל תנומה של 25 דקות. תכלס, ברוב המקרים זו לא בעיה רפואית ולא אופי של התינוק, אלה כמה הרגלים קטנים שנבנו לאט לאט, בלי ששמנו לב.
+  </p>
+  <p class="body-text">
+    והחדשות הטובות: הרגל שנבנה אפשר גם לשנות, בלי לשבור אף אחד ובלי להשאיר אותו לבכות. בעמודים הבאים 5 הטעויות שאני רואה הכי הרבה, ומה עושים במקום בכל אחת מהן.
+  </p>
+
+  <div class="page-footer">
+    <div class="handle">@baby.tammy.time</div>
+    <div class="page-num">01</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2 ==================== -->
+<div class="page">
+  <div class="tile-strip"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="page-head">
+    <img src="logo.png" alt="baby tammy time">
+    <div class="kicker">5 טעויות שמעירות את הבייבי בלילה</div>
+  </div>
+
+  <div class="section-header">
+    <span class="num">02</span>
+    <h2>הטעויות שקורות לפני השינה</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <h3 class="step-title"><span class="chip">טעות 1</span> חלון הערות לא מתאים לגיל</h3>
+  <p class="body-text">התינוק ער יותר מדי שעות, מגיע למיטה עייף מדי, והגוף שלו מפריש קורטיזול בדיוק כשהוא אמור להירגע. זה הבייבי שנלחם במיטה 40 דקות ואז קם אחרי 30. גם ער מעט מדי עושה בלגן, כי אין מספיק לחץ שינה, ואז ההשכבה מתפוצצת לך בפנים.</p>
+  <div class="fix-card">
+    <div class="label">מה עושים במקום</div>
+    <ul>
+      <li><span class="mark">✓</span> <span>תעבדי לפי החלון של הגיל שלו (הטבלה בעמוד 4), לא לפי השעון על הקיר.</span></li>
+      <li><span class="mark">✓</span> <span>תתחילי השכבה בסימן הראשון: מבט מזוגג, משיכת אוזן, פיהוק.</span></li>
+      <li><span class="mark">✓</span> <span>פספסת את הסימן? תקצרי את הטקס, לא תוותרי עליו.</span></li>
+    </ul>
+  </div>
+
+  <div class="spacer"></div>
+
+  <h3 class="step-title"><span class="chip">טעות 2</span> הוא נרדם בידיים ומתעורר במיטה</h3>
+  <p class="body-text">הוא נרדם עלייך על החזה, ואחרי חצי שעה מוצא את עצמו לבד במיטה. מבחינתו זה כמו להירדם בסלון ולהתעורר במטבח, אז הוא קורא לך. זה לא פינוק וזה לא מניפולציה, זה בדיוק מה שהוא מכיר, וזה גם מה שאפשר לשנות.</p>
+  <div class="fix-card">
+    <div class="label">מה עושים במקום</div>
+    <ul>
+      <li><span class="mark">✓</span> <span>תניחי אותו במיטה כשהוא ער, רגוע ומנומנם, ולא אחרי שנרדם.</span></li>
+      <li><span class="mark">✓</span> <span>תישארי לידו: יד על הבטן, קול שקט, ולא יוצאים עד שהוא נרגע.</span></li>
+      <li><span class="mark">✓</span> <span>נרדם רק על הציצי או הבקבוק? תפרידי בסדר: אוכל, החלפת חיתול, מיטה.</span></li>
+    </ul>
+  </div>
+  <p class="tip">בימים הראשונים זה לוקח יותר זמן. אחרי כמה ימים זה לוקח פחות, וזה השלב שבו רוב האמהות עוצרות רגע לפני.</p>
+
+  <div class="callout-box">
+    <h3>רוצה את השיטה המלאה?</h3>
+    <p>הקורס הדיגיטלי שלי לוקח אותך שלב שלב, מהניובורן ועד הפעוט. כל התהליך עם מענה לבכי, בקצב שלך, בלי להשאיר אותו לבד.</p>
+    <div class="link">tammyshani.ravpage.co.il/tammybabysleep</div>
+  </div>
+
+  <div class="page-footer">
+    <div class="handle">@baby.tammy.time</div>
+    <div class="page-num">02</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 3 ==================== -->
+<div class="page">
+  <div class="tile-strip"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="page-head">
+    <img src="logo.png" alt="baby tammy time">
+    <div class="kicker">5 טעויות שמעירות את הבייבי בלילה</div>
+  </div>
+
+  <div class="section-header">
+    <span class="num">03</span>
+    <h2>הטעויות שקורות בתוך הלילה</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <h3 class="step-title"><span class="chip">טעות 3</span> כל ערב טקס אחר</h3>
+  <p class="body-text">יום אחד אמבטיה, יום אחר בקבוק בסלון, ולפעמים ישר למיטה כי הכל התאחר. התינוק לא יודע לקרוא שעון, הוא קורא סדר פעולות. כשהסדר קבוע, הגוף שלו מתחיל להתכונן לשינה עוד לפני שהגעתם לחדר.</p>
+  <div class="fix-card">
+    <div class="label">מה עושים במקום</div>
+    <ul>
+      <li><span class="mark">✓</span> <span>3 או 4 שלבים קבועים, אותו סדר, אותו חדר, כל ערב מחדש.</span></li>
+      <li><span class="mark">✓</span> <span>15 דקות מספיקות בהחלט. ארוך מדי רק מעיר אותו שוב.</span></li>
+      <li><span class="mark">✓</span> <span>אור עמום מהשלב הראשון, בלי מסכים בחדר.</span></li>
+    </ul>
+  </div>
+
+  <div class="spacer"></div>
+
+  <h3 class="step-title"><span class="chip">טעות 4</span> רצים אליו בשנייה הראשונה</h3>
+  <p class="body-text">רחש קטן, ואת כבר מעל המיטה. חלק מהיקיצות זה סתם מעבר בין שלבי שינה, והתינוק יודע לחזור מהן לבד, אם נותנים לו את הרגע הזה. אני לא מדברת על להשאיר אותו לבכות, אלא על לספור עד שאת מבינה מה הוא באמת מבקש.</p>
+  <div class="fix-card">
+    <div class="label">מה עושים במקום</div>
+    <ul>
+      <li><span class="mark">✓</span> <span>תני 30 עד 60 שניות לפני שאת נכנסת לחדר.</span></li>
+      <li><span class="mark">✓</span> <span>בכי שעולה ומתגבר זו קריאה אמיתית: נכנסים ומגיבים.</span></li>
+      <li><span class="mark">✓</span> <span>גרגור שנחלש חוזר לשינה בעצמו, בלי שנגענו.</span></li>
+    </ul>
+  </div>
+  <p class="tip">ביקיצה של 3 לפנות בוקר תשמרי על אותו נוהל בדיוק כמו ב-23:00. שינוי בכללים באמצע הלילה מבלבל אותו יותר מהיקיצה עצמה.</p>
+
+  <div class="quote-card">
+    <p>הרגלים נבנים לאט, והם גם נשברים לאט.<br>את לא מאחרת, את רק באמצע.</p>
+    <div class="sig">תמי ❤️</div>
+  </div>
+
+  <div class="page-footer">
+    <div class="handle">@baby.tammy.time</div>
+    <div class="page-num">03</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 4 ==================== -->
+<div class="page">
+  <div class="tile-strip"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="page-head">
+    <img src="logo.png" alt="baby tammy time">
+    <div class="kicker">5 טעויות שמעירות את הבייבי בלילה</div>
+  </div>
+
+  <div class="section-header">
+    <span class="num">04</span>
+    <h2>הטעות שקורית דווקא ביום</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <h3 class="step-title"><span class="chip">טעות 5</span> מפצים על הלילה בשינה של היום</h3>
+  <p class="body-text">אחרי לילה קשה מפתה לתת לו לישון בעגלה עד 5 אחר הצהריים, ואני לגמרי מבינה למה. מה שקורה בפועל, הלחץ לישון בלילה יורד, והוא מגיע ל-19:00 בכלל לא עייף. ואז ההשכבה נמרחת, הוא מגיע לשינה מאוחר, ובבוקר הכל מתחיל מבולגן מחדש.</p>
+  <div class="fix-card">
+    <div class="label">מה עושים במקום</div>
+    <ul>
+      <li><span class="mark">✓</span> <span>תשמרי על תנומות היום בשעות הגיוניות, גם אחרי לילה גרוע.</span></li>
+      <li><span class="mark">✓</span> <span>תסגרי את התנומה האחרונה לפחות שעתיים לפני שעת השינה.</span></li>
+      <li><span class="mark">✓</span> <span>תנומה שנקטעה מוקדם? עדיף להקדים את ההשכבה בערב ולא להאריך ביום.</span></li>
+    </ul>
+  </div>
+
+  <div class="spacer"></div>
+
+  <h3 class="sub-title-plain">טבלת חלונות ערות לפי גיל</h3>
+  <table class="wake-table">
+    <tr><th>גיל</th><th>חלון ערות</th><th>תנומות ביום</th></tr>
+    <tr><td>0-3 חודשים</td><td class="win">45-75 דקות</td><td>4-5</td></tr>
+    <tr><td>3-4 חודשים</td><td class="win">1:15-1:45 שעות</td><td>3-4</td></tr>
+    <tr><td>5-6 חודשים</td><td class="win">2:00-2:30 שעות</td><td>3</td></tr>
+    <tr><td>7-9 חודשים</td><td class="win">2:30-3:15 שעות</td><td>2-3</td></tr>
+    <tr><td>10-12 חודשים</td><td class="win">3:00-4:00 שעות</td><td>2</td></tr>
+    <tr><td>13-18 חודשים</td><td class="win">4:00-5:30 שעות</td><td>1-2</td></tr>
+  </table>
+  <p class="tip">אלה טווחים כלליים ולא חוק. תסתכלי על התינוק שלך, על סימני העייפות ועל איך נגמרת התנומה, ותכווני לפי זה.</p>
+
+  <div class="nudge">📌 תצלמי את הטבלה הזאת ותשמרי בגלריה. בשעה 2 בלילה לא מחפשים PDF.</div>
+
+  <div class="page-footer">
+    <div class="handle">@baby.tammy.time</div>
+    <div class="page-num">04</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 5: LAST ==================== -->
+<div class="page">
+  <div class="tile-strip"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="page-head">
+    <img src="logo.png" alt="baby tammy time">
+    <div class="kicker">5 טעויות שמעירות את הבייבי בלילה</div>
+  </div>
+
+  <div class="section-header">
+    <span class="num">05</span>
+    <h2>מה עושים כבר מחר</h2>
+  </div>
+  <div class="section-rule"></div>
+
+  <p class="body-text">
+    קראת הכל ועכשיו מתחשק לך לשנות את חמשת הדברים ביחד. אני מבינה, גם אני הייתי שם. אבל זה בדיוק מה שגורם לרוב האמהות להתייאש ביום השלישי. אז הנה הרשימה, בסדר הזה, ובקצב שלך.
+  </p>
+
+  <ul class="checklist">
+    <li><span class="bullet">✓</span> בודקות את חלון הערות לגיל ומתחילות השכבה בסימן העייפות הראשון</li>
+    <li><span class="bullet">✓</span> מניחות אותו במיטה ער ורגוע, גם אם זה לוקח עוד 10 דקות</li>
+    <li><span class="bullet">✓</span> טקס ערב קבוע, 4 שלבים, אותו סדר בכל ערב</li>
+    <li><span class="bullet">✓</span> סופרות 40 שניות ביקיצה לפני שנכנסות לחדר</li>
+    <li><span class="bullet">✓</span> סוגרות את התנומה האחרונה שעתיים לפני שעת השינה</li>
+  </ul>
+
+  <div class="insight-box">
+    <div class="insight-box-label">השורה התחתונה</div>
+    <p>
+      אל תשני הכל ביחד, זה הכי מתסכל שיש. תבחרי טעות אחת מהחמש, תעבדי עליה 5 ימים ברצף, ורק אז תעברי לבאה. ככה השינוי מחזיק גם אחרי שבוע, וגם אחרי מחלה או חופש.
+    </p>
+  </div>
+
+  <div class="callout-box">
+    <div class="cta-layout">
+      <div class="cta-content">
+        <h3>רוצה שנעבור על זה יחד?</h3>
+        <p>
+          קראת ועדיין מרגישה מבולבלת? כתבי לי באינסטגרם ״מבולבלת״ ונתאם שיחת ייעוץ ללא עלות. נבין מה קורה אצלכם בבית, ואת תצאי עם צעד ראשון ברור. אני כאן ❤️
+        </p>
+        <div class="link">ig.me/m/baby.tammy.time</div>
+      </div>
+      <div class="cta-photo">
+        <img src="tammy.png" alt="תמי שני">
+      </div>
+    </div>
+  </div>
+
+  <div class="signoff">
+    <div class="love">באהבה, תמי ❤️</div>
+    <div class="share">מכירה אמא שצריכה את המדריך הזה? שלחי לה. לפרגן לא עולה כסף 😉</div>
+    <div class="tiles"><i></i><i></i><i></i><i></i></div>
+  </div>
+
+  <div class="page-footer">
+    <div class="handle">@baby.tammy.time</div>
+    <div class="page-num">05</div>
+  </div>
+</div>
+
+</body>
+</html>

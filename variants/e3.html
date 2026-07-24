@@ -53,8 +53,13 @@
 
         --cream: #efe7d8; /* warm off-white body text on velvet */
         --cream-dim: rgba(239, 231, 216, 0.82);
-        --ink: #241f3a; /* deep aubergine ink on ivory */
+        --ink: #241f3a; /* deep aubergine ink on ivory + DAY sky */
         --ink-soft: #4a4363;
+
+        /* ---- DAY sky (top + resolve) - premium calm morning, not cyan ---- */
+        --day-sky: #c9d4ea; /* soft warm morning blue (very top) */
+        --day-warm: #ece0cf; /* warm ivory day light */
+        --ink-day: rgba(36, 31, 58, 0.78); /* ink softened for airy day sky */
 
         --font-display: "Discovery Fs", "Heebo", Georgia, serif;
         --font-body: "Heebo", system-ui, sans-serif;
@@ -73,12 +78,12 @@
         --shadow-lux: 0 30px 70px -30px rgba(4, 5, 16, 0.85);
         --shadow-soft: 0 22px 50px -26px rgba(20, 14, 30, 0.35);
 
-        /* ---- live layer opacities (rAF-driven; defaults = scroll 0 / dusk) ---- */
-        --op-stars: 0.2;
-        --op-moon: 0.9;
-        --op-sun: 0;
+        /* ---- live layer opacities (rAF-driven; defaults = scroll 0 / DAY) ---- */
+        --op-stars: 0;
+        --op-moon: 0;
+        --op-sun: 0.85;
         --op-hills: 1;
-        --op-tint: 0.55;
+        --op-tint: 0;
       }
 
       * {
@@ -93,8 +98,8 @@
       body {
         font-family: var(--font-body);
         background: var(
-          --dusk
-        ); /* matches gradient top so overscroll never flashes */
+          --day-sky
+        ); /* matches gradient top (day) so overscroll never flashes */
         color: var(--cream);
         line-height: 1.72;
         font-weight: 400;
@@ -267,34 +272,49 @@
          (blocksuniverse mechanic: gradient scrolls, scenery stays).
          NEVER add transform/filter/backdrop-filter to .sky-wrap or any
          ANCESTOR of a .fx layer - it traps position:fixed.
-         Arc: dusk plum -> DEEP VELVET NIGHT (held flat 22-52%) ->
-         indigo -> plum -> mauve/rose dawn -> WARM IVORY morning.
+         FULL DAY->NIGHT->DAY arc:
+           DAY (soft morning blue/ivory) -> golden dusk -> plum twilight
+           -> DEEP VELVET NIGHT HOLD (longest band, ~32-68%) -> indigo
+           pre-dawn -> warm sunrise -> soft DAY/ivory morning again.
+         Stops tuned to section offsets (see VERIFY note in JS tracks).
          ============================================================ */
       .sky-wrap {
         position: relative;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: scroll;
         background-image: linear-gradient(
           180deg,
-          #241f45 0%,
-          /* dusk plum (hero top) */ #1e1b3c 6%,
-          #191734 11%,
-          #14162e 17%,
-          /* velvet night begins */ #101228 21%,
-          /* --- deepest velvet HOLD 22-52% --- */ #0d0f23 26%,
-          #0b0d20 34%,
-          #0b0d20 44%,
-          #0d1026 50%,
-          #101330 54%,
-          #171a3c 59%,
-          /* indigo lift */ #23204a 64%,
-          #35294f 69%,
-          /* plum */ #593f60 74%,
-          #8a5f6e 78%,
-          /* mauve dawn */ #b47a76 82%,
-          #d19a80 85%,
-          /* rose-peach dawn */ #e3b58f 88%,
-          #edcaa6 91%,
-          /* soft gold first light */ #f2ddc4 94%,
-          #f4e8d6 97%,
+          #c9d4ea 0%,
+          /* --- soft warm DAY sky: hero copy zone (ink-friendly) --- */ #cfd6e4
+            4%,
+          #d8d8da 7%,
+          #e6c79a 9%,
+          /* warm gold behind the lower hero */ #d69a82 11%,
+          /* golden dusk */ #ab6a71 12.5%,
+          /* rose dusk */ #6f5066 14%,
+          /* mauve twilight (pain onset) */ #3c3457 16%,
+          /* plum twilight */ #20213e 18.5%,
+          #16182f 21%,
+          /* velvet night (quick-paths) */ #0f1128 24%,
+          #0b0d20 26%,
+          /* --- deepest velvet HOLD 33-58% (method..testimonials) --- */
+          #0a0c1e 33%,
+          #0a0c1e 46%,
+          #0b0d20 53%,
+          #0c0e23 58%,
+          #101228 61%,
+          /* indigo pre-dawn (guides) */ #191b3c 64%,
+          #2a2650 68%,
+          /* indigo -> plum (about) */ #45385c 71%,
+          #7a566a 74%,
+          /* mauve -> rose-peach dawn */ #b77c78 76%,
+          /* peach sunrise (faq) */ #e0ac89 78%,
+          #edc6a2 80%,
+          /* warming to day (final CTA) */ #f0d8bc 83%,
+          #f2e2cc 86%,
+          /* soft DAY / ivory returns (contact + footer) */ #f4ebd9 90%,
+          #f6efe2 94%,
           #f6f0e6 100% /* warm ivory morning */
         );
       }
@@ -353,11 +373,13 @@
         inline-size: min(42vw, 286px);
         aspect-ratio: 1;
       }
+      /* SUN owns the hero celestial slot (upper inline-end), gentle + small;
+         it is the DAY light at the top and returns at the morning end. */
       #sun .celestial {
-        inline-size: min(52vw, 360px);
-        inset-block-start: clamp(11vh, 15vh, 18vh);
-        inset-inline-end: auto;
-        inset-inline-start: clamp(4vw, 9vw, 12vw);
+        inline-size: min(38vw, 244px);
+        inset-block-start: clamp(4.5vh, 7vh, 9vh);
+        inset-inline-end: clamp(5vw, 9vw, 12vw);
+        inset-inline-start: auto;
       }
 
       /* photoreal moon: soft breathing glow on wrapper, slow spin on disc */
@@ -454,16 +476,19 @@
         backdrop-filter: blur(16px) saturate(1.1);
         box-shadow: 0 1px 0 var(--hair-gold-soft);
       }
+      /* NAV default = over the DAY sky at the very top: ink-on-light.
+         Once scrolled (dark velvet pill) it flips to cream/gold below. */
       .logo {
         font-family: var(--font-display);
         font-weight: 300;
         font-size: 1.62rem;
         letter-spacing: 0.04em;
-        color: var(--cream);
+        color: var(--ink);
+        transition: color 0.4s ease;
       }
       .logo b {
         font-weight: 700;
-        color: var(--gold-lite);
+        color: var(--gold-deep);
       }
       .nav-links {
         display: flex;
@@ -472,19 +497,19 @@
       }
       .nav-links a:not(.nav-cta) {
         font-size: 0.96rem;
-        font-weight: 400;
-        color: var(--cream-dim);
+        font-weight: 500;
+        color: var(--ink-soft);
         transition: color 0.2s;
       }
       .nav-links a:not(.nav-cta):hover {
-        color: var(--gold-lite);
+        color: var(--gold-deep);
       }
       .nav-cta {
         min-height: 44px;
         padding: 0.45rem 1.4rem;
         border-radius: 999px;
-        border: 1px solid var(--hair-gold);
-        color: var(--gold-lite);
+        border: 1px solid rgba(138, 107, 46, 0.42);
+        color: var(--gold-deep);
         font-weight: 600;
         font-size: 0.92rem;
         display: inline-flex;
@@ -492,10 +517,32 @@
         transition:
           transform 0.2s,
           background 0.2s,
-          border-color 0.2s;
+          border-color 0.2s,
+          color 0.4s ease;
       }
       .nav-cta:hover {
         transform: translateY(-1px);
+        background: rgba(138, 107, 46, 0.09);
+        border-color: rgba(138, 107, 46, 0.7);
+      }
+      /* scrolled: dark velvet pill -> cream/champagne text */
+      .nav.scrolled .logo {
+        color: var(--cream);
+      }
+      .nav.scrolled .logo b {
+        color: var(--gold-lite);
+      }
+      .nav.scrolled .nav-links a:not(.nav-cta) {
+        color: var(--cream-dim);
+      }
+      .nav.scrolled .nav-links a:not(.nav-cta):hover {
+        color: var(--gold-lite);
+      }
+      .nav.scrolled .nav-cta {
+        color: var(--gold-lite);
+        border-color: var(--hair-gold);
+      }
+      .nav.scrolled .nav-cta:hover {
         background: rgba(217, 184, 120, 0.1);
         border-color: rgba(217, 184, 120, 0.7);
       }
@@ -594,9 +641,10 @@
       }
       .hero .eyebrow {
         margin-block-end: 1.15rem;
+        color: var(--gold-deep); /* gold accent readable on DAY sky */
       }
       .hero h1 {
-        color: var(--cream);
+        color: var(--ink); /* deep aubergine ink on the DAY sky */
         margin: 0;
       }
       /* line 1: enormous, right words run behind the figure */
@@ -607,7 +655,7 @@
         letter-spacing: -0.012em;
       }
       .hero h1 b {
-        color: var(--gold-lite);
+        color: var(--gold-deep);
       }
       /* line 2: offset toward the clear (inline-end / LEFT) side */
       .hero h1 .h1-dim {
@@ -615,7 +663,7 @@
         font-size: clamp(1.4rem, 3vw, 2.35rem);
         font-weight: 300;
         line-height: 1.24;
-        color: var(--cream-dim);
+        color: var(--ink-soft);
         margin-block-start: 0.62em;
         max-width: 22ch;
         margin-inline-start: auto; /* push LEFT, clear of figure */
@@ -630,14 +678,14 @@
       }
       .hero-sub {
         font-size: clamp(1.05rem, 2.1vw, 1.24rem);
-        color: var(--cream-dim);
-        font-weight: 300;
+        color: var(--ink-soft);
+        font-weight: 400;
         max-width: 40ch;
         margin-inline-start: auto;
       }
       .hero-sub b {
-        font-weight: 500;
-        color: var(--cream);
+        font-weight: 600;
+        color: var(--ink);
       }
       .hero .cta-row {
         justify-content: flex-start;
@@ -652,12 +700,12 @@
       }
       .chip {
         font-size: 0.82rem;
-        font-weight: 500;
-        color: var(--cream);
+        font-weight: 600;
+        color: var(--ink);
         padding: 0.48rem 1.05rem;
         border-radius: 999px;
-        border: 1px solid var(--hair-gold-soft);
-        background: rgba(19, 21, 44, 0.4);
+        border: 1px solid rgba(138, 107, 46, 0.34);
+        background: rgba(246, 240, 230, 0.55);
         backdrop-filter: blur(6px);
         display: inline-flex;
         align-items: center;
@@ -665,7 +713,7 @@
       }
       .chip::before {
         content: "✦";
-        color: var(--gold);
+        color: var(--gold-deep);
         font-size: 0.66em;
       }
 
@@ -685,8 +733,10 @@
         inline-size: auto;
         width: auto;
         max-inline-size: 44vw;
-        /* warm velvet ambiance (respects alpha) + melt into the hero base */
-        filter: saturate(0.96) brightness(0.97) contrast(1.02) sepia(0.05);
+        /* soft DAYLIGHT rim: gentle ground shadow + bright halo (no darkening) */
+        filter: saturate(1) brightness(1.01) contrast(1.02)
+          drop-shadow(0 16px 26px rgba(74, 60, 80, 0.24))
+          drop-shadow(0 0 26px rgba(255, 250, 238, 0.36));
         -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 14%);
         mask-image: linear-gradient(to top, transparent 0%, #000 14%);
       }
@@ -749,8 +799,25 @@
           0 1px 3px rgba(4, 5, 16, 0.6),
           0 2px 24px rgba(4, 5, 16, 0.4);
       }
+      /* DAY-zone display text: whisper of white lift off the soft sky */
+      .on-day h1,
+      .on-day .hero-sub {
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+      }
 
       /* ============ PAIN (deep velvet night) ============ */
+      .dusk-caption {
+        text-align: center;
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+        color: var(--gold-lite);
+        letter-spacing: 0.02em;
+        margin-block-end: clamp(2.4rem, 6vw, 4rem);
+        text-shadow:
+          0 1px 3px rgba(4, 5, 16, 0.7),
+          0 2px 20px rgba(4, 5, 16, 0.5);
+      }
       .pain-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -1229,6 +1296,556 @@
         display: inline-block;
       }
 
+      /* ============ QUICK-PATHS (dusk->night) ============ */
+      .quick .head {
+        text-align: center;
+        max-width: 640px;
+        margin-inline: auto;
+        margin-block-end: 2.6rem;
+      }
+      .quick h2 {
+        color: var(--cream);
+      }
+      .quick h2 b {
+        color: var(--gold-lite);
+      }
+      .quick .head p {
+        color: var(--cream-dim);
+        font-weight: 300;
+        margin-block-start: 0.8rem;
+        font-size: 1.08rem;
+      }
+      .quick-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 760px) {
+        .quick-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .quick-card {
+        padding: 1.6rem 1.4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.55rem;
+        text-align: start;
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .quick-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(217, 184, 120, 0.6);
+      }
+      .quick-card .qc-icon {
+        font-size: 1.55rem;
+        line-height: 1;
+      }
+      .quick-card .qc-title {
+        font-family: var(--font-body);
+        font-weight: 600;
+        color: var(--cream);
+        font-size: 1.04rem;
+      }
+      .quick-card .qc-go {
+        margin-block-start: 0.1rem;
+        font-size: 0.82rem;
+        color: var(--gold-lite);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45ch;
+      }
+      .quick-card:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      /* ============ OFFERS GRID (night hold) ============ */
+      .offers .head {
+        text-align: center;
+        max-width: 680px;
+        margin-inline: auto;
+        margin-block-end: 3rem;
+      }
+      .offers h2 {
+        color: var(--cream);
+      }
+      .offers h2 b {
+        color: var(--gold-lite);
+      }
+      .offers .head p {
+        color: var(--cream-dim);
+        font-weight: 300;
+        margin-block-start: 0.8rem;
+        font-size: 1.1rem;
+      }
+      .offers-figure {
+        margin-block-end: 2.6rem;
+      }
+      .offers-figure img {
+        max-block-size: 360px;
+      }
+      .offers-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+      @media (min-width: 640px) {
+        .offers-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1040px) {
+        .offers-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .offer-card {
+        padding: 2rem 1.7rem;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.28s ease,
+          border-color 0.28s ease,
+          box-shadow 0.28s ease;
+      }
+      .offer-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(217, 184, 120, 0.6);
+      }
+      .offer-card .eyebrow {
+        margin-block-end: 0.9rem;
+      }
+      .offer-card h3 {
+        color: var(--cream);
+        font-weight: 700;
+        font-size: 1.24rem;
+        margin-block-end: 0.55rem;
+        letter-spacing: 0.005em;
+      }
+      .offer-card p {
+        color: var(--cream-dim);
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 1.62;
+        flex: 1 1 auto;
+      }
+      .offer-price {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.55ch;
+        margin-block: 1.1rem 0.1rem;
+        font-family: var(--font-display);
+        direction: rtl;
+      }
+      .offer-price .now {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--gold-lite);
+        direction: ltr;
+        unicode-bidi: isolate;
+      }
+      .offer-price .cur {
+        font-size: 0.95rem;
+        color: var(--cream);
+        font-family: var(--font-body);
+      }
+      .offer-price s {
+        font-size: 1rem;
+        color: rgba(239, 231, 216, 0.5);
+        font-family: var(--font-body);
+        font-weight: 400;
+      }
+      .offer-cta {
+        margin-block-start: 1.4rem;
+      }
+      .offer-cta .btn {
+        width: 100%;
+      }
+      .offer-card.featured {
+        border-color: rgba(217, 184, 120, 0.6);
+        box-shadow:
+          var(--shadow-lux),
+          0 0 0 1px rgba(217, 184, 120, 0.24) inset;
+      }
+      .offer-tag {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-end: 1.4rem;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, #e6cd97, #d9b878);
+        color: #241a08;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.3rem 0.9rem;
+        border-radius: 999px;
+        letter-spacing: 0.03em;
+      }
+
+      /* ============ PRESS "מהתקשורת" (night) ============ */
+      .press .p-inner {
+        max-width: 760px;
+        margin-inline: auto;
+        text-align: center;
+      }
+      .press .eyebrow {
+        justify-content: center;
+        margin-block-end: 1.6rem;
+      }
+      .press-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.9rem 1.3rem;
+        padding: 1.7rem 2rem;
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .press-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(217, 184, 120, 0.66);
+      }
+      .press-video {
+        padding: 1.7rem 2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        align-items: center;
+      }
+      .press-head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+      }
+      .press-logo {
+        inline-size: 54px;
+        block-size: 54px;
+        border-radius: 12px;
+        background: #fdf3ec;
+        padding: 6px;
+      }
+      .press-player {
+        inline-size: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--hair-gold-soft);
+        background: #000;
+      }
+      .press-player iframe {
+        inline-size: 100%;
+        block-size: 100%;
+        border: 0;
+        display: block;
+      }
+      .press-poster {
+        position: relative;
+        inline-size: 100%;
+        block-size: 100%;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+        background: #000;
+        display: block;
+      }
+      .press-poster img {
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        opacity: 0.88;
+      }
+      .press-poster:hover img {
+        opacity: 1;
+      }
+      .press-playbtn {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+      }
+      .press-playbtn::before,
+      .press-playbtn::after {
+        grid-area: 1 / 1;
+      }
+      .press-playbtn::before {
+        content: "";
+        inline-size: 76px;
+        block-size: 76px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e6cd97, #d9b878 60%, #c9a463);
+        box-shadow: 0 14px 40px -10px rgba(201, 164, 99, 0.75);
+        transition: transform 0.22s ease;
+      }
+      .press-poster:hover .press-playbtn::before {
+        transform: scale(1.07);
+      }
+      .press-playbtn::after {
+        content: "";
+        inline-size: 0;
+        block-size: 0;
+        margin-inline-start: 6px;
+        border-block: 13px solid transparent;
+        border-inline-end: 22px solid #241a08;
+      }
+      .press-artlink {
+        font-size: 0.92rem;
+        color: var(--gold-lite);
+        border-block-end: 1px solid var(--hair-gold-soft);
+        padding-block-end: 2px;
+      }
+      .press-artlink:hover {
+        border-color: var(--gold);
+      }
+      .press-badge {
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--gold-lite);
+        padding: 0.34rem 1.1rem;
+        border: 1px solid var(--hair-gold);
+        border-radius: 999px;
+        line-height: 1;
+      }
+      .press-line {
+        color: var(--cream);
+        font-weight: 300;
+        font-size: 1.08rem;
+      }
+      .press-line b {
+        font-weight: 600;
+        color: var(--gold-lite);
+      }
+      .press-card .ext {
+        font-size: 0.82em;
+        color: var(--gold-lite);
+        opacity: 0.85;
+      }
+      .press-card:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      /* ============ TESTIMONIALS "אמהות מספרות" (night) ============ */
+      .testi .head {
+        text-align: center;
+        margin-block-end: 3rem;
+      }
+      .testi h2 {
+        color: var(--cream);
+      }
+      .testi h2 b {
+        color: var(--gold-lite);
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+      @media (min-width: 720px) {
+        .testi-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .testi-card {
+        padding: 1.7rem 2rem 1.9rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .testi-card .q-mark {
+        font-family: Georgia, serif;
+        font-weight: 700;
+        font-size: 3rem;
+        line-height: 0.4;
+        color: var(--gold);
+        opacity: 0.55;
+        margin-block-end: 0.9rem;
+      }
+      .testi-card blockquote {
+        color: var(--cream);
+        font-size: 1.14rem;
+        font-weight: 300;
+        line-height: 1.62;
+        margin: 0;
+      }
+      .testi-card .who {
+        margin-block-start: 1.2rem;
+        font-weight: 600;
+        color: var(--gold-lite);
+        font-size: 0.95rem;
+      }
+
+      /* ============ FAQ (morning) - native details/summary accordion ============ */
+      .faq .head {
+        text-align: center;
+        max-width: 640px;
+        margin-inline: auto;
+        margin-block-end: 2.6rem;
+      }
+      .faq h2 {
+        color: var(--ink);
+      }
+      .faq h2 b {
+        color: var(--gold-deep);
+      }
+      .faq-list {
+        max-width: 760px;
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+      .faq-item {
+        border: 1px solid rgba(138, 107, 46, 0.24);
+        border-radius: 16px;
+        background: var(--ivory-surface);
+        overflow: hidden;
+        transition: border-color 0.2s ease;
+      }
+      .faq-item[open] {
+        border-color: rgba(138, 107, 46, 0.5);
+      }
+      .faq-q {
+        list-style: none;
+        cursor: pointer;
+        padding: 1.15rem 1.4rem;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 1.06rem;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .faq-q::-webkit-details-marker {
+        display: none;
+      }
+      .faq-plus {
+        flex-shrink: 0;
+        position: relative;
+        inline-size: 20px;
+        block-size: 20px;
+        transition: transform 0.28s ease;
+      }
+      .faq-plus::before,
+      .faq-plus::after {
+        content: "";
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
+        background: var(--gold-deep);
+        border-radius: 2px;
+      }
+      .faq-plus::before {
+        inline-size: 15px;
+        block-size: 2px;
+        transform: translate(-50%, -50%);
+      }
+      .faq-plus::after {
+        inline-size: 2px;
+        block-size: 15px;
+        transform: translate(-50%, -50%);
+      }
+      .faq-item[open] .faq-plus {
+        transform: rotate(135deg);
+      }
+      .faq-a {
+        padding: 0 1.4rem 1.3rem;
+        color: var(--ink-soft);
+        font-weight: 300;
+        font-size: 1.03rem;
+        line-height: 1.68;
+      }
+      .faq-q:focus-visible {
+        outline: 3px solid var(--gold-deep);
+        outline-offset: -3px;
+        border-radius: 14px;
+      }
+
+      /* ============ CONTACT strip (morning, above footer) ============ */
+      .contact .c-inner {
+        text-align: center;
+        max-width: 680px;
+        margin-inline: auto;
+        padding: clamp(2.4rem, 5vw, 3.4rem);
+      }
+      .contact .eyebrow {
+        justify-content: center;
+      }
+      .contact h2 {
+        color: var(--ink);
+        margin-block-start: 1rem;
+      }
+      .contact h2 b {
+        color: var(--gold-deep);
+      }
+      .contact p {
+        color: var(--ink-soft);
+        font-weight: 300;
+        font-size: 1.12rem;
+        margin-block-start: 0.9rem;
+      }
+      .contact .c-ig {
+        color: var(--gold-deep);
+        font-weight: 600;
+      }
+
+      /* ============ FLOATING CHAT BUTTON ============ */
+      .chat-fab {
+        position: fixed;
+        z-index: 60;
+        inset-block-end: clamp(1rem, 3vw, 1.6rem);
+        inset-inline-start: clamp(1rem, 3vw, 1.6rem);
+        inline-size: 58px;
+        block-size: 58px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          #e6cd97 0%,
+          #d9b878 55%,
+          #c9a463 100%
+        );
+        color: #241a08;
+        display: grid;
+        place-items: center;
+        box-shadow:
+          0 14px 30px -10px rgba(201, 164, 99, 0.7),
+          0 4px 12px rgba(4, 5, 16, 0.28),
+          inset 0 1px 0 rgba(255, 247, 227, 0.55);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .chat-fab:hover {
+        transform: translateY(-3px) scale(1.04);
+        box-shadow:
+          0 20px 40px -12px rgba(201, 164, 99, 0.82),
+          0 6px 16px rgba(4, 5, 16, 0.32),
+          inset 0 1px 0 rgba(255, 247, 227, 0.6);
+      }
+      .chat-fab:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+      .chat-fab svg {
+        inline-size: 27px;
+        block-size: 27px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .chat-fab {
+          transition: none !important;
+        }
+      }
+
       /* ============ REVEAL MOTION ============ */
       .js .reveal {
         opacity: 0;
@@ -1332,8 +1949,8 @@
       </div>
 
       <main id="top">
-        <!-- ============ HERO ============ -->
-        <header class="hero on-velvet">
+        <!-- ============ HERO (now DAY light: ink-on-day, SUN in celestial slot) ============ -->
+        <header class="hero on-day">
           <div class="wrap">
             <div class="hero-stage">
               <div class="hero-copy">
@@ -1359,7 +1976,7 @@
                       >אני רוצה לישון כבר עכשיו</a
                     >
                     <a
-                      class="btn btn-ghost-light"
+                      class="btn btn-ghost-dark"
                       href="https://ig.me/m/baby.tammy.time"
                       target="_blank"
                       rel="noopener"
@@ -1387,9 +2004,10 @@
           </div>
         </header>
 
-        <!-- ============ PAIN ============ -->
+        <!-- ============ PAIN (dusk arrives) ============ -->
         <section class="section pain on-velvet">
           <div class="wrap">
+            <p class="dusk-caption reveal">הלילה מגיע. ועם תמי, הבוקר חוזר.</p>
             <div class="pain-grid">
               <div class="pain-figure figure fig-glow reveal">
                 <div class="pedestal pedestal--glow"></div>
@@ -1423,6 +2041,51 @@
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ QUICK-PATHS (במה נעזור לך הלילה) ============ -->
+        <section class="section quick on-velvet">
+          <div class="wrap">
+            <div class="head reveal">
+              <span class="eyebrow" style="justify-content: center"
+                >כניסה מהירה</span
+              >
+              <h2 style="margin-block-start: 1rem">
+                במה נעזור לך <b>הלילה</b>?
+              </h2>
+              <p>בחרי מה הכי כואב עכשיו, ואני אקח אותך למדריך שמתאים.</p>
+            </div>
+            <div class="quick-grid">
+              <a class="quick-card velvet-panel reveal" href="/guides/">
+                <span class="qc-icon" aria-hidden="true">😴</span>
+                <span class="qc-title">תנומות קצרות</span>
+                <span class="qc-go"
+                  >למדריך <span aria-hidden="true">←</span></span
+                >
+              </a>
+              <a class="quick-card velvet-panel reveal" href="/guides/">
+                <span class="qc-icon" aria-hidden="true">🌙</span>
+                <span class="qc-title">יקיצות לילה</span>
+                <span class="qc-go"
+                  >למדריך <span aria-hidden="true">←</span></span
+                >
+              </a>
+              <a class="quick-card velvet-panel reveal" href="/guides/">
+                <span class="qc-icon" aria-hidden="true">⏳</span>
+                <span class="qc-title">הרדמות ארוכות</span>
+                <span class="qc-go"
+                  >למדריך <span aria-hidden="true">←</span></span
+                >
+              </a>
+              <a class="quick-card velvet-panel reveal" href="/guides/">
+                <span class="qc-icon" aria-hidden="true">🍼</span>
+                <span class="qc-title">גמילה ממוצץ</span>
+                <span class="qc-go"
+                  >למדריך <span aria-hidden="true">←</span></span
+                >
+              </a>
             </div>
           </div>
         </section>
@@ -1509,32 +2172,39 @@
           </div>
         </section>
 
-        <!-- ============ COURSE ============ -->
-        <section class="section course on-velvet" id="course">
+        <!-- ============ OFFERS GRID (הדרך שלך לישון) ============ -->
+        <section class="section offers on-velvet" id="course">
           <div class="wrap">
-            <div class="course-grid">
-              <div class="course-figure figure fig-glow reveal">
-                <div class="pedestal pedestal--glow"></div>
-                <img
-                  src="../assets/cutouts/leg1_04-fig.png"
-                  alt="תמי מחזיקה תינוק עטוף בשלווה"
-                  width="483"
-                  height="690"
-                />
-              </div>
-              <div class="course-panel velvet-panel reveal">
+            <div class="offers-figure figure fig-glow reveal center">
+              <div class="pedestal pedestal--glow"></div>
+              <img
+                src="../assets/cutouts/leg1_04-fig.png"
+                alt="תמי מחזיקה תינוק עטוף בשלווה"
+                width="483"
+                height="690"
+              />
+            </div>
+            <div class="head reveal">
+              <span class="eyebrow" style="justify-content: center"
+                >בחרי את הקצב שלך</span
+              >
+              <h2 style="margin-block-start: 1rem">הדרך שלך <b>לישון</b></h2>
+              <p>ארבע דרכים להתחיל. את בוחרת מה מתאים לך עכשיו.</p>
+            </div>
+            <div class="offers-grid">
+              <article class="offer-card velvet-panel featured reveal">
+                <span class="offer-tag">מומלץ</span>
                 <span class="eyebrow">הקורס הדיגיטלי</span>
-                <h2>תכלס - איך <b>להרדים תינוק</b></h2>
+                <h3>תכלס - איך להרדים תינוק</h3>
                 <p>
-                  כל השיטה, מסודרת בסרטונים קצרים. מהשלב הראשון ועד הירדמות
-                  עצמאית. והשיעור הראשון? <b>במתנה.</b> ככה תדעי אם זה בשבילך
-                  עוד לפני שהוצאת שקל.
+                  כל השיטה בסרטונים קצרים, מהשלב הראשון ועד הירדמות עצמאית.
+                  השיעור הראשון במתנה, עוד לפני שהוצאת שקל.
                 </p>
-                <div class="price">
+                <div class="offer-price">
                   <span class="now">197</span><span class="cur">ש"ח</span>
                   <s>297 ש"ח</s>
                 </div>
-                <div class="cta-row">
+                <div class="offer-cta">
                   <a
                     class="btn btn-gold"
                     href="https://tammyshani.ravpage.co.il/tammybabysleep"
@@ -1543,7 +2213,150 @@
                     >אני רוצה את הקורס</a
                   >
                 </div>
+              </article>
+
+              <article class="offer-card velvet-panel reveal">
+                <span class="eyebrow">אתגר של 5 ימים</span>
+                <h3>מהידיים למיטה</h3>
+                <p>
+                  חמישה ימים, צעד אחרי צעד, ביחד. עד שהבייבי נרדם במיטה שלו,
+                  לבד, בעדינות.
+                </p>
+                <div class="offer-cta">
+                  <a
+                    class="btn btn-ghost-light"
+                    href="https://ig.me/m/baby.tammy.time"
+                    target="_blank"
+                    rel="noopener"
+                    >פרטים בהודעה</a
+                  >
+                </div>
+              </article>
+
+              <article class="offer-card velvet-panel reveal">
+                <span class="eyebrow">ליווי אישי</span>
+                <h3>אחת על אחת, בקצב שלך</h3>
+                <p>
+                  את, אני והבייבי. נבנה ביחד תוכנית שמתאימה בול לכם, ואני איתך
+                  כל הדרך.
+                </p>
+                <div class="offer-cta">
+                  <a
+                    class="btn btn-ghost-light"
+                    href="https://ig.me/m/baby.tammy.time"
+                    target="_blank"
+                    rel="noopener"
+                    >שיחת ייעוץ ללא עלות</a
+                  >
+                </div>
+              </article>
+
+              <article class="offer-card velvet-panel reveal">
+                <span class="eyebrow">קהילה</span>
+                <h3>הקהילה של תמי</h3>
+                <p>
+                  אמהות שעוברות את זה בדיוק כמוך. מקום לשאול, לקבל תשובה, ולדעת
+                  שאת לא לבד.
+                </p>
+                <div class="offer-cta">
+                  <a
+                    class="btn btn-ghost-light"
+                    href="https://ig.me/m/baby.tammy.time"
+                    target="_blank"
+                    rel="noopener"
+                    >להצטרפות</a
+                  >
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ PRESS (מהתקשורת) ============ -->
+        <section class="section press on-velvet">
+          <div class="wrap">
+            <div class="p-inner">
+              <span class="eyebrow">מהתקשורת</span>
+              <div class="press-video velvet-panel reveal">
+                <div class="press-head">
+                  <img
+                    class="press-logo"
+                    src="../assets/press/reshet13-logo.svg"
+                    alt="רשת 13"
+                    width="54"
+                    height="54"
+                    loading="lazy"
+                  />
+                  <span class="press-line"
+                    >תמי <b>בין המומלצים</b> של רשת 13, במדור הבריאות</span
+                  >
+                </div>
+                <div class="press-player" id="pressPlayer">
+                  <button
+                    type="button"
+                    class="press-poster"
+                    aria-label="הפעלת הכתבה של תמי ברשת 13"
+                    onclick="loadPressVideo(this)"
+                  >
+                    <img
+                      src="../assets/press/tammy-13tv-poster.jpg"
+                      alt=""
+                      loading="lazy"
+                    />
+                    <span class="press-playbtn" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <a
+                  class="press-artlink"
+                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                  target="_blank"
+                  rel="noopener"
+                  >לכתבה המלאה באתר רשת 13 ↗</a
+                >
               </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- real public IG comments; confirm with Tammy before production -->
+        <!-- ============ TESTIMONIALS (אמהות מספרות) ============ -->
+        <section class="section testi on-velvet">
+          <div class="wrap">
+            <div class="head reveal">
+              <span class="eyebrow" style="justify-content: center"
+                >אמהות מספרות</span
+              >
+              <h2 style="margin-block-start: 1rem">מה קורה <b>אחרי</b></h2>
+            </div>
+            <div class="testi-grid">
+              <figure class="testi-card velvet-panel reveal">
+                <span class="q-mark" aria-hidden="true">&#10077;</span>
+                <blockquote>
+                  אין כמוך, הצלת לי את הלילות ואת הימים ❤️
+                </blockquote>
+                <figcaption class="who">שרון</figcaption>
+              </figure>
+              <figure class="testi-card velvet-panel reveal">
+                <span class="q-mark" aria-hidden="true">&#10077;</span>
+                <blockquote>
+                  וואי, מילה במילה! ממש יישמתי את זה ועבר קליל ביותר!
+                </blockquote>
+                <figcaption class="who">אלינור</figcaption>
+              </figure>
+              <figure class="testi-card velvet-panel reveal">
+                <span class="q-mark" aria-hidden="true">&#10077;</span>
+                <blockquote>
+                  אם היה לי היום תינוק - הייתי מפקידה בידייך בעיניים עצומות ❤️
+                </blockquote>
+                <figcaption class="who">אוראל</figcaption>
+              </figure>
+              <figure class="testi-card velvet-panel reveal">
+                <span class="q-mark" aria-hidden="true">&#10077;</span>
+                <blockquote>
+                  בא לי להביא עוד ילד ולהתחיל את האתגר מחדש 😍
+                </blockquote>
+                <figcaption class="who">ליהי</figcaption>
+              </figure>
             </div>
           </div>
         </section>
@@ -1605,6 +2418,60 @@
           </div>
         </section>
 
+        <!-- ============ FAQ (morning, details/summary accordion) ============ -->
+        <section class="section faq morning">
+          <div class="wrap">
+            <div class="head reveal">
+              <span class="eyebrow" style="justify-content: center"
+                >שאלות ותשובות</span
+              >
+              <h2 style="margin-block-start: 1rem">
+                מה <b>שואלות</b> אותי הכי הרבה
+              </h2>
+            </div>
+            <div class="faq-list reveal">
+              <details class="faq-item">
+                <summary class="faq-q">
+                  מתאים גם לתאומים או לניובורן?
+                  <span class="faq-plus" aria-hidden="true"></span>
+                </summary>
+                <div class="faq-a">
+                  הקורס בנוי לגיל 4 חודשים ומעלה. לגילאים צעירים יותר, בואי
+                  לשיחת ייעוץ ללא עלות ונתאים לך דרך.
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-q">
+                  כמה זמן יש לי גישה לקורס?
+                  <span class="faq-plus" aria-hidden="true"></span>
+                </summary>
+                <div class="faq-a">
+                  חודשיים שלמים מרגע הרכישה. אפשר לצפות שוב ושוב, בקצב שלך.
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-q">
+                  השיעור הראשון באמת במתנה?
+                  <span class="faq-plus" aria-hidden="true"></span>
+                </summary>
+                <div class="faq-a">
+                  כן. קודם תכירי את השיטה, ואז תחליטי. בלי להוציא שקל מראש.
+                </div>
+              </details>
+              <details class="faq-item">
+                <summary class="faq-q">
+                  ומה אם אני צריכה ליווי צמוד יותר?
+                  <span class="faq-plus" aria-hidden="true"></span>
+                </summary>
+                <div class="faq-a">
+                  יש גם ליווי אישי. מתחילים בשיחת ייעוץ ללא עלות ובודקות ביחד מה
+                  מתאים לך.
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
         <!-- ============ FINAL CTA ============ -->
         <section class="section final morning">
           <div class="wrap">
@@ -1630,6 +2497,37 @@
               >
             </div>
             <div class="sign reveal">באהבה ❤️ תמי</div>
+          </div>
+        </section>
+
+        <!-- ============ CONTACT strip (morning, above footer) ============ -->
+        <section class="section contact morning">
+          <div class="wrap">
+            <div class="c-inner ivory-panel reveal">
+              <span class="eyebrow" style="justify-content: center"
+                >נשארות בקשר</span
+              >
+              <h2>מדברות? אני <b>כאן</b>.</h2>
+              <p>
+                עוקבת אחריי באינסטגרם
+                <a
+                  class="c-ig ltr"
+                  href="https://instagram.com/baby.tammy.time"
+                  target="_blank"
+                  rel="noopener"
+                  >@baby.tammy.time</a
+                >, ומוזמנת לשלוח לי הודעה מתי שבא לך.
+              </p>
+              <div class="cta-row center">
+                <a
+                  class="btn btn-gold"
+                  href="https://ig.me/m/baby.tammy.time"
+                  target="_blank"
+                  rel="noopener"
+                  >שיחת ייעוץ ללא עלות</a
+                >
+              </div>
+            </div>
           </div>
         </section>
       </main>
@@ -1669,6 +2567,22 @@
         </div>
       </footer>
     </div>
+
+    <!-- ============ FLOATING CHAT BUTTON (fixed, bottom inline-start) ============ -->
+    <a
+      class="chat-fab"
+      href="https://ig.me/m/baby.tammy.time"
+      target="_blank"
+      rel="noopener"
+      aria-label="שיחת ייעוץ ללא עלות בהודעה"
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1.1 4.4 3 5.9V21l3.5-1.9c.8.2 1.6.3 2.5.3 5.1 0 9-3.6 9-8s-3.9-8-9-8Z"
+          fill="currentColor"
+        />
+      </svg>
+    </a>
 
     <script>
       (function () {
@@ -1772,39 +2686,52 @@
         }
 
         /* ---- the world: scroll-progress opacity lerp (blocksuniverse mechanic) ---- */
+        /* DAY -> NIGHT -> DAY. Breakpoints in SCROLL% tuned to measured
+           section offsets @1440: pain s14, quick s23, method s29,
+           authority s38, offers s43, press s57, testi s61, guides s69,
+           about s76, faq s85, final s92, contact s99.
+           SUN owns day (top + morning return); MOON+stars own the hold. */
         var TRACKS = {
           "--op-stars": [
-            [0, 0.2],
-            [14, 0.55],
-            [24, 0.95],
-            [52, 0.95],
-            [64, 0.4],
-            [74, 0],
+            [0, 0],
+            [22, 0],
+            [30, 0.6],
+            [38, 0.95],
+            [58, 0.95],
+            [66, 0.4],
+            [72, 0],
           ],
           "--op-moon": [
-            [0, 0.9],
-            [16, 1],
-            [56, 1],
-            [68, 0.35],
-            [74, 0],
+            [0, 0],
+            [24, 0],
+            [31, 0.5],
+            [38, 1],
+            [58, 1],
+            [66, 0.34],
+            [72, 0],
           ],
           "--op-sun": [
-            [0, 0],
-            [74, 0],
-            [88, 1],
-            [100, 1],
+            [0, 0.85],
+            [6, 0.78],
+            [12, 0.2],
+            [16, 0],
+            [85, 0],
+            [90, 0.42],
+            [95, 0.76],
+            [100, 0.92],
           ],
           "--op-hills": [
             [0, 1],
             [100, 1],
           ],
           "--op-tint": [
-            [0, 0.55],
-            [14, 0.82],
-            [24, 0.95],
-            [52, 0.95],
-            [66, 0.5],
-            [80, 0],
+            [0, 0],
+            [18, 0.06],
+            [28, 0.6],
+            [38, 0.95],
+            [58, 0.95],
+            [68, 0.5],
+            [80, 0.08],
             [100, 0],
           ],
         };
@@ -1858,6 +2785,18 @@
           else nav.classList.remove("scrolled");
         }
       })();
+
+      function loadPressVideo(btn) {
+        var wrap = document.getElementById("pressPlayer");
+        var f = document.createElement("iframe");
+        f.src =
+          "https://cdnapisec.kaltura.com/p/2748741/embedPlaykitJs/uiconf_id/50272542?iframeembed=true&entry_id=1_i0ky2vmp&config[playback]={%22autoplay%22:true}";
+        f.allow = "autoplay; fullscreen; encrypted-media";
+        f.setAttribute("allowfullscreen", "");
+        f.title = "תמי שני ברשת 13";
+        wrap.innerHTML = "";
+        wrap.appendChild(f);
+      }
     </script>
   </body>
 </html>
