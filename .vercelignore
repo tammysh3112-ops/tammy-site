@@ -1,0 +1,8 @@
+assets/press/tammy-13tv.mp4
+research/
+assets/ai/*.prompt.txt
+assets/ai/*.err
+assets/world/*-raw.png
+assets/world/_*.jpg
+assets/cutouts/_*.jpg
+.git
