@@ -313,11 +313,11 @@
           #b6c8e4 0%,
           #c3d2e8 7%,
           #d5deec 13%,
-          /* warm ivory daylight near the horizon */ #e9dcc8 17.5%,
-          /* golden hour begins */ #d9ae85 21%,
-          /* sunset rose */ #9a6a6b 24.5%,
-          /* dusk plum */ #4c3a58 27.5%,
-          #1c1a3a 30%,
+          /* warm ivory daylight near the horizon */ #e9dcc8 14%,
+          /* golden hour begins (hero cards zone) */ #d9ae85 17.5%,
+          /* sunset rose */ #9a6a6b 20.5%,
+          /* dusk plum */ #4c3a58 23.5%,
+          /* night by the press band top */ #1c1a3a 26.5%,
           /* into velvet night (method) */ #121333 36%,
           #0d0f28 40%,
           /* --- deepest velvet HOLD 44-66% (offers + proof), stars peak --- */
@@ -446,23 +446,10 @@
         justify-content: space-between;
         gap: 1rem;
       }
-      /* scrolled nav fades to transparent at its lower edge (gradient + mask)
-         so a headline scrolling up UNDER it dissolves smoothly instead of being
-         sliced mid-glyph at a hard seam line. This is the clip-bug fix. */
+      /* nav stays fully TRANSPARENT while scrolling; .scrolled only flips
+         ink -> cream + brown -> cream logo once the sky turns dark. */
       .nav.scrolled {
-        background: linear-gradient(
-          180deg,
-          rgba(9, 11, 26, 0.94) 0%,
-          rgba(9, 11, 26, 0.82) 52%,
-          rgba(9, 11, 26, 0) 100%
-        );
-        backdrop-filter: blur(15px) saturate(1.1);
-        -webkit-mask-image: linear-gradient(
-          180deg,
-          #000 68%,
-          rgba(0, 0, 0, 0) 100%
-        );
-        mask-image: linear-gradient(180deg, #000 68%, rgba(0, 0, 0, 0) 100%);
+        background: transparent;
         box-shadow: none;
       }
       /* NAV top state = ink on the DAY sky; scrolled = cream on velvet pill. */
@@ -612,69 +599,59 @@
       .hero {
         position: relative;
         z-index: 10;
-        min-height: 136vh;
-        display: flex;
-        align-items: flex-start;
-        padding-block: clamp(6rem, 12vh, 9rem) clamp(3rem, 8vh, 6rem);
+        padding-block: clamp(6.5rem, 13vh, 9rem) clamp(2.5rem, 6vh, 4rem);
       }
       .hero .wrap {
         width: 100%;
       }
 
-      /* the interlocking stage: containing block for the figure */
+      /* GLOWLY structure: mega headline rows, figure IN FRONT of row 1,
+         rows 2-3 + sub + CTA clear on the inline-start (RIGHT) side */
       .hero-stage {
         position: relative;
-        width: 100%;
-        min-height: clamp(540px, 80vh, 840px);
-      }
-
-      /* headline + copy layer: sits UNDER the figure */
-      .hero-copy {
-        position: relative;
-        z-index: 2;
-        text-align: start;
-        padding-block-start: clamp(0.5rem, 4vh, 3rem);
+        min-height: clamp(500px, 74vh, 720px);
+        display: flex;
+        flex-direction: column;
       }
       .hero .eyebrow {
-        margin-block-end: 1.15rem;
-        color: var(--gold-deep); /* antique gold on the day sky */
+        margin-block-end: 1rem;
+        color: var(--gold-deep);
       }
       .hero h1 {
-        color: var(--ink); /* big INK Discovery against the morning sky */
+        color: var(--ink);
         margin: 0;
+        font-weight: 700;
       }
-      /* line 1: enormous, right words run behind the figure */
-      .hero h1 .h1-lead {
+      /* row 1: enormous, spans the width, tail runs BEHIND the figure */
+      .h1-row1 {
         display: block;
-        font-size: clamp(2.7rem, 8.4vw, 5.2rem);
-        line-height: 1.02;
+        position: relative;
+        z-index: 2;
+        font-size: clamp(3rem, 9.4vw, 6.4rem);
+        line-height: 1;
         letter-spacing: -0.012em;
+        white-space: nowrap;
+      }
+      /* rows 2-3: giant stack on the clear RIGHT column */
+      .h1-row2,
+      .h1-row3 {
+        display: block;
+        font-size: clamp(2.2rem, 6.6vw, 4.6rem);
+        line-height: 1.06;
+        max-width: 58%;
+      }
+      .h1-row2 {
+        margin-block-start: 0.28em;
       }
       .hero h1 b {
         color: var(--gold-deep);
       }
-      /* line 2: stays on the clear (inline-start / RIGHT) side */
-      .hero h1 .h1-dim {
-        display: block;
-        font-size: clamp(1.4rem, 3vw, 2.35rem);
-        font-weight: 300;
-        line-height: 1.24;
-        color: var(--ink-soft);
-        margin-block-start: 0.62em;
-        max-width: 22ch;
-        letter-spacing: 0.005em;
-      }
-      /* clear column: sub + CTA + trust hug the inline-start (RIGHT) side.
-         52% cap means it can never slide under the ~44vw figure (LEFT). */
-      .hero-lower {
-        max-width: min(33rem, 52%);
-        margin-block-start: 1.7rem;
-      }
       .hero-sub {
-        font-size: clamp(1.05rem, 2.1vw, 1.24rem);
+        font-size: clamp(1.02rem, 2vw, 1.2rem);
         color: var(--ink);
         font-weight: 400;
-        max-width: 40ch;
+        max-width: 44ch;
+        margin-block-start: 1.5rem;
       }
       .hero-sub b {
         font-weight: 700;
@@ -682,100 +659,265 @@
       }
       .hero .cta-row {
         justify-content: flex-start;
-        margin-block-start: 1.7rem;
-      }
-      .trust {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 0.6rem;
-        margin-block-start: 1.7rem;
-      }
-      .chip {
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: var(--ink);
-        padding: 0.48rem 1.05rem;
-        border-radius: 999px;
-        border: 1px solid rgba(138, 107, 46, 0.32);
-        background: rgba(255, 250, 240, 0.5);
-        backdrop-filter: blur(6px);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55ch;
-      }
-      .chip::before {
-        content: "✦";
-        color: var(--gold-deep);
-        font-size: 0.66em;
+        margin-block-start: 1.6rem;
       }
 
-      /* the figure: large, bottom-anchored, inline-end (LEFT), ABOVE the
-         headline. Height-driven so aspect ratio never distorts. */
+      /* the figure: large, anchored to the stage bottom on the LEFT,
+         ABOVE headline row 1 (interlock) */
       .hero-figure {
         position: absolute;
         z-index: 3;
         inset-block-end: 0;
-        inset-inline-end: clamp(0px, 2vw, 48px);
+        inset-inline-end: clamp(0px, 3vw, 70px);
         pointer-events: none;
-        min-height: 0;
       }
       .hero-figure img {
-        /* vw ceiling keeps her off the clear column on narrow desktops */
-        block-size: clamp(440px, min(74vh, 44vw), 720px);
+        block-size: clamp(460px, min(78vh, 45vw), 750px);
         inline-size: auto;
-        width: auto;
-        max-inline-size: 44vw;
-        /* clean cutout: quiet warm grounding shadow only, no glow */
+        max-inline-size: 45vw;
         filter: saturate(1) brightness(1.01) contrast(1.02)
           drop-shadow(0 16px 26px rgba(74, 60, 80, 0.28));
-        -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 14%);
-        mask-image: linear-gradient(to top, transparent 0%, #000 14%);
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 12%);
+        mask-image: linear-gradient(to top, transparent 0%, #000 12%);
       }
 
-      /* ---- MOBILE / narrow: stack gracefully, figure below the copy.
-         Interlock needs horizontal room, so stack up to 959px. ---- */
+      /* ---- hero containers row (GLOWLY bottom cards) ---- */
+      .hero-cards {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.85fr) 1.35fr;
+        gap: clamp(1rem, 2vw, 1.5rem);
+        margin-block-start: clamp(2rem, 5vh, 3.2rem);
+      }
+      .hcard {
+        position: relative;
+        border-radius: 26px;
+        overflow: hidden;
+        min-height: clamp(260px, 34vh, 330px);
+      }
+      .hcard-photo {
+        display: block;
+        box-shadow: var(--shadow-soft);
+      }
+      .hcard-photo > img {
+        position: absolute;
+        inset: 0;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .hcard-photo:hover > img {
+        transform: scale(1.03);
+      }
+      .hcard-tag {
+        position: absolute;
+        z-index: 2;
+        inset-block-end: 14px;
+        inset-inline-start: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6ch;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #fff;
+        background: rgba(9, 11, 26, 0.72);
+        backdrop-filter: blur(8px);
+        padding: 0.45rem 0.95rem;
+        border-radius: 999px;
+      }
+      .hcard-tag img {
+        block-size: 20px;
+        inline-size: auto;
+      }
+      /* filled velvet card (GLOWLY's pink promo card, in Tammy night velvet) */
+      .hcard-fill {
+        background: linear-gradient(
+          135deg,
+          #2a2350 0%,
+          #191b3a 60%,
+          #14162e 100%
+        );
+        border: 1px solid var(--hair-gold);
+        padding: clamp(1.5rem, 3vw, 2.3rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.4rem;
+      }
+      .hcard-fill h3 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: #fff;
+        font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+        line-height: 1.3;
+        max-width: 18ch;
+        position: relative;
+        z-index: 2;
+      }
+      .hcard-trust {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        position: relative;
+        z-index: 2;
+      }
+      .avatars {
+        display: flex;
+      }
+      .avatars span {
+        inline-size: 42px;
+        block-size: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #241a08;
+        background: linear-gradient(135deg, #e6cd97, #c9a463);
+        border: 2px solid #191b3a;
+      }
+      .avatars span + span {
+        margin-inline-start: -10px;
+      }
+      .hcard-trust .t-line {
+        color: var(--cream);
+        font-size: 0.95rem;
+        font-weight: 500;
+        max-width: 18ch;
+      }
+      .hcard-fig {
+        position: absolute;
+        inset-block-end: 0;
+        inset-inline-end: 0;
+        block-size: 92%;
+        inline-size: auto;
+        max-inline-size: 40%;
+        object-fit: contain;
+        object-position: bottom;
+        opacity: 0.96;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 10%);
+        mask-image: linear-gradient(to top, transparent 0%, #000 10%);
+      }
+      .hcard-arrow {
+        position: absolute;
+        z-index: 2;
+        inset-block-start: 16px;
+        inset-inline-end: 16px;
+        inline-size: 48px;
+        block-size: 48px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #e6cd97, #c9a463);
+        color: #241a08;
+        font-size: 1.25rem;
+        font-weight: 700;
+        transition: transform 0.25s ease;
+      }
+      .hcard-arrow:hover {
+        transform: translateY(-3px) scale(1.06);
+      }
+
+      /* ---- MOBILE / narrow: stack gracefully ---- */
       @media (max-width: 959px) {
         .hero {
-          display: block;
-          /* start copy BELOW the fixed moon so the eyebrow stays legible */
-          padding-block: clamp(9rem, 27vh, 15rem) 0;
+          padding-block-start: clamp(8rem, 20vh, 11rem);
         }
         .hero-stage {
           min-height: 0;
         }
-        .hero-copy {
-          text-align: center;
-          padding-block-start: 0;
+        .h1-row1 {
+          font-size: clamp(2.3rem, 10.4vw, 3.4rem);
+          white-space: normal;
         }
-        .hero h1 .h1-lead {
-          font-size: clamp(2.4rem, 10.8vw, 3.4rem);
-        }
-        .hero h1 .h1-dim,
-        .hero-lower,
-        .hero-sub {
+        .h1-row2,
+        .h1-row3 {
+          font-size: clamp(1.7rem, 7.8vw, 2.6rem);
           max-width: 100%;
-          margin-inline: auto;
-        }
-        .hero .cta-row,
-        .trust {
-          justify-content: center;
         }
         .hero-figure {
           position: relative;
           inset: auto;
-          z-index: 1;
-          margin-block-start: 2.2rem;
+          margin-block-start: 2rem;
           display: flex;
           justify-content: center;
         }
         .hero-figure img {
           block-size: auto;
-          inline-size: min(80vw, 360px);
+          inline-size: min(78vw, 340px);
           max-inline-size: none;
         }
-        .hero-figure::after {
-          display: none;
+        .hero-cards {
+          grid-template-columns: 1fr;
+        }
+        .hcard-fill h3 {
+          max-width: 100%;
+        }
+        .hcard-fig {
+          max-inline-size: 34%;
+        }
+      }
+
+      /* ============ ABOUT (homepage band) ============ */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.2fr minmax(240px, 0.8fr);
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: center;
+      }
+      .about-figure img {
+        inline-size: min(100%, 380px);
+        filter: drop-shadow(0 26px 40px rgba(3, 4, 14, 0.55));
+      }
+      .about-copy {
+        text-align: start;
+      }
+      .about-copy .eyebrow {
+        justify-content: flex-start;
+      }
+      .about-copy .cta-row {
+        justify-content: flex-start;
+      }
+      .about-copy h2 {
+        margin-block: 1rem 1.1rem;
+      }
+      .about-copy > p {
+        color: var(--cream);
+        max-width: 52ch;
+      }
+      .about-creds {
+        list-style: none;
+        margin-block: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .about-creds li {
+        color: var(--cream-dim);
+        font-size: 0.98rem;
+        display: flex;
+        align-items: baseline;
+        gap: 0.6ch;
+      }
+      .about-creds li::before {
+        content: "✦";
+        color: var(--gold-lite);
+        font-size: 0.7em;
+      }
+      @media (max-width: 959px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .about-figure {
+          order: 2;
+        }
+        .about-creds li {
+          justify-content: center;
+        }
+        .about-copy .cta-row {
+          justify-content: center;
         }
       }
 
@@ -1190,40 +1332,6 @@
       .guides .clock {
         color: var(--ink);
         font-weight: 500;
-      }
-
-      /* about */
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: clamp(2.4rem, 5vw, 4rem);
-        align-items: center;
-      }
-      @media (min-width: 820px) {
-        .about-grid {
-          grid-template-columns: 0.82fr 1.18fr;
-        }
-      }
-      .about-figure img {
-        max-block-size: 540px;
-      }
-      .about-panel {
-        padding: clamp(2.4rem, 5vw, 3.4rem);
-      }
-      .about h2 {
-        margin-block-end: 0.7rem;
-      }
-      .about-cred {
-        font-size: 0.8rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        color: var(--gold-deep);
-        margin-block-end: 1.2rem;
-      }
-      .about p {
-        font-size: 1.16rem;
-        font-weight: 300;
-        color: var(--ink-soft);
       }
 
       /* ============ FINAL CTA (warm ivory morning) ============ */
@@ -2173,9 +2281,9 @@
             height="488"
         /></a>
         <div class="nav-links">
-          <a href="#method">השיטה</a>
+          <a href="#press">הכתבה ברשת 13</a>
           <a href="#course">הקורס</a>
-          <a href="#guides">מדריכים</a>
+          <a href="guides/">מדריכים</a>
           <a href="#about">עליי</a>
           <a
             class="nav-cta"
@@ -2203,43 +2311,27 @@
         <header class="hero on-day" data-band>
           <div class="wrap">
             <div class="hero-stage">
-              <div class="hero-copy">
-                <span class="eyebrow" data-pop
-                  >תמי שני &nbsp;|&nbsp; יועצת שינה והתפתחות</span
+              <span class="eyebrow" data-pop
+                >תמי שני &nbsp;|&nbsp; יועצת שינה והתפתחות</span
+              >
+              <h1 data-pop data-pop-delay="60">
+                <span class="h1-row1">תינוק שנרדם <b>לבד</b>.</span>
+                <span class="h1-row2">אמא שישנה</span>
+                <span class="h1-row3">סוף סוף <b>בלילה</b>.</span>
+              </h1>
+              <p class="hero-sub" data-pop data-pop-delay="150">
+                אני תמי שני, יועצת שינה והתפתחות עם 15 שנות ניסיון ואלפי משפחות
+                שליוויתי. יחד נבנה לבייבי שלכם הרגלי שינה בריאים, בדרך ברורה
+                ומותאמת אישית, <b>בלי להשאיר אותו לבכות לבד</b>.
+              </p>
+              <div class="cta-row" data-pop data-pop-delay="260">
+                <a
+                  class="btn btn-gold"
+                  href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                  target="_blank"
+                  rel="noopener"
+                  >אני רוצה לישון כבר עכשיו</a
                 >
-                <h1 data-pop data-pop-delay="60">
-                  <span class="h1-lead">תינוק שנרדם <b>לבד</b>.</span>
-                  <span class="h1-dim">אמא שסוף סוף ישנה בלילה.</span>
-                </h1>
-                <div class="hero-lower">
-                  <p class="hero-sub" data-pop data-pop-delay="150">
-                    אני תמי שני, יועצת שינה והתפתחות עם 15 שנות ניסיון ואלפי
-                    משפחות שליוויתי. יחד נבנה לבייבי שלכם הרגלי שינה בריאים,
-                    בדרך ברורה ומותאמת אישית,
-                    <b>בלי להשאיר אותו לבכות לבד</b>.
-                  </p>
-                  <div class="cta-row" data-pop data-pop-delay="260">
-                    <a
-                      class="btn btn-gold"
-                      href="https://tammyshani.ravpage.co.il/tammybabysleep"
-                      target="_blank"
-                      rel="noopener"
-                      >אני רוצה לישון כבר עכשיו</a
-                    >
-                    <a
-                      class="btn btn-ghost-dark"
-                      href="https://ig.me/m/baby.tammy.time"
-                      target="_blank"
-                      rel="noopener"
-                      >שיחת ייעוץ ללא עלות</a
-                    >
-                  </div>
-                  <div class="trust" data-pop data-pop-delay="360">
-                    <span class="chip">מעל 15 שנות ניסיון</span>
-                    <span class="chip">אלפי תינוקות</span>
-                    <span class="chip">בין המומלצים של רשת 13</span>
-                  </div>
-                </div>
               </div>
 
               <div class="hero-figure figure">
@@ -2251,25 +2343,67 @@
                 />
               </div>
             </div>
+
+            <!-- GLOWLY bottom containers: photo card + filled velvet card -->
+            <div class="hero-cards">
+              <a class="hcard hcard-photo" href="#press" data-pop="card">
+                <img
+                  src="assets/press/tammy-13tv-poster.jpg"
+                  alt="תמי שני בכתבה של רשת 13"
+                  loading="lazy"
+                />
+                <span class="hcard-tag"
+                  ><img
+                    src="assets/press/reshet13-logo.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  לצפייה בכתבה</span
+                >
+              </a>
+              <div
+                class="hcard hcard-fill"
+                data-pop="card"
+                data-pop-delay="140"
+              >
+                <h3>מלווה אתכם יד ביד בכל שלב, עד שכל הבית ישן.</h3>
+                <div class="hcard-trust">
+                  <div class="avatars" aria-hidden="true">
+                    <span>ש</span><span>א</span><span>ל</span>
+                  </div>
+                  <span class="t-line">אלפי משפחות כבר ישנות טוב יותר</span>
+                </div>
+                <img
+                  class="hcard-fig"
+                  src="assets/cutouts/leg1_04-cut.png"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                />
+                <a class="hcard-arrow" href="#course" aria-label="לקורס של תמי"
+                  >↗</a
+                >
+              </div>
+            </div>
           </div>
         </header>
 
         <div class="hdiv" aria-hidden="true"></div>
 
         <!-- ============ METHOD ============ -->
-        <section class="section method on-velvet" id="method" data-band>
+        <section class="section proof on-velvet" id="press" data-band>
           <div class="wrap">
-            <div class="head" style="position: relative">
+            <div class="proof-head" style="position: relative">
               <span
                 class="doodle"
                 data-pop="accent"
-                data-pop-delay="700"
+                data-pop-delay="720"
                 aria-hidden="true"
                 style="
-                  inset-block-start: -14px;
-                  inset-inline-end: 8%;
-                  inline-size: 30px;
-                  block-size: 30px;
+                  inset-block-start: -18px;
+                  inset-inline-start: 30%;
+                  inline-size: 26px;
+                  block-size: 26px;
                 "
               >
                 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -2278,65 +2412,111 @@
                   />
                 </svg>
               </span>
-              <span class="eyebrow" style="justify-content: center" data-pop
-                >שיטת תכלס</span
-              >
-              <h2 data-pop data-pop-delay="60" style="margin-block-start: 1rem">
-                ארבעה עקרונות. דרך <b>אחת ברורה</b>.
-              </h2>
-              <p class="intro" data-pop data-pop-delay="150">
-                בלי תיאוריות מסובכות. רק מה שעובד, שלב אחרי שלב.
-              </p>
+              <div class="proof-title" data-pop>
+                <span class="eyebrow">מהתקשורת ומהאמהות</span>
+                <h2 style="margin-block-start: 0.7rem">סומכים על <b>תמי</b></h2>
+              </div>
+              <div class="proof-counters" data-pop data-pop-delay="150">
+                <div class="pc">
+                  <span class="num" data-count="15" data-suffix="+">0</span>
+                  <span class="lbl">שנות ניסיון</span>
+                </div>
+                <div class="pc">
+                  <span class="num word">אלפי</span>
+                  <span class="lbl">תינוקות שלמדו לישון</span>
+                </div>
+                <a
+                  class="pc badge"
+                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="num word"
+                    >רשת 13<span class="ext" aria-hidden="true">↗</span></span
+                  >
+                  <span class="lbl">בין המומלצים</span>
+                </a>
+              </div>
             </div>
-            <div class="pillars">
-              <article
-                class="pillar velvet-panel"
+
+            <div class="proof-grid">
+              <div
+                class="press-video velvet-panel"
                 data-pop="card"
                 data-pop-delay="180"
               >
-                <span class="p-num" aria-hidden="true">01</span>
-                <h3>הרגלים, לא גזירת גורל</h3>
-                <p>
-                  תינוק שנרדם רק על הידיים? רק עם בקבוק? זה הרגל. והרגל אפשר
-                  לשנות בעדינות, שלב אחרי שלב.
-                </p>
-              </article>
-              <article
-                class="pillar velvet-panel"
-                data-pop="card"
-                data-pop-delay="300"
-              >
-                <span class="p-num" aria-hidden="true">02</span>
-                <h3>מענה לבכי, תמיד</h3>
-                <p>
-                  כל בכי מקבל מענה מיידי. גם בזמן תהליך. לומדים להרגיע, בלי
-                  לוותר על הלמידה.
-                </p>
-              </article>
-              <article
-                class="pillar velvet-panel"
-                data-pop="card"
-                data-pop-delay="420"
-              >
-                <span class="p-num" aria-hidden="true">03</span>
-                <h3>שינה נפרדת מאוכל</h3>
-                <p>
-                  מפרידים בין הנקה או בקבוק לבין הירדמות. הבייבי אוכל כשהוא רעב,
-                  ונרדם כי הוא יודע איך.
-                </p>
-              </article>
-              <article
-                class="pillar velvet-panel"
-                data-pop="card"
-                data-pop-delay="540"
-              >
-                <span class="p-num" aria-hidden="true">04</span>
-                <h3>דרך שמתאימה לך</h3>
-                <p>
-                  אין דרך אחת נכונה. יש דרך שאת מאמינה בה. בשיחה קצרה נמצא את
-                  שלך.
-                </p>
-              </article>
+                <div class="press-head">
+                  <img
+                    class="press-logo"
+                    src="assets/press/reshet13-logo.svg"
+                    alt="רשת 13"
+                    width="54"
+                    height="54"
+                    loading="lazy"
+                  />
+                  <span class="press-line"
+                    >תמי <b>בין המומלצים</b> של רשת 13, במדור הבריאות</span
+                  >
+                </div>
+                <div class="press-player" id="pressPlayer">
+                  <button
+                    type="button"
+                    class="press-poster"
+                    aria-label="הפעלת הכתבה של תמי ברשת 13"
+                    onclick="loadPressVideo(this)"
+                  >
+                    <img
+                      src="assets/press/tammy-13tv-poster.jpg"
+                      alt=""
+                      loading="lazy"
+                    />
+                    <span class="press-playbtn" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <a
+                  class="press-artlink"
+                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                  target="_blank"
+                  rel="noopener"
+                  >לכתבה המלאה באתר רשת 13 ↗</a
+                >
+              </div>
+
+              <div class="proof-testi">
+                <figure
+                  class="testi-card velvet-panel"
+                  data-pop="card"
+                  data-pop-delay="300"
+                >
+                  <span class="q-mark" aria-hidden="true">&#10077;</span>
+                  <blockquote>
+                    אין כמוך, הצלת לי את הלילות ואת הימים ❤️
+                  </blockquote>
+                  <figcaption class="who">שרון</figcaption>
+                </figure>
+                <figure
+                  class="testi-card velvet-panel"
+                  data-pop="card"
+                  data-pop-delay="420"
+                >
+                  <span class="q-mark" aria-hidden="true">&#10077;</span>
+                  <blockquote>
+                    וואי, מילה במילה! ממש יישמתי את זה ועבר קליל ביותר!
+                  </blockquote>
+                  <figcaption class="who">אלינור</figcaption>
+                </figure>
+                <figure
+                  class="testi-card velvet-panel"
+                  data-pop="card"
+                  data-pop-delay="540"
+                >
+                  <span class="q-mark" aria-hidden="true">&#10077;</span>
+                  <blockquote>
+                    בא לי להביא עוד ילד ולהתחיל את האתגר מחדש 😍
+                  </blockquote>
+                  <figcaption class="who">ליהי</figcaption>
+                </figure>
+              </div>
             </div>
           </div>
         </section>
@@ -2478,133 +2658,47 @@
 
         <div class="hdiv" aria-hidden="true"></div>
 
-        <!-- ============ PROOF (סומכים על תמי) - press video + counters + testimonials, one band ============ -->
-        <!-- real public IG comments; confirm with Tammy before production -->
-        <section class="section proof on-velvet" data-band>
+        <!-- ============ ABOUT (אני תמי שני) ============ -->
+        <section class="section about on-velvet" id="about" data-band>
           <div class="wrap">
-            <div class="proof-head" style="position: relative">
-              <span
-                class="doodle"
-                data-pop="accent"
-                data-pop-delay="720"
-                aria-hidden="true"
-                style="
-                  inset-block-start: -18px;
-                  inset-inline-start: 30%;
-                  inline-size: 26px;
-                  block-size: 26px;
-                "
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M12 0c1 6.2 4.8 10 12 12-7.2 2-11 5.8-12 12-1-6.2-4.8-10-12-12 7.2-2 11-5.8 12-12Z"
-                  />
-                </svg>
-              </span>
-              <div class="proof-title" data-pop>
-                <span class="eyebrow">מהתקשורת ומהאמהות</span>
-                <h2 style="margin-block-start: 0.7rem">סומכים על <b>תמי</b></h2>
-              </div>
-              <div class="proof-counters" data-pop data-pop-delay="150">
-                <div class="pc">
-                  <span class="num" data-count="15" data-suffix="+">0</span>
-                  <span class="lbl">שנות ניסיון</span>
-                </div>
-                <div class="pc">
-                  <span class="num word">אלפי</span>
-                  <span class="lbl">תינוקות שלמדו לישון</span>
-                </div>
-                <a
-                  class="pc badge"
-                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <span class="num word"
-                    >רשת 13<span class="ext" aria-hidden="true">↗</span></span
+            <div class="about-grid">
+              <div class="about-copy">
+                <span class="eyebrow" data-pop>מי אני</span>
+                <h2 data-pop data-pop-delay="60">
+                  אני תמי שני. ואני זוכרת בדיוק
+                  <b>איך זה מרגיש</b>.
+                </h2>
+                <p data-pop data-pop-delay="150">
+                  לפני 15 שנים הייתי בדיוק במקום שלך: עייפה, תשושה, ובעיקר בטוחה
+                  שרק אצלי זה ככה. אז למדתי, הוסמכתי, וליוויתי מאז אלפי תינוקות
+                  והורים בחזרה אל שנת הלילה.
+                </p>
+                <ul class="about-creds" data-pop data-pop-delay="240">
+                  <li>תואר ראשון במדעי החברה</li>
+                  <li>מדריכת הורים מוסמכת</li>
+                  <li>יועצת שינה מוסמכת</li>
+                  <li>מלווה התפתחותית</li>
+                  <li>מדריכת דנסטן, שפת התינוקות</li>
+                </ul>
+                <div class="cta-row" data-pop data-pop-delay="330">
+                  <a class="btn btn-ghost-light" href="about/"
+                    >לסיפור המלא שלי</a
                   >
-                  <span class="lbl">בין המומלצים</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="proof-grid">
-              <div
-                class="press-video velvet-panel"
-                data-pop="card"
-                data-pop-delay="180"
-              >
-                <div class="press-head">
-                  <img
-                    class="press-logo"
-                    src="assets/press/reshet13-logo.svg"
-                    alt="רשת 13"
-                    width="54"
-                    height="54"
-                    loading="lazy"
-                  />
-                  <span class="press-line"
-                    >תמי <b>בין המומלצים</b> של רשת 13, במדור הבריאות</span
+                  <a
+                    class="btn btn-gold"
+                    href="https://ig.me/m/baby.tammy.time"
+                    target="_blank"
+                    rel="noopener"
+                    >שיחת ייעוץ ללא עלות</a
                   >
                 </div>
-                <div class="press-player" id="pressPlayer">
-                  <button
-                    type="button"
-                    class="press-poster"
-                    aria-label="הפעלת הכתבה של תמי ברשת 13"
-                    onclick="loadPressVideo(this)"
-                  >
-                    <img
-                      src="assets/press/tammy-13tv-poster.jpg"
-                      alt=""
-                      loading="lazy"
-                    />
-                    <span class="press-playbtn" aria-hidden="true"></span>
-                  </button>
-                </div>
-                <a
-                  class="press-artlink"
-                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
-                  target="_blank"
-                  rel="noopener"
-                  >לכתבה המלאה באתר רשת 13 ↗</a
-                >
               </div>
-
-              <div class="proof-testi">
-                <figure
-                  class="testi-card velvet-panel"
-                  data-pop="card"
-                  data-pop-delay="300"
-                >
-                  <span class="q-mark" aria-hidden="true">&#10077;</span>
-                  <blockquote>
-                    אין כמוך, הצלת לי את הלילות ואת הימים ❤️
-                  </blockquote>
-                  <figcaption class="who">שרון</figcaption>
-                </figure>
-                <figure
-                  class="testi-card velvet-panel"
-                  data-pop="card"
-                  data-pop-delay="420"
-                >
-                  <span class="q-mark" aria-hidden="true">&#10077;</span>
-                  <blockquote>
-                    וואי, מילה במילה! ממש יישמתי את זה ועבר קליל ביותר!
-                  </blockquote>
-                  <figcaption class="who">אלינור</figcaption>
-                </figure>
-                <figure
-                  class="testi-card velvet-panel"
-                  data-pop="card"
-                  data-pop-delay="540"
-                >
-                  <span class="q-mark" aria-hidden="true">&#10077;</span>
-                  <blockquote>
-                    בא לי להביא עוד ילד ולהתחיל את האתגר מחדש 😍
-                  </blockquote>
-                  <figcaption class="who">ליהי</figcaption>
-                </figure>
+              <div class="about-figure figure" data-pop="card">
+                <img
+                  src="assets/cutouts/final-b4-suit-cut.png"
+                  alt="תמי שני"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -2816,8 +2910,8 @@
           "--op-stars": [
             [0, 0],
             [16, 0],
-            [24, 0.25],
-            [30, 0.55],
+            [22, 0.3],
+            [27, 0.65],
             [44, 1],
             [78, 1],
             [86, 0.3],
@@ -2831,10 +2925,10 @@
              the dawn glow takes over */
           "--op-tint": [
             [0, 0],
-            [17, 0.05],
-            [22, 0.3],
-            [27, 0.65],
-            [34, 0.95],
+            [15, 0.05],
+            [20, 0.35],
+            [25, 0.7],
+            [32, 0.95],
             [80, 0.9],
             [86, 0.45],
             [92, 0.1],
@@ -2878,7 +2972,9 @@
             for (var key in TRACKS) {
               root.style.setProperty(key, lerpTrack(TRACKS[key], p).toFixed(3));
             }
-            if (window.scrollY > 24) nav.classList.add("scrolled");
+            /* cream nav only once the viewport top reaches the dark sky band */
+            if (window.scrollY > document.documentElement.scrollHeight * 0.2)
+              nav.classList.add("scrolled");
             else nav.classList.remove("scrolled");
             ticking = false;
           }
@@ -2895,7 +2991,8 @@
         }
 
         function onScroll() {
-          if (window.scrollY > 24) nav.classList.add("scrolled");
+          if (window.scrollY > document.documentElement.scrollHeight * 0.2)
+            nav.classList.add("scrolled");
           else nav.classList.remove("scrolled");
         }
       })();
