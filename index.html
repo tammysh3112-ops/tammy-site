@@ -457,24 +457,25 @@
         backdrop-filter: blur(15px) saturate(1.1);
         -webkit-mask-image: linear-gradient(
           180deg,
-          #000 46%,
+          #000 68%,
           rgba(0, 0, 0, 0) 100%
         );
-        mask-image: linear-gradient(180deg, #000 46%, rgba(0, 0, 0, 0) 100%);
+        mask-image: linear-gradient(180deg, #000 68%, rgba(0, 0, 0, 0) 100%);
         box-shadow: none;
       }
       /* NAV = white/gold from the top (twilight sky is dark enough). */
       .logo {
-        font-family: var(--font-display);
-        font-weight: 300;
-        font-size: 1.62rem;
-        letter-spacing: 0.04em;
-        color: #fff;
-        transition: color 0.4s ease;
+        display: inline-flex;
+        align-items: center;
       }
-      .logo b {
-        font-weight: 700;
-        color: var(--gold-lite);
+      .logo img {
+        block-size: 88px;
+        inline-size: auto;
+        display: block;
+        transition: height 0.35s ease;
+      }
+      .nav.scrolled .logo img {
+        block-size: 54px;
       }
       .nav-links {
         display: flex;
@@ -512,12 +513,6 @@
         border-color: rgba(217, 184, 120, 0.7);
       }
       /* scrolled: dark velvet pill -> cream/champagne text */
-      .nav.scrolled .logo {
-        color: var(--cream);
-      }
-      .nav.scrolled .logo b {
-        color: var(--gold-lite);
-      }
       .nav.scrolled .nav-links a:not(.nav-cta) {
         color: var(--cream-dim);
       }
@@ -643,7 +638,7 @@
       .hero h1 b {
         color: var(--gold-lite);
       }
-      /* line 2: offset toward the clear (inline-end / LEFT) side */
+      /* line 2: stays on the clear (inline-start / RIGHT) side */
       .hero h1 .h1-dim {
         display: block;
         font-size: clamp(1.4rem, 3vw, 2.35rem);
@@ -652,14 +647,12 @@
         color: var(--cream);
         margin-block-start: 0.62em;
         max-width: 22ch;
-        margin-inline-start: auto; /* push LEFT, clear of figure */
         letter-spacing: 0.005em;
       }
-      /* clear column: sub + CTA + trust hug the inline-end (LEFT) side.
-         52% cap means it can never slide under the ~44vw figure. */
+      /* clear column: sub + CTA + trust hug the inline-start (RIGHT) side.
+         52% cap means it can never slide under the ~44vw figure (LEFT). */
       .hero-lower {
         max-width: min(33rem, 52%);
-        margin-inline-start: auto; /* push LEFT, clear of figure */
         margin-block-start: 1.7rem;
       }
       .hero-sub {
@@ -667,7 +660,6 @@
         color: var(--cream);
         font-weight: 400;
         max-width: 40ch;
-        margin-inline-start: auto;
       }
       .hero-sub b {
         font-weight: 600;
@@ -703,13 +695,13 @@
         font-size: 0.66em;
       }
 
-      /* the figure: large, bottom-anchored, inline-start (RIGHT), ABOVE the
+      /* the figure: large, bottom-anchored, inline-end (LEFT), ABOVE the
          headline. Height-driven so aspect ratio never distorts. */
       .hero-figure {
         position: absolute;
         z-index: 3;
         inset-block-end: 0;
-        inset-inline-start: clamp(0px, 2vw, 48px);
+        inset-inline-end: clamp(0px, 2vw, 48px);
         pointer-events: none;
         min-height: 0;
       }
@@ -719,10 +711,9 @@
         inline-size: auto;
         width: auto;
         max-inline-size: 44vw;
-        /* soft DAYLIGHT rim: gentle ground shadow + bright halo (no darkening) */
+        /* clean cutout: quiet grounding shadow only, no glow */
         filter: saturate(1) brightness(1.01) contrast(1.02)
-          drop-shadow(0 16px 26px rgba(74, 60, 80, 0.24))
-          drop-shadow(0 0 26px rgba(255, 250, 238, 0.36));
+          drop-shadow(0 16px 26px rgba(4, 5, 16, 0.38));
         -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 14%);
         mask-image: linear-gradient(to top, transparent 0%, #000 14%);
       }
@@ -2152,7 +2143,13 @@
     <!-- ============ NAV ============ -->
     <nav class="nav" id="nav" aria-label="ניווט ראשי">
       <div class="nav-inner">
-        <a href="#top" class="logo">תמי <b>שני</b></a>
+        <a href="#top" class="logo"
+          ><img
+            src="assets/brand/logo-cream.png"
+            alt="baby TAMMY time - תמי שני"
+            width="600"
+            height="488"
+        /></a>
         <div class="nav-links">
           <a href="#method">השיטה</a>
           <a href="#course">הקורס</a>
@@ -2189,14 +2186,15 @@
                   >תמי שני &nbsp;|&nbsp; יועצת שינה והתפתחות</span
                 >
                 <h1 data-pop data-pop-delay="60">
-                  <span class="h1-lead">כולם ישנים <b>בסוף</b>.</span>
-                  <span class="h1-dim">השאלה איך, מתי ובאיזו דרך.</span>
+                  <span class="h1-lead">תינוק שנרדם <b>לבד</b>.</span>
+                  <span class="h1-dim">אמא שסוף סוף ישנה בלילה.</span>
                 </h1>
                 <div class="hero-lower">
                   <p class="hero-sub" data-pop data-pop-delay="150">
-                    אני תמי, ו-15 שנים אני עוזרת לאמהות עייפות ללמד את הבייבי
-                    להירדם לבד. <b>בלי להשאיר אותו לבכות. בלי לנחש.</b> עם דרך
-                    ברורה, שלב אחרי שלב.
+                    אני תמי שני, יועצת שינה והתפתחות עם 15 שנות ניסיון ואלפי
+                    משפחות שליוויתי. יחד נבנה לבייבי שלכם הרגלי שינה בריאים,
+                    בדרך ברורה ומותאמת אישית,
+                    <b>בלי להשאיר אותו לבכות לבד</b>.
                   </p>
                   <div class="cta-row" data-pop data-pop-delay="260">
                     <a
@@ -2222,8 +2220,7 @@
                 </div>
               </div>
 
-              <div class="hero-figure figure fig-glow">
-                <div class="pedestal pedestal--glow"></div>
+              <div class="hero-figure figure">
                 <img
                   src="assets/cutouts/portrait-b-cut.png"
                   alt="תמי שני מחזיקה תינוק ישן בזרועותיה"
