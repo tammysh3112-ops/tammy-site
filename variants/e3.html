@@ -77,8 +77,6 @@
         --op-stars: 0.2;
         --op-moon: 0.9;
         --op-sun: 0;
-        --op-cloud-f: 0.5;
-        --op-cloud-b: 0.4;
         --op-hills: 1;
         --op-tint: 0.55;
       }
@@ -362,44 +360,43 @@
         inset-inline-start: clamp(4vw, 9vw, 12vw);
       }
 
-      /* cloud strips - two parallax layers */
-      #cloudBack {
-        opacity: var(--op-cloud-b);
+      /* photoreal moon: soft breathing glow on wrapper, slow spin on disc */
+      #moon .celestial {
+        inline-size: min(32vw, 216px);
       }
-      #cloudFront {
-        opacity: var(--op-cloud-f);
+      .moon-real {
+        display: grid;
+        place-items: center;
+        animation: moonBreathe 9s ease-in-out infinite alternate;
       }
-      .cloud-img {
-        position: absolute;
-        display: block;
-        filter: blur(0.4px) saturate(0.86);
+      .moon-real img {
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: contain;
+        border-radius: 50%;
+        animation: moonSpin 240s linear infinite;
       }
-      #cloudBack .cloud-img {
-        inline-size: 175vw;
-        inset-inline-start: -38vw;
-        inset-block-end: 34vh;
-        animation: driftBack 432s linear infinite alternate;
+      @keyframes moonSpin {
+        to {
+          transform: rotate(360deg);
+        }
       }
-      #cloudFront .cloud-img {
-        inline-size: 205vw;
-        inset-inline-start: -52vw;
-        inset-block-end: 11vh;
-        animation: driftFront 405s linear infinite alternate;
-      }
-      @keyframes driftFront {
+      @keyframes moonBreathe {
         from {
-          transform: translateX(-4%);
+          filter: drop-shadow(0 0 30px rgba(255, 244, 214, 0.44))
+            drop-shadow(0 0 100px rgba(233, 205, 158, 0.32))
+            drop-shadow(0 0 200px rgba(233, 205, 158, 0.18));
         }
         to {
-          transform: translateX(8%);
+          filter: drop-shadow(0 0 42px rgba(255, 244, 214, 0.6))
+            drop-shadow(0 0 135px rgba(233, 205, 158, 0.46))
+            drop-shadow(0 0 260px rgba(233, 205, 158, 0.28));
         }
       }
-      @keyframes driftBack {
-        from {
-          transform: translateX(4%);
-        }
-        to {
-          transform: translateX(-6%);
+      @media (prefers-reduced-motion: reduce) {
+        .moon-real,
+        .moon-real img {
+          animation: none;
         }
       }
 
@@ -1256,8 +1253,6 @@
           --op-stars: 0.65;
           --op-moon: 0.92;
           --op-sun: 0;
-          --op-cloud-f: 0.4;
-          --op-cloud-b: 0.32;
           --op-hills: 1;
           --op-tint: 0.6;
         }
@@ -1307,26 +1302,9 @@
       <div class="fx" id="stars" aria-hidden="true"></div>
 
       <div class="fx" id="moon" aria-hidden="true">
-        <svg class="celestial" viewBox="0 0 200 200" role="img">
-          <defs>
-            <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="rgba(255,247,228,0.62)" />
-              <stop offset="34%" stop-color="rgba(233,205,158,0.24)" />
-              <stop offset="100%" stop-color="rgba(233,205,158,0)" />
-            </radialGradient>
-            <radialGradient id="moonDisc" cx="38%" cy="34%" r="72%">
-              <stop offset="0%" stop-color="#fdf6e6" />
-              <stop offset="58%" stop-color="#efdcb6" />
-              <stop offset="100%" stop-color="#d3b784" />
-            </radialGradient>
-          </defs>
-          <circle cx="100" cy="100" r="99" fill="url(#moonGlow)" />
-          <circle cx="100" cy="100" r="50" fill="url(#moonDisc)" />
-          <circle cx="120" cy="84" r="7.5" fill="#d8c191" opacity="0.4" />
-          <circle cx="86" cy="118" r="10" fill="#d8c191" opacity="0.34" />
-          <circle cx="112" cy="122" r="5" fill="#d8c191" opacity="0.38" />
-          <circle cx="80" cy="90" r="4" fill="#d8c191" opacity="0.32" />
-        </svg>
+        <div class="celestial moon-real">
+          <img src="../assets/world/moon.png" alt="" />
+        </div>
       </div>
 
       <div class="fx" id="sun" aria-hidden="true">
@@ -1346,13 +1324,6 @@
           <circle cx="130" cy="130" r="129" fill="url(#sunHalo)" />
           <circle cx="130" cy="130" r="58" fill="url(#sunCore)" />
         </svg>
-      </div>
-
-      <div class="fx" id="cloudBack" aria-hidden="true">
-        <img class="cloud-img" src="../assets/world/clouds-back.png" alt="" />
-      </div>
-      <div class="fx" id="cloudFront" aria-hidden="true">
-        <img class="cloud-img" src="../assets/world/clouds-front.png" alt="" />
       </div>
 
       <div class="fx" id="hills" aria-hidden="true">
@@ -1822,21 +1793,6 @@
             [74, 0],
             [88, 1],
             [100, 1],
-          ],
-          "--op-cloud-f": [
-            [0, 0.5],
-            [18, 0.2],
-            [40, 0.06],
-            [70, 0.3],
-            [88, 0.6],
-            [100, 0.7],
-          ],
-          "--op-cloud-b": [
-            [0, 0.4],
-            [20, 0.12],
-            [48, 0.04],
-            [76, 0.28],
-            [100, 0.55],
           ],
           "--op-hills": [
             [0, 1],
