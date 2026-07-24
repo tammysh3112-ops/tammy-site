@@ -14,26 +14,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700;800&family=Heebo:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;800;900&family=Heebo:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
         /* ---- warm earth surface system ---- */
         --cream: #fbf3ea;
-        --ink: #3a2a34; /* deep plum-espresso: dark text on warm/light sky */
-        --ink-soft: #5c4a52;
-        --terra: #e5a06b;
-        --terra-deep: #b26a38; /* text-on-cream contrast */
-        --plum-deep: #3c2e52; /* dark accent on light hero */
+        --ink: #3f2e26; /* warm espresso: dark text on cream + light sky */
+        --ink-soft: #5c4a44;
+        --terra: #de9c6b; /* accent + primary CTA fill ONLY */
+        --terra-deep: #a75f30; /* AA-safe terracotta text-on-cream */
 
-        --font-display: "Rubik", system-ui, sans-serif;
+        --font-display: "Frank Ruhl Libre", "Heebo", Georgia, serif;
         --font-body: "Heebo", system-ui, sans-serif;
 
         --maxw: 1080px;
         --pad-inline: clamp(1.25rem, 5vw, 2rem);
         --section-pad: clamp(4rem, 9vw, 6.5rem);
-        --radius: 22px;
+        --radius: 16px; /* ONE card radius token, everywhere */
+
+        /* ---- editorial surface tokens ---- */
+        --surface: rgba(251, 243, 234, 0.94); /* near-solid cream card */
+        --hair: 1px solid rgba(63, 46, 38, 0.08); /* hairline border */
+        --shadow-card: 0 8px 28px rgba(30, 42, 74, 0.16); /* soft, small */
 
         /* ---- live layer opacities (rAF-driven; defaults = scroll 0 / warm evening) ---- */
         --op-stars: 0.15;
@@ -78,14 +82,25 @@
       h3 {
         font-family: var(--font-display);
         font-weight: 800;
-        line-height: 1.12;
-        letter-spacing: -0.01em;
+        line-height: 1.16;
+        letter-spacing: 0;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      h2 {
+        font-size: clamp(1.7rem, 3.8vw, 2.1rem);
+        line-height: 1.22;
+        font-weight: 800;
+      }
+      h3 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+        font-weight: 700;
       }
       .eyebrow {
         font-family: var(--font-body);
-        font-size: 0.82rem;
+        font-size: 0.78rem;
         font-weight: 600;
-        letter-spacing: 0.13em;
+        letter-spacing: 0.16em;
         color: var(--terra-deep);
         display: inline-flex;
         align-items: center;
@@ -104,65 +119,52 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 52px;
-        padding: 0.5rem 1.7rem;
-        border-radius: 100px;
+        min-height: 48px;
+        padding: 0.5rem 1.8rem;
+        border-radius: 999px;
         font-family: var(--font-body);
-        font-size: 1.02rem;
+        font-size: 1rem;
         font-weight: 600;
+        letter-spacing: 0.01em;
         cursor: pointer;
         border: 1.5px solid transparent;
         transition:
-          transform 0.25s ease,
-          box-shadow 0.25s ease,
-          background 0.25s ease,
-          border-color 0.25s ease;
+          transform 0.22s ease,
+          box-shadow 0.22s ease,
+          background 0.22s ease,
+          border-color 0.22s ease;
         text-align: center;
       }
       .btn:focus-visible {
         outline: 3px solid var(--terra-deep);
         outline-offset: 3px;
       }
-      /* filled primary (warm terracotta) - works on light + dark */
-      .btn-primary {
-        background: var(--terra);
-        color: #37220f;
-        box-shadow: 0 14px 34px -12px rgba(178, 106, 56, 0.55);
-      }
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 46px -14px rgba(178, 106, 56, 0.7);
-      }
-      /* ghost on dark */
-      .btn-ghost {
-        background: rgba(251, 243, 234, 0.06);
-        color: var(--cream);
-        border-color: rgba(251, 243, 234, 0.5);
-      }
-      .btn-ghost:hover {
-        border-color: var(--cream);
-        background: rgba(251, 243, 234, 0.12);
-      }
-      /* filled deep-plum = the calm night you'll get (on LIGHT sections) */
+      /* ---- VARIANT 1: terracotta solid (primary CTAs only) ---- */
+      .btn-primary,
       .btn-night {
-        background: var(--plum-deep);
-        color: var(--cream);
-        box-shadow: 0 16px 34px -14px rgba(60, 46, 82, 0.6);
+        background: var(--terra);
+        color: #34200e;
+        box-shadow: 0 8px 22px -10px rgba(167, 95, 48, 0.5);
       }
+      .btn-primary:hover,
       .btn-night:hover {
         transform: translateY(-2px);
-        box-shadow: 0 22px 46px -16px rgba(60, 46, 82, 0.72);
+        background: #d38f58; /* darken, no color swap */
+        box-shadow: 0 14px 30px -12px rgba(167, 95, 48, 0.62);
       }
-      /* ghost on light */
-      .btn-ghost-dark {
-        background: rgba(255, 255, 255, 0.35);
+      /* ---- VARIANT 2: ink outline (secondary, on light) ---- */
+      .btn-ghost-dark,
+      .btn-ghost {
+        background: rgba(63, 46, 38, 0);
         color: var(--ink);
-        border-color: rgba(58, 42, 52, 0.34);
+        border-color: rgba(63, 46, 38, 0.32);
       }
-      .btn-ghost-dark:hover {
-        border-color: var(--terra-deep);
-        color: var(--terra-deep);
-        background: rgba(255, 255, 255, 0.55);
+      .btn-ghost-dark:hover,
+      .btn-ghost:hover {
+        transform: translateY(-2px);
+        color: var(--ink);
+        border-color: rgba(63, 46, 38, 0.55); /* darken, keep ink */
+        background: rgba(63, 46, 38, 0.05);
       }
 
       /* ---------- layout ---------- */
@@ -252,13 +254,13 @@
         box-shadow: 0 0 5px 1px rgba(255, 244, 220, 0.5);
       }
       .star.t1 {
-        animation: twinkle 4.5s ease-in-out infinite;
+        animation: twinkle 7s ease-in-out infinite;
       }
       .star.t2 {
-        animation: twinkle 6.5s ease-in-out infinite;
+        animation: twinkle 9.5s ease-in-out infinite;
       }
       .star.t3 {
-        animation: twinkle 3.2s ease-in-out infinite;
+        animation: twinkle 5s ease-in-out infinite;
       }
       @keyframes twinkle {
         0%,
@@ -303,19 +305,19 @@
       .cloud-img {
         position: absolute;
         display: block;
-        filter: blur(0.4px);
+        filter: blur(0.4px) saturate(0.9);
       }
       #cloudBack .cloud-img {
         inline-size: 138vw;
         inset-inline-start: -19vw;
         inset-block-end: 32vh;
-        animation: driftBack 320s linear infinite alternate;
+        animation: driftBack 432s linear infinite alternate;
       }
       #cloudFront .cloud-img {
         inline-size: 168vw;
         inset-inline-start: -34vw;
         inset-block-end: 12vh;
-        animation: driftFront 300s linear infinite alternate;
+        animation: driftFront 405s linear infinite alternate;
       }
       @keyframes driftFront {
         from {
@@ -344,6 +346,7 @@
         inset-inline: 0;
         inline-size: 100%;
         opacity: var(--op-hills);
+        filter: saturate(0.9);
       }
       /* night veil over the day meadow: lerps UP in the night band so the
          land reads dark asleep at night, warm awake at morning */
@@ -377,60 +380,49 @@
       .nav-inner {
         max-width: var(--maxw);
         margin-inline: auto;
-        padding: 1rem var(--pad-inline);
+        padding: 0.85rem var(--pad-inline);
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
       }
-      .nav.scrolled {
-        background: rgba(30, 25, 52, 0.72);
-        backdrop-filter: blur(14px);
-        box-shadow: 0 1px 0 rgba(222, 156, 107, 0.16);
-      }
+      /* transparent at top; on scroll -> cream surface + hairline bottom rule */
+      .nav.scrolled,
       .nav.scrolled.on-light {
-        background: rgba(251, 243, 234, 0.82);
-        box-shadow: 0 1px 0 rgba(63, 46, 38, 0.1);
+        background: rgba(251, 243, 234, 0.9);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 1px 0 rgba(63, 46, 38, 0.09);
       }
       .logo {
         font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.35rem;
-        color: var(--cream);
-        transition: color 0.4s ease;
+        font-weight: 800;
+        font-size: 1.4rem;
+        letter-spacing: 0.01em;
+        color: var(--ink);
       }
       .nav-links {
         display: flex;
-        gap: 1.6rem;
+        gap: 1.7rem;
         align-items: center;
       }
+      /* quiet ink links, all sky zones (nav is cream once scrolled) */
       .nav-links a:not(.nav-cta) {
-        font-size: 0.98rem;
+        font-size: 0.95rem;
         font-weight: 500;
-        color: rgba(251, 243, 234, 0.9);
+        color: var(--ink-soft);
         transition: color 0.2s;
       }
       .nav-links a:not(.nav-cta):hover {
-        color: var(--terra);
-      }
-      /* light-sky zones (warm evening top + morning bottom): dark nav text */
-      .nav.on-light .logo {
-        color: var(--ink);
-      }
-      .nav.on-light .nav-links a:not(.nav-cta) {
-        color: var(--ink-soft);
-      }
-      .nav.on-light .nav-links a:not(.nav-cta):hover {
         color: var(--terra-deep);
       }
       .nav-cta {
-        min-height: 44px;
-        padding: 0.45rem 1.25rem;
-        border-radius: 100px;
+        min-height: 42px;
+        padding: 0.4rem 1.3rem;
+        border-radius: 999px;
         background: var(--terra);
-        color: #37220f;
+        color: #34200e;
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
         display: inline-flex;
         align-items: center;
         transition:
@@ -471,18 +463,20 @@
         margin-inline: auto;
       }
       .hero h1 {
-        font-size: clamp(2.4rem, 8.4vw, 4.6rem);
+        font-size: clamp(2.4rem, 5vw, 3.6rem);
         font-weight: 800;
+        line-height: 1.14;
         color: var(--ink);
-        margin-block: 1.1rem 1.3rem;
-        text-shadow: 0 1px 18px rgba(255, 240, 220, 0.55);
+        margin-block: 1.2rem 1.3rem;
+        text-shadow: 0 1px 16px rgba(255, 240, 220, 0.5);
       }
       .hero h1 .dim {
         color: var(--terra-deep);
         display: block;
-        font-size: 0.6em;
+        font-size: 0.56em;
         font-weight: 700;
-        margin-block-start: 0.35em;
+        line-height: 1.28;
+        margin-block-start: 0.5em;
       }
       .hero-sub {
         font-size: clamp(1.08rem, 2.4vw, 1.32rem);
@@ -503,13 +497,13 @@
         margin-block-start: 2.4rem;
       }
       .chip {
-        font-size: 0.86rem;
+        font-size: 0.84rem;
         font-weight: 600;
-        color: #4a3524;
-        padding: 0.5rem 1rem;
-        border-radius: 100px;
-        border: 1px solid rgba(178, 106, 56, 0.42);
-        background: rgba(255, 249, 240, 0.5);
+        color: var(--ink);
+        padding: 0.46rem 1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(63, 46, 38, 0.14);
+        background: rgba(251, 243, 234, 0.66);
         display: inline-flex;
         align-items: center;
         gap: 0.5ch;
@@ -517,7 +511,7 @@
       .chip::before {
         content: "✦";
         color: var(--terra-deep);
-        font-size: 0.7em;
+        font-size: 0.66em;
       }
 
       /* hero media frame (video-ready, poster now) */
@@ -527,13 +521,13 @@
         max-width: 760px;
         margin-inline: auto;
         aspect-ratio: 16 / 9;
-        border-radius: 20px;
+        border-radius: var(--radius);
         overflow: hidden;
         background: #201a3a;
-        border: 3px solid rgba(255, 252, 245, 0.7);
+        border: 1px solid rgba(63, 46, 38, 0.12);
         box-shadow:
-          0 46px 100px -34px rgba(60, 40, 60, 0.5),
-          0 0 70px -14px rgba(255, 214, 170, 0.5);
+          0 18px 48px -18px rgba(30, 42, 74, 0.4),
+          0 4px 14px rgba(30, 42, 74, 0.12);
       }
       .hero-video {
         width: 100%;
@@ -582,7 +576,7 @@
 
       /* ============ PAIN (deep night) ============ */
       .pain h2 {
-        font-size: clamp(1.9rem, 5.5vw, 3rem);
+        font-size: clamp(1.8rem, 4.2vw, 2.4rem);
         color: var(--cream);
         margin-block-end: 2rem;
         text-shadow:
@@ -601,7 +595,7 @@
         display: block;
         font-family: var(--font-display);
         font-weight: 800;
-        font-size: clamp(2rem, 6vw, 3.1rem);
+        font-size: clamp(1.9rem, 5vw, 2.7rem);
         color: var(--terra);
         margin-block: 1.8rem;
       }
@@ -629,7 +623,7 @@
         margin-block-end: 3rem;
       }
       .method h2 {
-        font-size: clamp(1.9rem, 5.5vw, 3rem);
+        font-size: clamp(1.8rem, 4.2vw, 2.4rem);
         color: var(--cream);
         text-shadow:
           0 1px 3px rgba(14, 11, 28, 0.9),
@@ -644,58 +638,62 @@
       .pillars {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.1rem;
+        gap: 1.25rem;
       }
       @media (min-width: 720px) {
         .pillars {
           grid-template-columns: 1fr 1fr;
-          gap: 1.4rem;
+          gap: 1.25rem;
         }
       }
       .pillar {
-        background: rgba(247, 240, 255, 0.13);
-        border: 1px solid rgba(251, 243, 234, 0.26);
+        background: var(--surface);
+        border: var(--hair);
         border-radius: var(--radius);
-        padding: 2rem 1.7rem;
-        backdrop-filter: blur(10px);
-        box-shadow:
-          0 24px 50px -28px rgba(8, 6, 24, 0.7),
-          inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        padding: 2.2rem 2rem;
+        box-shadow: var(--shadow-card);
         transition:
-          transform 0.3s ease,
-          border-color 0.3s ease,
-          background 0.3s ease;
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
       }
       .pillar:hover {
-        transform: translateY(-4px);
-        border-color: rgba(229, 160, 107, 0.6);
-        background: rgba(247, 240, 255, 0.18);
+        transform: translateY(-3px);
+        box-shadow: 0 14px 36px rgba(30, 42, 74, 0.2);
       }
       .pillar .p-num {
         font-family: var(--font-display);
         font-weight: 700;
         font-size: 0.95rem;
-        color: var(--terra);
-        letter-spacing: 0.05em;
+        color: var(--terra-deep);
+        letter-spacing: 0.06em;
+        font-variant-numeric: tabular-nums;
         margin-block-end: 0.7rem;
       }
       .pillar h3 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 700;
-        color: var(--cream);
-        margin-block-end: 0.6rem;
+        color: var(--ink);
+        margin-block-end: 0.55rem;
       }
       .pillar p {
-        color: rgba(251, 243, 234, 0.95);
+        color: var(--ink-soft);
         font-weight: 400;
         font-size: 1.02rem;
+        line-height: 1.65;
       }
 
       /* ============ AUTHORITY (night -> indigo) ============ */
+      /* credentials band: one cream editorial card holding the stats */
       .counters {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 1.4rem 1rem;
+        gap: 1.8rem 1rem;
+        background: var(--surface);
+        border: var(--hair);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-card);
+        padding: clamp(1.8rem, 4vw, 2.6rem) clamp(1.2rem, 3vw, 2rem);
+        align-items: center;
       }
       @media (min-width: 820px) {
         .counters {
@@ -704,47 +702,59 @@
       }
       .counter {
         text-align: center;
-        padding: 1rem 0.5rem;
+        padding: 0.2rem 0.4rem;
         border-radius: var(--radius);
       }
       a.counter {
-        transition: background 0.25s;
+        transition: background 0.2s;
         display: block;
       }
       a.counter:hover {
-        background: rgba(251, 243, 234, 0.08);
+        background: rgba(63, 46, 38, 0.04);
       }
       a.counter:focus-visible {
-        outline: 3px solid var(--terra);
+        outline: 3px solid var(--terra-deep);
         outline-offset: 3px;
       }
       .counter .num {
         font-family: var(--font-display);
         font-weight: 800;
-        font-size: clamp(2.6rem, 9vw, 3.6rem);
-        color: var(--terra);
+        font-size: clamp(2.3rem, 6.5vw, 3.1rem);
+        color: var(--ink);
         line-height: 1;
-        font-variant-numeric: tabular-nums;
-        text-shadow: 0 2px 24px rgba(10, 8, 26, 0.5);
+        direction: ltr;
+        unicode-bidi: isolate;
+        font-variant-numeric: tabular-nums lining-nums;
       }
       .counter .num.word {
-        font-size: clamp(2rem, 7vw, 2.7rem);
+        font-size: clamp(1.9rem, 5.5vw, 2.5rem);
       }
       .counter .label {
         margin-block-start: 0.7rem;
-        font-size: 0.98rem;
-        color: rgba(251, 243, 234, 0.96);
-        font-weight: 400;
+        font-size: 0.82rem;
+        letter-spacing: 0.05em;
+        color: var(--ink-soft);
+        font-weight: 500;
       }
-      a.counter .num {
-        text-decoration: underline;
-        text-decoration-color: rgba(229, 160, 107, 0.5);
-        text-underline-offset: 6px;
+      /* press badge: quiet bordered chip, not a giant numeral */
+      .counter.badge .num {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4ch;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--terra-deep);
+        padding: 0.4rem 0.9rem;
+        border: 1px solid rgba(167, 95, 48, 0.4);
+        border-radius: 999px;
       }
-      a.counter .ext {
+      a.counter.badge:hover .num {
+        border-color: rgba(167, 95, 48, 0.7);
+      }
+      .counter .ext {
         display: inline-block;
-        font-size: 0.7em;
-        margin-inline-start: 0.3ch;
+        font-size: 0.72em;
         opacity: 0.85;
       }
 
@@ -752,8 +762,7 @@
       .pain-list,
       .pain-truth,
       .method .intro,
-      .identify,
-      .counter .label {
+      .identify {
         text-shadow:
           0 1px 2px rgba(14, 11, 28, 0.85),
           0 1px 16px rgba(10, 8, 26, 0.6);
@@ -770,14 +779,11 @@
 
       /* course card */
       .course-card {
-        background: rgba(255, 253, 249, 0.94);
-        backdrop-filter: blur(10px);
-        border-radius: 26px;
-        padding: clamp(2rem, 5vw, 3.2rem);
-        box-shadow:
-          0 44px 90px -34px rgba(50, 34, 46, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.8);
-        border: 1px solid rgba(229, 160, 107, 0.3);
+        background: var(--surface);
+        border: var(--hair);
+        border-radius: var(--radius);
+        padding: clamp(2.2rem, 5vw, 3.4rem);
+        box-shadow: var(--shadow-card);
         text-align: center;
         max-width: 660px;
         margin-inline: auto;
@@ -827,14 +833,11 @@
 
       /* morning content cards - keep text on a warm surface across the dawn zone (AA-safe) */
       .morning-panel {
-        background: rgba(255, 250, 243, 0.9);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(229, 160, 107, 0.28);
-        border-radius: 26px;
-        box-shadow:
-          0 44px 90px -36px rgba(50, 34, 46, 0.48),
-          inset 0 1px 0 rgba(255, 255, 255, 0.7);
-        padding: clamp(2rem, 5vw, 3.2rem);
+        background: var(--surface);
+        border: var(--hair);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-card);
+        padding: clamp(2.2rem, 5vw, 3.4rem);
       }
 
       /* guides */
@@ -844,15 +847,15 @@
         text-align: center;
       }
       .guide-icon {
-        width: 60px;
-        height: 60px;
+        width: 58px;
+        height: 58px;
         margin-inline: auto;
         margin-block-end: 1.3rem;
-        border-radius: 18px;
-        background: rgba(229, 160, 107, 0.22);
+        border-radius: var(--radius);
+        background: rgba(222, 156, 107, 0.18);
         display: grid;
         place-items: center;
-        font-size: 1.7rem;
+        font-size: 1.6rem;
       }
       .guides p {
         font-size: 1.15rem;
@@ -881,16 +884,23 @@
         }
       }
       .about-photo {
-        width: clamp(180px, 52vw, 240px);
-        height: clamp(180px, 52vw, 240px);
+        width: clamp(200px, 54vw, 264px);
+        height: clamp(200px, 54vw, 264px);
         border-radius: 50%;
         object-fit: cover;
         object-position: 50% 22%;
         border: 5px solid #fff;
-        box-shadow: 0 28px 56px -24px rgba(50, 34, 46, 0.55);
+        box-shadow: 0 12px 32px rgba(30, 42, 74, 0.18);
         flex-shrink: 0;
       }
       .about h2 {
+        margin-block-end: 0.5rem;
+      }
+      .about-cred {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        color: var(--terra-deep);
         margin-block-end: 1.1rem;
       }
       .about p {
@@ -1275,7 +1285,7 @@
                 <div class="label">תעודות הכשרה</div>
               </div>
               <a
-                class="counter reveal"
+                class="counter badge reveal"
                 href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
                 target="_blank"
                 rel="noopener"
@@ -1353,6 +1363,9 @@
               />
               <div>
                 <h2>נעים להכיר, אני תמי</h2>
+                <div class="about-cred">
+                  יועצת שינה והתפתחות · 15 שנות ניסיון · אלפי תינוקות
+                </div>
                 <p>
                   התחלתי בדיוק איפה שאת נמצאת עכשיו: אמא עייפה, מבולבלת, עם
                   תינוק שלא ישן. היום, אחרי 15 שנים ואלפי תינוקות, אני הדרך
@@ -1441,7 +1454,7 @@
         /* ---- starfield: ~90 dots, several twinkle timings, upper band ---- */
         var host = document.getElementById("stars");
         if (host) {
-          var n = 90,
+          var n = 45,
             html = "";
           for (var i = 0; i < n; i++) {
             var top = (Math.random() * 94).toFixed(2);
