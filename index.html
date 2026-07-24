@@ -51,8 +51,13 @@
         --gold-lite: #ecd6a6; /* gold text on velvet (AA) */
         --gold-deep: #7d5f26; /* antique gold accent on ivory (AA on small text) */
 
-        --cream: #efe7d8; /* warm off-white body text on velvet */
-        --cream-dim: rgba(239, 231, 216, 0.82);
+        --cream: rgba(
+          255,
+          250,
+          242,
+          0.92
+        ); /* warm-white body text - all zones */
+        --cream-dim: rgba(255, 250, 242, 0.72);
         --ink: #241f3a; /* deep aubergine ink on ivory + DAY sky */
         --ink-soft: #4a4363;
 
@@ -67,10 +72,10 @@
         --maxw: 1140px;
         --pad-inline: clamp(1.25rem, 5vw, 2rem);
         --section-pad: clamp(
-          3.25rem,
-          6vw,
-          5rem
-        ); /* compressed for the short page (~90px like blocksuniverse) */
+          5rem,
+          9vw,
+          7rem
+        ); /* generous consistent band rhythm - opener ritual has room */
         --radius: 22px;
 
         /* velvet + ivory frosted panels */
@@ -82,10 +87,11 @@
         --shadow-lux: 0 30px 70px -30px rgba(4, 5, 16, 0.85);
         --shadow-soft: 0 22px 50px -26px rgba(20, 14, 30, 0.35);
 
-        /* ---- live layer opacities (rAF-driven; defaults = scroll 0 / DAY) ---- */
-        --op-stars: 0;
+        /* ---- live layer opacities (rAF-driven; defaults = scroll 0 / twilight) ---- */
+        --op-stars: 0.15;
         --op-hills: 1;
-        --op-tint: 0;
+        --op-tint: 0.1;
+        --op-dawn: 0;
       }
 
       * {
@@ -99,9 +105,7 @@
       }
       body {
         font-family: var(--font-body);
-        background: var(
-          --day-sky
-        ); /* matches gradient top (day) so overscroll never flashes */
+        background: #211a3d; /* deep twilight - matches gradient top so overscroll never flashes */
         color: var(--cream);
         line-height: 1.72;
         font-weight: 400;
@@ -127,6 +131,7 @@
         line-height: 1.18;
         letter-spacing: 0.005em;
         font-variant-numeric: lining-nums;
+        color: #fff; /* ALL type white; gold reserved for anchor words */
       }
       h1 b,
       h2 b,
@@ -256,6 +261,23 @@
         max-width: 780px;
         margin-inline: auto;
       }
+      /* soft horizon-glow divider between bands - a faint gold line with a
+         whisper of glow, never a hard seam */
+      .hdiv {
+        position: relative;
+        z-index: 10;
+        block-size: 1px;
+        max-width: var(--maxw);
+        margin-inline: auto;
+        width: calc(100% - 2 * var(--pad-inline));
+        background: linear-gradient(
+          90deg,
+          transparent 4%,
+          rgba(217, 184, 120, 0.42) 50%,
+          transparent 96%
+        );
+        box-shadow: 0 0 22px 1px rgba(217, 184, 120, 0.14);
+      }
       .center {
         text-align: center;
       }
@@ -287,31 +309,29 @@
         background-attachment: scroll;
         background-image: linear-gradient(
           180deg,
-          #c9d4ea 0%,
-          /* --- soft warm DAY sky: hero copy zone (ink-friendly) --- */ #d3d8e4
-            8%,
-          #dcdbd8 15%,
-          #e6c79a 20%,
-          /* golden dusk behind the lower hero */ #d18f7e 24%,
-          /* rose dusk */ #9d6570 27%,
-          /* plum twilight (hero bottom) */ #573f5e 30%,
-          #2a2749 33%,
-          /* velvet night (method) */ #14162e 36%,
-          #0d0f24 40%,
-          /* --- deepest velvet HOLD 44-66% (offers + proof) --- */ #0b0d20 44%,
-          #0b0d20 66%,
-          #0d1027 70%,
-          /* indigo lift (proof lower) */ #1c1e3e 72%,
-          #3a2f54 74%,
-          /* plum -> mauve dawn */ #6e4f66 76%,
-          #a86f74 78%,
-          /* rose-peach sunrise (final top) */ #d59a80 80%,
-          #e8bd93 82%,
-          /* gold first light (final content) */ #eecfa8 84%,
-          #f0dabf 87%,
-          /* soft DAY / ivory returns (footer) */ #f4ebd9 91%,
-          #f6efe2 95%,
-          #f6f0e6 100% /* warm ivory morning */
+          #211a3d 0%,
+          /* --- deep twilight indigo-plum: hero copy zone (white text) --- */
+          #241d42 9%,
+          #2b2249 15%,
+          #3a2b4d 20%,
+          /* a hint of warm dusk glow at the hero horizon */ #2c2247 25%,
+          #1c1a3a 30%,
+          /* into velvet night (method) */ #121333 36%,
+          #0d0f28 40%,
+          /* --- deepest velvet HOLD 44-66% (offers + proof), stars peak --- */
+          #0b0d22 44%,
+          #0b0d22 66%,
+          #0c0e25 72%,
+          /* still deep through proof lower */ #101230 78%,
+          #161634 82%,
+          /* pre-dawn indigo holds (final CTA - white text) */ #1b1a3c 86%,
+          #2a2247 90%,
+          /* warm dawn GLOW rises from the bottom horizon, sky stays deep */
+          #45314f 93%,
+          #7a4f56 96%,
+          /* gold-peach first light on the horizon behind the meadow */ #b9805f
+            98.5%,
+          #33283f 100% /* deep ground shadow at the meadow base */
         );
       }
 
@@ -386,6 +406,23 @@
         mix-blend-mode: multiply;
         opacity: var(--op-tint);
       }
+      /* warm dawn glow on the meadow horizon: lerps UP only at the finale.
+         The morning is a PROMISE of light on the horizon, not a bright sky. */
+      .dawn-glow {
+        position: absolute;
+        inset-inline: 0;
+        inset-block-end: 0;
+        block-size: 56vh;
+        background: radial-gradient(
+          125% 100% at 50% 100%,
+          rgba(244, 186, 122, 0.62) 0%,
+          rgba(214, 132, 92, 0.32) 34%,
+          rgba(122, 82, 108, 0.1) 62%,
+          rgba(11, 13, 32, 0) 100%
+        );
+        mix-blend-mode: screen;
+        opacity: var(--op-dawn);
+      }
 
       /* ============ NAV ============ */
       .nav {
@@ -407,24 +444,37 @@
         justify-content: space-between;
         gap: 1rem;
       }
+      /* scrolled nav fades to transparent at its lower edge (gradient + mask)
+         so a headline scrolling up UNDER it dissolves smoothly instead of being
+         sliced mid-glyph at a hard seam line. This is the clip-bug fix. */
       .nav.scrolled {
-        background: rgba(11, 13, 32, 0.72);
-        backdrop-filter: blur(16px) saturate(1.1);
-        box-shadow: 0 1px 0 var(--hair-gold-soft);
+        background: linear-gradient(
+          180deg,
+          rgba(9, 11, 26, 0.94) 0%,
+          rgba(9, 11, 26, 0.82) 52%,
+          rgba(9, 11, 26, 0) 100%
+        );
+        backdrop-filter: blur(15px) saturate(1.1);
+        -webkit-mask-image: linear-gradient(
+          180deg,
+          #000 46%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        mask-image: linear-gradient(180deg, #000 46%, rgba(0, 0, 0, 0) 100%);
+        box-shadow: none;
       }
-      /* NAV default = over the DAY sky at the very top: ink-on-light.
-         Once scrolled (dark velvet pill) it flips to cream/gold below. */
+      /* NAV = white/gold from the top (twilight sky is dark enough). */
       .logo {
         font-family: var(--font-display);
         font-weight: 300;
         font-size: 1.62rem;
         letter-spacing: 0.04em;
-        color: var(--ink);
+        color: #fff;
         transition: color 0.4s ease;
       }
       .logo b {
         font-weight: 700;
-        color: var(--gold-deep);
+        color: var(--gold-lite);
       }
       .nav-links {
         display: flex;
@@ -434,18 +484,18 @@
       .nav-links a:not(.nav-cta) {
         font-size: 0.96rem;
         font-weight: 500;
-        color: var(--ink-soft);
+        color: var(--cream-dim);
         transition: color 0.2s;
       }
       .nav-links a:not(.nav-cta):hover {
-        color: var(--gold-deep);
+        color: var(--gold-lite);
       }
       .nav-cta {
         min-height: 44px;
         padding: 0.45rem 1.4rem;
         border-radius: 999px;
-        border: 1px solid rgba(138, 107, 46, 0.42);
-        color: var(--gold-deep);
+        border: 1px solid var(--hair-gold);
+        color: var(--gold-lite);
         font-weight: 600;
         font-size: 0.92rem;
         display: inline-flex;
@@ -458,8 +508,8 @@
       }
       .nav-cta:hover {
         transform: translateY(-1px);
-        background: rgba(138, 107, 46, 0.09);
-        border-color: rgba(138, 107, 46, 0.7);
+        background: rgba(217, 184, 120, 0.1);
+        border-color: rgba(217, 184, 120, 0.7);
       }
       /* scrolled: dark velvet pill -> cream/champagne text */
       .nav.scrolled .logo {
@@ -552,7 +602,7 @@
       .hero {
         position: relative;
         z-index: 10;
-        min-height: 150vh;
+        min-height: 136vh;
         display: flex;
         align-items: flex-start;
         padding-block: clamp(6rem, 12vh, 9rem) clamp(3rem, 8vh, 6rem);
@@ -577,10 +627,10 @@
       }
       .hero .eyebrow {
         margin-block-end: 1.15rem;
-        color: var(--gold-deep); /* gold accent readable on DAY sky */
+        color: var(--gold-lite); /* champagne on the twilight sky */
       }
       .hero h1 {
-        color: var(--ink); /* deep aubergine ink on the DAY sky */
+        color: #fff; /* big WHITE Discovery against the twilight */
         margin: 0;
       }
       /* line 1: enormous, right words run behind the figure */
@@ -591,7 +641,7 @@
         letter-spacing: -0.012em;
       }
       .hero h1 b {
-        color: var(--gold-deep);
+        color: var(--gold-lite);
       }
       /* line 2: offset toward the clear (inline-end / LEFT) side */
       .hero h1 .h1-dim {
@@ -599,7 +649,7 @@
         font-size: clamp(1.4rem, 3vw, 2.35rem);
         font-weight: 300;
         line-height: 1.24;
-        color: var(--ink-soft);
+        color: var(--cream);
         margin-block-start: 0.62em;
         max-width: 22ch;
         margin-inline-start: auto; /* push LEFT, clear of figure */
@@ -614,14 +664,14 @@
       }
       .hero-sub {
         font-size: clamp(1.05rem, 2.1vw, 1.24rem);
-        color: var(--ink-soft);
+        color: var(--cream);
         font-weight: 400;
         max-width: 40ch;
         margin-inline-start: auto;
       }
       .hero-sub b {
         font-weight: 600;
-        color: var(--ink);
+        color: #fff;
       }
       .hero .cta-row {
         justify-content: flex-start;
@@ -637,11 +687,11 @@
       .chip {
         font-size: 0.82rem;
         font-weight: 600;
-        color: var(--ink);
+        color: #fff;
         padding: 0.48rem 1.05rem;
         border-radius: 999px;
-        border: 1px solid rgba(138, 107, 46, 0.34);
-        background: rgba(246, 240, 230, 0.55);
+        border: 1px solid var(--hair-gold);
+        background: rgba(23, 25, 52, 0.55);
         backdrop-filter: blur(6px);
         display: inline-flex;
         align-items: center;
@@ -649,7 +699,7 @@
       }
       .chip::before {
         content: "✦";
-        color: var(--gold-deep);
+        color: var(--gold-lite);
         font-size: 0.66em;
       }
 
@@ -812,7 +862,7 @@
         margin-block-end: 2.2rem;
       }
       .method h2 {
-        color: var(--cream);
+        color: #fff;
       }
       .method h2 b {
         color: var(--gold-lite);
@@ -840,13 +890,30 @@
         }
       }
       .velvet-panel {
-        background: var(--velvet);
+        background: rgba(23, 25, 52, 0.66);
         backdrop-filter: blur(14px) saturate(1.05);
-        border: 1px solid var(--hair-gold);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-lux);
+        border: 1px solid rgba(217, 184, 120, 0.28);
+        border-radius: 20px;
+        box-shadow:
+          0 4px 14px rgba(4, 5, 16, 0.4),
+          0 24px 60px -28px rgba(4, 5, 16, 0.8),
+          inset 0 1px 0 rgba(255, 250, 240, 0.07);
         position: relative;
         overflow: hidden;
+      }
+      /* icon chip - 44px gold-tinted, method + offers cards */
+      .card-chip {
+        inline-size: 44px;
+        block-size: 44px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        line-height: 1;
+        background: rgba(217, 184, 120, 0.16);
+        border: 1px solid rgba(217, 184, 120, 0.32);
+        margin-block-end: 1rem;
       }
       .velvet-panel::before {
         content: "";
@@ -864,25 +931,32 @@
       .pillar {
         padding: 1.7rem 1.5rem;
         transition:
-          transform 0.28s ease,
-          border-color 0.28s ease,
-          box-shadow 0.28s ease;
+          transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
+          border-color 0.26s ease,
+          box-shadow 0.26s ease;
       }
       .pillar:hover {
-        transform: translateY(-4px);
-        border-color: rgba(217, 184, 120, 0.6);
+        transform: translateY(-4px) scale(1.01);
+        border-color: rgba(217, 184, 120, 0.55);
       }
       .pillar .p-num {
         font-family: var(--font-display);
         font-weight: 700;
-        font-size: 1.8rem;
+        font-size: 1.35rem;
         color: var(--gold-lite);
         line-height: 1;
         direction: ltr;
         unicode-bidi: isolate;
         font-variant-numeric: lining-nums;
-        margin-block-end: 0.6rem;
-        display: inline-block;
+        margin-block-end: 0.9rem;
+        inline-size: 44px;
+        block-size: 44px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(217, 184, 120, 0.16);
+        border: 1px solid rgba(217, 184, 120, 0.32);
       }
       .pillar h3 {
         font-size: 1.16rem;
@@ -1149,21 +1223,25 @@
       /* ============ FINAL CTA (warm ivory morning) ============ */
       .final {
         text-align: center;
-        padding-block: clamp(3.25rem, 6vw, 5rem);
+        padding-block: clamp(5rem, 9vw, 7rem);
+      }
+      .final .eyebrow {
+        justify-content: center;
+        margin-block-end: 1rem;
       }
       .final h2 {
         font-size: clamp(2.1rem, 6vw, 3.4rem);
-        color: var(--ink);
+        color: #fff;
         max-width: 17ch;
         margin-inline: auto;
       }
       .final h2 b {
-        color: var(--gold-deep);
+        color: var(--gold-lite);
       }
       .final p {
         font-size: 1.18rem;
         font-weight: 300;
-        color: var(--ink-soft);
+        color: var(--cream-dim);
         margin-block-start: 1.2rem;
         max-width: 42ch;
         margin-inline: auto;
@@ -1173,64 +1251,101 @@
         font-family: var(--font-display);
         font-weight: 700;
         font-size: 1.7rem;
-        color: var(--gold-deep);
+        color: var(--gold-lite);
       }
 
-      /* ============ FOOTER (warm ivory) ============ */
+      /* ============ FOOTER (white/gold on the deep dawn base) ============ */
       .footer {
         position: relative;
         z-index: 10;
-        color: var(--ink-soft);
-        padding-block: 2rem 3rem;
+        color: var(--cream-dim);
+        padding-block: clamp(3rem, 6vw, 4.5rem) 2.6rem;
       }
-      .footer .wrap {
-        text-align: center;
+      /* scrim: keeps white footer text legible over the bright dawn-lit meadow
+         while the horizon glow still reads at the footer's upper edge */
+      .footer::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+          180deg,
+          rgba(11, 13, 32, 0) 0%,
+          rgba(11, 13, 32, 0.4) 45%,
+          rgba(11, 13, 32, 0.68) 100%
+        );
+      }
+      .footer-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.6rem 2rem;
+        padding-block-end: 2rem;
       }
       .footer .f-logo {
         font-family: var(--font-display);
         font-weight: 300;
-        font-size: 1.8rem;
-        color: var(--ink);
-        margin-block-end: 0.5rem;
+        font-size: 1.9rem;
+        color: #fff;
         letter-spacing: 0.04em;
       }
       .footer .f-logo b {
         font-weight: 700;
-        color: var(--gold-deep);
+        color: var(--gold-lite);
       }
       .footer .f-tag {
-        font-size: 0.98rem;
-        color: var(--ink-soft);
+        font-size: 1rem;
+        color: var(--cream-dim);
       }
-      .footer .f-tag a {
-        color: var(--gold-deep);
-        font-weight: 600;
+      .f-cols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.6rem 2rem;
+        padding-block: 2.2rem;
+        border-block-start: 1px solid var(--hair-gold-soft);
       }
-      .f-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem 1.4rem;
-        margin-block: 1.9rem;
-        padding-block: 1.7rem;
-        border-block: 1px solid rgba(138, 107, 46, 0.24);
+      @media (max-width: 560px) {
+        .f-cols {
+          grid-template-columns: 1fr;
+          gap: 1.8rem;
+        }
+        .footer-top {
+          flex-direction: column;
+        }
       }
-      .f-links a {
-        font-size: 0.94rem;
-        color: var(--ink-soft);
+      .f-col h4 {
+        font-family: var(--font-body);
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        color: var(--gold-lite);
+        margin-block-end: 1rem;
+      }
+      .f-col a {
+        display: block;
+        font-size: 0.96rem;
+        color: var(--cream-dim);
+        margin-block: 0.55rem;
         transition: color 0.2s;
       }
-      .f-links a:hover {
-        color: var(--gold-deep);
+      .f-col a:hover {
+        color: #fff;
       }
       .footer a:focus-visible {
-        outline: 3px solid var(--gold-deep);
+        outline: 3px solid var(--gold);
         outline-offset: 3px;
         border-radius: 4px;
       }
+      .footer-bottom {
+        padding-block-start: 1.8rem;
+        border-block-start: 1px solid var(--hair-gold-soft);
+        text-align: center;
+      }
       .copyright {
         font-size: 0.86rem;
-        color: rgba(74, 67, 99, 0.72);
+        color: rgba(255, 250, 242, 0.7);
       }
       .ltr {
         direction: ltr;
@@ -1313,7 +1428,7 @@
         margin-block-end: 1.9rem;
       }
       .offers h2 {
-        color: var(--cream);
+        color: #fff;
       }
       .offers h2 b {
         color: var(--gold-lite);
@@ -1350,13 +1465,13 @@
         display: flex;
         flex-direction: column;
         transition:
-          transform 0.28s ease,
-          border-color 0.28s ease,
-          box-shadow 0.28s ease;
+          transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
+          border-color 0.26s ease,
+          box-shadow 0.26s ease;
       }
       .offer-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(217, 184, 120, 0.6);
+        transform: translateY(-4px) scale(1.01);
+        border-color: rgba(217, 184, 120, 0.55);
       }
       .offer-card .eyebrow {
         margin-block-end: 0.9rem;
@@ -1407,11 +1522,48 @@
       .offer-cta .btn {
         width: 100%;
       }
+      /* featured = filled gold "special" tile, dark ink text (AA) */
       .offer-card.featured {
-        border-color: rgba(217, 184, 120, 0.6);
+        background: linear-gradient(
+          155deg,
+          #f0dcab 0%,
+          #e2c184 52%,
+          #d0ac6b 100%
+        );
+        border-color: rgba(255, 247, 227, 0.5);
         box-shadow:
-          var(--shadow-lux),
-          0 0 0 1px rgba(217, 184, 120, 0.24) inset;
+          0 4px 14px rgba(4, 5, 16, 0.4),
+          0 26px 64px -26px rgba(150, 112, 46, 0.7),
+          inset 0 1px 0 rgba(255, 252, 244, 0.6);
+      }
+      .offer-card.featured::before {
+        display: none;
+      }
+      .offer-card.featured .eyebrow {
+        color: #6a4e18;
+      }
+      .offer-card.featured .eyebrow::before {
+        background: #6a4e18;
+      }
+      .offer-card.featured .card-chip {
+        background: rgba(36, 26, 8, 0.12);
+        border-color: rgba(36, 26, 8, 0.3);
+        color: #241a08;
+      }
+      .offer-card.featured h3 {
+        color: #241a08;
+      }
+      .offer-card.featured p {
+        color: #3a2c10;
+      }
+      .offer-card.featured .offer-cta .btn {
+        background: #241a08;
+        color: var(--gold-lite);
+        box-shadow: 0 12px 28px -12px rgba(36, 26, 8, 0.6);
+      }
+      .offer-card.featured .offer-cta .btn:hover {
+        background: #171006;
+        transform: translateY(-2px);
       }
       .offer-tag {
         position: absolute;
@@ -1425,6 +1577,24 @@
         padding: 0.3rem 0.9rem;
         border-radius: 999px;
         letter-spacing: 0.03em;
+      }
+      .offer-card.featured .offer-tag {
+        background: #241a08;
+        color: var(--gold-lite);
+      }
+
+      /* gold sparkle doodles near headings (pop in last) */
+      .doodle {
+        position: absolute;
+        pointer-events: none;
+        color: var(--gold-lite);
+        z-index: 5;
+      }
+      .doodle svg {
+        inline-size: 100%;
+        block-size: 100%;
+        display: block;
+        filter: drop-shadow(0 0 8px rgba(236, 214, 166, 0.5));
       }
 
       /* ============ PRESS "מהתקשורת" (night) ============ */
@@ -1558,7 +1728,7 @@
         border-block-end: 1px solid var(--hair-gold-soft);
       }
       .proof-title h2 {
-        color: var(--cream);
+        color: #fff;
       }
       .proof-title h2 b {
         color: var(--gold-lite);
@@ -1649,8 +1819,8 @@
         padding: 1.3rem 1.5rem 1.4rem;
       }
       .proof-testi .q-mark {
-        font-size: 2.2rem;
-        margin-block-end: 0.5rem;
+        font-size: 3rem;
+        margin-block-end: 0.2rem;
       }
       .proof-testi blockquote {
         font-size: 1.04rem;
@@ -1717,13 +1887,13 @@
         flex-direction: column;
       }
       .testi-card .q-mark {
-        font-family: Georgia, serif;
+        font-family: var(--font-display);
         font-weight: 700;
-        font-size: 3rem;
-        line-height: 0.4;
-        color: var(--gold);
-        opacity: 0.55;
-        margin-block-end: 0.9rem;
+        font-size: 3.2rem;
+        line-height: 1;
+        color: var(--gold-lite);
+        opacity: 0.92;
+        margin-block-end: 0.4rem;
       }
       .testi-card blockquote {
         color: var(--cream);
@@ -1902,17 +2072,47 @@
         }
       }
 
-      /* ============ REVEAL MOTION ============ */
-      .js .reveal {
+      /* ============ REVEAL MOTION - re-triggerable two-beat choreography ============
+         data-pop marks an element; data-pop-delay (ms) staggers it. The band's
+         IntersectionObserver toggles .is-in on the section (enter >=25%, exit <10%),
+         so entering scrolls the whole cascade in, leaving reverses it - re-entry pops
+         again. Exit is fast + un-staggered (base transition, no delay). */
+      .js [data-pop] {
         opacity: 0;
-        transform: translateY(14px);
+        transform: translateY(26px);
         transition:
-          opacity 0.8s ease,
-          transform 0.8s ease;
+          opacity 0.35s ease-out,
+          transform 0.35s ease-out;
+        will-change: opacity, transform;
       }
-      .reveal.is-visible {
+      .js [data-pop="card"] {
+        transform: translateY(30px) scale(0.94);
+      }
+      .js [data-pop="accent"] {
+        transform: scale(0.6) rotate(-12deg);
+        transform-origin: center;
+      }
+      .is-in [data-pop] {
         opacity: 1;
         transform: none;
+        transition-duration: 0.6s;
+        transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--pd, 0ms);
+      }
+      .is-in [data-pop="card"] {
+        transition-duration: 0.65s;
+        transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .is-in [data-pop="accent"] {
+        transition-duration: 0.5s;
+        transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      /* snappy hover on popped cards - kill the entrance delay so lift is instant */
+      .is-in [data-pop="card"]:hover {
+        transform: translateY(-4px) scale(1.01);
+        transition-delay: 0ms;
+        transition-duration: 0.26s;
+        border-color: rgba(217, 184, 120, 0.55);
       }
 
       @media (prefers-reduced-motion: no-preference) {
@@ -1934,13 +2134,14 @@
         .scroll-hint span {
           animation: none !important;
         }
-        .reveal {
+        [data-pop] {
           opacity: 1 !important;
           transform: none !important;
           transition: none !important;
         }
         .btn,
         .pillar,
+        .offer-card,
         .nav-cta {
           transition: none !important;
         }
@@ -1975,28 +2176,29 @@
       <div class="fx" id="hills" aria-hidden="true">
         <img class="hills-img" src="assets/world/hills.png" alt="" />
         <div class="night-tint"></div>
+        <div class="dawn-glow"></div>
       </div>
 
       <main id="top">
         <!-- ============ HERO (now DAY light: ink-on-day, SUN in celestial slot) ============ -->
-        <header class="hero on-day">
+        <header class="hero on-velvet" data-band>
           <div class="wrap">
             <div class="hero-stage">
               <div class="hero-copy">
-                <span class="eyebrow"
+                <span class="eyebrow" data-pop
                   >תמי שני &nbsp;|&nbsp; יועצת שינה והתפתחות</span
                 >
-                <h1>
+                <h1 data-pop data-pop-delay="60">
                   <span class="h1-lead">כולם ישנים <b>בסוף</b>.</span>
                   <span class="h1-dim">השאלה איך, מתי ובאיזו דרך.</span>
                 </h1>
                 <div class="hero-lower">
-                  <p class="hero-sub">
+                  <p class="hero-sub" data-pop data-pop-delay="150">
                     אני תמי, ו-15 שנים אני עוזרת לאמהות עייפות ללמד את הבייבי
                     להירדם לבד. <b>בלי להשאיר אותו לבכות. בלי לנחש.</b> עם דרך
                     ברורה, שלב אחרי שלב.
                   </p>
-                  <div class="cta-row">
+                  <div class="cta-row" data-pop data-pop-delay="260">
                     <a
                       class="btn btn-gold"
                       href="https://tammyshani.ravpage.co.il/tammybabysleep"
@@ -2005,14 +2207,14 @@
                       >אני רוצה לישון כבר עכשיו</a
                     >
                     <a
-                      class="btn btn-ghost-dark"
+                      class="btn btn-ghost-light"
                       href="https://ig.me/m/baby.tammy.time"
                       target="_blank"
                       rel="noopener"
                       >שיחת ייעוץ ללא עלות</a
                     >
                   </div>
-                  <div class="trust">
+                  <div class="trust" data-pop data-pop-delay="360">
                     <span class="chip">מעל 15 שנות ניסיון</span>
                     <span class="chip">אלפי תינוקות</span>
                     <span class="chip">בין המומלצים של רשת 13</span>
@@ -2033,22 +2235,46 @@
           </div>
         </header>
 
+        <div class="hdiv" aria-hidden="true"></div>
+
         <!-- ============ METHOD ============ -->
-        <section class="section method on-velvet" id="method">
+        <section class="section method on-velvet" id="method" data-band>
           <div class="wrap">
-            <div class="head">
-              <span class="eyebrow" style="justify-content: center"
+            <div class="head" style="position: relative">
+              <span
+                class="doodle"
+                data-pop="accent"
+                data-pop-delay="700"
+                aria-hidden="true"
+                style="
+                  inset-block-start: -14px;
+                  inset-inline-end: 8%;
+                  inline-size: 30px;
+                  block-size: 30px;
+                "
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 0c1 6.2 4.8 10 12 12-7.2 2-11 5.8-12 12-1-6.2-4.8-10-12-12 7.2-2 11-5.8 12-12Z"
+                  />
+                </svg>
+              </span>
+              <span class="eyebrow" style="justify-content: center" data-pop
                 >שיטת תכלס</span
               >
-              <h2 class="reveal" style="margin-block-start: 1rem">
+              <h2 data-pop data-pop-delay="60" style="margin-block-start: 1rem">
                 ארבעה עקרונות. דרך <b>אחת ברורה</b>.
               </h2>
-              <p class="intro reveal">
+              <p class="intro" data-pop data-pop-delay="150">
                 בלי תיאוריות מסובכות. רק מה שעובד, שלב אחרי שלב.
               </p>
             </div>
             <div class="pillars">
-              <article class="pillar velvet-panel reveal">
+              <article
+                class="pillar velvet-panel"
+                data-pop="card"
+                data-pop-delay="180"
+              >
                 <span class="p-num" aria-hidden="true">01</span>
                 <h3>הרגלים, לא גזירת גורל</h3>
                 <p>
@@ -2056,7 +2282,11 @@
                   לשנות בעדינות, שלב אחרי שלב.
                 </p>
               </article>
-              <article class="pillar velvet-panel reveal">
+              <article
+                class="pillar velvet-panel"
+                data-pop="card"
+                data-pop-delay="300"
+              >
                 <span class="p-num" aria-hidden="true">02</span>
                 <h3>מענה לבכי, תמיד</h3>
                 <p>
@@ -2064,7 +2294,11 @@
                   לוותר על הלמידה.
                 </p>
               </article>
-              <article class="pillar velvet-panel reveal">
+              <article
+                class="pillar velvet-panel"
+                data-pop="card"
+                data-pop-delay="420"
+              >
                 <span class="p-num" aria-hidden="true">03</span>
                 <h3>שינה נפרדת מאוכל</h3>
                 <p>
@@ -2072,7 +2306,11 @@
                   ונרדם כי הוא יודע איך.
                 </p>
               </article>
-              <article class="pillar velvet-panel reveal">
+              <article
+                class="pillar velvet-panel"
+                data-pop="card"
+                data-pop-delay="540"
+              >
                 <span class="p-num" aria-hidden="true">04</span>
                 <h3>דרך שמתאימה לך</h3>
                 <p>
@@ -2084,19 +2322,48 @@
           </div>
         </section>
 
+        <div class="hdiv" aria-hidden="true"></div>
+
         <!-- ============ OFFERS GRID (הדרך שלך לישון) ============ -->
-        <section class="section offers on-velvet" id="course">
+        <section class="section offers on-velvet" id="course" data-band>
           <div class="wrap">
-            <div class="head reveal">
-              <span class="eyebrow" style="justify-content: center"
+            <div class="head" style="position: relative">
+              <span
+                class="doodle"
+                data-pop="accent"
+                data-pop-delay="720"
+                aria-hidden="true"
+                style="
+                  inset-block-start: -12px;
+                  inset-inline-start: 12%;
+                  inline-size: 28px;
+                  block-size: 28px;
+                "
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 0c1 6.2 4.8 10 12 12-7.2 2-11 5.8-12 12-1-6.2-4.8-10-12-12 7.2-2 11-5.8 12-12Z"
+                  />
+                </svg>
+              </span>
+              <span class="eyebrow" style="justify-content: center" data-pop
                 >בחרי את הקצב שלך</span
               >
-              <h2 style="margin-block-start: 1rem">הדרך שלך <b>לישון</b></h2>
-              <p>ארבע דרכים להתחיל. את בוחרת מה מתאים לך עכשיו.</p>
+              <h2 data-pop data-pop-delay="60" style="margin-block-start: 1rem">
+                הדרך שלך <b>לישון</b>
+              </h2>
+              <p data-pop data-pop-delay="150">
+                ארבע דרכים להתחיל. את בוחרת מה מתאים לך עכשיו.
+              </p>
             </div>
             <div class="offers-grid">
-              <article class="offer-card velvet-panel featured reveal">
+              <article
+                class="offer-card velvet-panel featured"
+                data-pop="card"
+                data-pop-delay="180"
+              >
                 <span class="offer-tag">מומלץ</span>
+                <span class="card-chip" aria-hidden="true">🌙</span>
                 <span class="eyebrow">הקורס הדיגיטלי</span>
                 <h3>תכלס - איך להרדים תינוק</h3>
                 <p>
@@ -2118,7 +2385,12 @@
                 </div>
               </article>
 
-              <article class="offer-card velvet-panel reveal">
+              <article
+                class="offer-card velvet-panel"
+                data-pop="card"
+                data-pop-delay="300"
+              >
+                <span class="card-chip" aria-hidden="true">🌱</span>
                 <span class="eyebrow">אתגר של 5 ימים</span>
                 <h3>מהידיים למיטה</h3>
                 <p>
@@ -2136,7 +2408,12 @@
                 </div>
               </article>
 
-              <article class="offer-card velvet-panel reveal">
+              <article
+                class="offer-card velvet-panel"
+                data-pop="card"
+                data-pop-delay="420"
+              >
+                <span class="card-chip" aria-hidden="true">🤝</span>
                 <span class="eyebrow">ליווי אישי</span>
                 <h3>אחת על אחת, בקצב שלך</h3>
                 <p>
@@ -2154,7 +2431,12 @@
                 </div>
               </article>
 
-              <article class="offer-card velvet-panel reveal">
+              <article
+                class="offer-card velvet-panel"
+                data-pop="card"
+                data-pop-delay="540"
+              >
+                <span class="card-chip" aria-hidden="true">💬</span>
                 <span class="eyebrow">קהילה</span>
                 <h3>הקהילה של תמי</h3>
                 <p>
@@ -2175,16 +2457,36 @@
           </div>
         </section>
 
+        <div class="hdiv" aria-hidden="true"></div>
+
         <!-- ============ PROOF (סומכים על תמי) - press video + counters + testimonials, one band ============ -->
         <!-- real public IG comments; confirm with Tammy before production -->
-        <section class="section proof on-velvet">
+        <section class="section proof on-velvet" data-band>
           <div class="wrap">
-            <div class="proof-head reveal">
-              <div class="proof-title">
+            <div class="proof-head" style="position: relative">
+              <span
+                class="doodle"
+                data-pop="accent"
+                data-pop-delay="720"
+                aria-hidden="true"
+                style="
+                  inset-block-start: -18px;
+                  inset-inline-start: 30%;
+                  inline-size: 26px;
+                  block-size: 26px;
+                "
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 0c1 6.2 4.8 10 12 12-7.2 2-11 5.8-12 12-1-6.2-4.8-10-12-12 7.2-2 11-5.8 12-12Z"
+                  />
+                </svg>
+              </span>
+              <div class="proof-title" data-pop>
                 <span class="eyebrow">מהתקשורת ומהאמהות</span>
                 <h2 style="margin-block-start: 0.7rem">סומכים על <b>תמי</b></h2>
               </div>
-              <div class="proof-counters">
+              <div class="proof-counters" data-pop data-pop-delay="150">
                 <div class="pc">
                   <span class="num" data-count="15" data-suffix="+">0</span>
                   <span class="lbl">שנות ניסיון</span>
@@ -2208,7 +2510,11 @@
             </div>
 
             <div class="proof-grid">
-              <div class="press-video velvet-panel reveal">
+              <div
+                class="press-video velvet-panel"
+                data-pop="card"
+                data-pop-delay="180"
+              >
                 <div class="press-head">
                   <img
                     class="press-logo"
@@ -2247,21 +2553,33 @@
               </div>
 
               <div class="proof-testi">
-                <figure class="testi-card velvet-panel reveal">
+                <figure
+                  class="testi-card velvet-panel"
+                  data-pop="card"
+                  data-pop-delay="300"
+                >
                   <span class="q-mark" aria-hidden="true">&#10077;</span>
                   <blockquote>
                     אין כמוך, הצלת לי את הלילות ואת הימים ❤️
                   </blockquote>
                   <figcaption class="who">שרון</figcaption>
                 </figure>
-                <figure class="testi-card velvet-panel reveal">
+                <figure
+                  class="testi-card velvet-panel"
+                  data-pop="card"
+                  data-pop-delay="420"
+                >
                   <span class="q-mark" aria-hidden="true">&#10077;</span>
                   <blockquote>
                     וואי, מילה במילה! ממש יישמתי את זה ועבר קליל ביותר!
                   </blockquote>
                   <figcaption class="who">אלינור</figcaption>
                 </figure>
-                <figure class="testi-card velvet-panel reveal">
+                <figure
+                  class="testi-card velvet-panel"
+                  data-pop="card"
+                  data-pop-delay="540"
+                >
                   <span class="q-mark" aria-hidden="true">&#10077;</span>
                   <blockquote>
                     בא לי להביא עוד ילד ולהתחיל את האתגר מחדש 😍
@@ -2273,15 +2591,20 @@
           </div>
         </section>
 
+        <div class="hdiv" aria-hidden="true"></div>
+
         <!-- ============ FINAL CTA ============ -->
-        <section class="section final morning">
+        <section class="section final on-velvet" data-band>
           <div class="wrap">
-            <h2 class="reveal">הלילה הרגוע הראשון מתחיל <b>בשיחה אחת</b></h2>
-            <p class="reveal">
+            <span class="eyebrow" data-pop>הצעד הראשון</span>
+            <h2 data-pop data-pop-delay="60">
+              הלילה הרגוע הראשון מתחיל <b>בשיחה אחת</b>
+            </h2>
+            <p data-pop data-pop-delay="150">
               שיחת ייעוץ ללא עלות. בלי התחייבות. נבין ביחד מה קורה, ואיך
               מתקדמים.
             </p>
-            <div class="cta-row center reveal">
+            <div class="cta-row center" data-pop data-pop-delay="260">
               <a
                 class="btn btn-gold"
                 href="https://ig.me/m/baby.tammy.time"
@@ -2290,14 +2613,14 @@
                 >קובעים שיחה ללא עלות</a
               >
               <a
-                class="btn btn-ghost-dark"
+                class="btn btn-ghost-light"
                 href="https://tammyshani.ravpage.co.il/tammybabysleep"
                 target="_blank"
                 rel="noopener"
                 >מעדיפה להתחיל בקורס?</a
               >
             </div>
-            <div class="sign reveal">באהבה ❤️ תמי</div>
+            <div class="sign" data-pop data-pop-delay="360">באהבה ❤️ תמי</div>
           </div>
         </section>
       </main>
@@ -2305,35 +2628,44 @@
       <!-- ============ FOOTER (warm ivory) ============ -->
       <footer class="footer">
         <div class="wrap">
-          <div class="f-logo">תמי <b>שני</b></div>
-          <div class="f-tag">יועצת שינה והתפתחות</div>
-          <div class="f-tag" style="margin-block-start: 0.4rem">
-            אינסטגרם
-            <a
-              class="ltr"
-              href="https://instagram.com/baby.tammy.time"
-              target="_blank"
-              rel="noopener"
-              >@baby.tammy.time</a
-            >
-            ·
-            <a
-              href="https://ig.me/m/baby.tammy.time"
-              target="_blank"
-              rel="noopener"
-              >שיחת ייעוץ ללא עלות</a
-            >
+          <div class="footer-top">
+            <div class="f-logo">תמי <b>שני</b></div>
+            <div class="f-tag">יועצת שינה והתפתחות. מהלילה הזה ללילה רגוע.</div>
           </div>
-          <nav class="f-links" aria-label="קישורי תחתית">
-            <a href="/course/">הקורס</a>
-            <a href="/guides/">מדריכים</a>
-            <a href="/about/">עליי</a>
-            <a href="/consult/">שיחת ייעוץ</a>
-            <a href="/accessibility/">הצהרת נגישות</a>
-            <a href="/privacy/">מדיניות פרטיות</a>
-            <a href="/terms/">תקנון</a>
-          </nav>
-          <div class="copyright">נבנה באהבה. כל הזכויות שמורות לתמי שני.</div>
+          <div class="f-cols">
+            <nav class="f-col" aria-label="ניווט">
+              <h4>ניווט</h4>
+              <a href="/course/">הקורס</a>
+              <a href="/guides/">מדריכים</a>
+              <a href="/about/">עליי</a>
+              <a href="/consult/">שיחת ייעוץ</a>
+            </nav>
+            <nav class="f-col" aria-label="משפטי">
+              <h4>משפטי</h4>
+              <a href="/accessibility/">הצהרת נגישות</a>
+              <a href="/privacy/">מדיניות פרטיות</a>
+              <a href="/terms/">תקנון</a>
+            </nav>
+            <nav class="f-col" aria-label="עקבו">
+              <h4>עקבו</h4>
+              <a
+                class="ltr"
+                href="https://instagram.com/baby.tammy.time"
+                target="_blank"
+                rel="noopener"
+                >@baby.tammy.time</a
+              >
+              <a
+                href="https://ig.me/m/baby.tammy.time"
+                target="_blank"
+                rel="noopener"
+                >שיחת ייעוץ ללא עלות</a
+              >
+            </nav>
+          </div>
+          <div class="footer-bottom">
+            <div class="copyright">נבנה באהבה. כל הזכויות שמורות לתמי שני.</div>
+          </div>
         </div>
       </footer>
     </div>
@@ -2393,31 +2725,49 @@
           host.innerHTML = html;
         }
 
-        /* ---- reveal on scroll ---- */
-        var reveals = document.querySelectorAll(".reveal");
+        /* ---- two-beat choreography: bake per-element stagger into --pd ---- */
+        document.querySelectorAll("[data-pop-delay]").forEach(function (el) {
+          el.style.setProperty(
+            "--pd",
+            el.getAttribute("data-pop-delay") + "ms",
+          );
+        });
+
+        /* ---- band observer: .is-in on enter (>=25%), off on exit (<10%).
+           Re-triggerable so re-entry pops again. Also fires count-up once. ---- */
+        var bands = document.querySelectorAll("[data-band]");
+        function countBand(band) {
+          band.querySelectorAll(".num[data-count]").forEach(function (el) {
+            if (el.dataset.counted) return;
+            el.dataset.counted = "1";
+            countUp(el);
+          });
+        }
         if (reduce || !("IntersectionObserver" in window)) {
-          reveals.forEach(function (el) {
-            el.classList.add("is-visible");
+          bands.forEach(function (b) {
+            b.classList.add("is-in");
+            countBand(b);
           });
         } else {
-          var io = new IntersectionObserver(
+          var bio = new IntersectionObserver(
             function (entries) {
               entries.forEach(function (e) {
-                if (e.isIntersecting) {
-                  e.target.classList.add("is-visible");
-                  io.unobserve(e.target);
+                if (e.intersectionRatio >= 0.25) {
+                  e.target.classList.add("is-in");
+                  countBand(e.target);
+                } else if (e.intersectionRatio < 0.1) {
+                  e.target.classList.remove("is-in");
                 }
               });
             },
-            { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+            { threshold: [0, 0.1, 0.25, 0.5] },
           );
-          reveals.forEach(function (el) {
-            io.observe(el);
+          bands.forEach(function (b) {
+            bio.observe(b);
           });
         }
 
-        /* ---- count-up (dir ltr isolate numerals) ---- */
-        var nums = document.querySelectorAll(".num[data-count]");
+        /* ---- count-up (dir ltr isolate numerals) - fired once by countBand ---- */
         function countUp(el) {
           var target = parseInt(el.getAttribute("data-count"), 10);
           var suffix = el.getAttribute("data-suffix") || "";
@@ -2436,56 +2786,46 @@
           }
           requestAnimationFrame(step);
         }
-        if (reduce || !("IntersectionObserver" in window)) {
-          nums.forEach(countUp);
-        } else {
-          var cio = new IntersectionObserver(
-            function (entries) {
-              entries.forEach(function (e) {
-                if (e.isIntersecting) {
-                  countUp(e.target);
-                  cio.unobserve(e.target);
-                }
-              });
-            },
-            { threshold: 0.5 },
-          );
-          nums.forEach(function (el) {
-            cio.observe(el);
-          });
-        }
 
         /* ---- the world: scroll-progress opacity lerp (blocksuniverse mechanic) ---- */
         /* STARS ONLY (moon/sun removed). Day: stars 0. Night hold (bands 3-4,
            offers+proof): stars peak. Morning: stars 0. Tint darkens the meadow
            through the night. Breakpoints in SCROLL%, tuned to measured offsets. */
         var TRACKS = {
-          /* stars follow the TOP viewport (dark upper sky); peak in the
-             offers+proof night hold, gone by morning */
+          /* stars: faint in the twilight hero, peak through the night hold
+             (method->proof), fade as the dawn glow rises */
           "--op-stars": [
-            [0, 0],
-            [38, 0],
-            [46, 0.7],
-            [54, 1],
+            [0, 0.15],
+            [10, 0.1],
+            [30, 0.55],
+            [44, 1],
             [78, 1],
-            [86, 0.35],
+            [86, 0.3],
             [92, 0],
           ],
           "--op-hills": [
             [0, 1],
             [100, 1],
           ],
-          /* tint follows the BOTTOM viewport (the meadow): its sky reaches
-             velvet earlier than the top, so this leads the stars */
+          /* night veil on the meadow: dark through the night, fades before
+             the dawn glow takes over */
           "--op-tint": [
-            [0, 0],
-            [18, 0.05],
-            [27, 0.55],
+            [0, 0.1],
+            [18, 0.25],
+            [27, 0.65],
             [34, 0.95],
-            [80, 0.95],
-            [88, 0.4],
-            [96, 0.05],
+            [80, 0.9],
+            [86, 0.45],
+            [92, 0.1],
             [100, 0],
+          ],
+          /* warm dawn glow on the meadow horizon: only the finale */
+          "--op-dawn": [
+            [0, 0],
+            [84, 0],
+            [90, 0.45],
+            [95, 0.85],
+            [100, 1],
           ],
         };
         function lerpTrack(kf, p) {
