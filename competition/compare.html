@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>תמי שני - 3 אתרי תחרות</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #141210;
+        --panel: #1e1a17;
+        --ink: #f5ece5;
+        --dim: #b7a99e;
+        --clay: #c3998d;
+        --line: #3a322c;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Heebo, sans-serif;
+        padding: 48px 4vw 80px;
+      }
+      h1 {
+        font-size: clamp(28px, 4vw, 44px);
+        font-weight: 800;
+      }
+      .sub {
+        color: var(--dim);
+        margin: 10px 0 40px;
+        max-width: 70ch;
+        line-height: 1.7;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      @media (max-width: 1000px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .card header {
+        padding: 18px 20px 6px;
+      }
+      .tag {
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        color: var(--clay);
+        font-weight: 600;
+      }
+      .card h2 {
+        font-size: 22px;
+        font-weight: 800;
+        margin: 4px 0 6px;
+      }
+      .card p {
+        color: var(--dim);
+        font-size: 14px;
+        line-height: 1.65;
+        padding: 0 20px 14px;
+      }
+      .shots {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 6px;
+        padding: 0 12px;
+      }
+      .shots a {
+        display: block;
+      }
+      .shots img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 8px;
+        display: block;
+      }
+      .wide {
+        grid-column: 1 / -1;
+      }
+      .wide img {
+        max-height: 260px;
+      }
+      .open {
+        display: block;
+        text-align: center;
+        background: var(--clay);
+        color: #241a15;
+        font-weight: 800;
+        text-decoration: none;
+        margin: 16px 12px 14px;
+        padding: 14px;
+        border-radius: 10px;
+        font-size: 16px;
+      }
+      .open:hover {
+        filter: brightness(1.08);
+      }
+      .meta {
+        font-size: 12.5px;
+        color: var(--dim);
+        padding: 0 20px 16px;
+        line-height: 1.6;
+      }
+      ::selection {
+        background: var(--clay);
+        color: #241a15;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>תמי שני - 3 כיווני אתר לתחרות</h1>
+    <p class="sub">
+      שלושה אתרים מלאים, כל אחד וייב אחר לגמרי. אותו קופי (copy.md), אותה פלטת
+      מותג נעולה, אותו פונט Discovery Fs - שלוש שפות עיצוב. כל עמוד עבר לולאת QA
+      עם צילומי מסך בדסקטופ ומובייל.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <header>
+          <span class="tag">A - סרט לילה</span>
+          <h2>night-film</h2>
+        </header>
+        <p>
+          קולנועי בסגנון A24. הסרטון של Higgsfield הוא ההירו (לופ פלינדרום חלק,
+          1.1MB), והדף כולו נוסע מלילה עמוק לבוקר קרם - הגלילה עצמה מספרת "הלילה
+          נגמר טוב". משקל כולל 1.43MB.
+        </p>
+        <div class="shots">
+          <a href="_shots/night-d.jpg" target="_blank"
+            ><img src="_shots/night-d.jpg" alt="הירו דסקטופ"
+          /></a>
+          <a href="_shots/night-m.jpg" target="_blank"
+            ><img src="_shots/night-m.jpg" alt="הירו מובייל"
+          /></a>
+          <a class="wide" href="_shots/night-dawn.jpg" target="_blank"
+            ><img src="_shots/night-dawn.jpg" alt="קטע השחר"
+          /></a>
+        </div>
+        <a class="open" href="night-film.html">פתחי את האתר המלא</a>
+        <div class="meta">
+          קונטרסט נמדד מפיקסלים (14.5:1 בשחר). תוקן: קופי מדויק מול copy.md,
+          טקסט נראה גם בלי JS, יעדי מגע 44px.
+        </div>
+      </div>
+
+      <div class="card">
+        <header>
+          <span class="tag">B - מגזין</span>
+          <h2>editorial</h2>
+        </header>
+        <p>
+          פרופיל מגזין בסגנון Kinfolk: קנבס קרם, טיפוגרפיה ענקית, פוטו-אסאי
+          א-סימטרי, וספרד ציטוט של אמא אמיתית על תמונה בגובה מסך. 8 סבבי QA,
+          טעינה 1.67MB.
+        </p>
+        <div class="shots">
+          <a href="_shots/edit-d.jpg" target="_blank"
+            ><img src="_shots/edit-d.jpg" alt="שער דסקטופ"
+          /></a>
+          <a href="_shots/edit-m.jpg" target="_blank"
+            ><img src="_shots/edit-m.jpg" alt="שער מובייל"
+          /></a>
+          <a class="wide" href="_shots/edit-spread.jpg" target="_blank"
+            ><img src="_shots/edit-spread.jpg" alt="ספרד הציטוט"
+          /></a>
+        </div>
+        <a class="open" href="editorial.html">פתחי את האתר המלא</a>
+        <div class="meta">
+          גריידינג אחיד לכל התמונות (בלי כתום), ציטוט נמדד 15.3:1, מספרים RTL
+          תוקנו (15+), CTA דביק נבדק בגלילה אמיתית.
+        </div>
+      </div>
+
+      <div class="card">
+        <header>
+          <span class="tag">C - עולם מאויר</span>
+          <h2>world</h2>
+        </header>
+        <p>
+          עולם סקרול-סטוריטלינג: ירח שחוצה את כל הדף ושוקע בדיוק ב-CTA האחרון,
+          עננים בפרלקסה, שמיים שמתחלפים מלילה לשחר. 437KB בלבד. שכבות ה-PNG נוקו
+          מהילות מג'נטה והומרו ל-WebP.
+        </p>
+        <div class="shots">
+          <a href="_shots/world-d.jpg" target="_blank"
+            ><img src="_shots/world-d.jpg" alt="הירו דסקטופ"
+          /></a>
+          <a href="_shots/world-m.jpg" target="_blank"
+            ><img src="_shots/world-m.jpg" alt="הירו מובייל"
+          /></a>
+          <a class="wide" href="_shots/world-cta.jpg" target="_blank"
+            ><img src="_shots/world-cta.jpg" alt="רגע שקיעת הירח ב-CTA"
+          /></a>
+        </div>
+        <a class="open" href="world.html">פתחי את האתר המלא</a>
+        <div class="meta">
+          מיקום הירח אומת מספרית ב-5 עומקי גלילה, בדסקטופ ובמובייל. תוקן: RTL
+          בסיסי, תפר שמיים, קריאות עדויות מול הירח.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

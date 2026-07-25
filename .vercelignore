@@ -6,3 +6,5 @@ assets/world/*-raw.png
 assets/world/_*.jpg
 assets/cutouts/_*.jpg
 .git
+assets/film/leg1/
+assets/film/leg1.mp4

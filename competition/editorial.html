@@ -1,0 +1,2705 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>תמי שני · יועצת שינה והתפתחות</title>
+    <meta
+      name="description"
+      content="תמי שני, יועצת שינה והתפתחות. 15 שנות ניסיון, אלפי משפחות, בין המומלצים של רשת 13. שיטת תכלס: הדרך לתינוק שנרדם לבד."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%99%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @font-face {
+        font-family: "Discovery Fs";
+        src:
+          url("../assets/fonts/Discovery_Fs-Bold.woff2") format("woff2"),
+          url("../assets/fonts/Discovery_Fs-Bold.woff") format("woff");
+        font-weight: 600 900;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Discovery Fs";
+        src:
+          url("../assets/fonts/Discovery_Fs-Light.woff2") format("woff2"),
+          url("../assets/fonts/Discovery_Fs-Light.woff") format("woff");
+        font-weight: 300 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      :root {
+        --cream: #fbf3ee;
+        --cream-2: #f5e9e2;
+        --blush: #f1dfdf;
+        --ink: #4a342e;
+        --ink-soft: #6f524c;
+        --espresso: #4a322b;
+        --clay: #c3998d;
+        --clay-deep: #9c6a5a;
+        --cta: #8c5a4a;
+        --cta-hover: #7a4a3c;
+        --sage: #d2dbc8;
+        --sage-mid: #b9cda9;
+        --sage-deep: #7e9471;
+        --caption: #586e48; /* deep sage, AA-safe on cream */
+        --hair: rgba(74, 52, 46, 0.16);
+        --hair-soft: rgba(74, 52, 46, 0.1);
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --measure: 44ch;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        font-family: "Heebo", system-ui, sans-serif;
+        background: var(--cream);
+        color: var(--ink);
+        font-size: 18px;
+        line-height: 1.68;
+        font-weight: 400;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      ::selection {
+        background: var(--sage-deep);
+        color: var(--cream);
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      /* one grade for the whole photo essay: pulls the tungsten stills off
+         orange/terracotta and into the cream-clay-espresso family */
+      .method-strip img,
+      .course-visual img,
+      .spread-photo img,
+      .motion-inset video,
+      .motion-inset img.mfallback {
+        filter: saturate(0.58) contrast(1.04) hue-rotate(-8deg) brightness(1.02);
+      }
+      .about-portrait img {
+        filter: saturate(0.86) contrast(1.02) hue-rotate(-4deg);
+      }
+      a {
+        color: inherit;
+      }
+      ::-moz-selection {
+        background: var(--sage-deep);
+        color: var(--cream);
+      }
+
+      /* ---------- type primitives ---------- */
+      .display {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-weight: 700;
+        line-height: 1.04;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+      }
+      .display-light {
+        font-family: "Discovery Fs", "Heebo", sans-serif;
+        font-weight: 300;
+        line-height: 1.06;
+        letter-spacing: -0.01em;
+      }
+      .eyebrow {
+        font-family: "Heebo", sans-serif;
+        font-weight: 500;
+        font-size: 0.72rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--cta);
+      }
+      .caption {
+        font-size: 0.78rem;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+        color: var(--caption);
+        font-weight: 500;
+      }
+      .caption .tick {
+        display: inline-block;
+        inline-size: 18px;
+        block-size: 2px;
+        background: var(--sage-deep);
+        vertical-align: middle;
+        margin-inline-end: 9px;
+        border-radius: 1px;
+        transform: translateY(-2px);
+      }
+      .ltr {
+        direction: ltr;
+        unicode-bidi: isolate;
+      }
+      .num {
+        font-family: "Heebo", sans-serif;
+        font-feature-settings: "tnum" 1;
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ---------- layout scaffold ---------- */
+      .wrap {
+        max-width: 1240px;
+        margin-inline: auto;
+        padding-inline: clamp(20px, 5vw, 72px);
+      }
+      section {
+        position: relative;
+      }
+      /* grid children must be allowed to shrink below their intrinsic width,
+         otherwise a wide image forces the whole row past the viewport */
+      .cover-grid > *,
+      .problem-grid > *,
+      .auth-grid > *,
+      .course-grid > *,
+      .guides-grid > *,
+      .about-grid > *,
+      .letters-more > *,
+      .method-strip > *,
+      .colo-top > * {
+        min-width: 0;
+      }
+      .hair {
+        height: 1px;
+        background: var(--hair);
+        border: 0;
+        width: 100%;
+      }
+      .chapter-tag {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-block-end: 26px;
+      }
+      .chapter-tag .no {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        font-size: clamp(2.4rem, 6vw, 3.6rem);
+        line-height: 0.8;
+        color: var(--clay-deep);
+        letter-spacing: -0.02em;
+      }
+      .chapter-tag .lbl {
+        font-size: 0.72rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        font-weight: 500;
+        padding-block-end: 6px;
+      }
+      .chapter-tag .rule {
+        flex: 1;
+        height: 1px;
+        background: var(--hair);
+        align-self: center;
+      }
+
+      /* ---------- running header ---------- */
+      .runner {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        background: rgba(251, 243, 238, 0.86);
+        backdrop-filter: saturate(1.1) blur(6px);
+        -webkit-backdrop-filter: saturate(1.1) blur(6px);
+        border-block-end: 1px solid var(--hair-soft);
+      }
+      .runner-in {
+        max-width: 1240px;
+        margin-inline: auto;
+        padding: 9px clamp(20px, 5vw, 72px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .runner .mark {
+        font-size: 0.66rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .runner .mark b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .runner .r-cta {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--cta);
+        text-decoration: none;
+        white-space: nowrap;
+        transition: border-color 0.18s var(--ease);
+        display: inline-flex;
+        align-items: center;
+        min-height: 48px;
+        border-block-end: 1px solid transparent;
+      }
+      .runner .r-cta span {
+        border-block-end: 1px solid transparent;
+        transition: border-color 0.18s var(--ease);
+        padding-block-end: 2px;
+      }
+      .runner .r-cta:hover span {
+        border-block-end-color: var(--cta);
+      }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5em;
+        min-height: 52px;
+        padding: 0 30px;
+        border-radius: 2px;
+        font-family: "Heebo", sans-serif;
+        font-weight: 600;
+        font-size: 1.02rem;
+        letter-spacing: 0.01em;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition:
+          background 0.18s var(--ease),
+          color 0.18s var(--ease),
+          transform 0.18s var(--ease),
+          border-color 0.18s var(--ease);
+      }
+      .btn-primary {
+        background: var(--cta);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--cta-hover);
+        transform: translateY(-2px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--ink);
+        border-color: var(--ink);
+      }
+      .btn-ghost:hover {
+        background: var(--ink);
+        color: var(--cream);
+        transform: translateY(-2px);
+      }
+      .btn .arw {
+        font-size: 1.05em;
+        transition: transform 0.18s var(--ease);
+      }
+      .btn:hover .arw {
+        transform: translateX(-4px);
+      }
+      .link-underline {
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 600;
+        border-block-end: 1.5px solid var(--clay);
+        padding-block-end: 2px;
+        transition:
+          border-color 0.18s var(--ease),
+          color 0.18s var(--ease);
+      }
+      .link-underline:hover {
+        border-block-end-color: var(--cta);
+        color: var(--cta);
+      }
+      a:focus-visible,
+      .btn:focus-visible,
+      button:focus-visible {
+        outline: 3px solid var(--sage-deep);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
+      /* ---------- reveal motion ---------- */
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.62s var(--ease),
+          transform 0.62s var(--ease);
+      }
+      [data-reveal].in {
+        opacity: 1;
+        transform: none;
+      }
+      [data-reveal].d1 {
+        transition-delay: 0.07s;
+      }
+      [data-reveal].d2 {
+        transition-delay: 0.14s;
+      }
+      [data-reveal].d3 {
+        transition-delay: 0.21s;
+      }
+      [data-reveal].d4 {
+        transition-delay: 0.28s;
+      }
+
+      /* =========================================================
+   HERO / COVER
+========================================================= */
+      .cover {
+        padding-block: clamp(30px, 7vw, 70px) clamp(60px, 9vw, 120px);
+        overflow: hidden;
+      }
+      .cover-grid {
+        display: grid;
+        grid-template-columns: 1.18fr 0.82fr;
+        align-items: end;
+        gap: clamp(20px, 3vw, 48px);
+        position: relative;
+      }
+      .cover-head {
+        position: relative;
+        z-index: 3;
+        padding-block-end: clamp(10px, 3vw, 40px);
+      }
+      .cover .kicker {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-block-end: 26px;
+        flex-wrap: wrap;
+      }
+      .cover .kicker .eyebrow {
+        white-space: nowrap;
+      }
+      .cover .kicker .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--clay);
+      }
+      .cover .kicker .issue {
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .cover h1 {
+        font-size: clamp(2.5rem, 5.4vw, 4.3rem);
+        margin-block: 0 clamp(20px, 2.4vw, 30px);
+      }
+      .cover h1 .l {
+        display: block;
+      }
+      .cover h1 br {
+        display: inline;
+      }
+      .cover h1 .soft {
+        font-weight: 300;
+        color: var(--ink-soft);
+        letter-spacing: -0.01em;
+      }
+      .cover .lede {
+        max-width: 42ch;
+        font-size: clamp(1rem, 1.15vw, 1.14rem);
+        color: var(--ink-soft);
+        line-height: 1.66;
+        margin-block-end: 32px;
+        text-wrap: pretty;
+      }
+      .cover .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-block-end: 14px;
+      }
+      .cover .under-cta {
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+        margin-block-end: 26px;
+        display: flex;
+        align-items: baseline;
+        gap: 9px;
+      }
+      .cover .under-cta .tick {
+        flex: none;
+        display: inline-block;
+        inline-size: 18px;
+        block-size: 2px;
+        background: var(--sage-deep);
+        border-radius: 1px;
+        transform: translateY(-0.35em);
+      }
+      .trust {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px 18px;
+        font-size: 0.82rem;
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .trust .t-item {
+        display: inline;
+      }
+      .trust .t-sep {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--clay);
+        opacity: 0.7;
+      }
+      .trust a {
+        color: var(--ink);
+        text-decoration: none;
+        border-block-end: 1px solid var(--clay);
+        padding-block-end: 1px;
+      }
+      .trust a:hover {
+        color: var(--cta);
+        border-color: var(--cta);
+      }
+
+      .cover-photo {
+        position: relative;
+        z-index: 1;
+        align-self: end;
+        margin-inline-end: clamp(-40px, -4vw, -10px);
+        margin-block-end: clamp(-60px, -9vw, -120px);
+      }
+      .cover-photo .frame {
+        position: relative;
+      }
+      .cover-photo img {
+        width: 100%;
+        height: auto;
+        filter: saturate(0.88) contrast(1.02) hue-rotate(-4deg)
+          drop-shadow(0 40px 60px rgba(74, 50, 43, 0.24));
+      }
+      .cover-badge {
+        position: absolute;
+        top: 34%;
+        inset-inline-end: 1%;
+        z-index: 4;
+        background: var(--cream);
+        border: 1px solid var(--hair);
+        padding: 9px 14px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        box-shadow: 0 14px 30px rgba(74, 50, 43, 0.12);
+      }
+      .cover-badge img {
+        width: 34px;
+        height: 34px;
+        border-radius: 3px;
+      }
+      .cover-badge .txt {
+        font-size: 0.66rem;
+        line-height: 1.3;
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .cover-badge .txt b {
+        display: block;
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 0.72rem;
+      }
+
+      /* =========================================================
+   PROBLEM / EMPATHY
+========================================================= */
+      .problem {
+        padding-block: clamp(80px, 9vw, 118px);
+        background: var(--cream-2);
+      }
+      .problem-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: clamp(30px, 5vw, 72px);
+        align-items: center;
+      }
+      .problem h2 {
+        font-size: clamp(2rem, 4.6vw, 3.5rem);
+        margin-block-end: 30px;
+        max-width: 15ch;
+      }
+      .problem .beats {
+        list-style: none;
+        margin-block-end: 30px;
+      }
+      /* no flex here: a flex container would turn every inline <span> (the
+         digits) into its own flex item and inject gap around the numbers */
+      .problem .beats li {
+        font-size: clamp(1.05rem, 1.4vw, 1.28rem);
+        color: var(--ink);
+        font-weight: 400;
+        padding-block: 12px;
+        padding-inline-start: 22px;
+        border-block-end: 1px solid var(--hair-soft);
+        position: relative;
+      }
+      .problem .beats li::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: 0;
+        top: 1.3em;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--clay);
+      }
+      .problem .ask {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        font-size: clamp(1.5rem, 2.4vw, 2rem);
+        color: var(--clay-deep);
+        margin-block-end: 34px;
+      }
+      .problem .body p {
+        max-width: var(--measure);
+        margin-block-end: 18px;
+        color: var(--ink-soft);
+        text-wrap: pretty;
+      }
+      .problem .truth {
+        margin-block-start: 30px;
+        padding-inline-start: 24px;
+        border-inline-start: 2px solid var(--sage-deep);
+      }
+      .problem .truth p {
+        color: var(--ink);
+        font-weight: 500;
+        max-width: 38ch;
+      }
+      .problem .truth .big {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+        line-height: 1.14;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        margin-block-end: 10px;
+      }
+      .motion-inset {
+        position: relative;
+        align-self: stretch;
+      }
+      .motion-inset .m-frame {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--hair);
+        box-shadow: 0 30px 60px rgba(74, 50, 43, 0.18);
+        aspect-ratio: 3/4;
+        background: #241a16;
+      }
+      .motion-inset video,
+      .motion-inset img.mfallback {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .motion-inset .m-cap {
+        padding: 15px 18px 15px;
+      }
+      .motion-inset .m-cap .caption {
+        color: var(--sage-mid);
+      }
+      .motion-inset .m-cap .caption .tick {
+        background: var(--sage-mid);
+      }
+      .motion-inset .m-num {
+        position: absolute;
+        top: 14px;
+        inset-inline-start: 16px;
+        z-index: 2;
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        color: rgba(251, 243, 238, 0.9);
+        font-size: 2.4rem;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      /* =========================================================
+   METHOD
+========================================================= */
+      .method {
+        padding-block: clamp(84px, 9.5vw, 124px);
+      }
+      .method-head {
+        max-width: 60ch;
+        margin-block-end: clamp(40px, 6vw, 70px);
+      }
+      .method-head h2 {
+        font-size: clamp(2.1rem, 5vw, 3.8rem);
+        margin-block-end: 18px;
+      }
+      .method-head .intro {
+        font-size: clamp(1.05rem, 1.4vw, 1.24rem);
+        color: var(--ink-soft);
+        max-width: 40ch;
+      }
+      /* editorial ledger, not a card grid: hanging numbers, hairline
+         separators, right column dropped half a beat */
+      .pillars {
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        column-gap: clamp(30px, 5vw, 78px);
+      }
+      .pillar {
+        padding-block: clamp(26px, 2.6vw, 34px);
+        border-block-start: 1px solid var(--hair);
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: clamp(16px, 1.8vw, 26px);
+        align-items: baseline;
+      }
+      .pillar:nth-child(2),
+      .pillar:nth-child(4) {
+        margin-block-start: clamp(0px, 4vw, 56px);
+      }
+      .pillar .p-no {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        font-size: clamp(1.9rem, 2.6vw, 2.5rem);
+        color: var(--clay);
+        line-height: 0.86;
+        letter-spacing: -0.02em;
+        grid-row: span 2;
+        align-self: start;
+        padding-block-start: 0.06em;
+      }
+      .pillar h3 {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        font-size: clamp(1.3rem, 2vw, 1.75rem);
+        line-height: 1.1;
+        margin-block-end: 10px;
+        color: var(--ink);
+      }
+      .pillar p {
+        color: var(--ink-soft);
+        max-width: 36ch;
+        font-size: 1rem;
+        text-wrap: pretty;
+        grid-column: 2;
+      }
+      /* asymmetric photo essay, last frame bleeds off the page edge */
+      .method-strip {
+        margin-block-start: clamp(46px, 6vw, 84px);
+        margin-inline-end: calc(50% - 50vw);
+        display: grid;
+        grid-template-columns: 1.35fr 0.85fr 1.1fr;
+        gap: clamp(10px, 1.4vw, 18px);
+      }
+      .method-strip figure {
+        position: relative;
+        overflow: hidden;
+        background: var(--cream-2);
+      }
+      .method-strip figure:nth-child(1) {
+        aspect-ratio: 5/4;
+      }
+      .method-strip figure:nth-child(2) {
+        aspect-ratio: 3/4;
+        align-self: end;
+      }
+      .method-strip figure:nth-child(3) {
+        aspect-ratio: 4/3;
+        align-self: center;
+      }
+      .method-strip img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      /* a gradient behind small text only passes AA at its darkest end, so:
+         flat plate behind the words + a short fade above it to blend */
+      .method-strip figcaption,
+      .course-visual .cv-cap,
+      .motion-inset .m-cap {
+        position: absolute;
+        inset-block-end: 0;
+        inset-inline: 0;
+        background: rgba(26, 18, 14, 0.88);
+      }
+      .method-strip figcaption::before,
+      .course-visual .cv-cap::before,
+      .motion-inset .m-cap::before {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        inset-block-end: 100%;
+        height: 70px;
+        background: linear-gradient(
+          to top,
+          rgba(26, 18, 14, 0.88),
+          rgba(26, 18, 14, 0)
+        );
+      }
+      .method-strip figcaption {
+        padding: 14px 14px 13px;
+      }
+      .method-strip figcaption .caption {
+        color: var(--sage-mid);
+      }
+      .method-strip figcaption .caption .tick {
+        background: var(--sage-mid);
+      }
+
+      /* =========================================================
+   AUTHORITY / PRESS
+========================================================= */
+      .authority {
+        padding-block: clamp(84px, 9.5vw, 124px);
+        background: var(--espresso);
+        color: var(--cream);
+      }
+      .authority .eyebrow {
+        color: var(--clay);
+      }
+      .authority .chapter-tag .no {
+        color: var(--clay);
+      }
+      .authority .chapter-tag .lbl {
+        color: rgba(251, 243, 238, 0.7);
+      }
+      .authority .chapter-tag .rule {
+        background: rgba(251, 243, 238, 0.2);
+      }
+      .auth-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: clamp(30px, 5vw, 70px);
+        align-items: center;
+      }
+      .auth-lead h2 {
+        font-size: clamp(2rem, 4.4vw, 3.3rem);
+        color: var(--cream);
+        margin-block-end: 26px;
+        max-width: 16ch;
+      }
+      .auth-lead h2 .soft {
+        font-weight: 300;
+        color: var(--clay);
+      }
+      .factbox {
+        border: 1px solid rgba(251, 243, 238, 0.22);
+      }
+      .factbox .row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: baseline;
+        gap: 20px;
+        padding: 22px clamp(18px, 2vw, 26px);
+        border-block-end: 1px solid rgba(251, 243, 238, 0.14);
+      }
+      .factbox .row:last-child {
+        border-block-end: 0;
+      }
+      .factbox .fig {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        font-size: clamp(2.4rem, 4.4vw, 3.4rem);
+        line-height: 0.9;
+        color: var(--cream);
+        white-space: nowrap;
+        direction: ltr;
+        min-width: 3.2ch;
+      }
+      .factbox .fig .plus {
+        color: var(--clay);
+        font-weight: 300;
+      }
+      .factbox .fig .press-mark {
+        display: block;
+        background: var(--cream);
+        padding: 7px 9px;
+        line-height: 0;
+      }
+      .factbox .fig .press-mark img {
+        width: 42px;
+        height: 42px;
+      }
+      .factbox .lab {
+        font-size: 0.98rem;
+        color: rgba(251, 243, 238, 0.82);
+        font-weight: 400;
+        align-self: center;
+      }
+      .press-side {
+        position: relative;
+      }
+      /* the cutout only fills 29% of its own PNG width, so crop to the
+         figure instead of letting her float tiny in the middle */
+      .press-photo {
+        position: relative;
+        border: 1px solid rgba(251, 243, 238, 0.16);
+        background: #2f2019;
+        overflow: hidden;
+        aspect-ratio: 4/5;
+      }
+      .press-photo img.suit {
+        position: absolute;
+        inset-block-end: 0;
+        inset-inline-start: 50%;
+        transform: translateX(50%);
+        height: 104%;
+        width: auto;
+        max-width: none;
+        filter: saturate(0.9) contrast(1.02) hue-rotate(-4deg)
+          drop-shadow(0 20px 40px rgba(0, 0, 0, 0.35));
+      }
+      .press-photo .glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          60% 55% at 50% 30%,
+          rgba(195, 153, 141, 0.22),
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .press-badge {
+        position: absolute;
+        top: 16px;
+        inset-inline-start: 16px;
+        z-index: 3;
+        background: var(--cream);
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+      }
+      .press-badge img {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+      }
+      .press-badge .t {
+        font-size: 0.66rem;
+        color: var(--ink-soft);
+        font-weight: 500;
+        line-height: 1.3;
+      }
+      .press-badge .t b {
+        display: block;
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 0.74rem;
+      }
+      .press-cap {
+        margin-block-start: 16px;
+      }
+      .press-cap .caption {
+        color: var(--sage-mid);
+      }
+      .press-link {
+        margin-block-start: 26px;
+      }
+      .press-link a {
+        color: var(--cream);
+        border-block-end: 1.5px solid var(--clay);
+        text-decoration: none;
+        font-weight: 600;
+        padding-block-end: 3px;
+        transition:
+          border-color 0.18s var(--ease),
+          color 0.18s var(--ease);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .press-link a:hover {
+        color: var(--clay);
+        border-color: var(--cream);
+      }
+
+      /* =========================================================
+   TESTIMONIALS SPREAD (signature)
+========================================================= */
+      .letters {
+        padding-block: clamp(84px, 9.5vw, 124px) 0;
+      }
+      .letters .l-head {
+        margin-block-end: clamp(40px, 6vw, 64px);
+      }
+      .letters .l-head h2 {
+        font-size: clamp(2rem, 4.6vw, 3.4rem);
+        max-width: 14ch;
+      }
+      .letters .l-head .caption {
+        margin-block-start: 12px;
+      }
+
+      .spread {
+        position: relative;
+        min-height: min(88vh, 760px);
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: stretch;
+        margin-block-end: clamp(50px, 7vw, 90px);
+      }
+      .spread-photo {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+      .spread-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 25% 40%;
+      }
+      /* two layers: a flat floor so cream type never lands on bare skin,
+         plus a directional wedge that is darkest under the quote column */
+      .spread-scrim {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            to left,
+            rgba(41, 26, 21, 0.93) 0%,
+            rgba(41, 26, 21, 0.91) 42%,
+            rgba(41, 26, 21, 0.74) 60%,
+            rgba(41, 26, 21, 0.38) 80%,
+            rgba(41, 26, 21, 0.22) 100%
+          ),
+          linear-gradient(rgba(41, 26, 21, 0.24), rgba(41, 26, 21, 0.24));
+      }
+      .spread-inner {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(40px, 6vw, 76px) clamp(24px, 5vw, 72px);
+        max-width: min(780px, 62%);
+      }
+      .spread .q-open {
+        font-family: "Heebo", sans-serif;
+        font-weight: 700;
+        color: var(--clay);
+        font-size: clamp(3.4rem, 7vw, 6rem);
+        line-height: 0.5;
+        height: 0.4em;
+        display: block;
+        margin-block-end: 10px;
+      }
+      .spread blockquote {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--cream);
+        font-size: clamp(2.15rem, 5.4vw, 4.6rem);
+        line-height: 1.04;
+        text-wrap: balance;
+        margin-block-end: 30px;
+        text-shadow: 0 2px 26px rgba(20, 10, 6, 0.5);
+      }
+      .spread .attrib {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .spread .attrib .line {
+        width: 44px;
+        height: 1px;
+        background: var(--clay);
+      }
+      .spread .attrib .who {
+        font-size: 0.82rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--sage-mid);
+        font-weight: 600;
+      }
+      .spread .attrib .who b {
+        color: var(--cream);
+        font-weight: 700;
+      }
+      .spread .pg {
+        position: absolute;
+        bottom: clamp(20px, 3vw, 34px);
+        right: clamp(24px, 4vw, 48px);
+        z-index: 3;
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        color: rgba(251, 243, 238, 0.66);
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+        direction: ltr;
+      }
+
+      .letters-more {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(30px, 5vw, 64px);
+        padding-block-end: clamp(84px, 9.5vw, 124px);
+        align-items: start;
+      }
+      .mini-quote {
+        position: relative;
+        padding-block-start: 12px;
+      }
+      .mini-quote .mq-mark {
+        font-family: "Heebo", sans-serif;
+        font-weight: 700;
+        color: var(--clay);
+        font-size: clamp(2.2rem, 3.2vw, 3rem);
+        line-height: 0.45;
+        height: 0.35em;
+        display: block;
+        margin-block-end: 14px;
+      }
+      .mini-quote blockquote {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        letter-spacing: -0.01em;
+        font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+        line-height: 1.16;
+        color: var(--ink);
+        margin-block-end: 20px;
+        text-wrap: balance;
+      }
+      .mini-quote .attrib {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .mini-quote .attrib .line {
+        width: 36px;
+        height: 1px;
+        background: var(--clay);
+      }
+      .mini-quote .attrib .who {
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--caption);
+        font-weight: 600;
+      }
+      .mini-quote .attrib .who b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      /* =========================================================
+   COURSE
+========================================================= */
+      .course {
+        padding-block: clamp(84px, 9.5vw, 124px);
+        background: var(--sage);
+        color: var(--ink);
+      }
+      .course .chapter-tag .no {
+        color: var(--sage-deep);
+      }
+      .course-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(34px, 5vw, 72px);
+        align-items: center;
+      }
+      .course h2 {
+        font-size: clamp(2rem, 4.6vw, 3.5rem);
+        margin-block-end: 24px;
+        max-width: 14ch;
+      }
+      .course .c-body p {
+        max-width: 42ch;
+        color: var(--ink);
+        margin-block-end: 22px;
+        text-wrap: pretty;
+      }
+      .course .c-body p strong {
+        font-weight: 700;
+      }
+      .price-plate {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-block-end: 26px;
+        padding: 14px 22px;
+        background: var(--cream);
+        border: 1px solid var(--hair);
+      }
+      .price-plate .now {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        color: var(--cta);
+        letter-spacing: -0.01em;
+      }
+      .price-plate .then {
+        font-size: 1rem;
+        color: var(--ink-soft);
+        text-decoration: line-through;
+        text-decoration-color: var(--clay);
+      }
+      .price-plate .cur {
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+        align-self: center;
+      }
+      .course-visual {
+        position: relative;
+      }
+      .course-visual .cv-frame {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--hair);
+        aspect-ratio: 4/5;
+        box-shadow: 0 30px 60px rgba(74, 50, 43, 0.16);
+      }
+      .course-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .course-visual .free-tab {
+        position: absolute;
+        top: 18px;
+        inset-inline-start: -1px;
+        z-index: 2;
+        background: var(--cta);
+        color: #fff;
+        padding: 10px 18px;
+        font-weight: 600;
+        font-size: 0.86rem;
+        letter-spacing: 0.01em;
+        box-shadow: 0 12px 26px rgba(74, 50, 43, 0.25);
+      }
+      .course-visual .cv-cap {
+        padding: 15px 18px 15px;
+      }
+      .course-visual .cv-cap .caption {
+        color: var(--sage-mid);
+      }
+
+      /* =========================================================
+   GUIDES
+========================================================= */
+      .guides {
+        padding-block: clamp(84px, 9.5vw, 124px);
+      }
+      .guides-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: clamp(30px, 5vw, 70px);
+        align-items: center;
+      }
+      .guides h2 {
+        font-size: clamp(2rem, 4.6vw, 3.4rem);
+        margin-block-end: 22px;
+        max-width: 12ch;
+      }
+      .guides .g-body p {
+        max-width: 40ch;
+        color: var(--ink-soft);
+        margin-block-end: 26px;
+        text-wrap: pretty;
+      }
+      .guide-list {
+        list-style: none;
+        border-block-start: 1px solid var(--hair);
+      }
+      .guide-list li {
+        border-block-end: 1px solid var(--hair);
+        padding-block: 20px;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .guide-list .g-t {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+      .guide-list .g-p {
+        font-size: 0.92rem;
+        color: var(--ink-soft);
+        margin-block-start: 4px;
+        max-width: 40ch;
+      }
+      .guide-list a.g-go {
+        white-space: nowrap;
+        color: var(--cta);
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        min-height: 48px;
+      }
+      .guide-list a.g-go span {
+        border-block-end: 1.5px solid var(--clay);
+        padding-block-end: 2px;
+        transition: border-color 0.18s var(--ease);
+      }
+      .guide-list a.g-go:hover span {
+        border-color: var(--cta);
+      }
+      .guide-list .soon {
+        white-space: nowrap;
+        font-size: 0.74rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .guide-list li.is-soon .g-t {
+        color: var(--ink-soft);
+      }
+      .guides .g-foot {
+        margin-block-start: 26px;
+        font-size: 0.92rem;
+        color: var(--ink-soft);
+      }
+      .guides .g-foot a {
+        color: var(--ink);
+        border-block-end: 1px solid var(--clay);
+        text-decoration: none;
+      }
+
+      /* =========================================================
+   ABOUT / HER STORY
+========================================================= */
+      .about {
+        padding-block: clamp(84px, 9.5vw, 124px);
+        background: var(--cream-2);
+        overflow: hidden;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        gap: clamp(30px, 5vw, 72px);
+        align-items: start;
+      }
+      .about-portrait {
+        position: relative;
+      }
+      .about-portrait .ap-frame {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--hair);
+        aspect-ratio: 4/5;
+        box-shadow: 0 30px 60px rgba(74, 50, 43, 0.16);
+      }
+      .about-portrait img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 25%;
+      }
+      .about-portrait .ap-cap {
+        margin-block-start: 14px;
+      }
+      .about-story h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-block-end: 6px;
+        max-width: 18ch;
+      }
+      .about-story .sig {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        font-size: 1.1rem;
+        color: var(--cta);
+        margin-block-end: 28px;
+        letter-spacing: 0.04em;
+      }
+      .about-story p {
+        max-width: 52ch;
+        color: var(--ink);
+        margin-block-end: 18px;
+        text-wrap: pretty;
+      }
+      /* magazine lead-in instead of a Hebrew dropcap (Hebrew has no
+         cap-height to hang one from, it always sits crooked) */
+      .about-story p.lead-in {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        font-size: clamp(1.24rem, 1.9vw, 1.6rem);
+        line-height: 1.42;
+        letter-spacing: -0.005em;
+        color: var(--ink);
+        max-width: 34ch;
+        margin-block-end: 26px;
+      }
+      .creds {
+        list-style: none;
+        margin: 26px 0;
+        border-inline-start: 2px solid var(--sage-deep);
+        padding-inline-start: 22px;
+      }
+      .creds li {
+        padding-block: 7px;
+        color: var(--ink);
+        font-weight: 500;
+        position: relative;
+      }
+      .creds li .num {
+        color: var(--cta);
+        font-weight: 700;
+        margin-inline-end: 10px;
+      }
+      .about-belief {
+        margin-block-start: 30px;
+        padding-block-start: 26px;
+        border-block-start: 1px solid var(--hair);
+      }
+      .about-belief .bq {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        font-size: clamp(1.4rem, 2.4vw, 2rem);
+        line-height: 1.16;
+        color: var(--ink);
+        max-width: 22ch;
+        margin-block-end: 16px;
+      }
+      .about-belief p {
+        color: var(--ink-soft);
+      }
+      .about-cta {
+        margin-block-start: 30px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      /* =========================================================
+   FINAL CTA
+========================================================= */
+      .final {
+        padding-block: clamp(92px, 11vw, 140px);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .final::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: radial-gradient(
+          80% 70% at 50% 0%,
+          var(--blush),
+          transparent 70%
+        );
+        opacity: 0.6;
+      }
+      .final .wrap {
+        position: relative;
+        z-index: 1;
+      }
+      .final .f-moon {
+        margin: 0 auto 18px;
+        display: block;
+        width: 40px;
+        height: 40px;
+        color: var(--clay-deep);
+      }
+      .final h2 {
+        font-size: clamp(2.3rem, 5.6vw, 4.4rem);
+        max-width: 16ch;
+        margin-inline: auto;
+        margin-block-end: 24px;
+      }
+      .final .f-sub {
+        font-size: clamp(1.05rem, 1.5vw, 1.24rem);
+        color: var(--ink-soft);
+        max-width: 34ch;
+        margin-inline: auto;
+        margin-block-end: 36px;
+      }
+      .final .cta-row {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-block-end: 20px;
+      }
+      .final .microcopy {
+        font-size: 0.86rem;
+        color: var(--ink-soft);
+        margin-block-end: 40px;
+      }
+      .final .sign {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        color: var(--clay-deep);
+        letter-spacing: 0.02em;
+      }
+      .final .sign .heart {
+        color: var(--cta);
+      }
+
+      /* =========================================================
+   FOOTER COLOPHON
+========================================================= */
+      .colophon {
+        background: var(--espresso);
+        color: var(--cream);
+        padding-block: clamp(60px, 8vw, 90px);
+      }
+      .colophon a {
+        color: var(--cream);
+        text-decoration: none;
+      }
+      .colo-top {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 40px;
+        align-items: start;
+        padding-block-end: 34px;
+        border-block-end: 1px solid rgba(251, 243, 238, 0.16);
+      }
+      .colo-brand .logo {
+        height: 84px;
+        width: auto;
+        margin-block-end: 18px;
+      }
+      .colo-brand .tag {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 300;
+        font-size: 1.3rem;
+        color: var(--cream);
+        letter-spacing: 0.02em;
+        line-height: 1.3;
+        max-width: 26ch;
+      }
+      .colo-brand .ig {
+        margin-block-start: 16px;
+        font-size: 0.92rem;
+        color: rgba(251, 243, 238, 0.78);
+      }
+      .colo-brand .ig a {
+        border-block-end: 1px solid var(--clay);
+        padding-block-end: 2px;
+      }
+      .colo-nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 26px;
+      }
+      .colo-nav .col-t {
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--clay);
+        font-weight: 600;
+        margin-block-end: 6px;
+      }
+      .colo-nav ul {
+        list-style: none;
+      }
+      .colo-nav li {
+        padding-block: 5px;
+      }
+      .colo-nav a {
+        font-size: 0.94rem;
+        color: rgba(251, 243, 238, 0.82);
+        border-block-end: 1px solid transparent;
+        transition:
+          border-color 0.18s var(--ease),
+          color 0.18s var(--ease);
+      }
+      .colo-nav a:hover {
+        color: var(--cream);
+        border-block-end-color: var(--clay);
+      }
+      .colo-bottom {
+        padding-block-start: 26px;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .colo-bottom .made {
+        font-size: 0.84rem;
+        color: rgba(251, 243, 238, 0.62);
+      }
+      .colo-bottom .made .heart {
+        color: var(--clay);
+      }
+      .colo-brand .colophon-note {
+        margin-block-start: 20px;
+        font-size: 0.76rem;
+        line-height: 1.6;
+        color: rgba(251, 243, 238, 0.64);
+        letter-spacing: 0.04em;
+        max-width: 34ch;
+      }
+      .colo-bottom .legal {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .colo-bottom .legal a {
+        font-size: 0.8rem;
+        color: rgba(251, 243, 238, 0.62);
+        border-block-end: 1px solid transparent;
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+      }
+      .colo-bottom .legal a:hover {
+        color: var(--cream);
+        border-block-end-color: var(--clay);
+      }
+
+      /* =========================================================
+   STICKY MOBILE CTA
+========================================================= */
+      .sticky-cta {
+        position: fixed;
+        inset-inline: 0;
+        inset-block-end: 0;
+        z-index: 80;
+        background: rgba(251, 243, 238, 0.94);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-block-start: 1px solid var(--hair);
+        padding: 10px clamp(14px, 4vw, 20px)
+          calc(10px + env(safe-area-inset-bottom));
+        display: none;
+        align-items: center;
+        gap: 12px;
+        transform: translateY(120%);
+        transition: transform 0.4s var(--ease);
+      }
+      .sticky-cta.show {
+        transform: none;
+      }
+      .sticky-cta .s-txt {
+        flex: 1;
+        min-width: 0;
+      }
+      .sticky-cta .s-txt .s-t {
+        font-family: "Discovery Fs", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.1;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+      .sticky-cta .s-txt .s-s {
+        font-size: 0.72rem;
+        color: var(--ink-soft);
+        margin-block-start: 2px;
+      }
+      .sticky-cta .btn {
+        min-height: 48px;
+        padding: 0 20px;
+        flex: none;
+        font-size: 0.94rem;
+      }
+
+      /* =========================================================
+   RESPONSIVE
+========================================================= */
+      @media (max-width: 900px) {
+        body {
+          font-size: 17px;
+        }
+        /* headline first, then the photo, then lede + CTA: the button has to
+           land inside the first screen on a phone */
+        .cover-grid {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .cover-head {
+          display: contents;
+        }
+        .cover .kicker {
+          order: 1;
+          margin-block-end: 18px;
+        }
+        .cover h1 {
+          order: 2;
+          font-size: clamp(2.15rem, 8.7vw, 3.4rem);
+          margin-block-end: clamp(16px, 3.4vw, 24px);
+        }
+        .cover {
+          padding-block: clamp(18px, 4vw, 40px) clamp(50px, 8vw, 90px);
+        }
+        .cover-photo {
+          order: 3;
+          margin: 0 auto clamp(14px, 3.4vw, 24px);
+          max-width: min(228px, 62%);
+          width: 100%;
+        }
+        .cover-badge {
+          padding: 7px 10px;
+          gap: 7px;
+          inset-inline-end: -14%;
+        }
+        .cover-badge img {
+          width: 26px;
+          height: 26px;
+        }
+        .cover .kicker {
+          gap: 8px;
+        }
+        .cover .lede {
+          margin-block-end: 24px;
+        }
+        .cover .lede {
+          order: 4;
+        }
+        .cover .cta-row {
+          order: 5;
+        }
+        .cover .under-cta {
+          order: 6;
+        }
+        .trust {
+          order: 7;
+        }
+        .problem-grid,
+        .auth-grid,
+        .course-grid,
+        .guides-grid,
+        .about-grid,
+        .method-strip,
+        .colo-top {
+          grid-template-columns: 1fr;
+        }
+        .method-strip {
+          grid-template-columns: 1fr 1fr;
+          margin-inline-end: 0;
+        }
+        .method-strip figure:nth-child(1),
+        .method-strip figure:nth-child(2),
+        .method-strip figure:nth-child(3) {
+          aspect-ratio: 4/3;
+          align-self: auto;
+        }
+        .pillars {
+          grid-template-columns: 1fr;
+        }
+        .pillar:nth-child(2),
+        .pillar:nth-child(4) {
+          margin-block-start: 0;
+        }
+        .pillar:last-child {
+          border-block-end: 1px solid var(--hair);
+        }
+        .problem-grid {
+          gap: 44px;
+        }
+        .motion-inset {
+          max-width: min(420px, 100%);
+          margin-inline: auto;
+          width: 100%;
+        }
+        .auth-grid {
+          gap: 44px;
+        }
+        .letters-more {
+          grid-template-columns: 1fr;
+          gap: 44px;
+        }
+        .about-portrait {
+          max-width: min(420px, 100%);
+        }
+        .colo-top {
+          gap: 34px;
+        }
+      }
+      @media (max-width: 540px) {
+        body {
+          font-size: 16.5px;
+        }
+        .wrap {
+          padding-inline: 20px;
+        }
+        .cover .cta-row .btn,
+        .final .cta-row .btn {
+          flex: 1 1 100%;
+        }
+        .method-strip {
+          grid-template-columns: 1fr;
+        }
+        .spread {
+          min-height: auto;
+        }
+        .spread-photo {
+          position: relative;
+          aspect-ratio: 4/5;
+        }
+        .spread-photo {
+          inset: auto;
+        }
+        .spread {
+          display: block;
+        }
+        .spread-scrim {
+          background: linear-gradient(
+            to top,
+            rgba(41, 26, 21, 0.94) 0%,
+            rgba(41, 26, 21, 0.88) 34%,
+            rgba(41, 26, 21, 0.52) 66%,
+            rgba(41, 26, 21, 0.28) 100%
+          );
+        }
+        .spread-inner {
+          position: absolute;
+          inset: 0;
+          justify-content: flex-end;
+          padding-block-end: clamp(30px, 8vw, 50px);
+          max-width: none;
+        }
+        .spread .pg {
+          display: none;
+        }
+        .factbox .fig {
+          font-size: clamp(2.2rem, 10vw, 3rem);
+        }
+        .guide-list li {
+          flex-direction: column;
+          gap: 8px;
+          align-items: flex-start;
+        }
+        .colo-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 14px;
+        }
+        .runner .mark {
+          font-size: 0.58rem;
+          letter-spacing: 0.16em;
+        }
+        /* the issue line is a nice-to-have; the CTA above the fold is not */
+        .cover .kicker .dot,
+        .cover .kicker .issue {
+          display: none;
+        }
+        .colo-brand .logo {
+          height: 68px;
+        }
+        .factbox .fig .press-mark img {
+          width: 34px;
+          height: 34px;
+        }
+        .letters .l-head h2 {
+          max-width: 18ch;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+        }
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        .btn,
+        .link-underline,
+        .runner .r-cta,
+        .colo-nav a {
+          transition: none !important;
+        }
+        .sticky-cta {
+          transition: none !important;
+        }
+        .motion-inset video {
+          display: none;
+        }
+        .motion-inset img.mfallback {
+          display: block !important;
+        }
+      }
+      .motion-inset img.mfallback {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- RUNNING HEADER -->
+    <header class="runner" id="top">
+      <div class="runner-in">
+        <span class="mark"
+          ><b>תמי שני</b> · יועצת שינה והתפתחות · בין המומלצים של רשת 13</span
+        >
+        <a
+          class="r-cta"
+          href="https://ig.me/m/baby.tammy.time"
+          target="_blank"
+          rel="noopener"
+          ><span>שיחת ייעוץ ללא עלות</span></a
+        >
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ COVER ============ -->
+      <section class="cover">
+        <div class="wrap">
+          <div class="cover-grid">
+            <div class="cover-head">
+              <div class="kicker" data-reveal>
+                <span class="eyebrow">תמי שני · יועצת שינה והתפתחות</span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="issue">גיליון הלילה הרגוע</span>
+              </div>
+              <h1 class="display" data-reveal>
+                <span class="l">תינוק שנרדם לבד.</span>
+                <span class="l soft">אמא שסוף סוף<br />ישנה בלילה.</span>
+              </h1>
+              <p class="lede" data-reveal>
+                אני תמי שני, יועצת שינה והתפתחות עם
+                <span class="num">15</span> שנות ניסיון ואלפי משפחות שליוויתי.
+                יחד נבנה לבייבי שלכם הרגלי שינה בריאים, בדרך ברורה ומותאמת
+                אישית, בלי להשאיר אותו לבכות לבד.
+              </p>
+              <div class="cta-row" data-reveal>
+                <a
+                  class="btn btn-primary"
+                  href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                  target="_blank"
+                  rel="noopener"
+                  >אני רוצה לישון כבר עכשיו
+                  <span class="arw" aria-hidden="true">←</span></a
+                >
+                <a
+                  class="btn btn-ghost"
+                  href="https://ig.me/m/baby.tammy.time"
+                  target="_blank"
+                  rel="noopener"
+                  >שיחת ייעוץ ללא עלות</a
+                >
+              </div>
+              <p class="under-cta" data-reveal>
+                <span class="tick" aria-hidden="true"></span> השיעור הראשון
+                במתנה. קודם תכירי, אחר כך תחליטי.
+              </p>
+              <div class="trust" data-reveal>
+                <span class="t-item"
+                  >מעל <span class="num">15</span> שנות ניסיון</span
+                >
+                <span class="t-sep" aria-hidden="true"></span>
+                <span class="t-item">אלפי תינוקות</span>
+                <span class="t-sep" aria-hidden="true"></span>
+                <span class="t-item"
+                  >בין המומלצים של
+                  <a
+                    href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                    target="_blank"
+                    rel="noopener"
+                    >רשת 13</a
+                  ></span
+                >
+              </div>
+            </div>
+
+            <div class="cover-photo" data-reveal>
+              <div class="frame">
+                <img
+                  src="../assets/cutouts/portrait-b-cut.png"
+                  alt="תמי שני מחזיקה תינוק ישן בזרועותיה, לבושה בסוודר בגוון שמנת"
+                  width="928"
+                  height="1152"
+                />
+                <div class="cover-badge" aria-hidden="false">
+                  <img
+                    src="../assets/press/reshet13-logo.svg"
+                    alt="לוגו רשת 13"
+                  />
+                  <span class="txt"><b>רשת 13</b>בין המומלצים</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PROBLEM ============ -->
+      <section class="problem" id="problem">
+        <div class="wrap">
+          <div class="chapter-tag" data-reveal>
+            <span class="no num">01</span>
+            <span class="lbl">הלילה הארוך</span>
+            <span class="rule" aria-hidden="true"></span>
+          </div>
+          <div class="problem-grid">
+            <div class="problem-copy">
+              <h2 class="display" data-reveal>
+                את לא לבד.<br />וזה לא באשמתך.
+              </h2>
+              <ul class="beats" data-reveal>
+                <li>עוד לילה שנהרס ב-<span class="num">02:00</span>.</li>
+                <li>
+                  עוד הרדמה של שעה בשביל תנומה של
+                  <span class="num">25</span> דקות.
+                </li>
+                <li>עוד בוקר שמתחיל בקפה שלישי.</li>
+              </ul>
+              <p class="ask display-light" data-reveal>מזדהה?</p>
+              <div class="body" data-reveal>
+                <p>
+                  קראת הכל. שמעת הכל. אולי גם ניסית הכל. ובין כל הגישות, השיטות
+                  והדעות (בעיקר של אמא והחמות) נשארת מבולבלת ועייפה.
+                </p>
+              </div>
+              <div class="truth" data-reveal>
+                <p style="color: var(--ink-soft); margin-block-end: 12px">
+                  אז הנה האמת הפשוטה:
+                </p>
+                <p class="big">לבייבי שלך אין בעיית שינה. יש לו הרגלים.</p>
+                <p>והרגלים אפשר לשנות. בעדינות, עם מענה לבכי, ובקצב שלך.</p>
+              </div>
+            </div>
+
+            <div class="motion-inset" data-reveal>
+              <div class="m-frame">
+                <span class="m-num" aria-hidden="true">02:00</span>
+                <video
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  poster="../assets/film/leg1-poster.jpg"
+                  aria-label="אמא מחזיקה תינוק ליד חלון בחדר תינוקות מואר באור ירח"
+                >
+                  <source src="motion-still.mp4" type="video/mp4" />
+                </video>
+                <img
+                  class="mfallback"
+                  src="../assets/film/leg1-poster.jpg"
+                  alt="אמא מחזיקה תינוק ליד חלון בחדר תינוקות מואר באור ירח"
+                />
+                <div class="m-cap">
+                  <p class="caption">
+                    <span class="tick" aria-hidden="true"></span> חדר הילדים,
+                    אחרי חצות. הרגע שבו הכל מרגיש בלתי אפשרי, וממש עומד להשתנות.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ METHOD ============ -->
+      <section class="method" id="method">
+        <div class="wrap">
+          <div class="chapter-tag" data-reveal>
+            <span class="no num">02</span>
+            <span class="lbl">השיטה</span>
+            <span class="rule" aria-hidden="true"></span>
+          </div>
+          <div class="method-head">
+            <h2 class="display" data-reveal>שיטת תכלס: הדרך של תמי</h2>
+            <p class="intro" data-reveal>
+              בלי תיאוריות מסובכות. ארבעה עקרונות שעובדים.
+            </p>
+          </div>
+          <div class="pillars">
+            <article class="pillar" data-reveal>
+              <span class="p-no num">01</span>
+              <h3>הרגלים, לא גזירת גורל</h3>
+              <p>
+                תינוק שנרדם רק על הידיים? רק עם בקבוק? זה הרגל. והרגל אפשר לשנות
+                בעדינות, שלב אחרי שלב.
+              </p>
+            </article>
+            <article class="pillar" data-reveal>
+              <span class="p-no num">02</span>
+              <h3>מענה לבכי, תמיד</h3>
+              <p>
+                כל בכי מקבל מענה מיידי. גם בזמן תהליך. לומדים להרגיע, בלי לוותר
+                על הלמידה.
+              </p>
+            </article>
+            <article class="pillar" data-reveal>
+              <span class="p-no num">03</span>
+              <h3>שינה נפרדת מאוכל</h3>
+              <p>
+                מפרידים בין הנקה או בקבוק לבין הירדמות. הבייבי אוכל כשהוא רעב,
+                ונרדם כי הוא יודע איך.
+              </p>
+            </article>
+            <article class="pillar" data-reveal>
+              <span class="p-no num">04</span>
+              <h3>דרך שמתאימה לך</h3>
+              <p>
+                אין דרך אחת נכונה. יש דרך שאת מאמינה בה. בשיחה קצרה נמצא את שלך.
+              </p>
+            </article>
+          </div>
+
+          <div class="method-strip">
+            <figure data-reveal>
+              <img
+                src="../assets/ai/mood-3-crib.png"
+                alt="עריסת עץ עם שמיכת סריג בגוון מרווה, אור בוקר רך"
+                loading="lazy"
+              />
+              <figcaption>
+                <p class="caption">
+                  <span class="tick" aria-hidden="true"></span> מיטה מוכנה, טקס
+                  קבוע
+                </p>
+              </figcaption>
+            </figure>
+            <figure data-reveal>
+              <img
+                src="../assets/ai/mood-5-sleeping-baby.png"
+                alt="תינוק ישן עטוף בבד מוסלין בהיר"
+                loading="lazy"
+              />
+              <figcaption>
+                <p class="caption">
+                  <span class="tick" aria-hidden="true"></span> הירדמות עצמאית,
+                  בבטחה
+                </p>
+              </figcaption>
+            </figure>
+            <figure data-reveal>
+              <img
+                src="../assets/ai/mood-1-nursery-wide.png"
+                alt="חדר תינוקות חמים באור מנורה, עריסה וחלון עם וילון"
+                loading="lazy"
+              />
+              <figcaption>
+                <p class="caption">
+                  <span class="tick" aria-hidden="true"></span> סביבה רגועה,
+                  לילה שלם
+                </p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ AUTHORITY / PRESS ============ -->
+      <section class="authority" id="authority">
+        <div class="wrap">
+          <div class="chapter-tag" data-reveal>
+            <span class="no num">03</span>
+            <span class="lbl">הפרופיל</span>
+            <span class="rule" aria-hidden="true"></span>
+          </div>
+          <div class="auth-grid">
+            <div class="auth-lead">
+              <p class="eyebrow" data-reveal style="margin-block-end: 18px">
+                מי עומדת מאחורי השיטה
+              </p>
+              <h2 class="display" data-reveal>
+                המספרים מאחורי <span class="soft">אלפי הלילות הרגועים.</span>
+              </h2>
+              <div class="factbox" data-reveal>
+                <div class="row">
+                  <span class="fig num">15<span class="plus">+</span></span>
+                  <span class="lab">שנות ניסיון בליווי משפחות</span>
+                </div>
+                <div class="row">
+                  <span class="fig num">אלפי</span>
+                  <span class="lab">תינוקות שלמדו לישון</span>
+                </div>
+                <div class="row">
+                  <span class="fig num">5</span>
+                  <span class="lab">תעודות הכשרה מקצועיות</span>
+                </div>
+                <div class="row">
+                  <span class="fig"
+                    ><span class="press-mark"
+                      ><img
+                        src="../assets/press/reshet13-logo.svg"
+                        alt="לוגו רשת 13"
+                        loading="lazy" /></span
+                  ></span>
+                  <span class="lab">רשת 13 · בין המומלצים</span>
+                </div>
+              </div>
+              <p class="press-link" data-reveal>
+                <a
+                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                  target="_blank"
+                  rel="noopener"
+                  >לכתבה המלאה באתר רשת 13 <span aria-hidden="true">↗</span></a
+                >
+              </p>
+            </div>
+
+            <div class="press-side" data-reveal>
+              <div class="press-photo">
+                <span class="glow" aria-hidden="true"></span>
+                <div class="press-badge">
+                  <img
+                    src="../assets/press/reshet13-logo.svg"
+                    alt="לוגו רשת 13"
+                  />
+                  <span class="t"><b>רשת 13</b>בין המומלצים</span>
+                </div>
+                <img
+                  class="suit"
+                  src="../assets/cutouts/final-b4-suit-cut.png"
+                  alt="תמי שני בחליפה בהירה, מביטה למצלמה בביטחון"
+                  loading="lazy"
+                />
+              </div>
+              <div class="press-cap">
+                <p class="caption">
+                  <span class="tick" aria-hidden="true"></span> תמי שני. יועצת
+                  שינה, מלווה התפתחותית, ואמא שהיתה בדיוק שם.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TESTIMONIALS SPREAD ============ -->
+      <section class="letters" id="letters">
+        <div class="wrap">
+          <div class="chapter-tag" data-reveal>
+            <span class="no num">04</span>
+            <span class="lbl">מכתבים מהקוראות</span>
+            <span class="rule" aria-hidden="true"></span>
+          </div>
+          <div class="l-head" data-reveal>
+            <h2 class="display">אמהות מספרות.</h2>
+            <p class="caption">
+              <span class="tick" aria-hidden="true"></span> מילים שהגיעו אחרי
+              הלילה הרגוע הראשון.
+            </p>
+          </div>
+        </div>
+
+        <!-- SIGNATURE SPREAD -->
+        <div class="spread" data-reveal>
+          <div class="spread-photo">
+            <img
+              src="../assets/ai/mood-5-sleeping-baby.png"
+              alt="תינוק ישן בשלווה, עטוף בבד רך, באור חמים"
+              loading="lazy"
+            />
+          </div>
+          <div class="spread-scrim" aria-hidden="true"></div>
+          <div class="spread-inner">
+            <span class="q-open" aria-hidden="true">״</span>
+            <blockquote>אין כמוך, הצלת לי את הלילות ואת הימים.</blockquote>
+            <div class="attrib">
+              <span class="line" aria-hidden="true"></span>
+              <span class="who"><b>שרון</b> · אמא שחזרה לישון</span>
+            </div>
+          </div>
+          <span class="pg num" aria-hidden="true">04 · 05</span>
+        </div>
+
+        <div class="wrap">
+          <div class="letters-more">
+            <div class="mini-quote" data-reveal>
+              <span class="mq-mark" aria-hidden="true">״</span>
+              <blockquote>
+                וואי, מילה במילה! ממש יישמתי את זה ועבר קליל ביותר!
+              </blockquote>
+              <div class="attrib">
+                <span class="line" aria-hidden="true"></span>
+                <span class="who"><b>אלינור</b> · יישמה בבית</span>
+              </div>
+            </div>
+            <div class="mini-quote" data-reveal>
+              <span class="mq-mark" aria-hidden="true">״</span>
+              <blockquote>
+                בא לי להביא עוד ילד ולהתחיל את האתגר מחדש.
+              </blockquote>
+              <div class="attrib">
+                <span class="line" aria-hidden="true"></span>
+                <span class="who"><b>ליהי</b> · עברה את הדרך</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ COURSE ============ -->
+      <section class="course" id="course">
+        <div class="wrap">
+          <div class="chapter-tag" data-reveal>
+            <span class="no num">05</span>
+            <span class="lbl">הקורס</span>
+            <span class="rule" aria-hidden="true"></span>
+          </div>
+          <div class="course-grid">
+            <div class="c-copy">
+              <h2 class="display" data-reveal>
+                הקורס: תכלס - איך להרדים תינוק
+              </h2>
+              <div class="c-body" data-reveal>
+                <p>
+                  כל השיטה, מסודרת בסרטונים קצרים. מהשלב הראשון ועד הירדמות
+                  עצמאית.
+                </p>
+                <p>
+                  והשיעור הראשון? <strong>במתנה.</strong> ככה תדעי אם זה בשבילך
+                  עוד לפני שהוצאת שקל.
+                </p>
+              </div>
+              <div class="price-plate" data-reveal>
+                <span class="now num"
+                  >197 <span style="font-size: 0.6em">ש"ח</span></span
+                >
+                <span class="cur">במקום</span>
+                <span class="then num">297 ש"ח</span>
+              </div>
+              <div data-reveal>
+                <a
+                  class="btn btn-primary"
+                  href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                  target="_blank"
+                  rel="noopener"
+                  >אני רוצה את הקורס
+                  <span class="arw" aria-hidden="true">←</span></a
+                >
+              </div>
+            </div>
+            <div class="course-visual" data-reveal>
+              <div class="cv-frame">
+                <span class="free-tab">השיעור הראשון במתנה</span>
+                <img
+                  src="../assets/ai/mood-6-dawn-curtain.png"
+                  alt="חדר תינוקות באור שחר, וילונות שקופים ואור בוקר רך"
+                  loading="lazy"
+                />
+                <div class="cv-cap">
+                  <p class="caption">
+                    <span class="tick" aria-hidden="true"></span> הבוקר שאחרי.
+                    בקצב שלך, מהבית שלך.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GUIDES ============ -->
+      <section class="guides" id="guides">
+        <div class="wrap">
+          <div class="chapter-tag" data-reveal>
+            <span class="no num">06</span>
+            <span class="lbl">המדריכים</span>
+            <span class="rule" aria-hidden="true"></span>
+          </div>
+          <div class="guides-grid">
+            <div class="g-copy">
+              <h2 class="display" data-reveal>שליף ליד המיטה</h2>
+              <div class="g-body" data-reveal>
+                <p>
+                  מדריכים קצרים ופרקטיים, בנויים בדיוק לרגעים שאת צריכה תשובה
+                  עכשיו. ב-<span class="num">22:00</span> בלילה. וגם ב-<span
+                    class="num"
+                    >02:00</span
+                  >
+                  לפנות בוקר.
+                </p>
+              </div>
+              <div data-reveal>
+                <a
+                  class="btn btn-ghost"
+                  href="/guides/"
+                  target="_blank"
+                  rel="noopener"
+                  >לכל המדריכים <span class="arw" aria-hidden="true">←</span></a
+                >
+              </div>
+              <p class="g-foot" data-reveal>
+                רוצה שהמדריך הבא יגיע אליך? עקבי אחריי באינסטגרם
+                <a
+                  class="ltr"
+                  href="https://instagram.com/baby.tammy.time"
+                  target="_blank"
+                  rel="noopener"
+                  >@baby.tammy.time</a
+                >
+              </p>
+            </div>
+
+            <ul class="guide-list" data-reveal>
+              <li>
+                <div>
+                  <div class="g-t">
+                    טקס שינה ב-<span class="num">5</span> שלבים
+                  </div>
+                  <div class="g-p">
+                    איך בונים טקס שינה שעובד, מהאמבטיה ועד המיטה.
+                  </div>
+                </div>
+                <a
+                  class="g-go"
+                  href="/guides/bedtime-ritual/"
+                  target="_blank"
+                  rel="noopener"
+                  ><span>לקריאה ←</span></a
+                >
+              </li>
+              <li class="is-soon">
+                <div><div class="g-t">חלונות ערות לפי גיל</div></div>
+                <span class="soon">בקרוב</span>
+              </li>
+              <li class="is-soon">
+                <div>
+                  <div class="g-t">
+                    תנומות יום שנגמרות אחרי <span class="num">25</span> דקות
+                  </div>
+                </div>
+                <span class="soon">בקרוב</span>
+              </li>
+              <li class="is-soon">
+                <div><div class="g-t">יקיצות לילה</div></div>
+                <span class="soon">בקרוב</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT ============ -->
+      <section class="about" id="about">
+        <div class="wrap">
+          <div class="chapter-tag" data-reveal>
+            <span class="no num">07</span>
+            <span class="lbl">הסיפור שלה</span>
+            <span class="rule" aria-hidden="true"></span>
+          </div>
+          <div class="about-grid">
+            <div class="about-portrait" data-reveal>
+              <div class="ap-frame">
+                <img
+                  src="../assets/ai/portrait-a.png"
+                  alt="פורטרט קרוב של תמי שני, מבט חמים ורגוע"
+                  loading="lazy"
+                />
+              </div>
+              <div class="ap-cap">
+                <p class="caption">
+                  <span class="tick" aria-hidden="true"></span> תמי, בבית. ממקום
+                  של הבנה, לא של הרצאה.
+                </p>
+              </div>
+            </div>
+
+            <div class="about-story">
+              <h2 class="display" data-reveal>נעים להכיר, אני תמי.</h2>
+              <p class="sig" data-reveal>ואני זוכרת בדיוק איך זה מרגיש.</p>
+              <p class="lead-in" data-reveal>
+                התחלתי בדיוק איפה שאת נמצאת עכשיו: אמא עייפה, מבולבלת, עם תינוק
+                שלא ישן. היום, אחרי <span class="num">15</span> שנים ואלפי
+                תינוקות, אני הדרך הקצרה בין הלילה הזה ללילה רגוע.
+              </p>
+              <p data-reveal>אז למדתי. ולמדתי. ולמדתי:</p>
+              <ul class="creds" data-reveal>
+                <li><span class="num">01</span> תואר ראשון במדעי החברה</li>
+                <li><span class="num">02</span> תעודת הכשרה כמדריכת הורים</li>
+                <li><span class="num">03</span> תעודת הכשרה כיועצת שינה</li>
+                <li>
+                  <span class="num">04</span> תעודת הכשרה כמלווה התפתחותית
+                </li>
+                <li>
+                  <span class="num">05</span> תעודת הכשרה כמדריכת דנסטן, שפת
+                  התינוקות
+                </li>
+              </ul>
+              <div class="about-belief" data-reveal>
+                <p class="bq">
+                  אבל התעודה הכי יקרה שלי? אמא שעברה את זה בעצמה.
+                </p>
+                <p>
+                  מה אני מאמינה? שכל בכי מקבל מענה. תמיד. שהרגלים אפשר לשנות
+                  בעדינות. ושכולם ישנים בסוף. השאלה איך, מתי ובאיזו דרך. את הדרך
+                  שלך? נמצא ביחד.
+                </p>
+              </div>
+              <div class="about-cta" data-reveal>
+                <a
+                  class="btn btn-primary"
+                  href="https://ig.me/m/baby.tammy.time"
+                  target="_blank"
+                  rel="noopener"
+                  >שיחת ייעוץ ללא עלות
+                  <span class="arw" aria-hidden="true">←</span></a
+                >
+                <a
+                  class="link-underline"
+                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                  target="_blank"
+                  rel="noopener"
+                  >רוצה לשמוע אותי ברשת 13?</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FINAL CTA ============ -->
+      <section class="final" id="final">
+        <div class="wrap">
+          <svg
+            class="f-moon"
+            viewBox="0 0 40 40"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M27.5 4.6a16 16 0 1 0 7.9 21.6A13.2 13.2 0 0 1 27.5 4.6Z"
+              fill="currentColor"
+            />
+          </svg>
+          <h2 class="display" data-reveal>
+            הלילה הרגוע הראשון מתחיל בשיחה אחת.
+          </h2>
+          <p class="f-sub" data-reveal>
+            שיחת ייעוץ ללא עלות. בלי התחייבות. נבין ביחד מה קורה, ואיך מתקדמים.
+          </p>
+          <div class="cta-row" data-reveal>
+            <a
+              class="btn btn-primary"
+              href="https://ig.me/m/baby.tammy.time"
+              target="_blank"
+              rel="noopener"
+              >קובעים שיחה ללא עלות
+              <span class="arw" aria-hidden="true">←</span></a
+            >
+            <a
+              class="btn btn-ghost"
+              href="https://tammyshani.ravpage.co.il/tammybabysleep"
+              target="_blank"
+              rel="noopener"
+              >מעדיפה להתחיל בקורס?</a
+            >
+          </div>
+          <p class="microcopy" data-reveal>
+            בלי התחייבות · מענה תוך יום ·
+            <span class="num">20</span> דקות שמשנות את הלילה
+          </p>
+          <p class="sign" data-reveal>באהבה <span class="heart">❤</span> תמי</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER COLOPHON ============ -->
+    <footer class="colophon">
+      <div class="wrap">
+        <div class="colo-top">
+          <div class="colo-brand">
+            <img
+              class="logo"
+              src="../assets/brand/logo-cream.png"
+              alt="תמי שני"
+              loading="lazy"
+            />
+            <p class="tag">תינוק שנרדם לבד. אמא שסוף סוף ישנה בלילה.</p>
+            <p class="ig">
+              אינסטגרם
+              <a
+                class="ltr"
+                href="https://instagram.com/baby.tammy.time"
+                target="_blank"
+                rel="noopener"
+                >@baby.tammy.time</a
+              >
+              · שיחת ייעוץ ללא עלות
+            </p>
+            <p class="colophon-note">
+              גיליון הלילה הרגוע · אותיות:
+              <span class="ltr">Discovery&nbsp;Fs</span>,
+              <span class="ltr">Heebo</span> · נכתב בשעות שבהן אמהות ערות
+            </p>
+          </div>
+          <nav class="colo-nav" aria-label="ניווט תחתון">
+            <div>
+              <div class="col-t">הדף</div>
+              <ul>
+                <li><a href="#course">הקורס</a></li>
+                <li><a href="#guides">מדריכים</a></li>
+                <li><a href="#about">עליי</a></li>
+                <li>
+                  <a
+                    href="https://ig.me/m/baby.tammy.time"
+                    target="_blank"
+                    rel="noopener"
+                    >שיחת ייעוץ</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div class="col-t">מידע</div>
+              <ul>
+                <li>
+                  <a href="/accessibility/" target="_blank" rel="noopener"
+                    >הצהרת נגישות</a
+                  >
+                </li>
+                <li>
+                  <a href="/privacy/" target="_blank" rel="noopener"
+                    >מדיניות פרטיות</a
+                  >
+                </li>
+                <li>
+                  <a href="/terms/" target="_blank" rel="noopener">תקנון</a>
+                </li>
+                <li>
+                  <a
+                    href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                    target="_blank"
+                    rel="noopener"
+                    >רשת 13</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <div class="colo-bottom">
+          <p class="made">
+            נבנה באהבה <span class="heart" aria-hidden="true">❤</span> כל
+            הזכויות שמורות לתמי שני · יועצת שינה והתפתחות
+          </p>
+          <div class="legal">
+            <a class="to-top" href="#top">חזרה לתחילת הגיליון ↑</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- STICKY MOBILE CTA -->
+    <div
+      class="sticky-cta"
+      id="stickyCta"
+      role="region"
+      aria-label="קריאה לפעולה"
+    >
+      <div class="s-txt">
+        <div class="s-t">רוצה לישון שוב?</div>
+        <div class="s-s">שיחת ייעוץ ללא עלות · בלי התחייבות</div>
+      </div>
+      <a
+        class="btn btn-primary"
+        href="https://ig.me/m/baby.tammy.time"
+        target="_blank"
+        rel="noopener"
+        >דברי איתי</a
+      >
+    </div>
+
+    <script>
+      (function () {
+        var reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        // Staggered reveals
+        var reveals = document.querySelectorAll("[data-reveal]");
+        if (reduce || !("IntersectionObserver" in window)) {
+          reveals.forEach(function (el) {
+            el.classList.add("in");
+          });
+        } else {
+          // stagger siblings within a common parent
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  var el = e.target;
+                  var sibs = Array.prototype.filter.call(
+                    el.parentNode.children,
+                    function (c) {
+                      return c.hasAttribute("data-reveal");
+                    },
+                  );
+                  var idx = sibs.indexOf(el);
+                  el.style.transitionDelay = Math.min(idx, 5) * 0.075 + "s";
+                  el.classList.add("in");
+                  io.unobserve(el);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+          );
+          reveals.forEach(function (el) {
+            io.observe(el);
+          });
+        }
+
+        // Sticky mobile CTA after 60% scroll, mobile only
+        var sticky = document.getElementById("stickyCta");
+        var isMobile = window.matchMedia("(max-width:900px)").matches;
+        if (isMobile) {
+          sticky.style.display = "flex";
+          // no rAF throttle on purpose: if frames are starved (background tab,
+          // in-app browser) a throttle flag can latch and the bar never shows
+          var onScroll = function () {
+            var h = document.documentElement.scrollHeight;
+            var seen = window.scrollY + window.innerHeight;
+            // hide near the very bottom so it doesn't cover the footer CTA
+            var nearBottom = h - seen < 260;
+            if (seen / h > 0.6 && !nearBottom) {
+              sticky.classList.add("show");
+            } else {
+              sticky.classList.remove("show");
+            }
+          };
+          window.addEventListener("scroll", onScroll, { passive: true });
+          onScroll();
+        }
+
+        // Pause motion-still video when offscreen (perf)
+        var vid = document.querySelector(".motion-inset video");
+        if (vid && !reduce && "IntersectionObserver" in window) {
+          var vio = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  vid.play().catch(function () {});
+                } else {
+                  vid.pause();
+                }
+              });
+            },
+            { threshold: 0.15 },
+          );
+          vio.observe(vid);
+        }
+      })();
+    </script>
+  </body>
+</html>

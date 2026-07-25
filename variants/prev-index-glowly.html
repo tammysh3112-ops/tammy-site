@@ -1,0 +1,3013 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      document.documentElement.className += " js";
+    </script>
+    <title>תמי שני - יועצת שינה והתפתחות</title>
+    <meta
+      name="description"
+      content="תמי שני, יועצת שינה והתפתחות. 15 שנים מלמדת אמהות עייפות להרדים את הבייבי לבד, בעדינות, עם מענה לבכי. מהלילה הזה ללילה רגוע."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ============ DISPLAY FACE: Discovery Fs ============ */
+      @font-face {
+        font-family: "Discovery Fs";
+        src:
+          url("assets/fonts/Discovery_Fs-Light.woff2") format("woff2"),
+          url("assets/fonts/Discovery_Fs-Light.woff") format("woff");
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Discovery Fs";
+        src:
+          url("assets/fonts/Discovery_Fs-Bold.woff2") format("woff2"),
+          url("assets/fonts/Discovery_Fs-Bold.woff") format("woff");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      :root {
+        /* ---- velvet night surface system ---- */
+        --abyss: #0b0d20; /* deepest velvet (night hold + overscroll) */
+        --night: #14162e; /* velvet indigo */
+        --dusk: #241f45; /* dusk plum (hero top) */
+        --ivory: #f0e8da; /* warm ivory (dawn resolves here, not bright cream) */
+        --ivory-2: #f6f0e6;
+
+        /* champagne gold - surgical: rules, numerals, small glows */
+        --gold: #d9b878;
+        --gold-lite: #ecd6a6; /* gold text on velvet (AA) */
+        --gold-deep: #7d5f26; /* antique gold accent on ivory (AA on small text) */
+
+        --cream: rgba(
+          255,
+          250,
+          242,
+          0.92
+        ); /* warm-white body text - all zones */
+        --cream-dim: rgba(255, 250, 242, 0.72);
+        --ink: #241f3a; /* deep aubergine ink on ivory + DAY sky */
+        --ink-soft: #4a4363;
+
+        /* ---- DAY sky (top + resolve) - premium calm morning, not cyan ---- */
+        --day-sky: #c9d4ea; /* soft warm morning blue (very top) */
+        --day-warm: #ece0cf; /* warm ivory day light */
+        --ink-day: rgba(36, 31, 58, 0.78); /* ink softened for airy day sky */
+
+        --font-display: "Discovery Fs", "Heebo", Georgia, serif;
+        --font-body: "Heebo", system-ui, sans-serif;
+
+        --maxw: 1140px;
+        --pad-inline: clamp(1.25rem, 5vw, 2rem);
+        --section-pad: clamp(
+          5rem,
+          9vw,
+          7rem
+        ); /* generous consistent band rhythm - opener ritual has room */
+        --radius: 22px;
+
+        /* velvet + ivory frosted panels */
+        --hair-gold: rgba(217, 184, 120, 0.34);
+        --hair-gold-soft: rgba(217, 184, 120, 0.2);
+        --velvet: rgba(23, 25, 52, 0.5);
+        --velvet-solid: rgba(19, 21, 44, 0.72);
+        --ivory-surface: rgba(246, 240, 230, 0.9);
+        --shadow-lux: 0 30px 70px -30px rgba(4, 5, 16, 0.85);
+        --shadow-soft: 0 22px 50px -26px rgba(20, 14, 30, 0.35);
+
+        /* ---- live layer opacities (rAF-driven; defaults = scroll 0 / DAY) ---- */
+        --op-stars: 0;
+        --op-hills: 1;
+        --op-tint: 0;
+        --op-dawn: 0;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        overflow-x: hidden;
+        scroll-padding-top: 90px;
+      }
+      body {
+        font-family: var(--font-body);
+        background: #211a3d; /* deep twilight - matches gradient top so overscroll never flashes */
+        color: var(--cream);
+        line-height: 1.72;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img,
+      svg {
+        max-width: 100%;
+        display: block;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ---------- type ---------- */
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        font-weight: 300; /* airy Light by default */
+        line-height: 1.18;
+        letter-spacing: 0.005em;
+        font-variant-numeric: lining-nums;
+        color: #fff; /* ALL type white; gold reserved for anchor words */
+      }
+      h1 b,
+      h2 b,
+      h3 b {
+        font-weight: 700; /* Bold reserved for the 2-3 anchor words */
+      }
+      h2 {
+        font-size: clamp(1.95rem, 4.6vw, 2.9rem);
+        line-height: 1.2;
+      }
+      h3 {
+        font-size: 1.28rem;
+        line-height: 1.32;
+        font-weight: 300;
+      }
+      .eyebrow {
+        font-family: var(--font-body);
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.24em;
+        color: var(--gold-lite);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7ch;
+        text-transform: none;
+      }
+      .eyebrow::before {
+        content: "";
+        inline-size: 26px;
+        block-size: 1px;
+        background: var(--gold);
+        opacity: 0.9;
+      }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 0.55rem 2rem;
+        border-radius: 999px;
+        font-family: var(--font-body);
+        font-size: 1.02rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition:
+          transform 0.24s ease,
+          box-shadow 0.24s ease,
+          background 0.24s ease,
+          border-color 0.24s ease,
+          color 0.24s ease;
+        text-align: center;
+      }
+      /* champagne primary - the one surgical gold fill (the action) */
+      .btn-gold {
+        background: linear-gradient(
+          135deg,
+          #e6cd97 0%,
+          #d9b878 52%,
+          #c9a463 100%
+        );
+        color: #241a08;
+        box-shadow:
+          0 14px 34px -14px rgba(201, 164, 99, 0.7),
+          inset 0 1px 0 rgba(255, 247, 227, 0.55);
+      }
+      .btn-gold:hover {
+        transform: translateY(-2px);
+        background: linear-gradient(
+          135deg,
+          #efd9a8 0%,
+          #e2c184 52%,
+          #d0ac6b 100%
+        );
+        box-shadow:
+          0 20px 44px -16px rgba(201, 164, 99, 0.82),
+          inset 0 1px 0 rgba(255, 247, 227, 0.6);
+      }
+      .btn-gold:focus-visible {
+        outline: 3px solid rgba(20, 16, 40, 0.7);
+        outline-offset: 3px;
+      }
+      /* ghost on velvet - gold hairline, cream text */
+      .btn-ghost-light {
+        background: rgba(236, 214, 166, 0.02);
+        color: var(--cream);
+        border-color: var(--hair-gold);
+      }
+      .btn-ghost-light:hover {
+        transform: translateY(-2px);
+        border-color: rgba(217, 184, 120, 0.7);
+        background: rgba(236, 214, 166, 0.07);
+      }
+      /* ghost on ivory - deep-gold hairline, ink text */
+      .btn-ghost-dark {
+        background: rgba(138, 107, 46, 0);
+        color: var(--ink);
+        border-color: rgba(138, 107, 46, 0.38);
+      }
+      .btn-ghost-dark:hover {
+        transform: translateY(-2px);
+        border-color: rgba(138, 107, 46, 0.66);
+        background: rgba(138, 107, 46, 0.06);
+      }
+      .btn-ghost-light:focus-visible,
+      .btn-ghost-dark:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      /* ---------- layout ---------- */
+      .wrap {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding-inline: var(--pad-inline);
+        width: 100%;
+      }
+      .section {
+        position: relative;
+        z-index: 10;
+        padding-block: var(--section-pad);
+      }
+      .section-narrow {
+        max-width: 780px;
+        margin-inline: auto;
+      }
+      /* soft horizon-glow divider between bands - a faint gold line with a
+         whisper of glow, never a hard seam */
+      .hdiv {
+        position: relative;
+        z-index: 10;
+        block-size: 1px;
+        max-width: var(--maxw);
+        margin-inline: auto;
+        width: calc(100% - 2 * var(--pad-inline));
+        background: linear-gradient(
+          90deg,
+          transparent 4%,
+          rgba(217, 184, 120, 0.42) 50%,
+          transparent 96%
+        );
+        box-shadow: 0 0 22px 1px rgba(217, 184, 120, 0.14);
+      }
+      .center {
+        text-align: center;
+      }
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        margin-block-start: 2.2rem;
+      }
+      .center .cta-row {
+        justify-content: center;
+      }
+
+      /* ============================================================
+         THE WORLD - one tall gradient wrapper + fixed scenery layers
+         (blocksuniverse mechanic: gradient scrolls, scenery stays).
+         NEVER add transform/filter/backdrop-filter to .sky-wrap or any
+         ANCESTOR of a .fx layer - it traps position:fixed.
+         FULL DAY->NIGHT->DAY arc:
+           DAY (soft morning blue/ivory) -> golden dusk -> plum twilight
+           -> DEEP VELVET NIGHT HOLD (longest band, ~32-68%) -> indigo
+           pre-dawn -> warm sunrise -> soft DAY/ivory morning again.
+         Stops tuned to section offsets (see VERIFY note in JS tracks).
+         ============================================================ */
+      .sky-wrap {
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: scroll;
+        background-image: linear-gradient(
+          180deg,
+          /* --- DAY: soft calm morning blue, hero copy zone (ink text) --- */
+          #b6c8e4 0%,
+          #c3d2e8 7%,
+          #d5deec 13%,
+          /* warm ivory daylight near the horizon */ #e9dcc8 14%,
+          /* golden hour begins (hero cards zone) */ #d9ae85 17.5%,
+          /* sunset rose */ #9a6a6b 20.5%,
+          /* dusk plum */ #4c3a58 23.5%,
+          /* night by the press band top */ #1c1a3a 26.5%,
+          /* into velvet night (method) */ #121333 36%,
+          #0d0f28 40%,
+          /* --- deepest velvet HOLD 44-66% (offers + proof), stars peak --- */
+          #0b0d22 44%,
+          #0b0d22 66%,
+          #0c0e25 72%,
+          /* still deep through proof lower */ #101230 78%,
+          #161634 82%,
+          /* pre-dawn indigo holds (final CTA - white text) */ #1b1a3c 86%,
+          #2a2247 90%,
+          /* warm dawn GLOW rises from the bottom horizon, sky stays deep */
+          #45314f 93%,
+          #7a4f56 96%,
+          /* gold-peach first light on the horizon behind the meadow */ #b9805f
+            98.5%,
+          #33283f 100% /* deep ground shadow at the meadow base */
+        );
+      }
+
+      .fx {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      /* stars: the ONLY celestial layer now - carries the night band.
+         Taller band + denser field (see JS) so night reads without a moon. */
+      #stars {
+        block-size: 82vh;
+        inset-block-end: auto;
+        opacity: var(--op-stars);
+      }
+      .star {
+        position: absolute;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 0 6px 1px rgba(255, 244, 220, 0.55);
+      }
+      .star.t1 {
+        animation: twinkle 7s ease-in-out infinite;
+      }
+      .star.t2 {
+        animation: twinkle 9.5s ease-in-out infinite;
+      }
+      .star.t3 {
+        animation: twinkle 5s ease-in-out infinite;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.25;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.25);
+        }
+      }
+
+      /* moon + sun elements REMOVED - stars-only night, gradient carries day/dusk/dawn */
+
+      /* horizon world: illustrated meadow, pinned to viewport bottom */
+      #hills {
+        z-index: 1;
+      }
+      .hills-img {
+        position: absolute;
+        inset-block-end: -1px;
+        inset-inline: 0;
+        inline-size: 100%;
+        opacity: var(--op-hills);
+        filter: saturate(0.88);
+      }
+      /* night veil over the meadow: lerps UP in the night band */
+      .night-tint {
+        position: absolute;
+        inset-inline: 0;
+        inset-block-end: 0;
+        block-size: 48vh;
+        background: linear-gradient(
+          to top,
+          #05070f 0%,
+          #090b1c 34%,
+          rgba(11, 13, 32, 0.55) 68%,
+          rgba(11, 13, 32, 0) 100%
+        );
+        mix-blend-mode: multiply;
+        opacity: var(--op-tint);
+      }
+      /* warm dawn glow on the meadow horizon: lerps UP only at the finale.
+         The morning is a PROMISE of light on the horizon, not a bright sky. */
+      .dawn-glow {
+        position: absolute;
+        inset-inline: 0;
+        inset-block-end: 0;
+        block-size: 56vh;
+        background: radial-gradient(
+          125% 100% at 50% 100%,
+          rgba(244, 186, 122, 0.62) 0%,
+          rgba(214, 132, 92, 0.32) 34%,
+          rgba(122, 82, 108, 0.1) 62%,
+          rgba(11, 13, 32, 0) 100%
+        );
+        mix-blend-mode: screen;
+        opacity: var(--op-dawn);
+      }
+
+      /* ============ NAV ============ */
+      .nav {
+        position: fixed;
+        inset-block-start: 0;
+        inset-inline: 0;
+        z-index: 50;
+        transition:
+          background 0.4s ease,
+          backdrop-filter 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+      .nav-inner {
+        max-width: var(--maxw);
+        margin-inline: auto;
+        padding: 1rem var(--pad-inline);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      /* nav stays fully TRANSPARENT while scrolling; .scrolled only flips
+         ink -> cream + brown -> cream logo once the sky turns dark. */
+      .nav.scrolled {
+        background: transparent;
+        box-shadow: none;
+      }
+      /* NAV top state = ink on the DAY sky; scrolled = cream on velvet pill. */
+      .logo {
+        display: inline-grid;
+        align-items: center;
+      }
+      .logo img {
+        grid-area: 1 / 1;
+        block-size: 88px;
+        inline-size: auto;
+        display: block;
+        transition:
+          height 0.35s ease,
+          opacity 0.35s ease;
+      }
+      .nav.scrolled .logo img {
+        block-size: 54px;
+      }
+      /* brown logo over the day sky, cream logo once the velvet pill is on */
+      .logo .logo-cream {
+        opacity: 0;
+      }
+      .nav.scrolled .logo .logo-cream {
+        opacity: 1;
+      }
+      .nav.scrolled .logo .logo-brown {
+        opacity: 0;
+      }
+      .nav-links {
+        display: flex;
+        gap: 1.9rem;
+        align-items: center;
+      }
+      .nav-links a:not(.nav-cta) {
+        font-size: 0.96rem;
+        font-weight: 500;
+        color: var(--ink);
+        transition: color 0.2s;
+      }
+      .nav-links a:not(.nav-cta):hover {
+        color: var(--gold-deep);
+      }
+      .nav-cta {
+        min-height: 44px;
+        padding: 0.45rem 1.4rem;
+        border-radius: 999px;
+        border: 1px solid rgba(138, 107, 46, 0.42);
+        color: var(--gold-deep);
+        font-weight: 600;
+        font-size: 0.92rem;
+        display: inline-flex;
+        align-items: center;
+        transition:
+          transform 0.2s,
+          background 0.2s,
+          border-color 0.2s,
+          color 0.4s ease;
+      }
+      .nav-cta:hover {
+        transform: translateY(-1px);
+        background: rgba(217, 184, 120, 0.1);
+        border-color: rgba(217, 184, 120, 0.7);
+      }
+      /* scrolled: dark velvet pill -> cream/champagne text */
+      .nav.scrolled .nav-links a:not(.nav-cta) {
+        color: var(--cream-dim);
+      }
+      .nav.scrolled .nav-links a:not(.nav-cta):hover {
+        color: var(--gold-lite);
+      }
+      .nav.scrolled .nav-cta {
+        color: var(--gold-lite);
+        border-color: var(--hair-gold);
+      }
+      .nav.scrolled .nav-cta:hover {
+        background: rgba(217, 184, 120, 0.1);
+        border-color: rgba(217, 184, 120, 0.7);
+      }
+      .nav a:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+        border-radius: 8px;
+      }
+      @media (max-width: 760px) {
+        .nav-links a:not(.nav-cta) {
+          display: none;
+        }
+      }
+
+      /* ============ figures: cutouts on pedestals of light ============ */
+      .figure {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+      .figure img {
+        position: relative;
+        z-index: 2;
+        inline-size: auto;
+        max-inline-size: 100%;
+      }
+      /* rim glow + grounding shadow on the cutout itself */
+      .fig-glow img {
+        filter: drop-shadow(0 30px 40px rgba(3, 4, 14, 0.62))
+          drop-shadow(0 0 34px rgba(233, 205, 158, 0.16));
+      }
+      .fig-ground img {
+        filter: drop-shadow(0 26px 34px rgba(66, 48, 20, 0.34));
+      }
+      /* pedestal of light: soft warm pool the figure stands in */
+      .pedestal {
+        position: absolute;
+        inset-block-end: 4%;
+        inset-inline: 0;
+        margin-inline: auto;
+        inline-size: 82%;
+        block-size: 48%;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .pedestal--glow {
+        background: radial-gradient(
+          ellipse at center,
+          rgba(236, 214, 166, 0.42) 0%,
+          rgba(217, 184, 120, 0.16) 42%,
+          rgba(217, 184, 120, 0) 72%
+        );
+        filter: blur(30px);
+      }
+      .pedestal--ground {
+        background: radial-gradient(
+          ellipse at center,
+          rgba(120, 92, 40, 0.2) 0%,
+          rgba(120, 92, 40, 0.08) 46%,
+          rgba(120, 92, 40, 0) 72%
+        );
+        filter: blur(26px);
+      }
+
+      /* ============ HERO (dusk velvet, GLOWLY-style interlock) ============
+         Figure anchored bottom + inline-start (RIGHT in RTL), huge line-1
+         runs PARTIALLY BEHIND her (headline z-below figure), line-2 + sub +
+         CTA offset clear on the inline-end (LEFT). World budget (150vh) kept.
+         ============================================================ */
+      .hero {
+        position: relative;
+        z-index: 10;
+        padding-block: clamp(6.5rem, 13vh, 9rem) clamp(2.5rem, 6vh, 4rem);
+      }
+      .hero .wrap {
+        width: 100%;
+      }
+
+      /* GLOWLY structure: mega headline rows, figure IN FRONT of row 1,
+         rows 2-3 + sub + CTA clear on the inline-start (RIGHT) side */
+      .hero-stage {
+        position: relative;
+        min-height: clamp(500px, 74vh, 720px);
+        display: flex;
+        flex-direction: column;
+      }
+      .hero .eyebrow {
+        margin-block-end: 1rem;
+        color: var(--gold-deep);
+      }
+      .hero h1 {
+        color: var(--ink);
+        margin: 0;
+        font-weight: 700;
+      }
+      /* row 1: enormous, spans the width, tail runs BEHIND the figure */
+      .h1-row1 {
+        display: block;
+        position: relative;
+        z-index: 2;
+        font-size: clamp(3rem, 9.4vw, 6.4rem);
+        line-height: 1;
+        letter-spacing: -0.012em;
+        white-space: nowrap;
+      }
+      /* rows 2-3: giant stack on the clear RIGHT column */
+      .h1-row2,
+      .h1-row3 {
+        display: block;
+        font-size: clamp(2.2rem, 6.6vw, 4.6rem);
+        line-height: 1.06;
+        max-width: 58%;
+      }
+      .h1-row2 {
+        margin-block-start: 0.28em;
+      }
+      .hero h1 b {
+        color: var(--gold-deep);
+      }
+      .hero-sub {
+        font-size: clamp(1.02rem, 2vw, 1.2rem);
+        color: var(--ink);
+        font-weight: 400;
+        max-width: 44ch;
+        margin-block-start: 1.5rem;
+      }
+      .hero-sub b {
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .hero .cta-row {
+        justify-content: flex-start;
+        margin-block-start: 1.6rem;
+      }
+
+      /* the figure: large, anchored to the stage bottom on the LEFT,
+         ABOVE headline row 1 (interlock) */
+      .hero-figure {
+        position: absolute;
+        z-index: 3;
+        inset-block-end: 0;
+        inset-inline-end: clamp(0px, 3vw, 70px);
+        pointer-events: none;
+      }
+      .hero-figure img {
+        block-size: clamp(460px, min(78vh, 45vw), 750px);
+        inline-size: auto;
+        max-inline-size: 45vw;
+        filter: saturate(1) brightness(1.01) contrast(1.02)
+          drop-shadow(0 16px 26px rgba(74, 60, 80, 0.28));
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 12%);
+        mask-image: linear-gradient(to top, transparent 0%, #000 12%);
+      }
+
+      /* ---- hero containers row (GLOWLY bottom cards) ---- */
+      .hero-cards {
+        display: grid;
+        grid-template-columns: minmax(280px, 0.85fr) 1.35fr;
+        gap: clamp(1rem, 2vw, 1.5rem);
+        margin-block-start: clamp(2rem, 5vh, 3.2rem);
+      }
+      .hcard {
+        position: relative;
+        border-radius: 26px;
+        overflow: hidden;
+        min-height: clamp(260px, 34vh, 330px);
+      }
+      .hcard-photo {
+        display: block;
+        box-shadow: var(--shadow-soft);
+      }
+      .hcard-photo > img {
+        position: absolute;
+        inset: 0;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .hcard-photo:hover > img {
+        transform: scale(1.03);
+      }
+      .hcard-tag {
+        position: absolute;
+        z-index: 2;
+        inset-block-end: 14px;
+        inset-inline-start: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6ch;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #fff;
+        background: rgba(9, 11, 26, 0.72);
+        backdrop-filter: blur(8px);
+        padding: 0.45rem 0.95rem;
+        border-radius: 999px;
+      }
+      .hcard-tag img {
+        block-size: 20px;
+        inline-size: auto;
+      }
+      /* filled velvet card (GLOWLY's pink promo card, in Tammy night velvet) */
+      .hcard-fill {
+        background: linear-gradient(
+          135deg,
+          #2a2350 0%,
+          #191b3a 60%,
+          #14162e 100%
+        );
+        border: 1px solid var(--hair-gold);
+        padding: clamp(1.5rem, 3vw, 2.3rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.4rem;
+      }
+      .hcard-fill h3 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: #fff;
+        font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+        line-height: 1.3;
+        max-width: 18ch;
+        position: relative;
+        z-index: 2;
+      }
+      .hcard-trust {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        position: relative;
+        z-index: 2;
+      }
+      .avatars {
+        display: flex;
+      }
+      .avatars span {
+        inline-size: 42px;
+        block-size: 42px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #241a08;
+        background: linear-gradient(135deg, #e6cd97, #c9a463);
+        border: 2px solid #191b3a;
+      }
+      .avatars span + span {
+        margin-inline-start: -10px;
+      }
+      .hcard-trust .t-line {
+        color: var(--cream);
+        font-size: 0.95rem;
+        font-weight: 500;
+        max-width: 18ch;
+      }
+      .hcard-fig {
+        position: absolute;
+        inset-block-end: 0;
+        inset-inline-end: 0;
+        block-size: 92%;
+        inline-size: auto;
+        max-inline-size: 40%;
+        object-fit: contain;
+        object-position: bottom;
+        opacity: 0.96;
+        pointer-events: none;
+        -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 10%);
+        mask-image: linear-gradient(to top, transparent 0%, #000 10%);
+      }
+      .hcard-arrow {
+        position: absolute;
+        z-index: 2;
+        inset-block-start: 16px;
+        inset-inline-end: 16px;
+        inline-size: 48px;
+        block-size: 48px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #e6cd97, #c9a463);
+        color: #241a08;
+        font-size: 1.25rem;
+        font-weight: 700;
+        transition: transform 0.25s ease;
+      }
+      .hcard-arrow:hover {
+        transform: translateY(-3px) scale(1.06);
+      }
+
+      /* ---- MOBILE / narrow: stack gracefully ---- */
+      @media (max-width: 959px) {
+        .hero {
+          padding-block-start: clamp(8rem, 20vh, 11rem);
+        }
+        .hero-stage {
+          min-height: 0;
+        }
+        .h1-row1 {
+          font-size: clamp(2.3rem, 10.4vw, 3.4rem);
+          white-space: normal;
+        }
+        .h1-row2,
+        .h1-row3 {
+          font-size: clamp(1.7rem, 7.8vw, 2.6rem);
+          max-width: 100%;
+        }
+        .hero-figure {
+          position: relative;
+          inset: auto;
+          margin-block-start: 2rem;
+          display: flex;
+          justify-content: center;
+        }
+        .hero-figure img {
+          block-size: auto;
+          inline-size: min(78vw, 340px);
+          max-inline-size: none;
+        }
+        .hero-cards {
+          grid-template-columns: 1fr;
+        }
+        .hcard-fill h3 {
+          max-width: 100%;
+        }
+        .hcard-fig {
+          max-inline-size: 34%;
+        }
+      }
+
+      /* ============ ABOUT (homepage band) ============ */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.2fr minmax(240px, 0.8fr);
+        gap: clamp(2rem, 5vw, 4rem);
+        align-items: center;
+      }
+      .about-figure img {
+        inline-size: min(100%, 380px);
+        filter: drop-shadow(0 26px 40px rgba(3, 4, 14, 0.55));
+      }
+      .about-copy {
+        text-align: start;
+      }
+      .about-copy .eyebrow {
+        justify-content: flex-start;
+      }
+      .about-copy .cta-row {
+        justify-content: flex-start;
+      }
+      .about-copy h2 {
+        margin-block: 1rem 1.1rem;
+      }
+      .about-copy > p {
+        color: var(--cream);
+        max-width: 52ch;
+      }
+      .about-creds {
+        list-style: none;
+        margin-block: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .about-creds li {
+        color: var(--cream-dim);
+        font-size: 0.98rem;
+        display: flex;
+        align-items: baseline;
+        gap: 0.6ch;
+      }
+      .about-creds li::before {
+        content: "✦";
+        color: var(--gold-lite);
+        font-size: 0.7em;
+      }
+      @media (max-width: 959px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .about-figure {
+          order: 2;
+        }
+        .about-creds li {
+          justify-content: center;
+        }
+        .about-copy .cta-row {
+          justify-content: center;
+        }
+      }
+
+      /* legibility for velvet-zone display text */
+      .on-velvet h1,
+      .on-velvet h2,
+      .on-velvet h3,
+      .pain-list,
+      .pain-truth,
+      .identify,
+      .method .intro {
+        text-shadow:
+          0 1px 3px rgba(4, 5, 16, 0.6),
+          0 2px 24px rgba(4, 5, 16, 0.4);
+      }
+      /* DAY-zone display text: whisper of white lift off the soft sky */
+      .on-day h1,
+      .on-day .hero-sub {
+        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+      }
+
+      /* ============ PAIN (deep velvet night) ============ */
+      .dusk-caption {
+        text-align: center;
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+        color: var(--gold-lite);
+        letter-spacing: 0.02em;
+        margin-block-end: clamp(2.4rem, 6vw, 4rem);
+        text-shadow:
+          0 1px 3px rgba(4, 5, 16, 0.7),
+          0 2px 20px rgba(4, 5, 16, 0.5);
+      }
+      .pain-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: clamp(2.5rem, 6vw, 4.5rem);
+        align-items: center;
+      }
+      @media (min-width: 880px) {
+        .pain-grid {
+          grid-template-columns: 0.82fr 1.18fr;
+        }
+      }
+      .pain-figure img {
+        max-block-size: 560px;
+      }
+      .pain h2 {
+        color: var(--cream);
+        margin-block-end: 1.8rem;
+      }
+      .pain h2 b {
+        color: var(--gold-lite);
+      }
+      .pain-list {
+        font-size: clamp(1.06rem, 2.3vw, 1.26rem);
+        color: var(--cream);
+        font-weight: 300;
+      }
+      .pain-list p {
+        margin-block: 0.4rem;
+      }
+      .identify {
+        display: block;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(2rem, 5vw, 2.9rem);
+        color: var(--gold-lite);
+        margin-block: 1.9rem;
+      }
+      .pain-truth {
+        margin-block-start: 2.2rem;
+        padding-block-start: 2rem;
+        border-block-start: 1px solid var(--hair-gold-soft);
+        font-size: clamp(1.05rem, 2.3vw, 1.24rem);
+        color: var(--cream);
+        font-weight: 300;
+      }
+      .pain-truth strong {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      /* ============ METHOD (deep velvet night) ============ */
+      .method .head {
+        text-align: center;
+        max-width: 680px;
+        margin-inline: auto;
+        margin-block-end: 2.2rem;
+      }
+      .method h2 {
+        color: #fff;
+      }
+      .method h2 b {
+        color: var(--gold-lite);
+      }
+      .method .intro {
+        margin-block-start: 1rem;
+        color: var(--cream-dim);
+        font-size: 1.14rem;
+        font-weight: 300;
+      }
+      .pillars {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 620px) {
+        .pillars {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      /* compact 4-across row on desktop - this is the differentiator, kept tight */
+      @media (min-width: 1000px) {
+        .pillars {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .velvet-panel {
+        background: rgba(23, 25, 52, 0.66);
+        backdrop-filter: blur(14px) saturate(1.05);
+        border: 1px solid rgba(217, 184, 120, 0.28);
+        border-radius: 20px;
+        box-shadow:
+          0 4px 14px rgba(4, 5, 16, 0.4),
+          0 24px 60px -28px rgba(4, 5, 16, 0.8),
+          inset 0 1px 0 rgba(255, 250, 240, 0.07);
+        position: relative;
+        overflow: hidden;
+      }
+      /* icon chip - 44px gold-tinted, method + offers cards */
+      .card-chip {
+        inline-size: 44px;
+        block-size: 44px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        line-height: 1;
+        background: rgba(217, 184, 120, 0.16);
+        border: 1px solid rgba(217, 184, 120, 0.32);
+        margin-block-end: 1rem;
+      }
+      .velvet-panel::before {
+        content: "";
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline: 0;
+        block-size: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(236, 214, 166, 0.5),
+          transparent
+        );
+      }
+      .pillar {
+        padding: 1.7rem 1.5rem;
+        transition:
+          transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
+          border-color 0.26s ease,
+          box-shadow 0.26s ease;
+      }
+      .pillar:hover {
+        transform: translateY(-4px) scale(1.01);
+        border-color: rgba(217, 184, 120, 0.55);
+      }
+      .pillar .p-num {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.35rem;
+        color: var(--gold-lite);
+        line-height: 1;
+        direction: ltr;
+        unicode-bidi: isolate;
+        font-variant-numeric: lining-nums;
+        margin-block-end: 0.9rem;
+        inline-size: 44px;
+        block-size: 44px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(217, 184, 120, 0.16);
+        border: 1px solid rgba(217, 184, 120, 0.32);
+      }
+      .pillar h3 {
+        font-size: 1.16rem;
+        font-weight: 700;
+        color: var(--cream);
+        margin-block-end: 0.5rem;
+        letter-spacing: 0.01em;
+      }
+      .pillar p {
+        color: var(--cream-dim);
+        font-weight: 300;
+        font-size: 0.98rem;
+        line-height: 1.6;
+      }
+
+      /* ============ AUTHORITY (night -> indigo) ============ */
+      .counters {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.2rem 1rem;
+        padding: clamp(2.2rem, 5vw, 3.2rem) clamp(1.3rem, 3vw, 2.2rem);
+        align-items: start;
+      }
+      @media (min-width: 860px) {
+        .counters {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .counter {
+        text-align: center;
+        padding: 0.3rem 0.5rem;
+        border-radius: 14px;
+        position: relative;
+      }
+      .counter:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block: 12%;
+        inline-size: 1px;
+        background: var(--hair-gold-soft);
+      }
+      @media (max-width: 859px) {
+        .counter:not(:last-child)::after {
+          display: none;
+        }
+      }
+      a.counter {
+        transition: background 0.2s;
+        display: block;
+      }
+      a.counter:hover {
+        background: rgba(217, 184, 120, 0.07);
+      }
+      a.counter:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+      .counter .num {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(2.6rem, 6.5vw, 3.5rem);
+        color: var(--gold-lite);
+        line-height: 1;
+        direction: ltr;
+        unicode-bidi: isolate;
+        font-variant-numeric: lining-nums;
+      }
+      .counter .num.word {
+        font-size: clamp(2.1rem, 5.5vw, 2.7rem);
+        color: var(--cream);
+      }
+      .counter .label {
+        margin-block-start: 0.8rem;
+        font-size: 0.84rem;
+        letter-spacing: 0.04em;
+        color: var(--cream-dim);
+        font-weight: 400;
+      }
+      .counter.badge .num {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4ch;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 1.08rem;
+        color: var(--gold-lite);
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--hair-gold);
+        border-radius: 999px;
+      }
+      a.counter.badge:hover .num {
+        border-color: rgba(217, 184, 120, 0.7);
+      }
+      .counter .ext {
+        display: inline-block;
+        font-size: 0.72em;
+        opacity: 0.85;
+      }
+
+      /* ============ COURSE (indigo -> plum, still velvet) ============ */
+      .course-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: clamp(2.5rem, 5vw, 4rem);
+        align-items: center;
+      }
+      @media (min-width: 880px) {
+        .course-grid {
+          grid-template-columns: 0.85fr 1.15fr;
+        }
+      }
+      .course-figure img {
+        max-block-size: 520px;
+      }
+      .course-panel {
+        padding: clamp(2.4rem, 5vw, 3.4rem);
+      }
+      .course-panel .eyebrow {
+        margin-block-end: 1.1rem;
+      }
+      .course-panel h2 {
+        color: var(--cream);
+        margin-block-end: 1rem;
+      }
+      .course-panel h2 b {
+        color: var(--gold-lite);
+      }
+      .course-panel p {
+        font-size: 1.1rem;
+        font-weight: 300;
+        color: var(--cream-dim);
+      }
+      .course-panel p b {
+        font-weight: 500;
+        color: var(--gold-lite);
+      }
+      .price {
+        margin-block: 2rem 0.4rem;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.7ch;
+        font-family: var(--font-display);
+        direction: rtl;
+      }
+      .price .now {
+        font-size: clamp(2.8rem, 8vw, 3.6rem);
+        font-weight: 700;
+        color: var(--gold-lite);
+        direction: ltr;
+        unicode-bidi: isolate;
+      }
+      .price .cur {
+        font-size: 1.15rem;
+        font-weight: 400;
+        color: var(--cream);
+        font-family: var(--font-body);
+      }
+      .price s {
+        font-size: 1.25rem;
+        color: rgba(239, 231, 216, 0.5);
+        font-family: var(--font-body);
+        font-weight: 400;
+        text-decoration-thickness: 1px;
+      }
+
+      /* ============ MORNING SECTIONS (ink on warm ivory) ============ */
+      .morning .eyebrow {
+        color: var(--gold-deep);
+      }
+      .morning h2 {
+        color: var(--ink);
+      }
+      .morning h2 b {
+        color: var(--gold-deep);
+      }
+      .ivory-panel {
+        background: var(--ivory-surface);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(138, 107, 46, 0.24);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+        position: relative;
+        overflow: hidden;
+      }
+      .ivory-panel::before {
+        content: "";
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline: 0;
+        block-size: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(138, 107, 46, 0.4),
+          transparent
+        );
+      }
+
+      /* guides */
+      .guides .g-inner {
+        max-width: 700px;
+        margin-inline: auto;
+        text-align: center;
+        padding: clamp(2.6rem, 6vw, 3.8rem);
+      }
+      .guide-icon {
+        inline-size: 62px;
+        block-size: 62px;
+        margin-inline: auto;
+        margin-block-end: 1.4rem;
+        border-radius: 18px;
+        background: rgba(217, 184, 120, 0.16);
+        border: 1px solid rgba(138, 107, 46, 0.24);
+        display: grid;
+        place-items: center;
+        font-size: 1.7rem;
+      }
+      .guides p {
+        font-size: 1.16rem;
+        font-weight: 300;
+        color: var(--ink-soft);
+        margin-block-start: 1rem;
+      }
+      .guides .clock {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* ============ FINAL CTA (warm ivory morning) ============ */
+      .final {
+        text-align: center;
+        padding-block: clamp(5rem, 9vw, 7rem);
+      }
+      .final .eyebrow {
+        justify-content: center;
+        margin-block-end: 1rem;
+      }
+      .final h2 {
+        font-size: clamp(2.1rem, 6vw, 3.4rem);
+        color: #fff;
+        max-width: 17ch;
+        margin-inline: auto;
+      }
+      .final h2 b {
+        color: var(--gold-lite);
+      }
+      .final p {
+        font-size: 1.18rem;
+        font-weight: 300;
+        color: var(--cream-dim);
+        margin-block-start: 1.2rem;
+        max-width: 42ch;
+        margin-inline: auto;
+      }
+      .sign {
+        margin-block-start: 1.9rem;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.7rem;
+        color: var(--gold-lite);
+      }
+
+      /* ============ FOOTER (white/gold on the deep dawn base) ============ */
+      .footer {
+        position: relative;
+        z-index: 10;
+        color: var(--cream-dim);
+        padding-block: clamp(3rem, 6vw, 4.5rem) 2.6rem;
+      }
+      /* scrim: keeps white footer text legible over the bright dawn-lit meadow
+         while the horizon glow still reads at the footer's upper edge */
+      .footer::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: linear-gradient(
+          180deg,
+          rgba(11, 13, 32, 0) 0%,
+          rgba(11, 13, 32, 0.4) 45%,
+          rgba(11, 13, 32, 0.68) 100%
+        );
+      }
+      .footer-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.6rem 2rem;
+        padding-block-end: 2rem;
+      }
+      .footer .f-logo {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: 1.9rem;
+        color: #fff;
+        letter-spacing: 0.04em;
+      }
+      .footer .f-logo b {
+        font-weight: 700;
+        color: var(--gold-lite);
+      }
+      .footer .f-tag {
+        font-size: 1rem;
+        color: var(--cream-dim);
+      }
+      .f-cols {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.6rem 2rem;
+        padding-block: 2.2rem;
+        border-block-start: 1px solid var(--hair-gold-soft);
+      }
+      @media (max-width: 560px) {
+        .f-cols {
+          grid-template-columns: 1fr;
+          gap: 1.8rem;
+        }
+        .footer-top {
+          flex-direction: column;
+        }
+      }
+      .f-col h4 {
+        font-family: var(--font-body);
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        color: var(--gold-lite);
+        margin-block-end: 1rem;
+      }
+      .f-col a {
+        display: block;
+        font-size: 0.96rem;
+        color: var(--cream-dim);
+        margin-block: 0.55rem;
+        transition: color 0.2s;
+      }
+      .f-col a:hover {
+        color: #fff;
+      }
+      .footer a:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+      .footer-bottom {
+        padding-block-start: 1.8rem;
+        border-block-start: 1px solid var(--hair-gold-soft);
+        text-align: center;
+      }
+      .copyright {
+        font-size: 0.86rem;
+        color: rgba(255, 250, 242, 0.7);
+      }
+      .ltr {
+        direction: ltr;
+        unicode-bidi: embed;
+        display: inline-block;
+      }
+
+      /* ============ QUICK-PATHS (dusk->night) ============ */
+      .quick .head {
+        text-align: center;
+        max-width: 640px;
+        margin-inline: auto;
+        margin-block-end: 2.6rem;
+      }
+      .quick h2 {
+        color: var(--cream);
+      }
+      .quick h2 b {
+        color: var(--gold-lite);
+      }
+      .quick .head p {
+        color: var(--cream-dim);
+        font-weight: 300;
+        margin-block-start: 0.8rem;
+        font-size: 1.08rem;
+      }
+      .quick-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 760px) {
+        .quick-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .quick-card {
+        padding: 1.6rem 1.4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.55rem;
+        text-align: start;
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .quick-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(217, 184, 120, 0.6);
+      }
+      .quick-card .qc-icon {
+        font-size: 1.55rem;
+        line-height: 1;
+      }
+      .quick-card .qc-title {
+        font-family: var(--font-body);
+        font-weight: 600;
+        color: var(--cream);
+        font-size: 1.04rem;
+      }
+      .quick-card .qc-go {
+        margin-block-start: 0.1rem;
+        font-size: 0.82rem;
+        color: var(--gold-lite);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45ch;
+      }
+      .quick-card:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      /* ============ OFFERS GRID (night hold) ============ */
+      .offers .head {
+        text-align: center;
+        max-width: 680px;
+        margin-inline: auto;
+        margin-block-end: 1.9rem;
+      }
+      .offers h2 {
+        color: #fff;
+      }
+      .offers h2 b {
+        color: var(--gold-lite);
+      }
+      .offers .head p {
+        color: var(--cream-dim);
+        font-weight: 300;
+        margin-block-start: 0.8rem;
+        font-size: 1.1rem;
+      }
+      .offers-figure {
+        margin-block-end: 2.6rem;
+      }
+      .offers-figure img {
+        max-block-size: 360px;
+      }
+      .offers-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+      @media (min-width: 640px) {
+        .offers-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1040px) {
+        .offers-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .offer-card {
+        padding: 2rem 1.7rem;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1),
+          border-color 0.26s ease,
+          box-shadow 0.26s ease;
+      }
+      .offer-card:hover {
+        transform: translateY(-4px) scale(1.01);
+        border-color: rgba(217, 184, 120, 0.55);
+      }
+      .offer-card .eyebrow {
+        margin-block-end: 0.9rem;
+      }
+      .offer-card h3 {
+        color: var(--cream);
+        font-weight: 700;
+        font-size: 1.24rem;
+        margin-block-end: 0.55rem;
+        letter-spacing: 0.005em;
+      }
+      .offer-card p {
+        color: var(--cream-dim);
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 1.62;
+        flex: 1 1 auto;
+      }
+      .offer-price {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.55ch;
+        margin-block: 1.1rem 0.1rem;
+        font-family: var(--font-display);
+        direction: rtl;
+      }
+      .offer-price .now {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--gold-lite);
+        direction: ltr;
+        unicode-bidi: isolate;
+      }
+      .offer-price .cur {
+        font-size: 0.95rem;
+        color: var(--cream);
+        font-family: var(--font-body);
+      }
+      .offer-price s {
+        font-size: 1rem;
+        color: rgba(239, 231, 216, 0.5);
+        font-family: var(--font-body);
+        font-weight: 400;
+      }
+      .offer-cta {
+        margin-block-start: 1.4rem;
+      }
+      .offer-cta .btn {
+        width: 100%;
+      }
+      /* featured = filled gold "special" tile, dark ink text (AA) */
+      .offer-card.featured {
+        background: linear-gradient(
+          155deg,
+          #f0dcab 0%,
+          #e2c184 52%,
+          #d0ac6b 100%
+        );
+        border-color: rgba(255, 247, 227, 0.5);
+        box-shadow:
+          0 4px 14px rgba(4, 5, 16, 0.4),
+          0 26px 64px -26px rgba(150, 112, 46, 0.7),
+          inset 0 1px 0 rgba(255, 252, 244, 0.6);
+      }
+      .offer-card.featured::before {
+        display: none;
+      }
+      .offer-card.featured .eyebrow {
+        color: #6a4e18;
+      }
+      .offer-card.featured .eyebrow::before {
+        background: #6a4e18;
+      }
+      .offer-card.featured .card-chip {
+        background: rgba(36, 26, 8, 0.12);
+        border-color: rgba(36, 26, 8, 0.3);
+        color: #241a08;
+      }
+      .offer-card.featured h3 {
+        color: #241a08;
+      }
+      .offer-card.featured p {
+        color: #3a2c10;
+      }
+      .offer-card.featured .offer-cta .btn {
+        background: #241a08;
+        color: var(--gold-lite);
+        box-shadow: 0 12px 28px -12px rgba(36, 26, 8, 0.6);
+      }
+      .offer-card.featured .offer-cta .btn:hover {
+        background: #171006;
+        transform: translateY(-2px);
+      }
+      .offer-tag {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-end: 1.4rem;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, #e6cd97, #d9b878);
+        color: #241a08;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 0.3rem 0.9rem;
+        border-radius: 999px;
+        letter-spacing: 0.03em;
+      }
+      .offer-card.featured .offer-tag {
+        background: #241a08;
+        color: var(--gold-lite);
+      }
+
+      /* gold sparkle doodles near headings (pop in last) */
+      .doodle {
+        position: absolute;
+        pointer-events: none;
+        color: var(--gold-lite);
+        z-index: 5;
+      }
+      .doodle svg {
+        inline-size: 100%;
+        block-size: 100%;
+        display: block;
+        filter: drop-shadow(0 0 8px rgba(236, 214, 166, 0.5));
+      }
+
+      /* ============ PRESS "מהתקשורת" (night) ============ */
+      .press .p-inner {
+        max-width: 760px;
+        margin-inline: auto;
+        text-align: center;
+      }
+      .press .eyebrow {
+        justify-content: center;
+        margin-block-end: 1.6rem;
+      }
+      .press-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.9rem 1.3rem;
+        padding: 1.7rem 2rem;
+        transition:
+          transform 0.25s ease,
+          border-color 0.25s ease;
+      }
+      .press-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(217, 184, 120, 0.66);
+      }
+      .press-video {
+        padding: 1.7rem 2rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+        align-items: center;
+      }
+      .press-head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.9rem;
+        flex-wrap: wrap;
+      }
+      .press-logo {
+        inline-size: 54px;
+        block-size: 54px;
+        border-radius: 12px;
+        background: #fdf3ec;
+        padding: 6px;
+      }
+      .press-player {
+        inline-size: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--hair-gold-soft);
+        background: #000;
+      }
+      .press-player iframe {
+        inline-size: 100%;
+        block-size: 100%;
+        border: 0;
+        display: block;
+      }
+      .press-poster {
+        position: relative;
+        inline-size: 100%;
+        block-size: 100%;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+        background: #000;
+        display: block;
+      }
+      .press-poster img {
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        opacity: 0.88;
+      }
+      .press-poster:hover img {
+        opacity: 1;
+      }
+      .press-playbtn {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+      }
+      .press-playbtn::before,
+      .press-playbtn::after {
+        grid-area: 1 / 1;
+      }
+      .press-playbtn::before {
+        content: "";
+        inline-size: 76px;
+        block-size: 76px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e6cd97, #d9b878 60%, #c9a463);
+        box-shadow: 0 14px 40px -10px rgba(201, 164, 99, 0.75);
+        transition: transform 0.22s ease;
+      }
+      .press-poster:hover .press-playbtn::before {
+        transform: scale(1.07);
+      }
+      .press-playbtn::after {
+        content: "";
+        inline-size: 0;
+        block-size: 0;
+        margin-inline-start: 6px;
+        border-block: 13px solid transparent;
+        border-inline-end: 22px solid #241a08;
+      }
+      .press-artlink {
+        font-size: 0.92rem;
+        color: var(--gold-lite);
+        border-block-end: 1px solid var(--hair-gold-soft);
+        padding-block-end: 2px;
+      }
+      .press-artlink:hover {
+        border-color: var(--gold);
+      }
+
+      /* ============ PROOF band layout (press video + counters + testimonials) ============ */
+      .proof-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1.3rem 2rem;
+        margin-block-end: 2.4rem;
+        padding-block-end: 1.5rem;
+        border-block-end: 1px solid var(--hair-gold-soft);
+      }
+      .proof-title h2 {
+        color: #fff;
+      }
+      .proof-title h2 b {
+        color: var(--gold-lite);
+      }
+      .proof-counters {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+      }
+      .pc {
+        text-align: center;
+        padding: 0.2rem 0.95rem;
+        position: relative;
+      }
+      .pc:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block: 16%;
+        inline-size: 1px;
+        background: var(--hair-gold-soft);
+      }
+      .pc .num {
+        display: block;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.9rem;
+        line-height: 1;
+        color: var(--gold-lite);
+        direction: ltr;
+        unicode-bidi: isolate;
+        font-variant-numeric: lining-nums;
+      }
+      .pc .num.word {
+        font-size: 1.5rem;
+      }
+      .pc.badge .num {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35ch;
+        font-family: var(--font-body);
+        font-size: 1.02rem;
+        padding: 0.42rem 0.9rem;
+        border: 1px solid var(--hair-gold);
+        border-radius: 999px;
+      }
+      .pc .num .ext {
+        font-size: 0.72em;
+        opacity: 0.85;
+      }
+      .pc .lbl {
+        margin-block-start: 0.55rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.03em;
+        color: var(--cream-dim);
+      }
+      a.pc.badge {
+        transition: transform 0.2s;
+      }
+      a.pc.badge:hover {
+        transform: translateY(-2px);
+      }
+      a.pc.badge:hover .num {
+        border-color: rgba(217, 184, 120, 0.7);
+      }
+      a.pc:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+        border-radius: 10px;
+      }
+      .proof-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
+        align-items: start;
+      }
+      @media (min-width: 900px) {
+        .proof-grid {
+          grid-template-columns: 1.15fr 0.85fr;
+        }
+      }
+      .proof-testi {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .proof-testi .testi-card {
+        padding: 1.3rem 1.5rem 1.4rem;
+      }
+      .proof-testi .q-mark {
+        font-size: 3rem;
+        margin-block-end: 0.2rem;
+      }
+      .proof-testi blockquote {
+        font-size: 1.04rem;
+        line-height: 1.55;
+      }
+      .proof-testi .who {
+        margin-block-start: 0.8rem;
+      }
+      .press-badge {
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--gold-lite);
+        padding: 0.34rem 1.1rem;
+        border: 1px solid var(--hair-gold);
+        border-radius: 999px;
+        line-height: 1;
+      }
+      .press-line {
+        color: var(--cream);
+        font-weight: 300;
+        font-size: 1.08rem;
+      }
+      .press-line b {
+        font-weight: 600;
+        color: var(--gold-lite);
+      }
+      .press-card .ext {
+        font-size: 0.82em;
+        color: var(--gold-lite);
+        opacity: 0.85;
+      }
+      .press-card:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      /* ============ TESTIMONIALS "אמהות מספרות" (night) ============ */
+      .testi .head {
+        text-align: center;
+        margin-block-end: 3rem;
+      }
+      .testi h2 {
+        color: var(--cream);
+      }
+      .testi h2 b {
+        color: var(--gold-lite);
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+      }
+      @media (min-width: 720px) {
+        .testi-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .testi-card {
+        padding: 1.7rem 2rem 1.9rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .testi-card .q-mark {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 3.2rem;
+        line-height: 1;
+        color: var(--gold-lite);
+        opacity: 0.92;
+        margin-block-end: 0.4rem;
+      }
+      .testi-card blockquote {
+        color: var(--cream);
+        font-size: 1.14rem;
+        font-weight: 300;
+        line-height: 1.62;
+        margin: 0;
+      }
+      .testi-card .who {
+        margin-block-start: 1.2rem;
+        font-weight: 600;
+        color: var(--gold-lite);
+        font-size: 0.95rem;
+      }
+
+      /* ============ FAQ (morning) - native details/summary accordion ============ */
+      .faq .head {
+        text-align: center;
+        max-width: 640px;
+        margin-inline: auto;
+        margin-block-end: 2.6rem;
+      }
+      .faq h2 {
+        color: var(--ink);
+      }
+      .faq h2 b {
+        color: var(--gold-deep);
+      }
+      .faq-list {
+        max-width: 760px;
+        margin-inline: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+      .faq-item {
+        border: 1px solid rgba(138, 107, 46, 0.24);
+        border-radius: 16px;
+        background: var(--ivory-surface);
+        overflow: hidden;
+        transition: border-color 0.2s ease;
+      }
+      .faq-item[open] {
+        border-color: rgba(138, 107, 46, 0.5);
+      }
+      .faq-q {
+        list-style: none;
+        cursor: pointer;
+        padding: 1.15rem 1.4rem;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 1.06rem;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .faq-q::-webkit-details-marker {
+        display: none;
+      }
+      .faq-plus {
+        flex-shrink: 0;
+        position: relative;
+        inline-size: 20px;
+        block-size: 20px;
+        transition: transform 0.28s ease;
+      }
+      .faq-plus::before,
+      .faq-plus::after {
+        content: "";
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: 50%;
+        background: var(--gold-deep);
+        border-radius: 2px;
+      }
+      .faq-plus::before {
+        inline-size: 15px;
+        block-size: 2px;
+        transform: translate(-50%, -50%);
+      }
+      .faq-plus::after {
+        inline-size: 2px;
+        block-size: 15px;
+        transform: translate(-50%, -50%);
+      }
+      .faq-item[open] .faq-plus {
+        transform: rotate(135deg);
+      }
+      .faq-a {
+        padding: 0 1.4rem 1.3rem;
+        color: var(--ink-soft);
+        font-weight: 300;
+        font-size: 1.03rem;
+        line-height: 1.68;
+      }
+      .faq-q:focus-visible {
+        outline: 3px solid var(--gold-deep);
+        outline-offset: -3px;
+        border-radius: 14px;
+      }
+
+      /* ============ CONTACT strip (morning, above footer) ============ */
+      .contact .c-inner {
+        text-align: center;
+        max-width: 680px;
+        margin-inline: auto;
+        padding: clamp(2.4rem, 5vw, 3.4rem);
+      }
+      .contact .eyebrow {
+        justify-content: center;
+      }
+      .contact h2 {
+        color: var(--ink);
+        margin-block-start: 1rem;
+      }
+      .contact h2 b {
+        color: var(--gold-deep);
+      }
+      .contact p {
+        color: var(--ink-soft);
+        font-weight: 300;
+        font-size: 1.12rem;
+        margin-block-start: 0.9rem;
+      }
+      .contact .c-ig {
+        color: var(--gold-deep);
+        font-weight: 600;
+      }
+
+      /* ============ FLOATING CHAT BUTTON ============ */
+      .chat-fab {
+        position: fixed;
+        z-index: 60;
+        inset-block-end: clamp(1rem, 3vw, 1.6rem);
+        inset-inline-start: clamp(1rem, 3vw, 1.6rem);
+        inline-size: 58px;
+        block-size: 58px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          #e6cd97 0%,
+          #d9b878 55%,
+          #c9a463 100%
+        );
+        color: #241a08;
+        display: grid;
+        place-items: center;
+        box-shadow:
+          0 14px 30px -10px rgba(201, 164, 99, 0.7),
+          0 4px 12px rgba(4, 5, 16, 0.28),
+          inset 0 1px 0 rgba(255, 247, 227, 0.55);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .chat-fab:hover {
+        transform: translateY(-3px) scale(1.04);
+        box-shadow:
+          0 20px 40px -12px rgba(201, 164, 99, 0.82),
+          0 6px 16px rgba(4, 5, 16, 0.32),
+          inset 0 1px 0 rgba(255, 247, 227, 0.6);
+      }
+      .chat-fab:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+      .chat-fab svg {
+        inline-size: 27px;
+        block-size: 27px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .chat-fab {
+          transition: none !important;
+        }
+      }
+
+      /* ============ REVEAL MOTION - re-triggerable two-beat choreography ============
+         data-pop marks an element; data-pop-delay (ms) staggers it. The band's
+         IntersectionObserver toggles .is-in on the section (enter >=25%, exit <10%),
+         so entering scrolls the whole cascade in, leaving reverses it - re-entry pops
+         again. Exit is fast + un-staggered (base transition, no delay). */
+      .js [data-pop] {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.35s ease-out,
+          transform 0.35s ease-out;
+        will-change: opacity, transform;
+      }
+      .js [data-pop="card"] {
+        transform: translateY(30px) scale(0.94);
+      }
+      .js [data-pop="accent"] {
+        transform: scale(0.6) rotate(-12deg);
+        transform-origin: center;
+      }
+      .is-in [data-pop] {
+        opacity: 1;
+        transform: none;
+        transition-duration: 0.6s;
+        transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+        transition-delay: var(--pd, 0ms);
+      }
+      .is-in [data-pop="card"] {
+        transition-duration: 0.65s;
+        transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .is-in [data-pop="accent"] {
+        transition-duration: 0.5s;
+        transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      /* snappy hover on popped cards - kill the entrance delay so lift is instant */
+      .is-in [data-pop="card"]:hover {
+        transform: translateY(-4px) scale(1.01);
+        transition-delay: 0ms;
+        transition-duration: 0.26s;
+        border-color: rgba(217, 184, 120, 0.55);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        html {
+          scroll-behavior: smooth;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        :root {
+          /* static coherent mid-state: NIGHT with STARS (no moon/sun anymore) */
+          --op-stars: 0.9;
+          --op-hills: 1;
+          --op-tint: 0.6;
+        }
+        .star.t1,
+        .star.t2,
+        .star.t3,
+        .cloud-img,
+        .scroll-hint span {
+          animation: none !important;
+        }
+        [data-pop] {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        .btn,
+        .pillar,
+        .offer-card,
+        .nav-cta {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============ NAV ============ -->
+    <nav class="nav" id="nav" aria-label="ניווט ראשי">
+      <div class="nav-inner">
+        <a href="#top" class="logo"
+          ><img
+            class="logo-brown"
+            src="assets/brand/logo-brown.png"
+            alt="baby TAMMY time - תמי שני"
+            width="600"
+            height="488" /><img
+            class="logo-cream"
+            src="assets/brand/logo-cream.png"
+            alt=""
+            aria-hidden="true"
+            width="600"
+            height="488"
+        /></a>
+        <div class="nav-links">
+          <a href="#press">הכתבה ברשת 13</a>
+          <a href="#course">הקורס</a>
+          <a href="guides/">מדריכים</a>
+          <a href="#about">עליי</a>
+          <a
+            class="nav-cta"
+            href="https://ig.me/m/baby.tammy.time"
+            target="_blank"
+            rel="noopener"
+            >שיחת ייעוץ ללא עלות</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ THE WORLD (tall gradient wrapper + fixed scenery) ============ -->
+    <div class="sky-wrap">
+      <div class="fx" id="stars" aria-hidden="true"></div>
+
+      <div class="fx" id="hills" aria-hidden="true">
+        <img class="hills-img" src="assets/world/hills.png" alt="" />
+        <div class="night-tint"></div>
+        <div class="dawn-glow"></div>
+      </div>
+
+      <main id="top">
+        <!-- ============ HERO (now DAY light: ink-on-day, SUN in celestial slot) ============ -->
+        <header class="hero on-day" data-band>
+          <div class="wrap">
+            <div class="hero-stage">
+              <span class="eyebrow" data-pop
+                >תמי שני &nbsp;|&nbsp; יועצת שינה והתפתחות</span
+              >
+              <h1 data-pop data-pop-delay="60">
+                <span class="h1-row1">תינוק שנרדם <b>לבד</b>.</span>
+                <span class="h1-row2">אמא שישנה</span>
+                <span class="h1-row3">סוף סוף <b>בלילה</b>.</span>
+              </h1>
+              <p class="hero-sub" data-pop data-pop-delay="150">
+                אני תמי שני, יועצת שינה והתפתחות עם 15 שנות ניסיון ואלפי משפחות
+                שליוויתי. יחד נבנה לבייבי שלכם הרגלי שינה בריאים, בדרך ברורה
+                ומותאמת אישית, <b>בלי להשאיר אותו לבכות לבד</b>.
+              </p>
+              <div class="cta-row" data-pop data-pop-delay="260">
+                <a
+                  class="btn btn-gold"
+                  href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                  target="_blank"
+                  rel="noopener"
+                  >אני רוצה לישון כבר עכשיו</a
+                >
+              </div>
+
+              <div class="hero-figure figure">
+                <img
+                  src="assets/cutouts/portrait-b-cut.png"
+                  alt="תמי שני מחזיקה תינוק ישן בזרועותיה"
+                  width="928"
+                  height="1152"
+                />
+              </div>
+            </div>
+
+            <!-- GLOWLY bottom containers: photo card + filled velvet card -->
+            <div class="hero-cards">
+              <a class="hcard hcard-photo" href="#press" data-pop="card">
+                <img
+                  src="assets/press/tammy-13tv-poster.jpg"
+                  alt="תמי שני בכתבה של רשת 13"
+                  loading="lazy"
+                />
+                <span class="hcard-tag"
+                  ><img
+                    src="assets/press/reshet13-logo.svg"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                  לצפייה בכתבה</span
+                >
+              </a>
+              <div
+                class="hcard hcard-fill"
+                data-pop="card"
+                data-pop-delay="140"
+              >
+                <h3>מלווה אתכם יד ביד בכל שלב, עד שכל הבית ישן.</h3>
+                <div class="hcard-trust">
+                  <div class="avatars" aria-hidden="true">
+                    <span>ש</span><span>א</span><span>ל</span>
+                  </div>
+                  <span class="t-line">אלפי משפחות כבר ישנות טוב יותר</span>
+                </div>
+                <img
+                  class="hcard-fig"
+                  src="assets/cutouts/leg1_04-cut.png"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                />
+                <a class="hcard-arrow" href="#course" aria-label="לקורס של תמי"
+                  >↗</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="hdiv" aria-hidden="true"></div>
+
+        <!-- ============ METHOD ============ -->
+        <section class="section proof on-velvet" id="press" data-band>
+          <div class="wrap">
+            <div class="proof-head" style="position: relative">
+              <span
+                class="doodle"
+                data-pop="accent"
+                data-pop-delay="720"
+                aria-hidden="true"
+                style="
+                  inset-block-start: -18px;
+                  inset-inline-start: 30%;
+                  inline-size: 26px;
+                  block-size: 26px;
+                "
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 0c1 6.2 4.8 10 12 12-7.2 2-11 5.8-12 12-1-6.2-4.8-10-12-12 7.2-2 11-5.8 12-12Z"
+                  />
+                </svg>
+              </span>
+              <div class="proof-title" data-pop>
+                <span class="eyebrow">מהתקשורת ומהאמהות</span>
+                <h2 style="margin-block-start: 0.7rem">סומכים על <b>תמי</b></h2>
+              </div>
+              <div class="proof-counters" data-pop data-pop-delay="150">
+                <div class="pc">
+                  <span class="num" data-count="15" data-suffix="+">0</span>
+                  <span class="lbl">שנות ניסיון</span>
+                </div>
+                <div class="pc">
+                  <span class="num word">אלפי</span>
+                  <span class="lbl">תינוקות שלמדו לישון</span>
+                </div>
+                <a
+                  class="pc badge"
+                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <span class="num word"
+                    >רשת 13<span class="ext" aria-hidden="true">↗</span></span
+                  >
+                  <span class="lbl">בין המומלצים</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="proof-grid">
+              <div
+                class="press-video velvet-panel"
+                data-pop="card"
+                data-pop-delay="180"
+              >
+                <div class="press-head">
+                  <img
+                    class="press-logo"
+                    src="assets/press/reshet13-logo.svg"
+                    alt="רשת 13"
+                    width="54"
+                    height="54"
+                    loading="lazy"
+                  />
+                  <span class="press-line"
+                    >תמי <b>בין המומלצים</b> של רשת 13, במדור הבריאות</span
+                  >
+                </div>
+                <div class="press-player" id="pressPlayer">
+                  <button
+                    type="button"
+                    class="press-poster"
+                    aria-label="הפעלת הכתבה של תמי ברשת 13"
+                    onclick="loadPressVideo(this)"
+                  >
+                    <img
+                      src="assets/press/tammy-13tv-poster.jpg"
+                      alt=""
+                      loading="lazy"
+                    />
+                    <span class="press-playbtn" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <a
+                  class="press-artlink"
+                  href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                  target="_blank"
+                  rel="noopener"
+                  >לכתבה המלאה באתר רשת 13 ↗</a
+                >
+              </div>
+
+              <div class="proof-testi">
+                <figure
+                  class="testi-card velvet-panel"
+                  data-pop="card"
+                  data-pop-delay="300"
+                >
+                  <span class="q-mark" aria-hidden="true">&#10077;</span>
+                  <blockquote>
+                    אין כמוך, הצלת לי את הלילות ואת הימים ❤️
+                  </blockquote>
+                  <figcaption class="who">שרון</figcaption>
+                </figure>
+                <figure
+                  class="testi-card velvet-panel"
+                  data-pop="card"
+                  data-pop-delay="420"
+                >
+                  <span class="q-mark" aria-hidden="true">&#10077;</span>
+                  <blockquote>
+                    וואי, מילה במילה! ממש יישמתי את זה ועבר קליל ביותר!
+                  </blockquote>
+                  <figcaption class="who">אלינור</figcaption>
+                </figure>
+                <figure
+                  class="testi-card velvet-panel"
+                  data-pop="card"
+                  data-pop-delay="540"
+                >
+                  <span class="q-mark" aria-hidden="true">&#10077;</span>
+                  <blockquote>
+                    בא לי להביא עוד ילד ולהתחיל את האתגר מחדש 😍
+                  </blockquote>
+                  <figcaption class="who">ליהי</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="hdiv" aria-hidden="true"></div>
+
+        <!-- ============ OFFERS GRID (הדרך שלך לישון) ============ -->
+        <section class="section offers on-velvet" id="course" data-band>
+          <div class="wrap">
+            <div class="head" style="position: relative">
+              <span
+                class="doodle"
+                data-pop="accent"
+                data-pop-delay="720"
+                aria-hidden="true"
+                style="
+                  inset-block-start: -12px;
+                  inset-inline-start: 12%;
+                  inline-size: 28px;
+                  block-size: 28px;
+                "
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 0c1 6.2 4.8 10 12 12-7.2 2-11 5.8-12 12-1-6.2-4.8-10-12-12 7.2-2 11-5.8 12-12Z"
+                  />
+                </svg>
+              </span>
+              <span class="eyebrow" style="justify-content: center" data-pop
+                >בחרי את הקצב שלך</span
+              >
+              <h2 data-pop data-pop-delay="60" style="margin-block-start: 1rem">
+                הדרך שלך <b>לישון</b>
+              </h2>
+              <p data-pop data-pop-delay="150">
+                ארבע דרכים להתחיל. את בוחרת מה מתאים לך עכשיו.
+              </p>
+            </div>
+            <div class="offers-grid">
+              <article
+                class="offer-card velvet-panel featured"
+                data-pop="card"
+                data-pop-delay="180"
+              >
+                <span class="offer-tag">מומלץ</span>
+                <span class="card-chip" aria-hidden="true">🌙</span>
+                <span class="eyebrow">הקורס הדיגיטלי</span>
+                <h3>תכלס - איך להרדים תינוק</h3>
+                <p>
+                  כל השיטה בסרטונים קצרים, מהשלב הראשון ועד הירדמות עצמאית.
+                  השיעור הראשון במתנה, עוד לפני שהוצאת שקל.
+                </p>
+                <div class="offer-price">
+                  <span class="now">197</span><span class="cur">ש"ח</span>
+                  <s>297 ש"ח</s>
+                </div>
+                <div class="offer-cta">
+                  <a
+                    class="btn btn-gold"
+                    href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                    target="_blank"
+                    rel="noopener"
+                    >אני רוצה את הקורס</a
+                  >
+                </div>
+              </article>
+
+              <article
+                class="offer-card velvet-panel"
+                data-pop="card"
+                data-pop-delay="300"
+              >
+                <span class="card-chip" aria-hidden="true">🌱</span>
+                <span class="eyebrow">אתגר של 5 ימים</span>
+                <h3>מהידיים למיטה</h3>
+                <p>
+                  חמישה ימים, צעד אחרי צעד, ביחד. עד שהבייבי נרדם במיטה שלו,
+                  לבד, בעדינות.
+                </p>
+                <div class="offer-cta">
+                  <a
+                    class="btn btn-ghost-light"
+                    href="https://ig.me/m/baby.tammy.time"
+                    target="_blank"
+                    rel="noopener"
+                    >פרטים בהודעה</a
+                  >
+                </div>
+              </article>
+
+              <article
+                class="offer-card velvet-panel"
+                data-pop="card"
+                data-pop-delay="420"
+              >
+                <span class="card-chip" aria-hidden="true">🤝</span>
+                <span class="eyebrow">ליווי אישי</span>
+                <h3>אחת על אחת, בקצב שלך</h3>
+                <p>
+                  את, אני והבייבי. נבנה ביחד תוכנית שמתאימה בול לכם, ואני איתך
+                  כל הדרך.
+                </p>
+                <div class="offer-cta">
+                  <a
+                    class="btn btn-ghost-light"
+                    href="https://ig.me/m/baby.tammy.time"
+                    target="_blank"
+                    rel="noopener"
+                    >שיחת ייעוץ ללא עלות</a
+                  >
+                </div>
+              </article>
+
+              <article
+                class="offer-card velvet-panel"
+                data-pop="card"
+                data-pop-delay="540"
+              >
+                <span class="card-chip" aria-hidden="true">💬</span>
+                <span class="eyebrow">קהילה</span>
+                <h3>הקהילה של תמי</h3>
+                <p>
+                  אמהות שעוברות את זה בדיוק כמוך. מקום לשאול, לקבל תשובה, ולדעת
+                  שאת לא לבד.
+                </p>
+                <div class="offer-cta">
+                  <a
+                    class="btn btn-ghost-light"
+                    href="https://ig.me/m/baby.tammy.time"
+                    target="_blank"
+                    rel="noopener"
+                    >להצטרפות</a
+                  >
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <div class="hdiv" aria-hidden="true"></div>
+
+        <!-- ============ ABOUT (אני תמי שני) ============ -->
+        <section class="section about on-velvet" id="about" data-band>
+          <div class="wrap">
+            <div class="about-grid">
+              <div class="about-copy">
+                <span class="eyebrow" data-pop>מי אני</span>
+                <h2 data-pop data-pop-delay="60">
+                  אני תמי שני. ואני זוכרת בדיוק
+                  <b>איך זה מרגיש</b>.
+                </h2>
+                <p data-pop data-pop-delay="150">
+                  לפני 15 שנים הייתי בדיוק במקום שלך: עייפה, תשושה, ובעיקר בטוחה
+                  שרק אצלי זה ככה. אז למדתי, הוסמכתי, וליוויתי מאז אלפי תינוקות
+                  והורים בחזרה אל שנת הלילה.
+                </p>
+                <ul class="about-creds" data-pop data-pop-delay="240">
+                  <li>תואר ראשון במדעי החברה</li>
+                  <li>מדריכת הורים מוסמכת</li>
+                  <li>יועצת שינה מוסמכת</li>
+                  <li>מלווה התפתחותית</li>
+                  <li>מדריכת דנסטן, שפת התינוקות</li>
+                </ul>
+                <div class="cta-row" data-pop data-pop-delay="330">
+                  <a class="btn btn-ghost-light" href="about/"
+                    >לסיפור המלא שלי</a
+                  >
+                  <a
+                    class="btn btn-gold"
+                    href="https://ig.me/m/baby.tammy.time"
+                    target="_blank"
+                    rel="noopener"
+                    >שיחת ייעוץ ללא עלות</a
+                  >
+                </div>
+              </div>
+              <div class="about-figure figure" data-pop="card">
+                <img
+                  src="assets/cutouts/final-b4-suit-cut.png"
+                  alt="תמי שני"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="hdiv" aria-hidden="true"></div>
+
+        <!-- ============ FINAL CTA ============ -->
+        <section class="section final on-velvet" data-band>
+          <div class="wrap">
+            <span class="eyebrow" data-pop>הצעד הראשון</span>
+            <h2 data-pop data-pop-delay="60">
+              הלילה הרגוע הראשון מתחיל <b>בשיחה אחת</b>
+            </h2>
+            <p data-pop data-pop-delay="150">
+              שיחת ייעוץ ללא עלות. בלי התחייבות. נבין ביחד מה קורה, ואיך
+              מתקדמים.
+            </p>
+            <div class="cta-row center" data-pop data-pop-delay="260">
+              <a
+                class="btn btn-gold"
+                href="https://ig.me/m/baby.tammy.time"
+                target="_blank"
+                rel="noopener"
+                >קובעים שיחה ללא עלות</a
+              >
+              <a
+                class="btn btn-ghost-light"
+                href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                target="_blank"
+                rel="noopener"
+                >מעדיפה להתחיל בקורס?</a
+              >
+            </div>
+            <div class="sign" data-pop data-pop-delay="360">באהבה ❤️ תמי</div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ============ FOOTER (warm ivory) ============ -->
+      <footer class="footer">
+        <div class="wrap">
+          <div class="footer-top">
+            <div class="f-logo">תמי <b>שני</b></div>
+            <div class="f-tag">יועצת שינה והתפתחות. מהלילה הזה ללילה רגוע.</div>
+          </div>
+          <div class="f-cols">
+            <nav class="f-col" aria-label="ניווט">
+              <h4>ניווט</h4>
+              <a href="/course/">הקורס</a>
+              <a href="/guides/">מדריכים</a>
+              <a href="/about/">עליי</a>
+              <a href="/consult/">שיחת ייעוץ</a>
+            </nav>
+            <nav class="f-col" aria-label="משפטי">
+              <h4>משפטי</h4>
+              <a href="/accessibility/">הצהרת נגישות</a>
+              <a href="/privacy/">מדיניות פרטיות</a>
+              <a href="/terms/">תקנון</a>
+            </nav>
+            <nav class="f-col" aria-label="עקבו">
+              <h4>עקבו</h4>
+              <a
+                class="ltr"
+                href="https://instagram.com/baby.tammy.time"
+                target="_blank"
+                rel="noopener"
+                >@baby.tammy.time</a
+              >
+              <a
+                href="https://ig.me/m/baby.tammy.time"
+                target="_blank"
+                rel="noopener"
+                >שיחת ייעוץ ללא עלות</a
+              >
+            </nav>
+          </div>
+          <div class="footer-bottom">
+            <div class="copyright">נבנה באהבה. כל הזכויות שמורות לתמי שני.</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- ============ FLOATING CHAT BUTTON (fixed, bottom inline-start) ============ -->
+    <a
+      class="chat-fab"
+      href="https://ig.me/m/baby.tammy.time"
+      target="_blank"
+      rel="noopener"
+      aria-label="שיחת ייעוץ ללא עלות בהודעה"
+    >
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M12 3C6.9 3 3 6.6 3 11c0 2.3 1.1 4.4 3 5.9V21l3.5-1.9c.8.2 1.6.3 2.5.3 5.1 0 9-3.6 9-8s-3.9-8-9-8Z"
+          fill="currentColor"
+        />
+      </svg>
+    </a>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        /* ---- starfield: dots, several twinkle timings, upper band ---- */
+        var host = document.getElementById("stars");
+        if (host) {
+          var n = 96 /* denser field: stars are the only night celestial now */,
+            html = "";
+          for (var i = 0; i < n; i++) {
+            var top = (Math.random() * 94).toFixed(2);
+            var left = (Math.random() * 100).toFixed(2);
+            var s = (Math.random() * 1.7 + 1).toFixed(1);
+            var o = (Math.random() * 0.45 + 0.5).toFixed(2);
+            var tw = i % 3 === 0 ? " t1" : i % 3 === 1 ? " t2" : " t3";
+            var delay = (Math.random() * 5).toFixed(2);
+            html +=
+              '<i class="star' +
+              tw +
+              '" style="top:' +
+              top +
+              "%;left:" +
+              left +
+              "%;width:" +
+              s +
+              "px;height:" +
+              s +
+              "px;opacity:" +
+              o +
+              ";animation-delay:" +
+              delay +
+              's"></i>';
+          }
+          host.innerHTML = html;
+        }
+
+        /* ---- two-beat choreography: bake per-element stagger into --pd ---- */
+        document.querySelectorAll("[data-pop-delay]").forEach(function (el) {
+          el.style.setProperty(
+            "--pd",
+            el.getAttribute("data-pop-delay") + "ms",
+          );
+        });
+
+        /* ---- band observer: .is-in on enter (>=25%), off on exit (<10%).
+           Re-triggerable so re-entry pops again. Also fires count-up once. ---- */
+        var bands = document.querySelectorAll("[data-band]");
+        function countBand(band) {
+          band.querySelectorAll(".num[data-count]").forEach(function (el) {
+            if (el.dataset.counted) return;
+            el.dataset.counted = "1";
+            countUp(el);
+          });
+        }
+        if (reduce || !("IntersectionObserver" in window)) {
+          bands.forEach(function (b) {
+            b.classList.add("is-in");
+            countBand(b);
+          });
+        } else {
+          var bio = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.intersectionRatio >= 0.25) {
+                  e.target.classList.add("is-in");
+                  countBand(e.target);
+                } else if (e.intersectionRatio < 0.1) {
+                  e.target.classList.remove("is-in");
+                }
+              });
+            },
+            { threshold: [0, 0.1, 0.25, 0.5] },
+          );
+          bands.forEach(function (b) {
+            bio.observe(b);
+          });
+        }
+
+        /* ---- count-up (dir ltr isolate numerals) - fired once by countBand ---- */
+        function countUp(el) {
+          var target = parseInt(el.getAttribute("data-count"), 10);
+          var suffix = el.getAttribute("data-suffix") || "";
+          if (reduce) {
+            el.textContent = target + suffix;
+            return;
+          }
+          var start = null,
+            dur = 1400;
+          function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / dur, 1);
+            var eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(eased * target) + suffix;
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+
+        /* ---- the world: scroll-progress opacity lerp (blocksuniverse mechanic) ---- */
+        /* STARS ONLY (moon/sun removed). Day: stars 0. Night hold (bands 3-4,
+           offers+proof): stars peak. Morning: stars 0. Tint darkens the meadow
+           through the night. Breakpoints in SCROLL%, tuned to measured offsets. */
+        var TRACKS = {
+          /* stars: faint in the twilight hero, peak through the night hold
+             (method->proof), fade as the dawn glow rises */
+          "--op-stars": [
+            [0, 0],
+            [16, 0],
+            [22, 0.3],
+            [27, 0.65],
+            [44, 1],
+            [78, 1],
+            [86, 0.3],
+            [92, 0],
+          ],
+          "--op-hills": [
+            [0, 1],
+            [100, 1],
+          ],
+          /* night veil on the meadow: dark through the night, fades before
+             the dawn glow takes over */
+          "--op-tint": [
+            [0, 0],
+            [15, 0.05],
+            [20, 0.35],
+            [25, 0.7],
+            [32, 0.95],
+            [80, 0.9],
+            [86, 0.45],
+            [92, 0.1],
+            [100, 0],
+          ],
+          /* warm dawn glow on the meadow horizon: only the finale */
+          "--op-dawn": [
+            [0, 0],
+            [84, 0],
+            [90, 0.45],
+            [95, 0.85],
+            [100, 1],
+          ],
+        };
+        function lerpTrack(kf, p) {
+          var a = kf[0],
+            b = kf[kf.length - 1];
+          for (var i = 0; i < kf.length; i++) {
+            if (kf[i][0] <= p) a = kf[i];
+            if (kf[i][0] >= p) {
+              b = kf[i];
+              break;
+            }
+          }
+          if (a[0] === b[0]) return a[1];
+          return a[1] + ((b[1] - a[1]) * (p - a[0])) / (b[0] - a[0]);
+        }
+
+        var nav = document.getElementById("nav");
+
+        if (reduce) {
+          onScroll();
+          window.addEventListener("scroll", onScroll, { passive: true });
+        } else {
+          var ticking = false;
+          function frame() {
+            var max =
+              document.documentElement.scrollHeight - window.innerHeight;
+            var prog = max > 0 ? window.scrollY / max : 0;
+            var p = prog * 100;
+            for (var key in TRACKS) {
+              root.style.setProperty(key, lerpTrack(TRACKS[key], p).toFixed(3));
+            }
+            /* cream nav only once the viewport top reaches the dark sky band */
+            if (window.scrollY > document.documentElement.scrollHeight * 0.2)
+              nav.classList.add("scrolled");
+            else nav.classList.remove("scrolled");
+            ticking = false;
+          }
+          window.addEventListener(
+            "scroll",
+            function () {
+              if (ticking) return;
+              ticking = true;
+              requestAnimationFrame(frame);
+            },
+            { passive: true },
+          );
+          frame();
+        }
+
+        function onScroll() {
+          if (window.scrollY > document.documentElement.scrollHeight * 0.2)
+            nav.classList.add("scrolled");
+          else nav.classList.remove("scrolled");
+        }
+      })();
+
+      function loadPressVideo(btn) {
+        var wrap = document.getElementById("pressPlayer");
+        var f = document.createElement("iframe");
+        f.src =
+          "https://cdnapisec.kaltura.com/p/2748741/embedPlaykitJs/uiconf_id/50272542?iframeembed=true&entry_id=1_i0ky2vmp&config[playback]={%22autoplay%22:true}";
+        f.allow = "autoplay; fullscreen; encrypted-media";
+        f.setAttribute("allowfullscreen", "");
+        f.title = "תמי שני ברשת 13";
+        wrap.innerHTML = "";
+        wrap.appendChild(f);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1771 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>תמי שני | יועצת שינה והתפתחות</title>
+    <meta
+      name="description"
+      content="תמי שני, יועצת שינה והתפתחות עם 15 שנות ניסיון ואלפי משפחות. הרגלי שינה בריאים לתינוק שלך, בדרך ברורה ומותאמת אישית, בלי להשאיר אותו לבכות לבד."
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%8C%99%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ---------- fonts ---------- */
+      @font-face {
+        font-family: "Discovery";
+        src: url("../assets/fonts/Discovery_Fs-Bold.woff2") format("woff2");
+        font-weight: 700 900;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Discovery";
+        src: url("../assets/fonts/Discovery_Fs-Light.woff2") format("woff2");
+        font-weight: 300 400;
+        font-display: swap;
+      }
+
+      /* ---------- tokens ---------- */
+      :root {
+        --cream: #fbf3ee;
+        --cream2: #f5e9e2;
+        --ink: #4a342e;
+        --ink-soft: #6f524c;
+        --clay: #c3998d;
+        --clay-deep: #9c6a5a;
+        --cta: #8c5a4a;
+        --cta-hover: #79493b;
+        --sage: #d2dbc8;
+        --blush: #f1dfdf;
+
+        /* night arc */
+        --n0: #14162e;
+        --n1: #1a1a38;
+        --n2: #2a2350;
+        --n3: #35284c;
+        --dusk: #241f45;
+        --sand: #f0e2d9;
+        --sand2: #f6ebe4;
+
+        --maxw: 1160px;
+        --pad: clamp(20px, 5vw, 66px);
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --font-display: "Discovery", "Heebo", sans-serif;
+        --font-body: "Heebo", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        background: var(--n0);
+        color: var(--cream);
+        line-height: 1.7;
+        font-size: clamp(1.05rem, 0.65rem + 1vw, 1.22rem);
+        font-weight: 400;
+        overflow-x: clip;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      img,
+      video {
+        max-width: 100%;
+        display: block;
+      }
+      figure,
+      blockquote {
+        margin: 0;
+      }
+      a {
+        color: inherit;
+      }
+      ::selection {
+        background: var(--clay-deep);
+        color: var(--cream);
+      }
+      :focus-visible {
+        outline: 3px solid var(--clay);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      .wrap {
+        max-inline-size: var(--maxw);
+        margin-inline: auto;
+        padding-inline: var(--pad);
+      }
+      .skip {
+        position: absolute;
+        inset-inline-start: -999px;
+        top: 0;
+        background: var(--cta);
+        color: #fff;
+        padding: 12px 18px;
+        z-index: 200;
+        border-radius: 0 0 8px 0;
+      }
+      .skip:focus {
+        inset-inline-start: 0;
+      }
+
+      /* ---------- type ---------- */
+      .eyebrow {
+        font-family: var(--font-body);
+        font-weight: 500;
+        font-size: clamp(0.72rem, 0.66rem + 0.2vw, 0.82rem);
+        letter-spacing: 0.16em;
+        color: var(--clay);
+        margin: 0 0 clamp(14px, 2vw, 22px);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .eyebrow::before {
+        content: "";
+        inline-size: clamp(26px, 4vw, 46px);
+        block-size: 1px;
+        background: currentColor;
+        opacity: 0.7;
+      }
+      .light .eyebrow {
+        color: var(--clay-deep);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-display);
+        font-weight: 800;
+        line-height: 1.08;
+        letter-spacing: -0.015em;
+        margin: 0;
+        text-wrap: balance;
+      }
+      .h2 {
+        font-size: clamp(2rem, 1.1rem + 3.4vw, 3.35rem);
+        line-height: 1.12;
+      }
+      p {
+        margin: 0 0 1.1em;
+      }
+      .lede {
+        font-size: clamp(1.14rem, 0.9rem + 0.9vw, 1.4rem);
+        line-height: 1.66;
+      }
+      strong {
+        font-weight: 700;
+      }
+      .num {
+        direction: ltr;
+        unicode-bidi: embed;
+        font-feature-settings: "tnum" 1;
+      }
+
+      /* ---------- buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-block-size: 54px;
+        padding: 0 30px;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 1.06rem;
+        border-radius: 10px;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1.5px solid transparent;
+        transition:
+          transform 0.18s var(--ease),
+          background 0.18s var(--ease),
+          box-shadow 0.18s var(--ease),
+          color 0.18s var(--ease);
+        text-align: center;
+        line-height: 1.15;
+      }
+      .btn-primary {
+        background: var(--cta);
+        color: #fff;
+        box-shadow: 0 10px 30px -12px rgba(140, 90, 74, 0.85);
+      }
+      .btn-primary:hover {
+        background: var(--cta-hover);
+        transform: translateY(-2px);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--cream);
+        border-color: rgba(251, 243, 238, 0.4);
+      }
+      .btn-ghost:hover {
+        border-color: var(--cream);
+        background: rgba(251, 243, 238, 0.07);
+        transform: translateY(-2px);
+      }
+      .light .btn-ghost {
+        color: var(--ink);
+        border-color: rgba(74, 52, 46, 0.35);
+      }
+      .light .btn-ghost:hover {
+        border-color: var(--ink);
+        background: rgba(74, 52, 46, 0.05);
+      }
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+      .microcopy {
+        font-size: 0.9rem;
+        opacity: 0.72;
+        margin: 14px 0 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 400;
+      }
+
+      /* ---------- reveal ----------
+         Visible by default. Only a live script (html.js) hides it, so a JS or
+         IntersectionObserver failure can never leave the page blank. */
+      .js [data-reveal] {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.6s var(--ease),
+          transform 0.6s var(--ease);
+        transition-delay: var(--d, 0ms);
+      }
+      .js [data-reveal].in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ---------- header (in hero) ---------- */
+      .top {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline: 0;
+        z-index: 30;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: clamp(16px, 2.4vw, 26px) var(--pad);
+      }
+      .top img {
+        block-size: clamp(46px, 5vw, 62px);
+        inline-size: auto;
+        filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.5));
+      }
+      .top-link {
+        font-weight: 500;
+        font-size: 0.94rem;
+        text-decoration: none;
+        color: var(--cream);
+        padding: 9px 16px;
+        border: 1px solid rgba(251, 243, 238, 0.35);
+        border-radius: 999px;
+        transition:
+          background 0.18s var(--ease),
+          border-color 0.18s var(--ease);
+        backdrop-filter: blur(2px);
+      }
+      .top-link:hover {
+        background: rgba(251, 243, 238, 0.1);
+        border-color: var(--cream);
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        position: relative;
+        min-block-size: 100svh;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+        background: var(--n0);
+      }
+      .hero-video {
+        position: absolute;
+        inset: 0;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+      .hero-scrim {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(
+          to top,
+          rgba(11, 12, 26, 0.94) 0%,
+          rgba(11, 12, 26, 0.72) 24%,
+          rgba(11, 12, 26, 0.28) 46%,
+          rgba(11, 12, 26, 0.15) 66%,
+          rgba(11, 12, 26, 0.4) 100%
+        );
+      }
+      .hero .wrap {
+        position: relative;
+        z-index: 2;
+        padding-block: clamp(28px, 6vh, 70px) clamp(34px, 7vh, 74px);
+        inline-size: 100%;
+      }
+      .hero-inner {
+        max-inline-size: 840px;
+      }
+      .hero h1 {
+        font-size: clamp(2.62rem, 1.3rem + 5.2vw, 5rem);
+        line-height: 1.05;
+        margin-block: 0 clamp(18px, 2.6vw, 26px);
+        text-shadow: 0 2px 30px rgba(0, 0, 0, 0.45);
+      }
+      /* manual, art-directed line breaks - never accidental wraps */
+      .hero h1 span {
+        display: block;
+        white-space: nowrap;
+      }
+      .hero h1 .l2 {
+        color: var(--clay);
+      }
+      .hero-sub {
+        max-inline-size: 46ch;
+        color: #f3e9e2;
+        margin-block: 0 clamp(22px, 3vw, 30px);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+        align-items: center;
+        margin-block-start: clamp(20px, 3vw, 28px);
+        font-size: 0.9rem;
+        color: #e9ddd5;
+        font-weight: 500;
+      }
+      .chips .dot {
+        opacity: 0.5;
+      }
+      .reshet-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        text-decoration: none;
+        color: #e9ddd5;
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 6px 12px 6px 8px;
+        border: 1px solid rgba(251, 243, 238, 0.22);
+        border-radius: 999px;
+        transition:
+          border-color 0.18s var(--ease),
+          background 0.18s var(--ease);
+      }
+      .reshet-badge:hover {
+        border-color: rgba(251, 243, 238, 0.5);
+        background: rgba(251, 243, 238, 0.06);
+      }
+      .reshet-tile {
+        background: var(--cream);
+        border-radius: 7px;
+        padding: 4px;
+        display: grid;
+        place-items: center;
+      }
+      .reshet-tile img {
+        block-size: 22px;
+        inline-size: 22px;
+      }
+
+      /* ---------- arc dividers ---------- */
+      .arc {
+        block-size: clamp(84px, 13vh, 150px);
+        background: linear-gradient(180deg, var(--from), var(--to));
+      }
+
+      /* ---------- sections ---------- */
+      section {
+        position: relative;
+      }
+      .sec {
+        padding-block: clamp(76px, 10vh, 128px);
+      }
+      .night1 {
+        background: linear-gradient(180deg, var(--n1), #201d40);
+      }
+      .night2 {
+        background: linear-gradient(180deg, var(--n2), #2f2850);
+      }
+      .night3 {
+        background: linear-gradient(180deg, var(--n3), #3a2c50);
+      }
+
+      /* ---------- pain ---------- */
+      .pain-lines {
+        margin: clamp(26px, 4vw, 40px) 0;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .pain-lines span {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: clamp(1.24rem, 0.98rem + 1.2vw, 1.74rem);
+        line-height: 1.38;
+        color: #d9cec8;
+        text-wrap: balance;
+      }
+      .pain-lines span b {
+        color: var(--clay);
+        font-weight: 400;
+      }
+      .midq {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(2.2rem, 1.2rem + 4vw, 3.6rem);
+        color: var(--cream);
+        margin: clamp(30px, 5vw, 48px) 0;
+        letter-spacing: -0.02em;
+      }
+      .pain-grid {
+        display: grid;
+        grid-template-columns: 1.28fr 0.72fr;
+        gap: clamp(30px, 5vw, 64px);
+        align-items: center;
+      }
+      .pain-still {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.8);
+        border: 1px solid rgba(251, 243, 238, 0.08);
+      }
+      .pain-still img {
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        aspect-ratio: 4 / 5;
+      }
+      .truth {
+        border-inline-start: 3px solid var(--clay-deep);
+        padding-inline-start: clamp(18px, 2.4vw, 26px);
+        margin-block-start: 8px;
+      }
+      .truth p {
+        font-size: clamp(1.14rem, 0.95rem + 0.8vw, 1.42rem);
+        line-height: 1.55;
+      }
+      .truth .big {
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--cream);
+      }
+
+      /* ---------- method ---------- */
+      .method-head {
+        max-inline-size: 40ch;
+        margin-block-end: clamp(40px, 6vw, 70px);
+      }
+      .method-head .lede {
+        color: #ddd2cc;
+        margin-block-start: 18px;
+      }
+      .pillars {
+        display: flex;
+        flex-direction: column;
+      }
+      .pillar {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: clamp(18px, 3vw, 44px);
+        align-items: start;
+        padding-block: clamp(26px, 3.4vw, 38px);
+        border-block-start: 1px solid rgba(251, 243, 238, 0.14);
+      }
+      .pillar:first-child {
+        border-block-start: none;
+      }
+      .pillar-idx {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: clamp(2.4rem, 1.4rem + 3.6vw, 4.6rem);
+        line-height: 0.9;
+        color: var(--clay);
+        opacity: 0.9;
+      }
+      .pillar h3 {
+        font-size: clamp(1.4rem, 1rem + 1.5vw, 2rem);
+        margin-block-end: 10px;
+        color: var(--cream);
+      }
+      .pillar p {
+        margin: 0;
+        color: #d8cdc7;
+        max-inline-size: 52ch;
+      }
+
+      /* ---------- proof ---------- */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: clamp(16px, 2.4vw, 30px);
+        margin-block-end: clamp(48px, 6vw, 74px);
+        text-align: center;
+      }
+      .stat {
+        padding-block: 10px;
+        border-inline-end: 1px solid rgba(251, 243, 238, 0.16);
+      }
+      .stat:last-child {
+        border-inline-end: none;
+      }
+      .stat .figure {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(2.1rem, 1.2rem + 3.4vw, 3.5rem);
+        line-height: 1;
+        color: var(--cream);
+        letter-spacing: -0.02em;
+      }
+      .stat .cap {
+        font-size: clamp(0.82rem, 0.7rem + 0.4vw, 0.98rem);
+        color: #cdbfc8;
+        margin-block-start: 10px;
+        line-height: 1.4;
+      }
+      a.stat {
+        text-decoration: none;
+        display: block;
+        transition: transform 0.18s var(--ease);
+      }
+      a.stat:hover {
+        transform: translateY(-3px);
+      }
+      a.stat .figure {
+        color: var(--clay);
+      }
+      a.stat .cap u {
+        text-underline-offset: 3px;
+      }
+
+      .proof-main {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: clamp(28px, 4vw, 56px);
+        align-items: start;
+      }
+      .press {
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(251, 243, 238, 0.12);
+        border-radius: 18px;
+        padding: clamp(18px, 2.4vw, 26px);
+      }
+      .press-head {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-block-end: 16px;
+      }
+      .press-logo-tile {
+        background: var(--cream);
+        border-radius: 12px;
+        padding: 7px;
+        display: grid;
+        place-items: center;
+        flex: none;
+      }
+      .press-logo-tile img {
+        block-size: 40px;
+        inline-size: 40px;
+      }
+      .press-head span {
+        font-size: 0.98rem;
+        color: #e6dbd4;
+        line-height: 1.4;
+      }
+      .press-head b {
+        color: var(--clay);
+        font-weight: 700;
+      }
+      .press-player {
+        inline-size: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #000;
+        border: 1px solid rgba(251, 243, 238, 0.14);
+      }
+      .press-player iframe {
+        inline-size: 100%;
+        block-size: 100%;
+        border: 0;
+        display: block;
+      }
+      .press-poster {
+        position: relative;
+        inline-size: 100%;
+        block-size: 100%;
+        padding: 0;
+        border: 0;
+        cursor: pointer;
+        background: #000;
+        display: block;
+      }
+      .press-poster img {
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        opacity: 0.94;
+        transition:
+          opacity 0.2s var(--ease),
+          transform 0.4s var(--ease);
+      }
+      .press-poster:hover img {
+        opacity: 1;
+        transform: scale(1.02);
+      }
+      .press-play {
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        inline-size: 66px;
+        block-size: 66px;
+        border-radius: 50%;
+        background: rgba(140, 90, 74, 0.92);
+        display: grid;
+        place-items: center;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+      }
+      .press-play::after {
+        content: "";
+        inline-size: 0;
+        block-size: 0;
+        border-block: 12px solid transparent;
+        border-inline-end: 18px solid #fff;
+        margin-inline-start: -3px;
+      }
+      .press-artlink {
+        display: inline-block;
+        margin-block-start: 9px;
+        padding-block: 11px;
+        color: var(--clay);
+        font-weight: 500;
+        font-size: 0.95rem;
+        text-decoration: none;
+      }
+      .press-artlink:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .testi {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(14px, 2vw, 20px);
+      }
+      .testi-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(251, 243, 238, 0.12);
+        border-radius: 16px;
+        padding: clamp(20px, 2.6vw, 28px) clamp(20px, 2.6vw, 28px)
+          clamp(18px, 2.4vw, 24px);
+        position: relative;
+      }
+      .testi-card .q {
+        font-family: var(--font-display);
+        color: var(--clay);
+        font-size: 2.6rem;
+        line-height: 0.5;
+        display: block;
+        margin-block-end: 6px;
+      }
+      .testi-card blockquote {
+        margin: 0 0 12px;
+        font-size: clamp(1.08rem, 0.95rem + 0.55vw, 1.32rem);
+        line-height: 1.5;
+        color: var(--cream);
+        font-weight: 500;
+      }
+      .testi-card.lead blockquote {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(1.35rem, 1rem + 1.4vw, 1.85rem);
+        line-height: 1.34;
+      }
+      .testi-card figcaption {
+        font-size: 0.92rem;
+        color: var(--clay);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+      .proof-label {
+        margin-block: 0 clamp(20px, 3vw, 30px);
+      }
+
+      /* ---------- dawn breath ---------- */
+      .dawn {
+        position: relative;
+        min-block-size: 92vh;
+        display: flex;
+        align-items: flex-start;
+        overflow: hidden;
+        background: var(--dusk);
+      }
+      .dawn img {
+        position: absolute;
+        inset: 0;
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+      }
+      /* keeps the breath line in a dark band (AA) while the section still
+         resolves to cream morning at the bottom */
+      .dawn-scrim {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(22, 19, 46, 0.97) 0%,
+          rgba(24, 20, 48, 0.93) 26%,
+          rgba(38, 30, 62, 0.74) 40%,
+          rgba(90, 70, 78, 0.3) 54%,
+          rgba(214, 196, 186, 0.16) 72%,
+          rgba(240, 226, 217, 0.8) 88%,
+          var(--sand) 100%
+        );
+      }
+      .dawn .wrap {
+        position: relative;
+        z-index: 2;
+        padding-block-start: clamp(70px, 13vh, 150px);
+      }
+      .dawn .eyebrow {
+        color: var(--clay);
+      }
+      .breath {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(2rem, 1rem + 4.4vw, 4rem);
+        line-height: 1.18;
+        letter-spacing: -0.02em;
+        max-inline-size: 18ch;
+        color: var(--cream);
+        text-shadow:
+          0 2px 30px rgba(16, 13, 34, 0.85),
+          0 1px 3px rgba(16, 13, 34, 0.5);
+      }
+      .breath .soft {
+        color: var(--clay);
+        font-weight: 400;
+        font-family: var(--font-display);
+      }
+
+      /* ---------- light sections ---------- */
+      .light {
+        color: var(--ink);
+      }
+      .light .h2 {
+        color: var(--ink);
+      }
+      .l-sand {
+        background: linear-gradient(180deg, var(--sand), var(--sand2));
+      }
+      .l-cream2 {
+        background: linear-gradient(180deg, var(--sand2), var(--cream));
+      }
+      .l-cream {
+        background: var(--cream);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(30px, 5vw, 64px);
+        align-items: center;
+      }
+      .split .lede {
+        color: var(--ink-soft);
+      }
+      .media {
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 40px 80px -40px rgba(74, 52, 46, 0.5);
+      }
+      .media img {
+        inline-size: 100%;
+        block-size: 100%;
+        object-fit: cover;
+        aspect-ratio: 4 / 5;
+      }
+
+      /* course */
+      .course-card {
+        margin-block-start: clamp(22px, 3vw, 30px);
+        background: #fff;
+        border: 1px solid rgba(140, 90, 74, 0.14);
+        border-radius: 16px;
+        padding: clamp(20px, 3vw, 30px);
+        box-shadow: 0 30px 60px -40px rgba(74, 52, 46, 0.4);
+      }
+      .free-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--sage);
+        color: #37472e;
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 7px 14px;
+        border-radius: 999px;
+        margin-block-end: 16px;
+      }
+      .price {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-block: 4px 20px;
+        font-family: var(--font-display);
+      }
+      .price .now {
+        font-weight: 800;
+        font-size: clamp(2rem, 1.2rem + 2.6vw, 3rem);
+        color: var(--ink);
+        letter-spacing: -0.02em;
+      }
+      .price .was-wrap {
+        font-size: 1.12rem;
+        color: var(--ink-soft);
+        font-family: var(--font-body);
+        font-weight: 500;
+      }
+      .price .was {
+        text-decoration-line: line-through;
+        text-decoration-color: var(--clay-deep);
+        text-decoration-thickness: 2px;
+      }
+
+      /* guides */
+      .guide-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-block: clamp(22px, 3vw, 30px) 8px;
+      }
+      .guide-chip {
+        background: #fff;
+        border: 1px solid rgba(140, 90, 74, 0.16);
+        border-radius: 12px;
+        padding: 13px 18px;
+        font-weight: 500;
+        color: var(--ink);
+        font-size: 0.98rem;
+      }
+      .guide-chip.soon {
+        color: var(--ink-soft);
+        opacity: 0.62;
+        background: transparent;
+        border-style: dashed;
+      }
+      .guide-chip.soon small {
+        display: block;
+        font-size: 0.74rem;
+        color: var(--clay-deep);
+        letter-spacing: 0.03em;
+        margin-block-end: 2px;
+      }
+
+      /* about */
+      .about-portrait {
+        position: relative;
+      }
+      .about-portrait img {
+        aspect-ratio: 4 / 5;
+      }
+      .about-list {
+        list-style: none;
+        margin: 22px 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .about-list li {
+        padding-inline-start: 26px;
+        position: relative;
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+      .about-list li::before {
+        content: "";
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block-start: 0.62em;
+        inline-size: 9px;
+        block-size: 9px;
+        border-radius: 50%;
+        background: var(--clay-deep);
+      }
+
+      /* ---------- final cta ---------- */
+      .final {
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding-block: clamp(90px, 13vh, 160px);
+        background:
+          radial-gradient(
+            120% 90% at 50% 0%,
+            var(--blush) 0%,
+            rgba(241, 223, 223, 0) 55%
+          ),
+          var(--cream);
+      }
+      .final .wrap {
+        max-inline-size: 760px;
+      }
+      .final h2 {
+        font-size: clamp(2.1rem, 1.1rem + 3.9vw, 3.6rem);
+        margin-block-end: 20px;
+      }
+      .final .lede {
+        color: var(--ink-soft);
+        margin-inline: auto;
+        max-inline-size: 44ch;
+      }
+      .final .cta-row {
+        justify-content: center;
+        margin-block-start: clamp(26px, 4vw, 36px);
+      }
+      .sign {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--ink);
+        margin-block-start: clamp(34px, 5vw, 48px);
+      }
+      .sign span {
+        color: #c0392b;
+      }
+
+      /* ---------- footer ---------- */
+      footer {
+        background: #2b2018;
+        color: #e7d9cf;
+        padding-block: clamp(52px, 7vw, 78px);
+      }
+      .foot-top {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 26px 40px;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-block-end: 30px;
+        border-block-end: 1px solid rgba(231, 217, 207, 0.16);
+      }
+      .foot-brand img {
+        block-size: 66px;
+        inline-size: auto;
+        margin-block-end: 16px;
+      }
+      .foot-brand p {
+        margin: 0;
+        color: #cbb9ac;
+        max-inline-size: 34ch;
+        font-size: 0.98rem;
+        line-height: 1.6;
+      }
+      .foot-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 24px;
+      }
+      .foot-nav a {
+        text-decoration: none;
+        color: #e7d9cf;
+        font-weight: 500;
+        font-size: 0.98rem;
+        transition: color 0.18s var(--ease);
+        display: inline-flex;
+        align-items: center;
+        min-block-size: 44px;
+      }
+      .foot-nav a:hover {
+        color: var(--clay);
+      }
+      .foot-bottom {
+        margin-block-start: 26px;
+        font-size: 0.88rem;
+        color: #a7968a;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        justify-content: space-between;
+      }
+
+      /* ---------- sticky mobile cta ---------- */
+      .mcta {
+        position: fixed;
+        inset-inline: 0;
+        inset-block-end: 0;
+        z-index: 90;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+        background: linear-gradient(
+          180deg,
+          rgba(43, 32, 24, 0) 0%,
+          rgba(43, 32, 24, 0.55) 30%,
+          rgba(43, 32, 24, 0.92) 100%
+        );
+        transform: translateY(120%);
+        transition: transform 0.4s var(--ease);
+        display: none;
+      }
+      .mcta.show {
+        transform: translateY(0);
+      }
+      .mcta .btn {
+        inline-size: 100%;
+        min-block-size: 52px;
+      }
+
+      /* ---------- responsive ---------- */
+      @media (max-width: 860px) {
+        .pain-grid,
+        .proof-main,
+        .split {
+          grid-template-columns: 1fr;
+        }
+        .pain-still {
+          order: -1;
+        }
+        .stats {
+          grid-template-columns: 1fr 1fr;
+          gap: 22px 16px;
+          text-align: start;
+        }
+        .stat {
+          border-inline-end: none;
+          border-block-end: 1px solid rgba(251, 243, 238, 0.14);
+          padding-block-end: 18px;
+        }
+        .stat:nth-child(odd) {
+          border-inline-end: 1px solid rgba(251, 243, 238, 0.14);
+          padding-inline-end: 16px;
+        }
+        .about-portrait {
+          max-inline-size: 420px;
+          margin-inline: auto;
+        }
+      }
+      @media (max-width: 700px) {
+        .mcta {
+          display: block;
+        }
+        .top-link {
+          display: none;
+        }
+        .hero .cta-row .btn {
+          flex: 1 1 100%;
+        }
+        .stats {
+          margin-block-end: 44px;
+        }
+      }
+      @media (max-width: 400px) {
+        .stats {
+          grid-template-columns: 1fr;
+        }
+        .stat,
+        .stat:nth-child(odd) {
+          border-inline-end: none;
+          padding-inline-end: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+    </style>
+    <script>
+      /* marks JS alive before first paint, so scroll reveals are opt-in only */
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">דילוג לתוכן</a>
+
+    <!-- ================= HERO ================= -->
+    <header class="hero" id="main">
+      <div class="top">
+        <img
+          src="../assets/brand/logo-cream.png"
+          alt="תמי שני"
+          width="140"
+          height="40"
+        />
+        <a
+          class="top-link"
+          href="https://ig.me/m/baby.tammy.time"
+          target="_blank"
+          rel="noopener"
+          >שיחת ייעוץ ללא עלות</a
+        >
+      </div>
+
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="../assets/film/leg1-poster.jpg"
+        aria-hidden="true"
+      >
+        <source src="../assets/film/leg1-loop.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-scrim" aria-hidden="true"></div>
+
+      <div class="wrap">
+        <div class="hero-inner">
+          <p class="eyebrow" data-reveal>
+            תמי שני &middot; יועצת שינה והתפתחות
+          </p>
+          <h1 data-reveal style="--d: 90ms">
+            <span class="l1">תינוק שנרדם לבד.</span>
+            <span class="l2">אמא שסוף סוף</span>
+            <span class="l2">ישנה בלילה.</span>
+          </h1>
+          <p class="hero-sub lede" data-reveal style="--d: 200ms">
+            אני תמי שני, יועצת שינה והתפתחות עם <span class="num">15</span> שנות
+            ניסיון ואלפי משפחות שליוויתי. יחד נבנה לבייבי שלכם הרגלי שינה
+            בריאים, בדרך ברורה ומותאמת אישית, בלי להשאיר אותו לבכות לבד.
+          </p>
+          <div class="cta-row" data-reveal style="--d: 300ms">
+            <a
+              class="btn btn-primary"
+              href="https://tammyshani.ravpage.co.il/tammybabysleep"
+              target="_blank"
+              rel="noopener"
+              >אני רוצה לישון כבר עכשיו</a
+            >
+            <a
+              class="btn btn-ghost"
+              href="https://ig.me/m/baby.tammy.time"
+              target="_blank"
+              rel="noopener"
+              >שיחת ייעוץ ללא עלות</a
+            >
+          </div>
+          <div class="chips" data-reveal style="--d: 400ms">
+            <span>מעל <span class="num">15</span> שנות ניסיון</span>
+            <span class="dot">&middot;</span>
+            <span>אלפי תינוקות</span>
+            <span class="dot">&middot;</span>
+            <a
+              class="reshet-badge"
+              href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="reshet-tile"
+                ><img
+                  src="../assets/press/reshet13-logo.svg"
+                  alt="רשת 13"
+                  width="22"
+                  height="22"
+              /></span>
+              בין המומלצים
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="arc" style="--from: #0c0d1c; --to: #1a1a38"></div>
+
+      <!-- ================= PAIN ================= -->
+      <section class="sec night1">
+        <div class="wrap">
+          <p class="eyebrow" data-reveal>הלילות שלך</p>
+          <h2 class="h2" data-reveal style="--d: 80ms">
+            את לא לבד. וזה לא באשמתך.
+          </h2>
+
+          <div
+            class="pain-grid"
+            style="margin-block-start: clamp(30px, 5vw, 52px)"
+          >
+            <div>
+              <div class="pain-lines" data-reveal>
+                <span>עוד לילה שנהרס ב-<span class="num">02:00</span>.</span>
+                <span
+                  >עוד הרדמה של שעה בשביל תנומה של
+                  <span class="num">25</span> דקות.</span
+                >
+                <span>עוד בוקר שמתחיל בקפה שלישי.</span>
+              </div>
+              <p class="midq" data-reveal style="--d: 100ms">מזדהה?</p>
+              <p class="lede" data-reveal style="--d: 160ms">
+                קראת הכל. שמעת הכל. אולי גם ניסית הכל. ובין כל הגישות, השיטות
+                והדעות (בעיקר של אמא והחמות) נשארת מבולבלת ועייפה.
+              </p>
+              <div class="truth" data-reveal style="--d: 220ms">
+                <p>
+                  אז הנה האמת הפשוטה:
+                  <span class="big"
+                    >לבייבי שלך אין בעיית שינה. יש לו הרגלים.</span
+                  >
+                  והרגלים אפשר לשנות. בעדינות, עם מענה לבכי, ובקצב שלך.
+                </p>
+              </div>
+            </div>
+            <figure class="pain-still" data-reveal style="--d: 140ms">
+              <img
+                src="../assets/ai/mood-4-silhouette.png"
+                alt="אמא מחזיקה תינוק בחדר מואר באור מנורה חמים בלילה"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <div class="arc" style="--from: #201d40; --to: #2a2350"></div>
+
+      <!-- ================= METHOD ================= -->
+      <section class="sec night2">
+        <div class="wrap">
+          <div class="method-head">
+            <p class="eyebrow" data-reveal>ארבעה עקרונות</p>
+            <h2 class="h2" data-reveal style="--d: 80ms">
+              שיטת תכלס: הדרך של תמי
+            </h2>
+            <p class="lede" data-reveal style="--d: 150ms">
+              בלי תיאוריות מסובכות. ארבעה עקרונות שעובדים.
+            </p>
+          </div>
+
+          <div class="pillars">
+            <div class="pillar" data-reveal>
+              <div class="pillar-idx"><span class="num">01</span></div>
+              <div>
+                <h3>הרגלים, לא גזירת גורל</h3>
+                <p>
+                  תינוק שנרדם רק על הידיים? רק עם בקבוק? זה הרגל. והרגל אפשר
+                  לשנות בעדינות, שלב אחרי שלב.
+                </p>
+              </div>
+            </div>
+            <div class="pillar" data-reveal style="--d: 90ms">
+              <div class="pillar-idx"><span class="num">02</span></div>
+              <div>
+                <h3>מענה לבכי, תמיד</h3>
+                <p>
+                  כל בכי מקבל מענה מיידי. גם בזמן תהליך. לומדים להרגיע, בלי
+                  לוותר על הלמידה.
+                </p>
+              </div>
+            </div>
+            <div class="pillar" data-reveal style="--d: 180ms">
+              <div class="pillar-idx"><span class="num">03</span></div>
+              <div>
+                <h3>שינה נפרדת מאוכל</h3>
+                <p>
+                  מפרידים בין הנקה או בקבוק לבין הירדמות. הבייבי אוכל כשהוא רעב,
+                  ונרדם כי הוא יודע איך.
+                </p>
+              </div>
+            </div>
+            <div class="pillar" data-reveal style="--d: 270ms">
+              <div class="pillar-idx"><span class="num">04</span></div>
+              <div>
+                <h3>דרך שמתאימה לך</h3>
+                <p>
+                  אין דרך אחת נכונה. יש דרך שאת מאמינה בה. בשיחה קצרה נמצא את
+                  שלך.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="arc" style="--from: #2f2850; --to: #35284c"></div>
+
+      <!-- ================= PROOF ================= -->
+      <section class="sec night3">
+        <div class="wrap">
+          <p class="eyebrow" data-reveal>למה דווקא תמי</p>
+          <h2 class="h2 proof-label" data-reveal style="--d: 80ms">
+            מטלוויזיה ועד המיטה שלך
+          </h2>
+
+          <div class="stats" data-reveal style="--d: 140ms">
+            <div class="stat">
+              <div class="figure">
+                <span class="num"><span data-count="15">15</span>+</span>
+              </div>
+              <div class="cap">שנות ניסיון</div>
+            </div>
+            <div class="stat">
+              <div class="figure">אלפי</div>
+              <div class="cap">תינוקות שלמדו לישון</div>
+            </div>
+            <div class="stat">
+              <div class="figure">
+                <span class="num" data-count="5">5</span>
+              </div>
+              <div class="cap">תעודות הכשרה</div>
+            </div>
+            <a
+              class="stat"
+              href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="figure">רשת <span class="num">13</span></div>
+              <div class="cap"><u>בין המומלצים</u> &#8599;</div>
+            </a>
+          </div>
+
+          <div class="proof-main">
+            <div class="press" data-reveal>
+              <div class="press-head">
+                <span class="press-logo-tile"
+                  ><img
+                    src="../assets/press/reshet13-logo.svg"
+                    alt="רשת 13"
+                    width="40"
+                    height="40"
+                    loading="lazy"
+                /></span>
+                <span
+                  >תמי <b>בין המומלצים</b> של רשת <span class="num">13</span>,
+                  במדור הבריאות</span
+                >
+              </div>
+              <div class="press-player" id="pressPlayer">
+                <button
+                  type="button"
+                  class="press-poster"
+                  aria-label="הפעלת הכתבה של תמי ברשת 13"
+                  onclick="loadPressVideo()"
+                >
+                  <img
+                    src="../assets/press/tammy-13tv-poster.jpg"
+                    alt="תמי שני מתראיינת באולפן רשת 13"
+                    loading="lazy"
+                  />
+                  <span class="press-play" aria-hidden="true"></span>
+                </button>
+              </div>
+              <a
+                class="press-artlink"
+                href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+                target="_blank"
+                rel="noopener"
+                >לכתבה המלאה באתר רשת 13 &#8599;</a
+              >
+            </div>
+
+            <div>
+              <p class="eyebrow" data-reveal>אמהות מספרות</p>
+              <div class="testi">
+                <figure class="testi-card lead" data-reveal style="--d: 60ms">
+                  <span class="q" aria-hidden="true">&#10077;</span>
+                  <blockquote>
+                    אין כמוך, הצלת לי את הלילות ואת הימים &#10084;&#65039;
+                  </blockquote>
+                  <figcaption>שרון</figcaption>
+                </figure>
+                <figure class="testi-card" data-reveal style="--d: 150ms">
+                  <span class="q" aria-hidden="true">&#10077;</span>
+                  <blockquote>
+                    וואי, מילה במילה! ממש יישמתי את זה ועבר קליל ביותר!
+                  </blockquote>
+                  <figcaption>אלינור</figcaption>
+                </figure>
+                <figure class="testi-card" data-reveal style="--d: 240ms">
+                  <span class="q" aria-hidden="true">&#10077;</span>
+                  <blockquote>
+                    בא לי להביא עוד ילד ולהתחיל את האתגר מחדש &#128525;
+                  </blockquote>
+                  <figcaption>ליהי</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DAWN BREATH (dark to light) ================= -->
+      <section class="dawn" aria-label="הבוקר מגיע">
+        <img
+          src="../assets/ai/mood-6-dawn-curtain.png"
+          alt="חדר תינוק מואר באור בוקר רך דרך וילון לבן, עריסה ושטיח ירוק"
+          loading="lazy"
+        />
+        <div class="dawn-scrim" aria-hidden="true"></div>
+        <div class="wrap">
+          <p class="eyebrow" data-reveal>ואז מגיע הבוקר</p>
+          <p class="breath" data-reveal style="--d: 120ms">
+            כולם ישנים בסוף.
+            <span class="soft">השאלה איך, מתי ובאיזו דרך.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= COURSE ================= -->
+      <section class="sec light l-sand course">
+        <div class="wrap">
+          <div class="split">
+            <div>
+              <p class="eyebrow" data-reveal>הקורס הדיגיטלי</p>
+              <h2 class="h2" data-reveal style="--d: 80ms">
+                תכלס: איך להרדים תינוק
+              </h2>
+              <p class="lede" data-reveal style="--d: 150ms">
+                כל השיטה, מסודרת בסרטונים קצרים. מהשלב הראשון ועד הירדמות
+                עצמאית. והשיעור הראשון? במתנה. ככה תדעי אם זה בשבילך עוד לפני
+                שהוצאת שקל.
+              </p>
+              <div class="course-card" data-reveal style="--d: 210ms">
+                <span class="free-tag">&#9733; השיעור הראשון במתנה</span>
+                <div class="price">
+                  <span class="now"><span class="num">197</span> ש"ח</span>
+                  <span class="was-wrap"
+                    >במקום
+                    <s class="was"><span class="num">297</span> ש"ח</s></span
+                  >
+                </div>
+                <a
+                  class="btn btn-primary"
+                  href="https://tammyshani.ravpage.co.il/tammybabysleep"
+                  target="_blank"
+                  rel="noopener"
+                  >אני רוצה את הקורס</a
+                >
+                <p class="microcopy">
+                  <span aria-hidden="true">&#8226;</span> גישה לחודשיים, בקצב
+                  שלך, מהבית שלך
+                </p>
+              </div>
+            </div>
+            <figure class="media" data-reveal style="--d: 120ms">
+              <img
+                src="../assets/ai/mood-5-sleeping-baby.png"
+                alt="תינוק ישן בשלווה עטוף בבד רך"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= GUIDES ================= -->
+      <section class="sec light l-cream2 guides">
+        <div class="wrap">
+          <p class="eyebrow" data-reveal>מדריכים חינמיים</p>
+          <h2 class="h2" data-reveal style="--d: 80ms">שליף ליד המיטה</h2>
+          <p class="lede" data-reveal style="--d: 150ms; max-inline-size: 52ch">
+            מדריכים קצרים ופרקטיים, בנויים בדיוק לרגעים שאת צריכה תשובה עכשיו.
+            ב-<span class="num">22:00</span> בלילה. וגם ב-<span class="num"
+              >02:00</span
+            >
+            לפנות בוקר.
+          </p>
+          <div class="guide-row" data-reveal style="--d: 210ms">
+            <span class="guide-chip"
+              >טקס שינה ב-<span class="num">5</span> שלבים</span
+            >
+            <span class="guide-chip soon"
+              ><small>בקרוב</small>חלונות ערות לפי גיל</span
+            >
+            <span class="guide-chip soon"
+              ><small>בקרוב</small>תנומות שנגמרות אחרי
+              <span class="num">25</span> דקות</span
+            >
+            <span class="guide-chip soon"><small>בקרוב</small>יקיצות לילה</span>
+          </div>
+          <div
+            class="cta-row"
+            data-reveal
+            style="--d: 270ms; margin-block-start: 26px"
+          >
+            <a class="btn btn-ghost" href="/guides/">לכל המדריכים</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ABOUT ================= -->
+      <section class="sec light l-cream about">
+        <div class="wrap">
+          <div class="split">
+            <figure class="media about-portrait" data-reveal>
+              <img
+                src="../assets/ai/portrait-a.png"
+                alt="תמי שני, יועצת שינה והתפתחות"
+                loading="lazy"
+              />
+            </figure>
+            <div>
+              <p class="eyebrow" data-reveal>נעים להכיר</p>
+              <h2 class="h2" data-reveal style="--d: 80ms">
+                נעים להכיר, אני תמי
+              </h2>
+              <p class="lede" data-reveal style="--d: 150ms">
+                התחלתי בדיוק איפה שאת נמצאת עכשיו: אמא עייפה, מבולבלת, עם תינוק
+                שלא ישן. היום, אחרי <span class="num">15</span> שנים ואלפי
+                תינוקות, אני הדרך הקצרה בין הלילה הזה ללילה רגוע.
+              </p>
+              <ul class="about-list" data-reveal style="--d: 210ms">
+                <li>שכל בכי מקבל מענה. תמיד.</li>
+                <li>שהרגלים אפשר לשנות בעדינות.</li>
+                <li>ושכולם ישנים בסוף. השאלה איך, מתי ובאיזו דרך.</li>
+              </ul>
+              <div class="cta-row" data-reveal style="--d: 270ms">
+                <a class="btn btn-ghost" href="/about/">לסיפור המלא</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FINAL CTA ================= -->
+      <section class="final light">
+        <div class="wrap">
+          <p class="eyebrow" data-reveal style="justify-content: center">
+            הלילה הרגוע מתחיל כאן
+          </p>
+          <h2 data-reveal style="--d: 80ms">
+            הלילה הרגוע הראשון מתחיל בשיחה אחת
+          </h2>
+          <p class="lede" data-reveal style="--d: 150ms">
+            שיחת ייעוץ ללא עלות. בלי התחייבות. נבין ביחד מה קורה, ואיך מתקדמים.
+          </p>
+          <div class="cta-row" data-reveal style="--d: 220ms">
+            <a
+              class="btn btn-primary"
+              href="https://ig.me/m/baby.tammy.time"
+              target="_blank"
+              rel="noopener"
+              >קובעים שיחה ללא עלות</a
+            >
+            <a
+              class="btn btn-ghost"
+              href="https://tammyshani.ravpage.co.il/tammybabysleep"
+              target="_blank"
+              rel="noopener"
+              >מעדיפה להתחיל בקורס?</a
+            >
+          </div>
+          <p
+            class="microcopy"
+            data-reveal
+            style="--d: 260ms; justify-content: center"
+          >
+            <span aria-hidden="true">&#8226;</span> בלי התחייבות. בלי לחץ.
+          </p>
+          <p class="sign" data-reveal style="--d: 300ms">
+            באהבה <span>&#10084;&#65039;</span> תמי
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+      <div class="wrap">
+        <div class="foot-top">
+          <div class="foot-brand">
+            <img src="../assets/brand/logo-cream.png" alt="תמי שני" />
+            <p>
+              תמי שני &middot; יועצת שינה והתפתחות. מלווה משפחות אל שנת הלילה,
+              בגיל
+              <span class="num">0</span> עד <span class="num">5</span>, בדרך
+              רגועה ומותאמת אישית.
+            </p>
+          </div>
+          <nav class="foot-nav" aria-label="ניווט תחתון">
+            <a
+              href="https://tammyshani.ravpage.co.il/tammybabysleep"
+              target="_blank"
+              rel="noopener"
+              >הקורס</a
+            >
+            <a href="/guides/">מדריכים</a>
+            <a href="/about/">עליי</a>
+            <a
+              href="https://ig.me/m/baby.tammy.time"
+              target="_blank"
+              rel="noopener"
+              >שיחת ייעוץ</a
+            >
+            <a
+              href="https://instagram.com/baby.tammy.time"
+              target="_blank"
+              rel="noopener"
+              >אינסטגרם</a
+            >
+          </nav>
+        </div>
+        <div class="foot-bottom">
+          <span>נבנה באהבה. כל הזכויות שמורות לתמי שני.</span>
+          <span class="foot-nav">
+            <a href="/accessibility/">הצהרת נגישות</a>
+            <a href="/privacy/">מדיניות פרטיות</a>
+            <a href="/terms/">תקנון</a>
+          </span>
+        </div>
+      </div>
+    </footer>
+
+    <!-- sticky mobile cta -->
+    <div class="mcta" id="mcta" aria-hidden="true">
+      <a
+        class="btn btn-primary"
+        href="https://tammyshani.ravpage.co.il/tammybabysleep"
+        target="_blank"
+        rel="noopener"
+        >אני רוצה לישון כבר עכשיו</a
+      >
+    </div>
+
+    <script>
+      (function () {
+        var reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        // reveals
+        var items = document.querySelectorAll("[data-reveal]");
+        if (reduce || !("IntersectionObserver" in window)) {
+          items.forEach(function (el) {
+            el.classList.add("in");
+          });
+        } else {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  e.target.classList.add("in");
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
+          );
+          items.forEach(function (el) {
+            io.observe(el);
+          });
+          // safety net: if the observer never reports (throttled/odd browser),
+          // show everything rather than risk invisible content
+          setTimeout(function () {
+            items.forEach(function (el) {
+              el.classList.add("in");
+            });
+          }, 2600);
+        }
+
+        // count-up
+        function countUp(el) {
+          var target = parseInt(el.getAttribute("data-count"), 10);
+          if (reduce) {
+            el.textContent = target;
+            return;
+          }
+          var start = null,
+            dur = 1100;
+          function step(ts) {
+            if (!start) start = ts;
+            var p = Math.min((ts - start) / dur, 1);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+        var counters = document.querySelectorAll("[data-count]");
+        if ("IntersectionObserver" in window && !reduce) {
+          var cio = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                  countUp(e.target);
+                  cio.unobserve(e.target);
+                }
+              });
+            },
+            { threshold: 0.6 },
+          );
+          counters.forEach(function (el) {
+            cio.observe(el);
+          });
+        } else {
+          counters.forEach(function (el) {
+            el.textContent = el.getAttribute("data-count");
+          });
+        }
+
+        // reduced motion: freeze hero on poster
+        if (reduce) {
+          var v = document.querySelector(".hero-video");
+          if (v) {
+            v.removeAttribute("autoplay");
+            v.removeAttribute("loop");
+            try {
+              v.pause();
+            } catch (e) {}
+          }
+        }
+
+        // sticky mobile cta after 60% - two reads, no rAF gate to get stuck on
+        var mcta = document.getElementById("mcta");
+        function onScroll() {
+          var seen = window.scrollY + window.innerHeight;
+          var h = document.documentElement.scrollHeight;
+          mcta.classList.toggle("show", seen / h > 0.6);
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll, { passive: true });
+        onScroll();
+      })();
+
+      function loadPressVideo() {
+        var wrap = document.getElementById("pressPlayer");
+        var f = document.createElement("iframe");
+        f.src =
+          "https://cdnapisec.kaltura.com/p/2748741/embedPlaykitJs/uiconf_id/50272542?iframeembed=true&entry_id=1_i0ky2vmp&config[playback]={%22autoplay%22:true}";
+        f.allow = "autoplay; fullscreen; encrypted-media";
+        f.setAttribute("allowfullscreen", "");
+        f.title = "תמי שני ברשת 13";
+        wrap.innerHTML = "";
+        wrap.appendChild(f);
+      }
+    </script>
+  </body>
+</html>
