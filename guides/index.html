@@ -867,6 +867,18 @@
         line-height: 1;
         margin-block-end: 0.5rem;
       }
+      .gcard .card-lottie {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        block-size: 120px;
+        margin-block-end: 0.5rem;
+        overflow: hidden;
+      }
+      .gcard .card-lottie dotlottie-wc {
+        inline-size: 120px;
+        block-size: 120px;
+      }
       .gcard h3 {
         font-weight: 700;
         color: var(--ink);
@@ -1173,7 +1185,13 @@
         <div class="wrap">
           <div class="guides-grid">
             <a class="gcard link ivory-panel reveal" href="./5-taiyot-sheina/">
-              <span class="gi" aria-hidden="true">📕</span>
+              <span class="card-lottie" aria-hidden="true"
+                ><dotlottie-wc
+                  src="https://assets-v2.lottiefiles.com/a/f105456e-1163-11ee-b839-6bbdac213740/w34ypAQp2N.lottie"
+                  autoplay
+                  loop
+                ></dotlottie-wc
+              ></span>
               <h3>5 טעויות שמעירות את הבייבי בלילה</h3>
               <p>
                 מדריך PDF חינם: הטעויות הכי נפוצות שגורמות ליקיצות, ומה עושים
@@ -1182,7 +1200,13 @@
               <span class="go">למדריך החינמי ←</span>
             </a>
             <a class="gcard link ivory-panel reveal" href="./bedtime-ritual/">
-              <span class="gi" aria-hidden="true">🌙</span>
+              <span class="card-lottie" aria-hidden="true"
+                ><dotlottie-wc
+                  src="https://assets-v2.lottiefiles.com/a/721e5188-1162-11ee-be97-7b41a27ab405/PIfWfCXjTK.lottie"
+                  autoplay
+                  loop
+                ></dotlottie-wc
+              ></span>
               <h3>טקס שינה ב-5 שלבים</h3>
               <p>איך בונים טקס שינה שעובד, מהאמבטיה ועד המיטה.</p>
               <span class="go">לקריאה ←</span>
@@ -1266,7 +1290,21 @@
           <a href="/privacy/">מדיניות פרטיות</a>
           <a href="/terms/">תקנון</a>
         </nav>
-        <div class="copyright">נבנה באהבה על ידי <a href="https://pelegdror.com" target="_blank" rel="noopener" style="color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:3px">פלג דרור</a>. כל הזכויות שמורות לתמי שני.</div>
+        <div class="copyright">
+          נבנה באהבה על ידי
+          <a
+            href="https://pelegdror.com"
+            target="_blank"
+            rel="noopener"
+            style="
+              color: inherit;
+              font-weight: 600;
+              text-decoration: underline;
+              text-underline-offset: 3px;
+            "
+            >פלג דרור</a
+          >. כל הזכויות שמורות לתמי שני.
+        </div>
       </div>
     </footer>
     <script>
@@ -1334,5 +1372,9 @@
         }
       })();
     </script>
+    <script
+      type="module"
+      src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.3/dist/dotlottie-wc.js"
+    ></script>
   </body>
 </html>
