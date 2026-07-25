@@ -1,0 +1,179 @@
+<!--
+================= צ'קליסט חיבור רב מסר (פעם אחת לכל מדריך) =================
+1. טוקנים (פעם אחת לחשבון): מתקשרים לתמיכה של רב מסר 03-7177777 מהחשבון של
+   תמי (זה שמאחורי tammyshani.ravpage.co.il) ומבקשים גישת API:
+   c_key, c_secret, u_key, u_secret.
+   את הארבעה מכניסים ב-Vercel > tammy-site > Settings > Environment Variables:
+   RAVMESSER_C_KEY / RAVMESSER_C_SECRET / RAVMESSER_U_KEY / RAVMESSER_U_SECRET
+   (וגם ב-.env.local המקומי, שלא נכנס לגיט).
+2. רשימה: ברב מסר יוצרים רשימת תפוצה חדשה בשם "מדריך - 5 טעויות שינה".
+   את מספר הרשימה (list id) שמים ב-guides/config.json בשדה list_id.
+3. מייל אוטומטי: ברשימה מגדירים "מסר ראשון" (המסר האוטומטי הראשון של
+   הרשימה, נשלח מיידית בהצטרפות). מדביקים את ה-HTML שמתחת לצ'קליסט הזה
+   כגוף המסר. שורת נושא מוצעת:
+   המדריך שלך כאן: 5 טעויות שמעירות את הבייבי בלילה
+4. שולח מאומת: מוודאים שכתובת השולח ברב מסר היא של תמי ומאומתת.
+5. בדיקה: נרשמים בטופס באתר עם מייל אמיתי, מוודאים שהמייל מגיע, שהתמונות
+   נטענות ושכפתור ההורדה עובד.
+הערה: התמונות במייל נטענות מהאתר החי (tammy-site.vercel.app). אם עוברים
+לדומיין אמיתי, מחליפים את הכתובות במייל.
+===========================================================================
+-->
+<div
+  dir="rtl"
+  style="
+    font-family: Heebo, Arial, sans-serif;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 32px 16px;
+    background: #fbf3ee;
+  "
+>
+  <div
+    style="
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 36px 30px;
+      box-shadow: 0 2px 10px rgba(74, 52, 46, 0.08);
+    "
+  >
+    <div style="text-align: center; margin-bottom: 22px">
+      <img
+        src="https://tammy-site.vercel.app/assets/brand/logo-brown.png"
+        alt="baby TAMMY time"
+        width="150"
+        style="width: 150px; height: auto; display: inline-block"
+      />
+    </div>
+
+    <div
+      style="
+        color: #4a342e;
+        font-size: 16px;
+        line-height: 1.85;
+        text-align: right;
+      "
+    >
+      <p style="margin: 0 0 16px">היי [שם פרטי],</p>
+      <p style="margin: 0 0 16px">
+        לפני שתפתחי את המדריך, רציתי להגיד לך משהו קטן.<br />
+        זה שחיפשת אותו בכלל?<br />
+        סימן שאת אמא שאכפת לה.<br />
+        והבייבי שלך בר מזל.
+      </p>
+      <p style="margin: 0 0 16px">
+        ב-15 השנים שאני מלווה משפחות,<br />
+        ראיתי את אותן 5 טעויות חוזרות כמעט בכל בית.<br />
+        לא בגלל חוסר אהבה.<br />
+        להפך, דווקא אצל האמהות שהכי משתדלות.
+      </p>
+      <p
+        style="
+          margin: 0 0 16px;
+          font-size: 19px;
+          font-weight: 700;
+          color: #4a342e;
+        "
+      >
+        החדשות הטובות? את כולן אפשר לתקן. בעדינות, בלי בכי מיותר.
+      </p>
+      <p style="margin: 0 0 16px">
+        במדריך תמצאי את 5 הטעויות,<br />
+        מה עושים במקום כל אחת מהן,<br />
+        טבלת חלונות ערות לפי גיל,<br />
+        וצ'קליסט קטן לתלות על המקרר.
+      </p>
+    </div>
+
+    <div style="text-align: center; margin: 28px 0">
+      <table
+        role="presentation"
+        cellpadding="0"
+        cellspacing="0"
+        style="margin: 0 auto"
+      >
+        <tr>
+          <td
+            style="
+              background: #8c5a4a;
+              border-radius: 10px;
+              padding: 14px 42px;
+              text-align: center;
+            "
+          >
+            <a
+              href="https://tammy-site.vercel.app/guides/5-taiyot-sheina/guide.pdf"
+              style="
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 17px;
+                font-weight: 700;
+                font-family: Heebo, Arial, sans-serif;
+                display: inline-block;
+              "
+              >להורדת המדריך</a
+            >
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div
+      style="
+        color: #4a342e;
+        font-size: 16px;
+        line-height: 1.85;
+        text-align: right;
+      "
+    >
+      <p style="margin: 0 0 16px">
+        <b>נ.ב</b> אם אחרי המדריך תרגישי שאת רוצה שאבנה איתך את כל הדרך, שלב
+        אחרי שלב, זה בדיוק מה שיש בקורס תכלס. השיעור הראשון במתנה, עוד לפני
+        שהחלטת:
+        <a
+          href="https://tammyshani.ravpage.co.il/tammybabysleep"
+          style="color: #8c5a4a; font-weight: 600"
+          >לשיעור הראשון במתנה</a
+        >
+      </p>
+    </div>
+
+    <div
+      style="
+        color: #6b5148;
+        font-size: 15px;
+        margin-top: 22px;
+        text-align: right;
+      "
+    >
+      באהבה,<br />תמי ❤️
+    </div>
+
+    <div style="text-align: right; margin-top: 16px">
+      <img
+        src="https://tammy-site.vercel.app/assets/cutouts/portrait-b-cut.png"
+        alt="תמי שני"
+        width="180"
+        style="width: 180px; height: auto; border-radius: 14px"
+      />
+    </div>
+  </div>
+
+  <div
+    dir="rtl"
+    style="
+      text-align: center;
+      padding: 20px;
+      color: #9b8a83;
+      font-size: 11px;
+      line-height: 1.8;
+    "
+  >
+    <p style="margin: 0 0 4px">תמי שני · יועצת שינה והתפתחות</p>
+    <p style="margin: 0 0 4px">אינסטגרם: baby.tammy.time</p>
+    <p style="margin: 0">
+      קיבלת את המייל הזה כי ביקשת את המדריך באתר. להסרה: קישור ההסרה של רב מסר
+      מופיע אוטומטית בתחתית.
+    </p>
+  </div>
+</div>

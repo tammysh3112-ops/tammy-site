@@ -3,4 +3,5 @@ node_modules/
 .vercel
 *.log
 .env
+.env.*
 assets/press/tammy-13tv.mp4

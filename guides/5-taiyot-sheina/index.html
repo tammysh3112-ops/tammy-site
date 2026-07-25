@@ -6,10 +6,10 @@
     <script>
       document.documentElement.className += " js";
     </script>
-    <title>שליף ליד המיטה - המדריכים של תמי שני</title>
+    <title>5 טעויות שמעירות את הבייבי בלילה | מדריך חינם של תמי שני</title>
     <meta
       name="description"
-      content="המדריכים של תמי שני. קצרים, פרקטיים, ובנויים בדיוק לרגע שבו את צריכה תשובה עכשיו. מתחילים בטקס שינה ב-5 שלבים."
+      content="המדריך החינמי של תמי שני: 5 הטעויות הכי נפוצות שמעירות תינוקות בלילה, ומה עושים במקום. משאירים מייל ומקבלים אותו ישר לתיבה."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,8 +21,8 @@
       @font-face {
         font-family: "Discovery Fs";
         src:
-          url("../assets/fonts/Discovery_Fs-Light.woff2") format("woff2"),
-          url("../assets/fonts/Discovery_Fs-Light.woff") format("woff");
+          url("../../assets/fonts/Discovery_Fs-Light.woff2") format("woff2"),
+          url("../../assets/fonts/Discovery_Fs-Light.woff") format("woff");
         font-weight: 300;
         font-style: normal;
         font-display: swap;
@@ -30,8 +30,8 @@
       @font-face {
         font-family: "Discovery Fs";
         src:
-          url("../assets/fonts/Discovery_Fs-Bold.woff2") format("woff2"),
-          url("../assets/fonts/Discovery_Fs-Bold.woff") format("woff");
+          url("../../assets/fonts/Discovery_Fs-Bold.woff2") format("woff2"),
+          url("../../assets/fonts/Discovery_Fs-Bold.woff") format("woff");
         font-weight: 700;
         font-style: normal;
         font-display: swap;
@@ -132,7 +132,6 @@
         opacity: 0.9;
       }
 
-      /* buttons */
       .btn {
         display: inline-flex;
         align-items: center;
@@ -182,6 +181,11 @@
         outline: 3px solid rgba(20, 16, 40, 0.7);
         outline-offset: 3px;
       }
+      .btn-gold[disabled] {
+        opacity: 0.6;
+        cursor: wait;
+        transform: none;
+      }
       .btn-ghost-light {
         background: rgba(236, 214, 166, 0.02);
         color: var(--cream);
@@ -192,23 +196,11 @@
         border-color: rgba(217, 184, 120, 0.7);
         background: rgba(236, 214, 166, 0.07);
       }
-      .btn-ghost-dark {
-        background: rgba(138, 107, 46, 0);
-        color: var(--ink);
-        border-color: rgba(138, 107, 46, 0.38);
-      }
-      .btn-ghost-dark:hover {
-        transform: translateY(-2px);
-        border-color: rgba(138, 107, 46, 0.66);
-        background: rgba(138, 107, 46, 0.06);
-      }
-      .btn-ghost-light:focus-visible,
-      .btn-ghost-dark:focus-visible {
+      .btn-ghost-light:focus-visible {
         outline: 3px solid var(--gold);
         outline-offset: 3px;
       }
 
-      /* layout */
       .wrap {
         max-width: var(--maxw);
         margin-inline: auto;
@@ -223,18 +215,6 @@
       .narrow {
         max-width: 760px;
         margin-inline: auto;
-      }
-      .center {
-        text-align: center;
-      }
-      .cta-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.9rem;
-        margin-block-start: 2.2rem;
-      }
-      .center .cta-row {
-        justify-content: center;
       }
       .ltr {
         direction: ltr;
@@ -327,7 +307,7 @@
         }
       }
 
-      /* velvet header band (static, stars only) */
+      /* velvet header band */
       .page-head {
         position: relative;
         overflow: hidden;
@@ -420,8 +400,21 @@
         font-weight: 500;
         color: var(--cream);
       }
-      .center .head-sub {
-        margin-inline: auto;
+      .freebadge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7ch;
+        margin-block-start: 1.6rem;
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        border: 1px solid var(--hair-gold);
+        background: rgba(217, 184, 120, 0.1);
+        color: var(--gold-lite);
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+      .freebadge::before {
+        content: "🎁";
       }
 
       /* panels */
@@ -447,27 +440,6 @@
           transparent
         );
       }
-      .ivory-panel {
-        background: var(--ivory-surface);
-        border: 1px solid rgba(138, 107, 46, 0.24);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-soft);
-        position: relative;
-        overflow: hidden;
-      }
-      .ivory-panel::before {
-        content: "";
-        position: absolute;
-        inset-block-start: 0;
-        inset-inline: 0;
-        block-size: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(138, 107, 46, 0.4),
-          transparent
-        );
-      }
 
       /* morning helpers */
       .morning .eyebrow {
@@ -479,79 +451,27 @@
       .morning h2 b {
         color: var(--gold-deep);
       }
-      .lead {
-        font-size: 1.16rem;
-        font-weight: 300;
-        color: var(--ink-soft);
-      }
-      .sec-head {
-        max-width: 680px;
-        margin-block-end: 2.6rem;
-      }
-      .sec-head.center {
-        margin-inline: auto;
-      }
-      .sec-head .eyebrow {
-        margin-block-end: 1rem;
-      }
-      .sec-head p {
-        margin-block-start: 0.9rem;
-        color: var(--ink-soft);
-        font-size: 1.1rem;
-        font-weight: 300;
-      }
 
-      /* numbered cards grid (course modules) */
-      .grid-2 {
+      /* split: what's inside + form */
+      .split {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.4rem;
+        gap: clamp(2rem, 5vw, 3.2rem);
+        align-items: start;
       }
-      @media (min-width: 720px) {
-        .grid-2 {
-          grid-template-columns: 1fr 1fr;
+      @media (min-width: 860px) {
+        .split {
+          grid-template-columns: 1.05fr 0.95fr;
         }
       }
-      .numcard {
-        padding: 2.1rem 1.9rem;
-        transition:
-          transform 0.28s ease,
-          border-color 0.28s ease;
+      .inside h2 {
+        margin-block-end: 1.2rem;
       }
-      .numcard:hover {
-        transform: translateY(-4px);
-        border-color: rgba(138, 107, 46, 0.5);
-      }
-      .numcard .n {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 2rem;
-        color: var(--gold-deep);
-        line-height: 1;
-        direction: ltr;
-        unicode-bidi: isolate;
-        font-variant-numeric: lining-nums;
-        display: inline-block;
-        margin-block-end: 0.7rem;
-      }
-      .numcard h3 {
-        font-weight: 700;
-        color: var(--ink);
-        font-size: 1.24rem;
-        margin-block-end: 0.5rem;
-      }
-      .numcard p {
-        color: var(--ink-soft);
-        font-weight: 300;
-        font-size: 1.04rem;
-        line-height: 1.66;
-      }
-
-      /* check list */
       .checklist {
         list-style: none;
         display: grid;
         gap: 1rem;
+        margin-block-start: 1.4rem;
       }
       .checklist li {
         position: relative;
@@ -573,475 +493,144 @@
         color: var(--ink);
         font-weight: 500;
       }
-
-      /* soft-gold callout */
-      .callout {
-        background: linear-gradient(
-          180deg,
-          rgba(217, 184, 120, 0.12),
-          rgba(217, 184, 120, 0.05)
-        );
-        border: 1px solid rgba(138, 107, 46, 0.26);
-        border-radius: var(--radius);
-        padding: clamp(1.8rem, 4vw, 2.6rem);
-        box-shadow: var(--shadow-soft);
-      }
-      .callout .eyebrow {
-        margin-block-end: 0.9rem;
-      }
-      .callout p {
-        font-size: 1.14rem;
-        font-weight: 300;
-        color: var(--ink-soft);
-      }
-      .callout p b {
-        color: var(--ink);
-        font-weight: 500;
-      }
-
-      /* price block (velvet focal on ivory) */
-      .price-cta {
-        padding: clamp(2.4rem, 5vw, 3.4rem);
-        text-align: center;
-      }
-      .price-cta .kicker {
-        font-family: var(--font-display);
-        font-weight: 300;
-        font-size: clamp(1.6rem, 4vw, 2.1rem);
-        color: var(--cream);
-      }
-      .price-cta .note {
-        color: var(--cream-dim);
-        font-weight: 300;
-        margin-block-start: 0.6rem;
-        max-width: 40ch;
-        margin-inline: auto;
-      }
-      .price {
-        margin-block: 1.8rem 0.4rem;
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0.7ch;
-        font-family: var(--font-display);
-        direction: rtl;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .price .now {
-        font-size: clamp(2.8rem, 8vw, 3.6rem);
-        font-weight: 700;
-        color: var(--gold-lite);
-        direction: ltr;
-        unicode-bidi: isolate;
-      }
-      .price .cur {
-        font-size: 1.15rem;
-        font-weight: 400;
-        color: var(--cream);
-        font-family: var(--font-body);
-      }
-      .price s {
-        font-size: 1.25rem;
-        color: rgba(239, 231, 216, 0.5);
-        font-family: var(--font-body);
-        font-weight: 400;
-        text-decoration-thickness: 1px;
-      }
-      .price-cta .access {
-        color: var(--cream-dim);
-        font-weight: 300;
-        margin-block-end: 1.6rem;
-        max-width: 44ch;
-        margin-inline: auto;
-      }
-      .price-cta .access b {
-        color: var(--gold-lite);
-        font-weight: 500;
-      }
-
-      /* free-lesson banner */
-      .freebanner {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.7ch;
+      .inside .who {
         margin-block-start: 1.8rem;
-        padding: 0.7rem 1.3rem;
-        border-radius: 999px;
-        border: 1px solid var(--hair-gold);
-        background: rgba(217, 184, 120, 0.1);
-        color: var(--gold-lite);
-        font-weight: 500;
-        font-size: 0.98rem;
-      }
-      .freebanner::before {
-        content: "🎁";
-        font-size: 1.05em;
-      }
-
-      /* faq */
-      .faq {
-        display: grid;
-        gap: 0.9rem;
-        max-width: 800px;
-      }
-      .faq details {
-        border: 1px solid rgba(138, 107, 46, 0.24);
-        border-radius: 16px;
-        background: var(--ivory-surface);
-        overflow: hidden;
-      }
-      .faq summary {
-        list-style: none;
-        cursor: pointer;
-        padding: 1.15rem 1.4rem;
-        font-weight: 500;
-        color: var(--ink);
-        font-size: 1.06rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-      }
-      .faq summary::-webkit-details-marker {
-        display: none;
-      }
-      .faq summary::after {
-        content: "+";
-        font-family: var(--font-display);
-        font-size: 1.5rem;
-        color: var(--gold-deep);
-        line-height: 1;
-        transition: transform 0.25s ease;
-      }
-      .faq details[open] summary::after {
-        transform: rotate(45deg);
-      }
-      .faq summary:focus-visible {
-        outline: 3px solid var(--gold-deep);
-        outline-offset: 2px;
-        border-radius: 12px;
-      }
-      .faq .a {
-        padding: 0 1.4rem 1.25rem;
         color: var(--ink-soft);
         font-weight: 300;
-        font-size: 1.04rem;
+        font-size: 1.02rem;
+        border-inline-start: 2px solid rgba(138, 107, 46, 0.35);
+        padding-inline-start: 1rem;
       }
-
-      /* portrait frame */
-      .portrait {
-        border-radius: var(--radius);
-        overflow: hidden;
-        border: 1px solid rgba(138, 107, 46, 0.3);
-        box-shadow: var(--shadow-soft);
-      }
-      .portrait img {
-        width: 100%;
-        height: auto;
-      }
-
-      /* split (image + text) */
-      .split {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: clamp(2rem, 5vw, 3.4rem);
-        align-items: center;
-      }
-      @media (min-width: 820px) {
-        .split {
-          grid-template-columns: 0.8fr 1.2fr;
-        }
-      }
-      .split .txt p {
-        font-size: 1.14rem;
-        font-weight: 300;
-        color: var(--ink-soft);
-      }
-
-      /* credentials strip (gold-numbered) */
-      .creds {
-        list-style: none;
-        display: grid;
-        gap: 0;
-        border-block: 1px solid rgba(138, 107, 46, 0.24);
-        margin-block: 0.4rem;
-      }
-      .creds li {
-        display: flex;
-        align-items: baseline;
-        gap: 1.1rem;
-        padding-block: 1.15rem;
-        border-block-end: 1px solid rgba(138, 107, 46, 0.16);
-      }
-      .creds li:last-child {
-        border-block-end: 0;
-      }
-      .creds .cn {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.5rem;
-        color: var(--gold-deep);
-        line-height: 1;
-        direction: ltr;
-        unicode-bidi: isolate;
-        min-width: 2.2ch;
-      }
-      .creds .ct {
+      .inside .who b {
         color: var(--ink);
-        font-size: 1.12rem;
-        font-weight: 300;
-      }
-
-      /* editorial numbered steps (guide) */
-      .steps {
-        display: grid;
-        gap: 0;
-        max-width: 760px;
-      }
-      .step {
-        position: relative;
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: 1.4rem;
-        padding-block: 1.9rem;
-        border-block-end: 1px solid rgba(138, 107, 46, 0.2);
-      }
-      .step:last-child {
-        border-block-end: 0;
-      }
-      .step .sn {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: clamp(2.2rem, 6vw, 3rem);
-        color: var(--gold-deep);
-        line-height: 0.9;
-        direction: ltr;
-        unicode-bidi: isolate;
-        font-variant-numeric: lining-nums;
-      }
-      .step h3 {
-        color: var(--ink);
-        font-weight: 700;
-        font-size: 1.28rem;
-        margin-block-end: 0.5rem;
-      }
-      .step p {
-        color: var(--ink-soft);
-        font-weight: 300;
-        font-size: 1.08rem;
-      }
-
-      /* guide cards grid */
-      .guides-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.4rem;
-      }
-      @media (min-width: 720px) {
-        .guides-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-      .gcard {
-        padding: 2rem 1.9rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        min-height: 100%;
-      }
-      .gcard.link {
-        transition:
-          transform 0.28s ease,
-          border-color 0.28s ease;
-      }
-      .gcard.link:hover {
-        transform: translateY(-4px);
-        border-color: rgba(138, 107, 46, 0.55);
-      }
-      .gcard.link:focus-visible {
-        outline: 3px solid var(--gold-deep);
-        outline-offset: 3px;
-      }
-      .gcard .gi {
-        font-size: 1.9rem;
-        line-height: 1;
-        margin-block-end: 0.5rem;
-      }
-      .gcard h3 {
-        font-weight: 700;
-        color: var(--ink);
-        font-size: 1.24rem;
-      }
-      .gcard p {
-        color: var(--ink-soft);
-        font-weight: 300;
-        font-size: 1.03rem;
-        flex: 1;
-      }
-      .gcard .go {
-        margin-block-start: 0.7rem;
-        color: var(--gold-deep);
         font-weight: 600;
-        font-size: 0.98rem;
-      }
-      .gcard.soon {
-        opacity: 1;
-        background: rgba(240, 235, 225, 0.6);
-        border-style: dashed;
-      }
-      .gcard.soon .gi,
-      .gcard.soon h3 {
-        color: #6a6480;
-      }
-      .gcard.soon .gi {
-        filter: grayscale(1);
-        opacity: 0.7;
-      }
-      .badge-soon {
-        align-self: flex-start;
-        margin-block-end: 0.3rem;
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        color: #6a6480;
-        background: rgba(106, 100, 128, 0.12);
-        border: 1px solid rgba(106, 100, 128, 0.28);
-        border-radius: 999px;
-        padding: 0.28rem 0.8rem;
       }
 
-      /* consult steps (horizontal numbered) */
-      .hsteps {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.3rem;
-        counter-reset: hs;
+      /* lead form panel */
+      .leadform {
+        padding: clamp(1.8rem, 4vw, 2.6rem);
+        color: var(--cream);
       }
-      @media (min-width: 760px) {
-        .hsteps {
-          grid-template-columns: repeat(3, 1fr);
-        }
+      .leadform h3 {
+        font-weight: 700;
+        color: var(--cream);
+        font-size: 1.4rem;
+        margin-block-end: 0.4rem;
       }
-      .hstep {
-        padding: 1.9rem 1.7rem;
+      .leadform .sub {
+        color: var(--cream-dim);
+        font-weight: 300;
+        font-size: 1rem;
+        margin-block-end: 1.5rem;
+      }
+      .field {
+        margin-block-end: 1rem;
+      }
+      .field label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--cream-dim);
+        margin-block-end: 0.35rem;
+      }
+      .field input[type="text"],
+      .field input[type="email"] {
+        width: 100%;
+        min-height: 52px;
+        padding: 0.6rem 1.1rem;
+        border-radius: 14px;
+        border: 1px solid rgba(236, 214, 166, 0.28);
+        background: rgba(11, 13, 32, 0.5);
+        color: var(--cream);
+        font-family: var(--font-body);
+        font-size: 1.02rem;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .field input:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(217, 184, 120, 0.18);
+      }
+      .field input[type="email"] {
+        direction: ltr;
+        text-align: left;
+      }
+      .field input::placeholder {
+        color: rgba(239, 231, 216, 0.4);
+      }
+      .consent {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        margin-block: 1.2rem 1.4rem;
+      }
+      .consent input {
+        margin-block-start: 0.3rem;
+        inline-size: 17px;
+        block-size: 17px;
+        accent-color: var(--gold);
+      }
+      .consent label {
+        font-size: 0.86rem;
+        font-weight: 300;
+        color: var(--cream-dim);
+        line-height: 1.6;
+      }
+      .consent a {
+        color: var(--gold-lite);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .form-err {
+        display: none;
+        color: #f2b8ab;
+        font-size: 0.9rem;
+        margin-block-end: 1rem;
+      }
+      .form-err.show {
+        display: block;
+      }
+      .leadform .btn {
+        width: 100%;
+      }
+      .privacy-note {
+        margin-block-start: 1rem;
+        font-size: 0.82rem;
+        color: rgba(239, 231, 216, 0.55);
         text-align: center;
       }
-      .hstep .hn {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 2.6rem;
-        color: var(--gold-deep);
-        line-height: 1;
-        direction: ltr;
-        unicode-bidi: isolate;
+
+      /* success state */
+      .success {
+        display: none;
+        text-align: center;
+        padding-block: 1.2rem;
+      }
+      .success.show {
         display: block;
+      }
+      .success .big {
+        font-size: 2.6rem;
+        line-height: 1;
+        margin-block-end: 1rem;
+      }
+      .success h3 {
+        font-weight: 700;
+        color: var(--cream);
+        font-size: 1.5rem;
         margin-block-end: 0.6rem;
       }
-      .hstep p {
-        color: var(--ink-soft);
+      .success p {
+        color: var(--cream-dim);
         font-weight: 300;
-        font-size: 1.08rem;
-      }
-      .hstep p b {
-        color: var(--ink);
-        font-weight: 500;
-      }
-
-      /* final cta band */
-      .final {
-        text-align: center;
-        padding-block: clamp(4.5rem, 10vw, 7rem);
-      }
-      .final h2 {
-        font-size: clamp(1.95rem, 5.4vw, 3rem);
-        color: var(--ink);
-        max-width: 20ch;
+        font-size: 1.02rem;
+        max-width: 34ch;
         margin-inline: auto;
       }
-      .final h2 b {
-        color: var(--gold-deep);
-      }
-      .final p {
-        font-size: 1.16rem;
-        font-weight: 300;
-        color: var(--ink-soft);
-        margin-block-start: 1.1rem;
-        max-width: 44ch;
-        margin-inline: auto;
-      }
-      .sign {
-        margin-block-start: 2.4rem;
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1.6rem;
-        color: var(--gold-deep);
-      }
-
-      /* legal prose */
-      .legal {
-        max-width: 800px;
-      }
-      .legal .updated {
-        font-size: 0.92rem;
-        color: var(--ink-soft);
-        margin-block-start: 1rem;
-      }
-      .legal section {
-        margin-block-start: 2.6rem;
-      }
-      .legal h2 {
-        font-size: clamp(1.4rem, 3.4vw, 1.8rem);
-        color: var(--ink);
-        margin-block-end: 0.9rem;
-      }
-      .legal h2 .lx {
-        font-family: var(--font-display);
-        color: var(--gold-deep);
-        font-weight: 700;
-        margin-inline-end: 0.4ch;
-      }
-      .legal h3 {
-        font-size: 1.12rem;
-        font-weight: 700;
-        color: var(--ink);
-        margin-block: 1.3rem 0.5rem;
-      }
-      .legal p,
-      .legal li {
-        color: var(--ink-soft);
-        font-weight: 300;
-        font-size: 1.05rem;
-        line-height: 1.75;
-      }
-      .legal p + p {
-        margin-block-start: 0.9rem;
-      }
-      .legal ul {
-        margin-block-start: 0.7rem;
-        padding-inline-start: 1.3rem;
-        display: grid;
-        gap: 0.5rem;
-      }
-      .legal a {
-        color: var(--gold-deep);
-        font-weight: 500;
-        text-decoration: underline;
-        text-underline-offset: 3px;
-      }
-      .legal .ph {
-        background: rgba(217, 184, 120, 0.16);
-        border: 1px dashed rgba(138, 107, 46, 0.5);
-        border-radius: 6px;
-        padding: 0.05em 0.5ch;
-        font-weight: 500;
-        color: var(--ink);
-      }
-      .legal .note {
-        margin-block-start: 2.6rem;
-        padding-block-start: 1.4rem;
-        border-block-start: 1px solid rgba(138, 107, 46, 0.24);
-        font-size: 0.95rem;
-        color: var(--ink-soft);
+      .success .cta-dl {
+        margin-block-start: 1.6rem;
       }
 
       /* footer */
@@ -1132,8 +721,6 @@
           transition: none !important;
         }
         .btn,
-        .numcard,
-        .gcard,
         .nav-cta {
           transition: none !important;
         }
@@ -1160,78 +747,118 @@
     </nav>
     <header class="page-head">
       <div class="head-stars" aria-hidden="true"></div>
-      <div class="wrap head-inner">
-        <span class="eyebrow">המדריכים של תמי</span>
-        <h1>שליף <b>ליד המיטה</b></h1>
+      <div class="wrap head-inner narrow">
+        <span class="eyebrow">מדריך חינם · שליף ליד המיטה</span>
+        <h1>5 טעויות שמעירות את הבייבי <b>בלילה</b></h1>
         <p class="head-sub">
-          קצרים, פרקטיים, ובנויים בדיוק לרגע שבו את צריכה תשובה. עכשיו.
+          רוב היקיצות בלילה הן לא מזל רע. הן תוצאה של הרגלים קטנים שאפשר לשנות.
+          במדריך הזה תמצאי את 5 הטעויות הכי נפוצות, <b>ומה עושים במקום</b>, צעד
+          אחרי צעד.
         </p>
+        <span class="freebadge">חינם לגמרי. משאירים מייל ומקבלים לתיבה.</span>
       </div>
     </header>
     <main>
       <section class="section morning">
         <div class="wrap">
-          <div class="guides-grid">
-            <a class="gcard link ivory-panel reveal" href="./5-taiyot-sheina/">
-              <span class="gi" aria-hidden="true">📕</span>
-              <h3>5 טעויות שמעירות את הבייבי בלילה</h3>
-              <p>
-                מדריך PDF חינם: הטעויות הכי נפוצות שגורמות ליקיצות, ומה עושים
-                במקום. נשלח ישר למייל.
+          <div class="split">
+            <div class="inside reveal">
+              <span class="eyebrow">מה יש בפנים</span>
+              <h2>קצר, תכלס, <b>ליד המיטה</b></h2>
+              <ul class="checklist">
+                <li>
+                  <b>5 הטעויות הנפוצות</b> שגורמות ליקיצות, ולמה הן קורות דווקא
+                  לאמהות שהכי משתדלות.
+                </li>
+                <li>
+                  <b>מה עושים במקום.</b> לכל טעות יש תיקון פשוט שאפשר להתחיל כבר
+                  הערב.
+                </li>
+                <li>
+                  <b>טבלת חלונות ערות לפי גיל</b>, בשביל לתזמן את השינה נכון בלי
+                  לנחש.
+                </li>
+                <li>
+                  <b>צ'קליסט למקרר</b>, שיהיה לך את הכל מול העיניים גם ב-03:00
+                  בלילה.
+                </li>
+              </ul>
+              <p class="who">
+                המדריך נכתב על ידי <b>תמי שני</b>, יועצת שינה והתפתחות עם 15
+                שנות ניסיון, מהמומלצים של רשת 13.
               </p>
-              <span class="go">למדריך החינמי ←</span>
-            </a>
-            <a class="gcard link ivory-panel reveal" href="./bedtime-ritual/">
-              <span class="gi" aria-hidden="true">🌙</span>
-              <h3>טקס שינה ב-5 שלבים</h3>
-              <p>איך בונים טקס שינה שעובד, מהאמבטיה ועד המיטה.</p>
-              <span class="go">לקריאה ←</span>
-            </a>
-            <article
-              class="gcard soon ivory-panel reveal"
-              aria-label="מדריך בקרוב"
-            >
-              <span class="badge-soon">בקרוב</span>
-              <span class="gi" aria-hidden="true">⏰</span>
-              <h3>חלונות ערות לפי גיל</h3>
-              <p>כמה זמן ער זה יותר מדי, ואיך זה משתנה עם הגיל.</p>
-            </article>
-            <article
-              class="gcard soon ivory-panel reveal"
-              aria-label="מדריך בקרוב"
-            >
-              <span class="badge-soon">בקרוב</span>
-              <span class="gi" aria-hidden="true">💤</span>
-              <h3>תנומות יום שנגמרות אחרי 25 דקות</h3>
-              <p>למה התנומה מתקצרת, ואיך מאריכים אותה.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section morning" style="padding-block-start: 0">
-        <div class="wrap narrow">
-          <div class="callout reveal center">
-            <p>רוצה שהמדריך הבא יגיע אליך?</p>
-            <div class="cta-row center">
-              <a
-                class="btn btn-gold"
-                href="https://instagram.com/baby.tammy.time"
-                target="_blank"
-                rel="noopener"
-                >עקבי אחריי באינסטגרם</a
-              >
             </div>
-            <p style="margin-block-start: 1rem; font-size: 0.98rem">
-              <a
-                class="ltr"
-                href="https://instagram.com/baby.tammy.time"
-                target="_blank"
-                rel="noopener"
-                style="color: var(--gold-deep); font-weight: 600"
-                >@baby.tammy.time</a
-              >
-            </p>
+
+            <div class="leadform velvet-panel reveal" id="formPanel">
+              <div id="formState">
+                <h3>לאן לשלוח לך את המדריך?</h3>
+                <p class="sub">שם, מייל, וזה אצלך תוך דקה.</p>
+                <form id="guideForm" novalidate>
+                  <div class="field">
+                    <label for="nameInput">שם פרטי</label>
+                    <input
+                      type="text"
+                      id="nameInput"
+                      name="name"
+                      autocomplete="given-name"
+                      placeholder="איך קוראים לך?"
+                      required
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="emailInput">אימייל</label>
+                    <input
+                      type="email"
+                      id="emailInput"
+                      name="email"
+                      autocomplete="email"
+                      placeholder="you@email.com"
+                      required
+                    />
+                  </div>
+                  <div class="consent">
+                    <input type="checkbox" id="consentBox" required />
+                    <label for="consentBox"
+                      >אני מאשרת קבלת המדריך ומיילים עם טיפים ותוכן מתמי. אפשר
+                      להסיר את עצמך בקליק, בכל מייל.
+                      <a href="/privacy/" target="_blank" rel="noopener"
+                        >מדיניות פרטיות</a
+                      >
+                      ·
+                      <a href="/terms/" target="_blank" rel="noopener"
+                        >תקנון</a
+                      ></label
+                    >
+                  </div>
+                  <div class="form-err" id="formErr">
+                    רגע, חסר משהו: שם, מייל תקין וסימון של האישור.
+                  </div>
+                  <button type="submit" class="btn btn-gold" id="submitBtn">
+                    שלחו לי את המדריך למייל
+                  </button>
+                </form>
+                <p class="privacy-note">
+                  בלי ספאם. רק דברים שבאמת עוזרים לישון.
+                </p>
+              </div>
+              <div class="success" id="successState" role="status">
+                <div class="big">🌙</div>
+                <h3>המדריך בדרך למייל שלך</h3>
+                <p>
+                  תוך דקה או שתיים הוא אצלך. שווה להציץ גם בקידומים אם הוא
+                  מתחבא.
+                </p>
+                <div class="cta-dl">
+                  <a
+                    class="btn btn-ghost-light"
+                    href="./guide.pdf"
+                    target="_blank"
+                    rel="noopener"
+                    >רוצה אותו כבר עכשיו? להורדה מיידית</a
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1332,6 +959,46 @@
             io.observe(el);
           });
         }
+
+        /* lead form -> /api/subscribe -> Rav Messer list (SEND_0 delivers the email) */
+        var form = document.getElementById("guideForm");
+        var err = document.getElementById("formErr");
+        var btn = document.getElementById("submitBtn");
+        function showSuccess() {
+          document.getElementById("formState").style.display = "none";
+          document.getElementById("successState").classList.add("show");
+        }
+        form.addEventListener("submit", function (ev) {
+          ev.preventDefault();
+          var name = document.getElementById("nameInput").value.trim();
+          var email = document.getElementById("emailInput").value.trim();
+          var ok =
+            name.length > 0 &&
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+            document.getElementById("consentBox").checked;
+          if (!ok) {
+            err.classList.add("show");
+            return;
+          }
+          err.classList.remove("show");
+          btn.disabled = true;
+          btn.textContent = "שולחת...";
+          fetch("/api/subscribe", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: email,
+              name: name,
+              source: "5-taiyot-sheina",
+            }),
+          })
+            .then(function () {
+              showSuccess();
+            })
+            .catch(function () {
+              showSuccess();
+            });
+        });
       })();
     </script>
   </body>
