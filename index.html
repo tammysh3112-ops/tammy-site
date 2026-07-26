@@ -178,8 +178,10 @@
         position: absolute;
         left: 0;
         right: 0;
-        will-change: transform, filter;
+        will-change: transform, filter, opacity;
         filter: brightness(0.5) saturate(0.5);
+        /* sheer at night so the figure stands on the sky, blooms toward dawn */
+        opacity: 0.22;
       }
       .cloud .drift {
         will-change: transform;
@@ -411,13 +413,6 @@
         align-items: center;
         gap: 9px;
         margin-block-end: 20px;
-      }
-      .eyebrow::before {
-        content: "";
-        width: 26px;
-        height: 1.5px;
-        background: currentColor;
-        opacity: 0.6;
       }
 
       /* ============================ HERO ============================ */
@@ -1623,7 +1618,7 @@
           </div>
           <div class="hero-figure" data-reveal>
             <img
-              src="assets/opt/portrait-b.webp"
+              src="assets/opt/portrait-b-cut.webp"
               alt="תמי שני מחזיקה תינוק ישן"
               fetchpriority="high"
               width="410"
@@ -2009,7 +2004,21 @@
           <a href="/privacy/">מדיניות פרטיות</a>
           <a href="/terms/">תקנון</a>
         </nav>
-        <div class="f-copy">נבנה באהבה על ידי <a href="https://pelegdror.com" target="_blank" rel="noopener" style="color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:3px">פלג דרור</a>. כל הזכויות שמורות לתמי שני.</div>
+        <div class="f-copy">
+          נבנה באהבה על ידי
+          <a
+            href="https://pelegdror.com"
+            target="_blank"
+            rel="noopener"
+            style="
+              color: inherit;
+              font-weight: 600;
+              text-decoration: underline;
+              text-underline-offset: 3px;
+            "
+            >פלג דרור</a
+          >. כל הזכויות שמורות לתמי שני.
+        </div>
       </div>
     </footer>
 
@@ -2121,6 +2130,9 @@
             "brightness(" + bright + ") saturate(" + sat + ")";
           cloudFront.style.filter =
             "brightness(" + bright + ") saturate(" + sat + ")";
+          var cloudOp = (0.22 + 0.78 * (1 - night)).toFixed(3);
+          cloudBack.style.opacity = cloudOp;
+          cloudFront.style.opacity = cloudOp;
           // scroll parallax on clouds (transform only)
           cloudBack.style.transform = "translateY(" + -p * 38 + "px)";
           cloudFront.style.transform = "translateY(" + -p * 88 + "px)";
