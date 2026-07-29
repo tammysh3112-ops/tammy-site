@@ -990,7 +990,7 @@
           err.classList.remove("show");
           btn.disabled = true;
           btn.textContent = "שולחת...";
-          fetch("/api/subscribe", {
+          fetch("/api/subscribe/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
