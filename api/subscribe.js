@@ -108,16 +108,32 @@ async function addSubscriber(listId, name, email) {
   if (res.status === 401) {
     res = await postSubscriber(await getToken(true), listId, name, email);
   }
-  const data = await res.json().catch(() => ({}));
+  const text = await res.text().catch(() => "");
+  let data = {};
+  try {
+    data = JSON.parse(text);
+  } catch {}
   // Already on the list = returning reader = success for the user
-  const duplicate = JSON.stringify(data).includes("already");
-  if (!res.ok || (data.status === false && !duplicate)) {
-    throw new Error(`Rav Messer ${res.status}: ${JSON.stringify(data)}`);
+  const duplicate =
+    res.status === 409 ||
+    res.status === 422 ||
+    /already|exist|duplicate|כבר|קיים/i.test(text);
+  if (!duplicate && (!res.ok || data.status === false)) {
+    throw new Error(`Rav Messer ${res.status}: ${text.slice(0, 300)}`);
   }
   return { id: data.createdId ?? null, duplicate };
 }
 
+// Grep-able failure log: never the full email address, domain only (privacy)
+function logFail(status, source, email, detail) {
+  const domain = email && email.includes("@") ? email.split("@").pop() : "-";
+  console.error(
+    `SUBSCRIBE_FAIL status=${status} source=${source || "-"} domain=${domain} ${detail}`,
+  );
+}
+
 export default async function handler(req, res) {
+  // Delivery depends on a PUBLISHED email series on the target list (series 73177 for 5-taiyot-sheina, published 2026-08-01)
   const origin = req.headers.origin || "";
   const allowed = ALLOWED_ORIGINS.includes(origin)
     ? origin
@@ -127,41 +143,57 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") return res.status(200).end();
-  if (req.method !== "POST")
+  if (req.method !== "POST") {
+    logFail(405, "", "", `method=${req.method}`);
     return res.status(405).json({ ok: false, error: "Method not allowed" });
-  if (origin && !ALLOWED_ORIGINS.includes(origin))
+  }
+  if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+    logFail(403, "", "", `origin=${origin}`);
     return res.status(403).json({ ok: false, error: "Forbidden" });
+  }
 
   const ip =
     (req.headers["x-forwarded-for"] || "").split(",")[0].trim() ||
     req.socket?.remoteAddress ||
     "unknown";
   if (isRateLimited(ip)) {
+    logFail(
+      429,
+      sanitize(req.body?.source, 50),
+      req.body?.email,
+      "rate limited",
+    );
     res.setHeader("Retry-After", "60");
     return res.status(429).json({ ok: false, error: "Too many requests" });
   }
 
+  const email = sanitize(req.body?.email, 254).toLowerCase();
+  const name = sanitize(req.body?.name, 100);
+  const source = sanitize(req.body?.source, 50);
+
   try {
     const raw = JSON.stringify(req.body || {});
-    if (raw.length > 1000)
+    if (raw.length > 1000) {
+      logFail(400, source, email, "payload too large");
       return res.status(400).json({ ok: false, error: "Payload too large" });
+    }
 
-    const email = sanitize(req.body?.email, 254).toLowerCase();
-    const name = sanitize(req.body?.name, 100);
-    const source = sanitize(req.body?.source, 50);
-
-    if (!isValidEmail(email))
+    if (!isValidEmail(email)) {
+      logFail(400, source, email, "invalid email");
       return res.status(400).json({ ok: false, error: "Invalid email" });
+    }
 
     const guides = loadGuides();
     const guide = guides[source];
-    if (!guide || guide.active === false)
+    if (!guide || guide.active === false) {
+      logFail(400, source, email, "invalid source");
       return res.status(400).json({ ok: false, error: "Invalid source" });
+    }
 
     await addSubscriber(guide.list_id, name, email);
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error("subscribe error:", err.message);
+    logFail(500, source, email, err.message);
     return res.status(500).json({ ok: false, error: "Server error" });
   }
 }
