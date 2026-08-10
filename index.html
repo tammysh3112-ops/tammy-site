@@ -53,10 +53,41 @@
         --blush: #f1dfdf;
         --espresso: #4a322b;
         --moon-cream: #f6ead6;
-        --night1: #0b0d29;
-        --night2: #191a42;
+        /* sunset journey: bright day at the top, deep brown at the CTA */
+        --day1: #9dc9e0;
+        --day2: #f0eadd;
+        --brown1: #2e1b13;
+        --brown2: #5b3524;
         --ease: cubic-bezier(0.16, 1, 0.3, 1);
-        --maxw: 1140px;
+
+        /* Type role scale. Nine roles, named for the job they do. Replaces the
+           40 one-off font sizes this page used to carry, where 19 different
+           values sat between 0.82rem and 1.24rem and no two could be told
+           apart. Every repeated role now renders identically page-wide. */
+        --t-display: clamp(2.35rem, 5vw, 4.4rem);
+        --t-h2: clamp(2rem, 4.8vw, 3.3rem);
+        --t-h3: clamp(1.5rem, 3.2vw, 2.1rem);
+        --t-h4: clamp(1.25rem, 2.4vw, 1.6rem);
+        --t-stat: clamp(2.2rem, 5vw, 3.2rem);
+        --t-lead: clamp(1.1rem, 1.4vw, 1.28rem);
+        --t-body: 1.06rem;
+        --t-small: 0.94rem;
+        --t-micro: 0.84rem;
+
+        /* Container scale. Three widths instead of eight one-offs. */
+        --w-wide: 1140px;
+        --w-mid: 920px;
+        --w-text: 720px;
+        --measure: 62ch;
+        --measure-tight: 34ch;
+
+        /* Section rhythm. Three intervals, so the page has a cadence instead
+           of the same 117px between every single section. */
+        --sp-section: clamp(72px, 10vh, 116px);
+        --sp-section-lg: clamp(104px, 15vh, 170px);
+        --sp-section-sm: clamp(48px, 7vh, 78px);
+
+        --maxw: var(--w-wide);
         --pad: clamp(20px, 5vw, 64px);
       }
       * {
@@ -70,8 +101,8 @@
       }
       body {
         font-family: "Heebo", system-ui, sans-serif;
-        color: var(--cream);
-        background: var(--night1);
+        color: var(--ink);
+        background: var(--day1);
         line-height: 1.7;
         overflow-x: hidden;
         position: relative;
@@ -120,13 +151,14 @@
       .sky {
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, #0b0d29 0%, #191a42 100%);
+        background: linear-gradient(180deg, #9dc9e0 0%, #f0eadd 100%);
         will-change: background;
       }
+      /* Stars are off in daylight and only prick through at the dusk end. */
       .stars {
         position: absolute;
         inset: 0;
-        opacity: 1;
+        opacity: 0;
         background-image:
           radial-gradient(1.4px 1.4px at 12% 18%, #fff 50%, transparent),
           radial-gradient(1.2px 1.2px at 28% 9%, #fff 50%, transparent),
@@ -148,14 +180,16 @@
       }
       .stars-a {
         animation: twinkle 4s var(--ease) infinite alternate-reverse;
-        opacity: 0.7;
       }
+      /* twinkles via filter, not opacity: opacity is the scroll-driven fade,
+         and a CSS animation on it would beat the inline value and light the
+         stars up in broad daylight */
       @keyframes twinkle {
         from {
-          opacity: 0.35;
+          filter: opacity(0.35);
         }
         to {
-          opacity: 1;
+          filter: opacity(1);
         }
       }
       .sunglow {
@@ -168,9 +202,9 @@
         opacity: 0;
         background: radial-gradient(
           ellipse 60% 100% at 50% 100%,
-          rgba(255, 239, 214, 0.9),
-          rgba(255, 224, 196, 0.42) 34%,
-          rgba(255, 224, 196, 0) 66%
+          rgba(255, 196, 120, 0.92),
+          rgba(240, 140, 80, 0.42) 34%,
+          rgba(200, 110, 70, 0) 66%
         );
         will-change: opacity;
       }
@@ -179,9 +213,9 @@
         left: 0;
         right: 0;
         will-change: transform, filter, opacity;
-        filter: brightness(0.5) saturate(0.5);
-        /* sheer at night so the figure stands on the sky, blooms toward dawn */
-        opacity: 0.22;
+        filter: brightness(1) saturate(1);
+        /* full and bright in daylight, sinking into the brown toward the end */
+        opacity: 1;
       }
       .cloud .drift {
         will-change: transform;
@@ -224,18 +258,8 @@
           transform: translateX(2%);
         }
       }
-      .moon {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 300px;
-        height: 300px;
-        will-change: transform;
-        filter: drop-shadow(0 0 46px rgba(246, 234, 214, 0.42))
-          drop-shadow(0 0 14px rgba(246, 234, 214, 0.5));
-      }
       /* Ground: no clipping box and no overlay rectangle, so no seam can appear.
-         Night tint rides on the image's own filter, which respects its alpha. */
+         Dusk tint rides on the image's own filter, which respects its alpha. */
       .ground {
         position: absolute;
         left: 0;
@@ -252,7 +276,7 @@
         min-width: 1180px;
         height: auto;
         will-change: filter;
-        filter: brightness(0.42) saturate(0.55);
+        filter: brightness(1) saturate(1);
       }
 
       /* ============================ SHELL ============================ */
@@ -267,7 +291,19 @@
       }
       section {
         position: relative;
-        padding-block: clamp(84px, 13vh, 150px);
+        padding-block: var(--sp-section);
+      }
+      /* Rhythm, not repetition. The method is the centrepiece and the proof
+         opens a new movement, so both get air. Authority is evidence FOR the
+         method and guides extend the course offer, so each binds tight to the
+         section above it. */
+      .method,
+      .proof {
+        padding-block: var(--sp-section-lg);
+      }
+      .authority,
+      .guides {
+        padding-block-start: var(--sp-section-sm);
       }
 
       /* ---- header ---- */
@@ -280,13 +316,22 @@
         align-items: center;
         justify-content: space-between;
         gap: 16px;
-        padding: 14px clamp(16px, 4vw, 40px);
+        /* 13px, not 14: logo is 54px, so 14 put the bar at 82px and over the
+           80px nav-height cap */
+        padding: 13px clamp(16px, 4vw, 40px);
         transition: background 0.4s var(--ease);
       }
       .hdr.scrolled {
         background: linear-gradient(
           180deg,
-          rgba(11, 13, 41, 0.55),
+          rgba(46, 27, 19, 0.55),
+          transparent
+        );
+      }
+      .hdr.scrolled.on-light {
+        background: linear-gradient(
+          180deg,
+          rgba(251, 243, 238, 0.6),
           transparent
         );
       }
@@ -305,7 +350,7 @@
         height: 54px;
         width: auto;
         transition: opacity 0.5s var(--ease);
-        filter: drop-shadow(0 2px 10px rgba(6, 7, 25, 0.5));
+        filter: drop-shadow(0 2px 10px rgba(40, 22, 14, 0.5));
       }
       .hdr.on-light .logo img {
         filter: none;
@@ -316,7 +361,7 @@
         gap: clamp(10px, 2vw, 26px);
       }
       .hdr nav a {
-        font-size: 0.98rem;
+        font-size: var(--t-small);
         font-weight: 500;
         color: var(--cream);
         opacity: 0.86;
@@ -359,7 +404,7 @@
         border-radius: 100px;
         font-family: "Heebo";
         font-weight: 700;
-        font-size: 1.06rem;
+        font-size: var(--t-body);
         cursor: pointer;
         border: 0;
         transition:
@@ -397,7 +442,7 @@
         background: rgba(140, 90, 74, 0.14);
       }
       .cta-note {
-        font-size: 0.9rem;
+        font-size: var(--t-small);
         opacity: 0.72;
         margin-block-start: 12px;
         font-weight: 400;
@@ -406,7 +451,7 @@
       /* ---- eyebrow ---- */
       .eyebrow {
         font-weight: 600;
-        font-size: 0.92rem;
+        font-size: var(--t-small);
         letter-spacing: 0.02em;
         opacity: 0.82;
         display: inline-flex;
@@ -423,16 +468,21 @@
         position: relative;
         padding-block: clamp(104px, 15vh, 160px) clamp(30px, 8vh, 74px);
       }
+      /* Daylight hero: the scrim now lifts the sky so ink type reads on it. */
       .hero-scrim {
         position: absolute;
         inset: 0;
         pointer-events: none;
         background: linear-gradient(
           270deg,
-          rgba(11, 13, 41, 0.6) 0%,
-          rgba(11, 13, 41, 0.24) 42%,
-          rgba(11, 13, 41, 0) 68%
+          rgba(248, 240, 230, 0.72) 0%,
+          rgba(248, 240, 230, 0.3) 42%,
+          rgba(248, 240, 230, 0) 68%
         );
+        /* the scrim used to stop dead at the hero's bottom edge, which read as
+           a seam once the press band landed right under it */
+        -webkit-mask-image: linear-gradient(180deg, #000 84%, transparent 100%);
+        mask-image: linear-gradient(180deg, #000 84%, transparent 100%);
       }
       .hero .wrap {
         display: grid;
@@ -444,29 +494,27 @@
       }
       .hero-copy {
         grid-column: 1;
-        max-width: 700px;
+        max-width: var(--w-text);
         position: relative;
         padding-block-end: clamp(4px, 3vh, 38px);
       }
-      .hero .reshet-badge {
-        margin-block-end: 26px;
-      }
       .hero h1 {
-        font-size: clamp(2.35rem, 5vw, 4.5rem);
+        font-size: var(--t-display);
         line-height: 1.06;
         text-wrap: balance;
         margin-block-end: 22px;
-        text-shadow: 0 2px 30px rgba(6, 7, 25, 0.5);
+        color: var(--espresso);
+        text-shadow: 0 2px 26px rgba(255, 250, 242, 0.75);
       }
       .hero h1 .l2 {
-        color: var(--moon-cream);
+        color: var(--cta);
       }
       .hero .sub {
-        font-size: clamp(1.06rem, 1.5vw, 1.24rem);
+        font-size: var(--t-lead);
         line-height: 1.72;
-        color: #e9e4f2;
-        max-width: 32em;
-        text-shadow: 0 1px 14px rgba(6, 7, 25, 0.55);
+        color: var(--ink-soft);
+        max-width: var(--measure);
+        text-shadow: 0 1px 12px rgba(255, 250, 242, 0.8);
       }
       .hero .actions {
         display: flex;
@@ -479,7 +527,7 @@
         flex-wrap: wrap;
         gap: 9px 8px;
         margin-block-start: 26px;
-        font-size: 0.9rem;
+        font-size: var(--t-small);
       }
       .chip {
         display: inline-flex;
@@ -487,14 +535,14 @@
         gap: 7px;
         padding: 8px 15px;
         border-radius: 100px;
-        background: rgba(255, 255, 255, 0.09);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        color: #eee;
+        background: rgba(255, 252, 246, 0.62);
+        border: 1px solid rgba(156, 106, 90, 0.24);
+        color: var(--ink);
         backdrop-filter: blur(4px);
       }
       .chip b {
         font-weight: 700;
-        color: var(--moon-cream);
+        color: var(--cta);
       }
       .hero-figure {
         grid-column: 2;
@@ -505,7 +553,7 @@
       .hero-figure img {
         width: min(34vw, 380px);
         height: auto;
-        filter: drop-shadow(0 30px 60px rgba(6, 7, 25, 0.55));
+        filter: drop-shadow(0 30px 60px rgba(90, 60, 40, 0.42));
         /* melt the cutout's straight bottom edge into the meadow */
         -webkit-mask-image: linear-gradient(
           180deg,
@@ -520,74 +568,6 @@
           transparent 100%
         );
       }
-      .reshet-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 7px 14px 7px 8px;
-        border-radius: 100px;
-        background: rgba(255, 255, 255, 0.94);
-        color: #011d6b;
-        font-weight: 600;
-        font-size: 0.86rem;
-        box-shadow: 0 8px 24px rgba(6, 7, 25, 0.3);
-      }
-      .reshet-badge img {
-        width: 30px;
-        height: 30px;
-        border-radius: 7px;
-        flex: none;
-      }
-      .reshet-badge:hover {
-        background: #fff;
-      }
-
-      .scroll-hint {
-        position: absolute;
-        inset-block-end: 22px;
-        inset-inline-start: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 7px;
-        font-size: 0.76rem;
-        opacity: 0.7;
-        letter-spacing: 0.08em;
-      }
-      .scroll-hint .m {
-        width: 22px;
-        height: 34px;
-        border: 1.5px solid rgba(255, 255, 255, 0.5);
-        border-radius: 12px;
-        position: relative;
-      }
-      .scroll-hint .m::after {
-        content: "";
-        position: absolute;
-        inset-block-start: 6px;
-        inset-inline-start: 50%;
-        transform: translateX(-50%);
-        width: 3px;
-        height: 6px;
-        border-radius: 2px;
-        background: #fff;
-        animation: mwheel 1.6s var(--ease) infinite;
-      }
-      @keyframes mwheel {
-        0% {
-          opacity: 0;
-          transform: translate(-50%, 0);
-        }
-        40% {
-          opacity: 1;
-        }
-        80%,
-        100% {
-          opacity: 0;
-          transform: translate(-50%, 9px);
-        }
-      }
 
       /* ============================ PANELS ============================ */
       .panel {
@@ -595,18 +575,20 @@
         padding: clamp(30px, 5vw, 58px);
         position: relative;
       }
-      .panel-night {
+      /* Dusk panel: warm brown glass, cream type. Used where the sky is dark. */
+      .panel-dusk {
         background: linear-gradient(
           160deg,
-          rgba(26, 28, 60, 0.74),
-          rgba(30, 26, 68, 0.66)
+          rgba(62, 36, 25, 0.92),
+          rgba(46, 27, 19, 0.88)
         );
-        border: 1px solid rgba(255, 255, 255, 0.09);
+        border: 1px solid rgba(255, 232, 210, 0.14);
         backdrop-filter: blur(9px);
-        box-shadow: 0 34px 90px rgba(6, 7, 25, 0.42);
-        color: #f0edf7;
+        box-shadow: 0 34px 90px rgba(40, 22, 14, 0.42);
+        color: #f6ece2;
       }
-      .panel-dawn {
+      /* Day panel: cream glass, ink type. Used where the sky is bright. */
+      .panel-day {
         background: rgba(251, 243, 238, 0.86);
         border: 1px solid rgba(156, 106, 90, 0.16);
         backdrop-filter: blur(6px);
@@ -614,12 +596,25 @@
         color: var(--ink);
       }
       /* Eyebrows sitting directly on the sky need a halo: bare clay vanished
-         against moonlit clouds. Inside a panel the panel does that job. */
-      .section-eyebrow {
-        color: #f0d9cf;
-        text-shadow: 0 1px 12px rgba(6, 7, 25, 0.9);
+         against sunlit clouds. Inside a panel the panel does that job. */
+      /* Centred sections need the eyebrow BOX to span the column: .eyebrow is
+         inline-flex, so justify-content alone only centred the glyphs inside a
+         box still hugging the start edge, leaving the label floating in the
+         corner against a centred headline. */
+      .proof .section-eyebrow,
+      .final .section-eyebrow {
+        width: 100%;
+        justify-content: center;
       }
-      .panel-night .section-eyebrow {
+      .section-eyebrow {
+        color: var(--clay-deep);
+        text-shadow: 0 1px 12px rgba(255, 250, 242, 0.95);
+      }
+      .panel-day .section-eyebrow {
+        color: var(--clay-deep);
+        text-shadow: none;
+      }
+      .panel-dusk .section-eyebrow {
         color: var(--clay);
         text-shadow: none;
       }
@@ -632,9 +627,9 @@
         align-items: center;
       }
       .pain h2 {
-        font-size: clamp(2rem, 5.4vw, 3.5rem);
+        font-size: var(--t-h2);
         margin-block-end: 26px;
-        color: #fff;
+        color: var(--espresso);
       }
       .pain .beats {
         list-style: none;
@@ -644,9 +639,9 @@
         margin-block-end: 24px;
       }
       .pain .beats li {
-        font-size: clamp(1.1rem, 2.3vw, 1.34rem);
+        font-size: var(--t-lead);
         font-weight: 500;
-        color: #e7e2f2;
+        color: var(--ink);
         padding-inline-start: 26px;
         position: relative;
       }
@@ -658,35 +653,35 @@
         width: 9px;
         height: 9px;
         border-radius: 50%;
-        background: var(--clay);
+        background: var(--clay-deep);
       }
       .pain .relate {
         font-family: "Discovery";
         font-weight: 800;
-        font-size: clamp(1.5rem, 4vw, 2.2rem);
-        color: var(--moon-cream);
+        font-size: var(--t-h3);
+        color: var(--cta);
         margin-block: 8px 26px;
       }
       .pain p {
-        color: #ddd8ea;
-        font-size: 1.08rem;
+        color: var(--ink-soft);
+        font-size: var(--t-body);
         margin-block-end: 16px;
       }
       .pain .truth {
         margin-block-start: 24px;
         padding-block-start: 24px;
-        border-block-start: 1px solid rgba(255, 255, 255, 0.12);
+        border-block-start: 1px solid rgba(156, 106, 90, 0.22);
       }
       .pain .truth b {
-        color: #fff;
+        color: var(--espresso);
         font-weight: 700;
       }
       .photo-window {
         border-radius: 28px;
         overflow: hidden;
         position: relative;
-        box-shadow: 0 30px 70px rgba(6, 7, 25, 0.5);
-        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 30px 70px rgba(70, 44, 30, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.4);
       }
       .photo-window img {
         width: 100%;
@@ -702,55 +697,56 @@
         inset-block-end: 0;
         inset-inline: 0;
         padding: 26px 22px 16px;
-        font-size: 0.9rem;
+        font-size: var(--t-small);
         color: #f3eef8;
-        background: linear-gradient(0deg, rgba(10, 11, 30, 0.8), transparent);
+        background: linear-gradient(0deg, rgba(30, 17, 11, 0.82), transparent);
       }
 
       /* ============================ METHOD (path through hills) ============================ */
       .method {
         text-align: center;
       }
-      /* Centred headings can pass under the moon: shadow keeps them legible. */
+      /* Centred headings sit straight on the clouds: halo keeps them legible. */
       .method h2 {
-        font-size: clamp(2rem, 5.6vw, 3.6rem);
-        color: #fff;
+        font-size: var(--t-h2);
+        color: var(--espresso);
         margin-block-end: 14px;
         text-shadow:
-          0 2px 18px rgba(6, 7, 25, 0.8),
-          0 0 46px rgba(6, 7, 25, 0.6);
+          0 2px 18px rgba(255, 250, 242, 0.95),
+          0 0 46px rgba(255, 250, 242, 0.8);
       }
       .method .intro {
-        font-size: 1.16rem;
-        color: #eae6f5;
-        max-width: 34em;
+        font-size: var(--t-lead);
+        color: var(--ink-soft);
+        max-width: var(--measure);
         margin: 0 auto 60px;
-        text-shadow: 0 1px 14px rgba(6, 7, 25, 0.85);
+        text-shadow: 0 1px 14px rgba(255, 250, 242, 0.95);
       }
       .path {
         position: relative;
+        /* component width, not a page container: tuned to the card + disc
+           geometry so the trail stays a tight snake instead of a slack
+           diagonal between waypoints */
         max-width: 840px;
         margin-inline: auto;
         display: flex;
         flex-direction: column;
         gap: clamp(20px, 4vw, 42px);
       }
-      .path::before {
-        content: "";
+      /* Spans the whole path box. The curve itself is generated in JS from the
+         measured centre of every number disc, so it threads exactly through
+         them at any width and however the copy reflows. */
+      .path-curve {
         position: absolute;
-        inset-block: 14px 14px;
-        inset-inline-start: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        background-image: linear-gradient(
-          180deg,
-          rgba(195, 153, 141, 0.6),
-          rgba(195, 153, 141, 0.15) 40%,
-          rgba(195, 153, 141, 0.6)
-        );
-        background-size: 2px 14px;
-        background-repeat: repeat-y;
-        opacity: 0.7;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .path-curve path {
+        /* dash length is set from getTotalLength() and the offset is driven by
+           scroll, so the trail draws itself top to bottom */
+        stroke-dashoffset: 0;
       }
       .waypoint {
         position: relative;
@@ -761,26 +757,28 @@
         width: min(100%, 430px);
       }
       /* .path is a column flexbox, so cross-axis placement is align-self,
-         not justify-self (which silently does nothing here). */
-      .waypoint:nth-child(odd) {
+         not justify-self (which silently does nothing here).
+         nth-of-type, not nth-child: the curve <svg> is the first child and
+         would otherwise flip every card to the wrong side. */
+      .waypoint:nth-of-type(odd) {
         align-self: flex-start;
         padding-inline-end: 44px;
       }
-      .waypoint:nth-child(even) {
+      .waypoint:nth-of-type(even) {
         align-self: flex-end;
         padding-inline-start: 44px;
       }
       .wp-card {
         background: linear-gradient(
           160deg,
-          rgba(28, 30, 64, 0.8),
-          rgba(34, 29, 72, 0.7)
+          rgba(251, 243, 238, 0.9),
+          rgba(245, 233, 226, 0.82)
         );
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(156, 106, 90, 0.16);
         backdrop-filter: blur(8px);
         border-radius: 26px;
         padding: 26px 28px;
-        box-shadow: 0 26px 64px rgba(6, 7, 25, 0.4);
+        box-shadow: 0 26px 64px rgba(90, 60, 42, 0.24);
       }
       .wp-num {
         position: absolute;
@@ -788,111 +786,91 @@
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        background: radial-gradient(circle at 34% 32%, #f6ead6, #d9c7a6);
-        color: #2a2350;
+        background: radial-gradient(circle at 34% 32%, #b8806c, #8c5a4a);
+        color: #fff5ea;
         display: flex;
         align-items: center;
         justify-content: center;
         font-family: "Discovery";
         font-weight: 800;
-        font-size: 1.3rem;
+        font-size: var(--t-h4);
         box-shadow:
-          0 0 0 6px rgba(246, 234, 214, 0.12),
-          0 10px 26px rgba(6, 7, 25, 0.5);
+          0 0 0 6px rgba(255, 250, 242, 0.5),
+          0 10px 26px rgba(90, 60, 42, 0.32);
         z-index: 2;
       }
-      .waypoint:nth-child(odd) .wp-num {
+      .waypoint:nth-of-type(odd) .wp-num {
         inset-inline-end: -26px;
       }
-      .waypoint:nth-child(even) .wp-num {
+      .waypoint:nth-of-type(even) .wp-num {
         inset-inline-start: -26px;
       }
       .wp-card h3 {
-        font-size: clamp(1.25rem, 2.6vw, 1.6rem);
-        color: var(--moon-cream);
+        font-size: var(--t-h4);
+        color: var(--espresso);
         margin-block-end: 10px;
       }
       .wp-card p {
-        font-size: 1.04rem;
-        color: #ddd8ea;
+        font-size: var(--t-body);
+        color: var(--ink-soft);
       }
 
       /* ============================ AUTHORITY (lit windows) ============================ */
       .authority .wrap {
-        max-width: 1000px;
+        max-width: var(--w-mid);
       }
       .auth-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: clamp(12px, 2vw, 20px);
       }
-      /* Lit-window cells: kept dark and near-opaque so cream text holds AA
-         over every sky phase, night through morning. */
+      /* Sunlit cells: kept cream and near-opaque so ink text holds AA over
+         every sky phase, midday through golden hour. */
       .auth-cell {
         text-align: center;
         padding: 30px 16px;
         border-radius: 24px;
         background: linear-gradient(
           180deg,
-          rgba(28, 27, 62, 0.9),
-          rgba(22, 22, 52, 0.94)
+          rgba(255, 250, 244, 0.94),
+          rgba(245, 233, 226, 0.92)
         );
-        border: 1px solid rgba(255, 236, 200, 0.26);
+        border: 1px solid rgba(156, 106, 90, 0.22);
         box-shadow:
-          inset 0 0 34px rgba(255, 224, 170, 0.12),
-          0 20px 50px rgba(6, 7, 25, 0.34);
+          inset 0 0 34px rgba(255, 224, 170, 0.22),
+          0 20px 50px rgba(90, 60, 42, 0.22);
       }
       .auth-cell .num {
         font-family: "Discovery";
         font-weight: 800;
-        font-size: clamp(2.2rem, 5vw, 3.4rem);
-        color: var(--moon-cream);
+        font-size: var(--t-stat);
+        color: var(--cta);
         line-height: 1;
         font-variant-numeric: tabular-nums;
       }
       .auth-cell .lbl {
-        font-size: 0.96rem;
-        color: #e6e0f2;
+        font-size: var(--t-small);
+        color: var(--ink-soft);
         margin-block-start: 10px;
         font-weight: 500;
-      }
-      .auth-cell.reshet {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
-      .auth-cell.reshet img {
-        width: 52px;
-        height: 52px;
-        border-radius: 12px;
-        background: #fff;
-        padding: 5px;
-      }
-      .auth-cell.reshet .lbl {
-        margin: 0;
-      }
-      .auth-cell.reshet:hover {
-        border-color: rgba(255, 236, 200, 0.5);
       }
 
       /* ============================ PROOF (testimonial windows) ============================ */
       .proof h2 {
         text-align: center;
-        font-size: clamp(2rem, 5.4vw, 3.4rem);
-        color: #fff;
+        font-size: var(--t-h2);
+        color: var(--espresso);
         margin-block-end: 12px;
         text-shadow:
-          0 2px 18px rgba(6, 7, 25, 0.8),
-          0 0 46px rgba(6, 7, 25, 0.6);
+          0 2px 18px rgba(255, 250, 242, 0.95),
+          0 0 46px rgba(255, 250, 242, 0.8);
       }
       .proof .sub {
         text-align: center;
-        color: #eae6f5;
+        color: var(--ink-soft);
         margin-block-end: 52px;
-        font-size: 1.08rem;
-        text-shadow: 0 1px 14px rgba(6, 7, 25, 0.85);
+        font-size: var(--t-lead);
+        text-shadow: 0 1px 14px rgba(255, 250, 242, 0.95);
       }
       .testi-grid {
         display: grid;
@@ -905,13 +883,13 @@
         border-radius: 24px;
         background: linear-gradient(
           165deg,
-          rgba(30, 29, 66, 0.9),
-          rgba(24, 23, 56, 0.94)
+          rgba(255, 250, 244, 0.94),
+          rgba(245, 233, 226, 0.92)
         );
-        border: 1px solid rgba(255, 236, 200, 0.24);
+        border: 1px solid rgba(156, 106, 90, 0.2);
         box-shadow:
-          0 22px 56px rgba(6, 7, 25, 0.4),
-          inset 0 0 44px rgba(255, 222, 160, 0.1);
+          0 22px 56px rgba(90, 60, 42, 0.24),
+          inset 0 0 44px rgba(255, 222, 160, 0.18);
         display: flex;
         flex-direction: column;
         gap: 18px;
@@ -920,71 +898,88 @@
         font-family: Georgia, serif;
         font-size: 3rem;
         line-height: 0.4;
-        color: var(--clay);
+        color: var(--clay-deep);
         height: 22px;
         opacity: 0.85;
       }
       .testi blockquote {
-        font-size: 1.18rem;
+        font-size: var(--t-lead);
         font-weight: 500;
-        color: #fbf7ef;
+        color: var(--ink);
         line-height: 1.5;
       }
       .testi .who {
         margin-block-start: auto;
         font-family: "Discovery";
         font-weight: 700;
-        font-size: 1.06rem;
-        color: var(--moon-cream);
+        font-size: var(--t-body);
+        color: var(--espresso);
       }
       .testi .who span {
         display: block;
         font-family: "Heebo";
         font-weight: 400;
-        font-size: 0.86rem;
-        color: #c9c3dc;
+        font-size: var(--t-micro);
+        color: var(--ink-soft);
         margin-block-start: 2px;
       }
-      .proof .press-row {
+      /* ============================ PRESS BAND ============================ */
+      /* Sits directly under the hero, so it is a tight band and not a full
+         section: the pain section still needs to land close to the fold. */
+      .press {
+        padding-block: clamp(8px, 2vh, 26px) clamp(28px, 6vh, 66px);
+      }
+      .press-row {
         display: flex;
         justify-content: center;
-        margin-block-start: 44px;
       }
       .press-card {
         display: flex;
         align-items: center;
-        gap: 18px;
-        padding: 14px 22px 14px 14px;
-        border-radius: 22px;
-        background: rgba(255, 255, 255, 0.94);
+        gap: clamp(18px, 3vw, 32px);
+        padding: clamp(16px, 2.2vw, 24px);
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.96);
         color: #011d6b;
-        box-shadow: 0 20px 50px rgba(6, 7, 25, 0.3);
-        max-width: 520px;
+        box-shadow: 0 28px 70px rgba(90, 60, 42, 0.34);
+        max-width: 820px;
+        width: 100%;
+        transition:
+          transform 0.22s var(--ease),
+          box-shadow 0.22s var(--ease);
+      }
+      .press-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 34px 84px rgba(90, 60, 42, 0.4);
       }
       .press-card img.poster {
-        width: 118px;
-        height: 74px;
+        width: clamp(170px, 30vw, 340px);
+        height: auto;
+        aspect-ratio: 640 / 382;
         object-fit: cover;
-        border-radius: 14px;
+        border-radius: 20px;
         flex: none;
       }
       .press-card .pc-txt {
-        font-size: 0.98rem;
+        flex: 1;
+        font-size: var(--t-lead);
+        line-height: 1.6;
       }
       .press-card .pc-txt b {
         display: block;
         font-family: "Discovery";
         font-weight: 800;
-        font-size: 1.1rem;
-        margin-block-end: 4px;
+        font-size: var(--t-h3);
+        line-height: 1.15;
+        margin-block-end: 8px;
         color: #011d6b;
       }
       .press-card .pc-go {
         color: var(--cta);
         font-weight: 700;
-        font-size: 0.94rem;
+        font-size: var(--t-body);
         display: block;
-        margin-block-start: 4px;
+        margin-block-start: 10px;
         white-space: nowrap;
       }
       .press-card:hover .pc-go {
@@ -998,18 +993,18 @@
         gap: clamp(26px, 4vw, 56px);
         align-items: center;
       }
-      .course .panel-night {
+      .course .panel-dusk {
         padding: clamp(30px, 4vw, 52px);
       }
       .course h2 {
-        font-size: clamp(1.9rem, 4.6vw, 3rem);
+        font-size: var(--t-h2);
         color: #fff;
         margin-block-end: 20px;
         text-wrap: balance;
       }
       .course p {
-        color: #ddd8ea;
-        font-size: 1.1rem;
+        color: #ecdcd0;
+        font-size: var(--t-body);
         margin-block-end: 24px;
       }
       .price {
@@ -1021,7 +1016,7 @@
       .price .now {
         font-family: "Discovery";
         font-weight: 800;
-        font-size: clamp(2.2rem, 5vw, 3rem);
+        font-size: var(--t-stat);
         color: var(--moon-cream);
       }
       .price .now small {
@@ -1029,12 +1024,12 @@
         font-weight: 600;
       }
       .price .was {
-        font-size: 1.2rem;
-        color: #b9b2cd;
+        font-size: var(--t-body);
+        color: #c9ab9a;
         text-decoration: line-through;
       }
       .price .off {
-        font-size: 0.82rem;
+        font-size: var(--t-micro);
         background: var(--clay-deep);
         color: #fff;
         padding: 4px 11px;
@@ -1046,20 +1041,23 @@
       }
 
       /* ============================ GUIDES ============================ */
-      /* Guides land in the dawn phase: ink type, not night cream. */
+      /* Guides land in the dusk phase: cream type, not day ink. */
       .guides h2 {
-        font-size: clamp(1.9rem, 4.6vw, 3rem);
-        color: var(--espresso);
+        font-size: var(--t-h2);
+        color: var(--moon-cream);
         margin-block-end: 12px;
+        text-shadow: 0 2px 18px rgba(40, 22, 14, 0.6);
       }
       .guides .sub {
-        color: var(--ink);
+        color: #f2e3d8;
         margin-block-end: 40px;
-        font-size: 1.08rem;
-        max-width: 34em;
+        font-size: var(--t-lead);
+        max-width: var(--measure);
+        text-shadow: 0 1px 14px rgba(40, 22, 14, 0.6);
       }
       .guides .section-eyebrow {
-        color: var(--clay-deep);
+        color: #eab99c;
+        text-shadow: 0 1px 12px rgba(40, 22, 14, 0.8);
       }
       .guide-row {
         display: grid;
@@ -1079,18 +1077,18 @@
         border: 1px solid rgba(156, 106, 90, 0.14);
       }
       .guide-card .gc-tag {
-        font-size: 0.82rem;
+        font-size: var(--t-micro);
         font-weight: 600;
         color: var(--clay-deep);
         letter-spacing: 0.02em;
       }
       .guide-card h3 {
-        font-size: clamp(1.35rem, 3vw, 1.8rem);
+        font-size: var(--t-h4);
         color: var(--espresso);
       }
       .guide-card p {
         color: var(--ink-soft);
-        font-size: 1.04rem;
+        font-size: var(--t-body);
       }
       .guide-card .gc-go {
         margin-block-start: auto;
@@ -1121,7 +1119,7 @@
       .guide-soon .gs-h {
         font-family: "Discovery";
         font-weight: 700;
-        font-size: 1.1rem;
+        font-size: var(--t-body);
         color: #2f3a28;
       }
       .guide-soon ul {
@@ -1129,7 +1127,7 @@
         display: flex;
         flex-direction: column;
         gap: 9px;
-        font-size: 0.98rem;
+        font-size: var(--t-small);
         opacity: 0.9;
       }
       .guide-soon li {
@@ -1161,26 +1159,29 @@
       .about-fig .suit {
         width: min(74vw, 360px);
         height: auto;
-        filter: drop-shadow(0 26px 54px rgba(120, 80, 66, 0.34));
+        filter: drop-shadow(0 26px 54px rgba(20, 10, 6, 0.5));
       }
+      /* About and the final CTA sit in the deep brown: cream type from here. */
       .about h2 {
-        font-size: clamp(2rem, 5vw, 3.2rem);
-        color: var(--espresso);
+        font-size: var(--t-h2);
+        color: var(--moon-cream);
         margin-block-end: 20px;
+        text-shadow: 0 2px 18px rgba(40, 22, 14, 0.6);
       }
       .about p {
-        color: var(--ink-soft);
-        font-size: 1.12rem;
+        color: #ecdcd0;
+        font-size: var(--t-body);
         margin-block-end: 18px;
+        text-shadow: 0 1px 14px rgba(40, 22, 14, 0.55);
       }
       .about .lead {
-        color: var(--ink);
+        color: #fdf2e8;
         font-weight: 500;
-        font-size: 1.16rem;
+        font-size: var(--t-lead);
       }
       .about .credentials {
-        font-size: 1.02rem;
-        color: var(--ink-soft);
+        font-size: var(--t-small);
+        color: #dcc7b9;
         margin-block-start: 22px;
       }
 
@@ -1190,7 +1191,7 @@
         padding-block: clamp(100px, 16vh, 180px);
       }
       .final .wrap {
-        max-width: 760px;
+        max-width: var(--w-text);
       }
       .final .photo-window {
         max-width: 560px;
@@ -1198,17 +1199,18 @@
         aspect-ratio: 16/9;
       }
       .final h2 {
-        font-size: clamp(2.1rem, 6vw, 4rem);
-        color: var(--espresso);
+        font-size: var(--t-h2);
+        color: var(--moon-cream);
         text-wrap: balance;
         margin-block-end: 20px;
         line-height: 1.06;
+        text-shadow: 0 2px 20px rgba(20, 10, 6, 0.6);
       }
       .final p {
-        color: var(--ink-soft);
-        font-size: 1.18rem;
+        color: #f0e2d7;
+        font-size: var(--t-lead);
         margin-block-end: 34px;
-        max-width: 26em;
+        max-width: var(--measure-tight);
         margin-inline: auto;
       }
       .final .actions {
@@ -1221,20 +1223,16 @@
         margin-block-start: 52px;
         font-family: "Discovery";
         font-weight: 700;
-        font-size: 1.4rem;
-        color: var(--clay-deep);
+        font-size: var(--t-h4);
+        color: #e6b89c;
       }
 
       /* ============================ FOOTER ============================ */
       footer {
         position: relative;
         z-index: 1;
-        background: linear-gradient(
-          180deg,
-          rgba(251, 243, 238, 0),
-          var(--cream2) 22%
-        );
-        color: var(--ink);
+        background: linear-gradient(180deg, rgba(35, 20, 13, 0), #23140d 22%);
+        color: #ecdcd0;
         padding-block: 70px 40px;
       }
       footer .wrap {
@@ -1252,31 +1250,31 @@
       footer .f-title {
         font-family: "Discovery";
         font-weight: 800;
-        font-size: 1.3rem;
-        color: var(--espresso);
+        font-size: var(--t-h4);
+        color: var(--moon-cream);
       }
       footer .f-line {
-        color: var(--ink-soft);
-        font-size: 0.98rem;
+        color: #dcc7b9;
+        font-size: var(--t-small);
       }
       footer .f-links {
         display: flex;
         flex-wrap: wrap;
         gap: 8px 20px;
         justify-content: center;
-        font-size: 0.94rem;
+        font-size: var(--t-small);
         font-weight: 500;
       }
       footer .f-links a {
-        color: var(--clay-deep);
+        color: #eab99c;
         transition: color 0.2s;
       }
       footer .f-links a:hover {
-        color: var(--cta);
+        color: #fdf2e8;
       }
       footer .f-copy {
-        font-size: 0.84rem;
-        color: var(--ink-soft);
+        font-size: var(--t-micro);
+        color: #dcc7b9;
         opacity: 0.8;
         margin-block-start: 8px;
       }
@@ -1290,8 +1288,8 @@
         padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
         background: linear-gradient(
           180deg,
-          rgba(20, 22, 46, 0),
-          rgba(16, 18, 40, 0.92) 40%
+          rgba(46, 27, 19, 0),
+          rgba(35, 20, 13, 0.92) 40%
         );
         transform: translateY(120%);
         transition: transform 0.4s var(--ease);
@@ -1305,7 +1303,7 @@
       .sticky-cta .btn {
         width: 100%;
         box-shadow:
-          0 -6px 30px rgba(6, 7, 25, 0.4),
+          0 -6px 30px rgba(20, 10, 6, 0.4),
           0 14px 34px rgba(140, 90, 74, 0.42);
       }
       @media (max-width: 720px) {
@@ -1375,9 +1373,9 @@
         .hero-scrim {
           background: linear-gradient(
             180deg,
-            rgba(11, 13, 41, 0.28) 0%,
-            rgba(11, 13, 41, 0.62) 55%,
-            rgba(11, 13, 41, 0.72) 100%
+            rgba(248, 240, 230, 0.3) 0%,
+            rgba(248, 240, 230, 0.72) 55%,
+            rgba(248, 240, 230, 0.82) 100%
           );
         }
         .pain .wrap,
@@ -1402,14 +1400,15 @@
         .auth-grid {
           grid-template-columns: repeat(2, 1fr);
         }
+        /* three cells in a two-column grid: the last one takes the full row
+           instead of sitting alone next to a gap */
+        .auth-cell:last-child {
+          grid-column: 1 / -1;
+        }
         .waypoint {
           width: 100%;
           justify-self: stretch !important;
           padding-inline: 0 0 !important;
-        }
-        .path::before {
-          inset-inline-start: 26px;
-          transform: none;
         }
         .wp-num {
           inset-inline-start: 0 !important;
@@ -1422,19 +1421,25 @@
           flex-direction: column;
           text-align: center;
         }
+        .press-card img.poster {
+          width: 100%;
+        }
+        .press-card .pc-go {
+          margin-block-start: 14px;
+        }
       }
       @media (max-width: 480px) {
         /* Density pass so the primary CTA clears the 844px fold. */
         .hero {
           padding-block: 78px 18px;
         }
-        /* The moon starts under the logo at this width, so the header keeps its
-           scrim from the very top to hold the mark legible. */
+        /* Bright clouds run under the logo at this width, so the header keeps
+           its scrim from the very top to hold the mark legible. */
         .hdr {
           background: linear-gradient(
             180deg,
-            rgba(11, 13, 41, 0.72),
-            rgba(11, 13, 41, 0.28) 70%,
+            rgba(46, 27, 19, 0.72),
+            rgba(46, 27, 19, 0.28) 70%,
             transparent
           );
         }
@@ -1455,9 +1460,6 @@
         .hero-figure img {
           width: min(44vw, 196px);
         }
-        .hero .reshet-badge {
-          margin-block-end: 14px;
-        }
         .hero .sub {
           font-size: 1rem;
           line-height: 1.6;
@@ -1471,9 +1473,6 @@
         }
         .hero .chips {
           margin-block-start: 16px;
-        }
-        .scroll-hint {
-          display: none;
         }
         .auth-grid {
           gap: 10px;
@@ -1503,9 +1502,6 @@
         .cloud {
           filter: none;
         }
-        .scroll-hint {
-          display: none;
-        }
       }
     </style>
   </head>
@@ -1526,9 +1522,6 @@
           <img src="assets/opt/clouds-front.webp" alt="" />
         </div>
       </div>
-      <!-- Moon sits in front of both cloud layers but behind the hills, so it
-           stays readable in every section and visibly sets behind the meadow. -->
-      <img class="moon" id="moon" src="assets/opt/moon.webp" alt="" />
       <div class="ground">
         <img class="g-img" src="assets/opt/hills.webp" alt="" />
       </div>
@@ -1571,16 +1564,6 @@
         <div class="hero-scrim" aria-hidden="true"></div>
         <div class="wrap">
           <div class="hero-copy">
-            <a
-              class="reshet-badge"
-              href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
-              target="_blank"
-              rel="noopener"
-              data-reveal
-            >
-              <img src="assets/press/reshet13-logo.svg" alt="רשת 13" />
-              <span>בין המומלצים של רשת 13</span>
-            </a>
             <p class="eyebrow" data-reveal>תמי שני | יועצת שינה והתפתחות</p>
             <h1 data-reveal>
               תינוק שנרדם לבד.<br /><span class="l2"
@@ -1601,7 +1584,7 @@
                 >אני רוצה לישון כבר עכשיו</a
               >
               <a
-                class="btn btn-ghost"
+                class="btn btn-ghost on-light"
                 href="https://ig.me/m/baby.tammy.time"
                 target="_blank"
                 rel="noopener"
@@ -1611,9 +1594,6 @@
             <div class="chips" data-reveal>
               <span class="chip"><b>מעל 15</b> שנות ניסיון</span>
               <span class="chip"><b>אלפי</b> תינוקות</span>
-              <span class="chip"
-                >בין המומלצים של רשת <span class="ltr">13</span></span
-              >
             </div>
           </div>
           <div class="hero-figure" data-reveal>
@@ -1626,15 +1606,39 @@
             />
           </div>
         </div>
-        <div class="scroll-hint" aria-hidden="true">
-          <span class="m"></span><span>הסיפור מתחיל כאן</span>
+      </section>
+
+      <!-- ============================ PRESS (top credibility band) ============================ -->
+      <section class="press">
+        <div class="wrap">
+          <div class="press-row" data-reveal>
+            <a
+              class="press-card"
+              href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
+              target="_blank"
+              rel="noopener"
+            >
+              <img
+                class="poster"
+                src="assets/opt/press-poster.webp"
+                alt="תמי שני בכתבה ברשת 13"
+                width="640"
+                height="382"
+              />
+              <span class="pc-txt"
+                ><b>תמי ברשת <span class="ltr">13</span></b
+                >בין המומלצים בתחום שנת התינוקות.
+                <span class="pc-go">לכתבה המלאה ↖</span></span
+              >
+            </a>
+          </div>
         </div>
       </section>
 
       <!-- ============================ PAIN ============================ -->
       <section class="pain">
         <div class="wrap">
-          <div class="panel panel-night" data-reveal>
+          <div class="panel panel-day" data-reveal>
             <p class="eyebrow section-eyebrow">רגע של אמת</p>
             <h2>את לא לבד.<br />וזה לא באשמתך.</h2>
             <ul class="beats stagger">
@@ -1669,18 +1673,34 @@
       <!-- ============================ METHOD ============================ -->
       <section class="method">
         <div class="wrap">
-          <p
-            class="eyebrow section-eyebrow"
-            style="justify-content: center"
-            data-reveal
-          >
-            השיטה
-          </p>
           <h2 data-reveal>שיטת תכלס: הדרך של תמי</h2>
           <p class="intro" data-reveal>
             בלי תיאוריות מסובכות. ארבעה עקרונות שעובדים.
           </p>
           <div class="path">
+            <!-- The trail through the hills: draws itself as you scroll,
+                 swinging toward each waypoint card in turn. -->
+            <svg class="path-curve" fill="none" aria-hidden="true">
+              <path
+                stroke="url(#pathGrad)"
+                stroke-width="3"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <defs>
+                <linearGradient id="pathGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#c3998d" stop-opacity="0.15" />
+                  <stop offset="18%" stop-color="#c3998d" stop-opacity="0.75" />
+                  <stop offset="55%" stop-color="#9c6a5a" stop-opacity="0.95" />
+                  <stop offset="85%" stop-color="#9c6a5a" stop-opacity="0.7" />
+                  <stop
+                    offset="100%"
+                    stop-color="#9c6a5a"
+                    stop-opacity="0.15"
+                  />
+                </linearGradient>
+              </defs>
+            </svg>
             <div class="waypoint" data-reveal>
               <div class="wp-num">1</div>
               <div class="wp-card">
@@ -1741,15 +1761,6 @@
               <div class="num">אלפי</div>
               <div class="lbl">תינוקות שלמדו לישון</div>
             </div>
-            <a
-              class="auth-cell reshet"
-              href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
-              target="_blank"
-              rel="noopener"
-            >
-              <img src="assets/press/reshet13-logo.svg" alt="רשת 13" />
-              <div class="lbl">בין המומלצים</div>
-            </a>
           </div>
         </div>
       </section>
@@ -1757,13 +1768,7 @@
       <!-- ============================ PROOF ============================ -->
       <section class="proof">
         <div class="wrap">
-          <p
-            class="eyebrow section-eyebrow"
-            style="justify-content: center"
-            data-reveal
-          >
-            אמהות מספרות
-          </p>
+          <p class="eyebrow section-eyebrow" data-reveal>אמהות מספרות</p>
           <h2 data-reveal>הן כבר ישנות בלילה</h2>
           <p class="sub" data-reveal>מילים אמיתיות של אמהות שעברו את הדרך.</p>
           <div class="testi-grid stagger" data-reveal>
@@ -1793,26 +1798,6 @@
               </figcaption>
             </figure>
           </div>
-          <div class="press-row" data-reveal>
-            <a
-              class="press-card"
-              href="https://13tv.co.il/item/special/recommended/health-2/tamishani-902235552/"
-              target="_blank"
-              rel="noopener"
-            >
-              <img
-                class="poster"
-                src="assets/opt/press-poster.webp"
-                alt="תמי שני בכתבה ברשת 13"
-                loading="lazy"
-              />
-              <span class="pc-txt"
-                ><b>תמי ברשת <span class="ltr">13</span></b
-                >בין המומלצים בתחום שנת התינוקות.
-                <span class="pc-go">לכתבה המלאה ↖</span></span
-              >
-            </a>
-          </div>
         </div>
       </section>
 
@@ -1826,8 +1811,7 @@
               loading="lazy"
             />
           </figure>
-          <div class="panel panel-night" data-reveal>
-            <p class="eyebrow section-eyebrow">הקורס הדיגיטלי</p>
+          <div class="panel panel-dusk" data-reveal>
             <h2>הקורס: תכלס - איך להרדים תינוק</h2>
             <p>
               כל השיטה, מסודרת בסרטונים קצרים. מהשלב הראשון ועד הירדמות עצמאית.
@@ -1857,7 +1841,6 @@
       <!-- ============================ GUIDES ============================ -->
       <section class="guides">
         <div class="wrap">
-          <p class="eyebrow section-eyebrow" data-reveal>שליף מהיר</p>
           <h2 data-reveal>שליף ליד המיטה</h2>
           <p class="sub" data-reveal>
             מדריכים קצרים ופרקטיים, בנויים בדיוק לרגעים שאת צריכה תשובה עכשיו.
@@ -1903,7 +1886,6 @@
             />
           </div>
           <div>
-            <p class="eyebrow section-eyebrow" data-reveal>נעים להכיר</p>
             <h2 data-reveal>נעים להכיר, אני תמי</h2>
             <p class="lead" data-reveal>
               התחלתי בדיוק איפה שאת נמצאת עכשיו: אמא עייפה, מבולבלת, עם תינוק
@@ -1918,7 +1900,7 @@
               ומדריכת דנסטן, שפת התינוקות.
             </p>
             <div class="actions" style="margin-block-start: 26px" data-reveal>
-              <a class="btn btn-ghost on-light" href="/about/">לסיפור המלא</a>
+              <a class="btn btn-ghost" href="/about/">לסיפור המלא</a>
             </div>
           </div>
         </div>
@@ -1934,11 +1916,7 @@
               loading="lazy"
             />
           </figure>
-          <p
-            class="eyebrow section-eyebrow"
-            style="justify-content: center; color: var(--clay-deep)"
-            data-reveal
-          >
+          <p class="eyebrow section-eyebrow" style="color: #eab99c" data-reveal>
             הבוקר שאחרי
           </p>
           <h2 data-reveal>הלילה הרגוע הראשון מתחיל בשיחה אחת</h2>
@@ -1954,14 +1932,14 @@
               >קובעים שיחה ללא עלות</a
             >
             <a
-              class="btn btn-ghost on-light"
+              class="btn btn-ghost"
               href="https://tammyshani.ravpage.co.il/tammybabysleep"
               target="_blank"
               rel="noopener"
               >מעדיפה להתחיל בקורס?</a
             >
           </div>
-          <p class="cta-note" style="color: var(--ink-soft)">
+          <p class="cta-note" style="color: #dcc7b9">
             בלי התחייבות, מענה תוך יום.
           </p>
           <p class="sign" data-reveal>באהבה ❤️ תמי</p>
@@ -1972,7 +1950,7 @@
     <!-- ============================ FOOTER ============================ -->
     <footer>
       <div class="wrap">
-        <img class="f-logo" src="assets/opt/logo-brown.webp" alt="תמי שני" />
+        <img class="f-logo" src="assets/opt/logo-cream.webp" alt="תמי שני" />
         <div class="f-title">תמי שני · יועצת שינה והתפתחות</div>
         <div class="f-line">
           אינסטגרם
@@ -1980,7 +1958,7 @@
             href="https://instagram.com/baby.tammy.time"
             target="_blank"
             rel="noopener"
-            style="color: var(--clay-deep); font-weight: 600"
+            style="color: #eab99c; font-weight: 600"
             ><span class="ltr">@baby.tammy.time</span></a
           >
           · שיחת ייעוץ ללא עלות
@@ -2065,12 +2043,12 @@
 
         // sky keyframes: [progress, topHex, bottomHex]
         var SKY = [
-          [0.0, "#0b0d29", "#1a1b45"],
-          [0.28, "#1a1b46", "#2e2858"],
-          [0.52, "#3b3060", "#6b4a68"],
-          [0.72, "#8c6379", "#cf9fa1"],
-          [0.86, "#e6c1bb", "#f3dcd8"],
-          [1.0, "#f6ebde", "#fbf3ee"],
+          [0.0, "#9dc9e0", "#f0eadd"],
+          [0.34, "#8ab8d6", "#f8dfb4"],
+          [0.56, "#c39a9a", "#f7bd83"],
+          [0.74, "#8a5a52", "#e28a52"],
+          [0.88, "#4d2c20", "#9c5333"],
+          [1.0, "#2e1b13", "#5b3524"],
         ];
         var SKYc = SKY.map(function (s) {
           return [s[0], hex(s[1]), hex(s[2])];
@@ -2096,7 +2074,6 @@
           starsA = document.getElementById("starsA"),
           starsB = document.getElementById("starsB"),
           sunglow = document.getElementById("sunglow"),
-          moon = document.getElementById("moon"),
           cloudBack = document.getElementById("cloudBack"),
           cloudFront = document.getElementById("cloudFront"),
           groundImg = document.querySelector(".ground .g-img"),
@@ -2105,78 +2082,73 @@
           logoBrown = document.getElementById("logoBrown"),
           sticky = document.getElementById("stickyCta");
 
-        function render(p) {
-          var vw = window.innerWidth,
-            vh = window.innerHeight;
+        function render(p, still) {
+          // `still` pins the cloud parallax to mid-journey and lets only the
+          // colours follow the scroll (reduced motion)
+          var ap = still ? 0.5 : p;
           sky.style.background = skyAt(p);
-          // stars fade out toward dawn
-          var starOp = clamp(1 - p / 0.42, 0, 1);
-          starsA.style.opacity = (starOp * 0.7).toFixed(3);
-          starsB.style.opacity = starOp.toFixed(3);
-          // night amount for ground + clouds (1 night -> 0 dawn)
-          var night = clamp(1 - p / 0.86, 0, 1);
+          // first stars only prick through at the very end of the dusk
+          var starOp = clamp((p - 0.82) / 0.18, 0, 1);
+          starsA.style.opacity = (starOp * 0.4).toFixed(3);
+          starsB.style.opacity = (starOp * 0.6).toFixed(3);
+          // dusk amount for ground + clouds (0 daylight -> 1 deep brown)
+          var dusk = clamp((p - 0.3) / 0.7, 0, 1);
+          // the hills start turning before the sky does: the meadow loses its
+          // green early, otherwise it reads as pasted onto a sunset
+          var duskG = clamp((p - 0.15) / 0.85, 0, 1);
           // tint the hills via their own filter: alpha-safe, so no seam/edge
           groundImg.style.filter =
             "brightness(" +
-            (0.42 + 0.58 * (1 - night)).toFixed(3) +
+            (1 - 0.66 * duskG).toFixed(3) +
             ") saturate(" +
-            (0.55 + 0.45 * (1 - night)).toFixed(3) +
-            ")";
-          // saturation is capped below 1 so the art's pink cloud rim-light
-          // stays soft at dawn instead of reading as a hot magenta edge
-          var bright = (0.5 + 0.55 * (1 - night)).toFixed(3),
-            sat = (0.5 + 0.36 * (1 - night)).toFixed(3);
+            (1 - 0.3 * duskG).toFixed(3) +
+            ") sepia(" +
+            (0.9 * duskG).toFixed(3) +
+            ") hue-rotate(" +
+            (-12 * duskG).toFixed(1) +
+            "deg)";
+          // clouds keep more brightness than the ground so they still catch the
+          // last light instead of going flat brown with the hills
+          var bright = (1 - 0.52 * dusk).toFixed(3),
+            sat = (1 - 0.14 * dusk).toFixed(3),
+            warm = (0.5 * dusk).toFixed(3);
           cloudBack.style.filter =
-            "brightness(" + bright + ") saturate(" + sat + ")";
+            "brightness(" +
+            bright +
+            ") saturate(" +
+            sat +
+            ") sepia(" +
+            warm +
+            ")";
           cloudFront.style.filter =
-            "brightness(" + bright + ") saturate(" + sat + ")";
-          var cloudOp = (0.22 + 0.78 * (1 - night)).toFixed(3);
+            "brightness(" +
+            bright +
+            ") saturate(" +
+            sat +
+            ") sepia(" +
+            warm +
+            ")";
+          var cloudOp = (1 - 0.42 * dusk).toFixed(3);
           cloudBack.style.opacity = cloudOp;
           cloudFront.style.opacity = cloudOp;
           // scroll parallax on clouds (transform only)
-          cloudBack.style.transform = "translateY(" + -p * 38 + "px)";
-          cloudFront.style.transform = "translateY(" + -p * 88 + "px)";
-          // sun glow near dawn
+          cloudBack.style.transform = "translateY(" + -ap * 38 + "px)";
+          cloudFront.style.transform = "translateY(" + -ap * 88 + "px)";
+          // horizon glow builds through golden hour, dims once the sun is down
           sunglow.style.opacity = (
-            clamp((p - 0.72) / 0.28, 0, 1) * 0.95
+            clamp((p - 0.3) / 0.4, 0, 1) *
+            (1 - clamp((p - 0.84) / 0.16, 0, 1) * 0.28) *
+            0.95
           ).toFixed(3);
-          // logo swap
-          var lb = clamp((p - 0.55) / 0.18, 0, 1);
+          // logo swap: brown mark in daylight, cream once the sky goes dark
+          var lb = 1 - clamp((p - 0.58) / 0.14, 0, 1);
           logoBrown.style.opacity = lb.toFixed(2);
           logoCream.style.opacity = (1 - lb).toFixed(2);
-          hdr.classList.toggle("on-light", p > 0.68);
-          // ----- MOON ARC (signature) -----
-          var size = Math.max(140, Math.min(320, vw * 0.24));
-          moon.style.width = moon.style.height = size + "px";
-          // p reaches 1 exactly when the final CTA is centred, so the moon
-          // touches the horizon there and the hills occlude it: it sets.
-          var xFrac = 0.8 - 0.64 * p; // right -> left
-          // Narrow screens start the arc lower so the disc clears the header
-          // logo; both widths still finish on the horizon at 0.62.
-          var y0 = vw < 560 ? 0.26 : 0.14;
-          var yFrac = y0 + (0.62 - y0) * p - 0.1 * Math.sin(Math.PI * p);
-          var x = xFrac * vw - size / 2;
-          var y = yFrac * vh - size / 2;
-          moon.style.transform =
-            "translate3d(" + x.toFixed(1) + "px," + y.toFixed(1) + "px,0)";
-          // As it sets it warms and softens, handing the light to the dawn glow
-          // instead of staying a cold grey disc against a warm sky.
-          var setg = clamp((p - 0.62) / 0.38, 0, 1);
-          moon.style.opacity = (1 - setg * 0.28).toFixed(3);
-          moon.style.filter =
-            "drop-shadow(0 0 46px rgba(246,234,214," +
-            (0.42 * (1 - setg * 0.7)).toFixed(2) +
-            ")) drop-shadow(0 0 14px rgba(246,234,214,.5)) sepia(" +
-            (setg * 0.42).toFixed(2) +
-            ") saturate(" +
-            (1 + setg * 0.5).toFixed(2) +
-            ") brightness(" +
-            (1 + setg * 0.06).toFixed(2) +
-            ")";
+          hdr.classList.toggle("on-light", p < 0.66);
         }
 
         // The journey ends AT the final CTA (not at the document end), so the
-        // moon's setting lands on the CTA instead of behind the footer.
+        // deepest brown lands on the CTA instead of behind the footer.
         var ctaAnchor = 1;
         function measure() {
           var cta = document.querySelector("#final .btn-primary");
@@ -2196,12 +2168,110 @@
           return h > 0 ? clamp(window.scrollY / h, 0, 1) : 0;
         }
 
+        // ---- method trail: the curve draws itself as the section scrolls by
+        var trailSvg = document.querySelector(".path-curve"),
+          trail = trailSvg && trailSvg.querySelector("path"),
+          trailBox = document.querySelector(".method .path"),
+          trailLen = 0;
+
+        // The curve is generated from the measured centre of every number disc
+        // instead of hard-coded coordinates, so it lands ON the discs at any
+        // width and after any reflow. Catmull-Rom through the points, converted
+        // to cubic beziers, keeps it a smooth trail rather than a zigzag.
+        function buildTrail() {
+          if (!trail) return;
+          var box = {
+              width: trailBox.offsetWidth,
+              height: trailBox.offsetHeight,
+            },
+            nums = trailBox.querySelectorAll(".wp-num"),
+            pts = [],
+            i;
+          if (!nums.length || !box.height) return;
+          var discs = [];
+          for (i = 0; i < nums.length; i++) {
+            // offsetLeft/Top, not getBoundingClientRect: the cards carry a
+            // translateY reveal transform, and measuring through it would bake
+            // that 22px offset into the curve and pull it off the discs
+            var n = nums[i],
+              wp = n.offsetParent;
+            discs.push({
+              x: wp.offsetLeft + n.offsetLeft + n.offsetWidth / 2,
+              y: wp.offsetTop + n.offsetTop + n.offsetHeight / 2,
+            });
+          }
+          // The discs sit only ~20px apart horizontally, so a curve straight
+          // through them would be a near-straight line. Each gap gets a
+          // midpoint bowed out to the side of the card it is leaving, which
+          // gives the snake its swing while every disc stays exactly on it.
+          var bow = Math.min(110, box.width * 0.13);
+          pts.push({ x: discs[0].x, y: 0 }); // enter above the first disc
+          for (i = 0; i < discs.length; i++) {
+            pts.push(discs[i]);
+            if (i < discs.length - 1) {
+              pts.push({
+                x: clamp(
+                  (discs[i].x + discs[i + 1].x) / 2 + (i % 2 ? -bow : bow),
+                  8,
+                  box.width - 8,
+                ),
+                y: (discs[i].y + discs[i + 1].y) / 2,
+              });
+            }
+          }
+          pts.push({ x: discs[discs.length - 1].x, y: box.height });
+
+          var d = "M" + pts[0].x.toFixed(1) + " " + pts[0].y.toFixed(1);
+          for (i = 0; i < pts.length - 1; i++) {
+            var p0 = pts[i - 1] || pts[i],
+              p1 = pts[i],
+              p2 = pts[i + 1],
+              p3 = pts[i + 2] || p2;
+            d +=
+              " C" +
+              (p1.x + (p2.x - p0.x) / 6).toFixed(1) +
+              " " +
+              (p1.y + (p2.y - p0.y) / 6).toFixed(1) +
+              "," +
+              (p2.x - (p3.x - p1.x) / 6).toFixed(1) +
+              " " +
+              (p2.y - (p3.y - p1.y) / 6).toFixed(1) +
+              "," +
+              p2.x.toFixed(1) +
+              " " +
+              p2.y.toFixed(1);
+          }
+          trailSvg.setAttribute(
+            "viewBox",
+            "0 0 " + box.width.toFixed(1) + " " + box.height.toFixed(1),
+          );
+          trail.setAttribute("d", d);
+          trailLen = trail.getTotalLength();
+          trail.style.strokeDasharray = trailLen;
+        }
+
+        function drawTrail() {
+          if (!trail) return;
+          // reduced motion gets the finished trail, not a drawing one
+          if (reduce) {
+            trail.style.strokeDashoffset = 0;
+            return;
+          }
+          var r = trailBox.getBoundingClientRect(),
+            vh = window.innerHeight,
+            // starts when the top of the trail reaches 85% of the viewport,
+            // finishes as its bottom clears the middle
+            t = clamp((vh * 0.85 - r.top) / (r.height + vh * 0.2), 0, 1);
+          trail.style.strokeDashoffset = (trailLen * (1 - t)).toFixed(1);
+        }
+
         var ticking = false;
         function onScroll() {
           if (!ticking) {
             ticking = true;
             requestAnimationFrame(function () {
-              render(journey());
+              render(journey(), reduce);
+              drawTrail();
               hdr.classList.toggle("scrolled", window.scrollY > 40);
               var dp = docProgress();
               sticky.classList.toggle("show", dp > 0.6 && dp < 0.985);
@@ -2210,23 +2280,26 @@
           }
         }
 
-        if (reduce) {
+        // Reduced motion still recolours the sky on scroll: without it the
+        // sections written for the brown end sit on a bright sky and become
+        // unreadable. Only the movement (cloud parallax) is frozen.
+        measure();
+        buildTrail();
+        render(journey(), reduce);
+        drawTrail();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", function () {
           measure();
-          render(0.5); // static, world fully visible, moon mid-arc
-          hdr.classList.add("scrolled");
-        } else {
+          buildTrail();
+          onScroll();
+        });
+        // fonts and images settle after load and can move the discs, so the
+        // curve is rebuilt from their final positions
+        window.addEventListener("load", function () {
           measure();
-          render(journey());
-          window.addEventListener("scroll", onScroll, { passive: true });
-          window.addEventListener("resize", function () {
-            measure();
-            onScroll();
-          });
-          window.addEventListener("load", function () {
-            measure();
-            onScroll();
-          });
-        }
+          buildTrail();
+          onScroll();
+        });
 
         // ---- reveals ----
         var revealEls = [].slice.call(
