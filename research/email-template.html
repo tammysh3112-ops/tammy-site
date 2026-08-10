@@ -1,0 +1,228 @@
+<!--
+============ תבנית מייל מסירת מדריך של תמי (לשימוש חוזר בכל מדריך) ============
+עודכן 10.8.2026.
+
+איך משתמשים:
+  ממלאים את כל ה-{{PLACEHOLDERS}} ומדביקים את ה-HTML בעורך של רב מסר
+  (edit_url של הסדרה). רב מסר לא מקבל HTML דרך ה-API, רק מהממשק, אז זו
+  הדבקה ידנית אחת לכל מדריך, באותה כניסה שבה מפעילים את הסדרה.
+
+הפלייסהולדרים:
+  {{DOWNLOAD_URL}}   קישור גוגל דרייב למדריך (drive_url מ-guides/config.json)
+  {{OPENING_HTML}}   פתיח אישי, שורה אחת לכל מחשבה, עם <br> בין שורות
+  {{HIGHLIGHT}}      שורת המפנה המודגשת, משפט אחד
+  {{INSIDE_HTML}}    מה יש במדריך, שורה לכל פריט, עם <br>
+  {{PS_HTML}}        טקסט הנ.ב, משפט או שניים
+
+קבוע ולא נוגעים:
+  קרם #fbf3ee, לבן, חום דיו #4a342e, קלay #8c5a4a, פונט Heebo, רוחב 580.
+  התמונות נטענות מהאתר החי. אם הדומיין משתנה, מעדכנים את שתי הכתובות.
+  בלי מקפים ארוכים, אף פעם. רק "-".
+==============================================================================
+-->
+<div
+  dir="rtl"
+  style="
+    font-family: Heebo, Arial, sans-serif;
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 32px 16px;
+    background: #fbf3ee;
+  "
+>
+  <div
+    style="
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 36px 30px;
+      box-shadow: 0 2px 10px rgba(74, 52, 46, 0.08);
+    "
+  >
+    <!-- לוגו -->
+    <div style="text-align: center; margin-bottom: 22px">
+      <img
+        src="https://tammy-site.vercel.app/assets/brand/logo-brown.png"
+        alt="baby TAMMY time"
+        width="150"
+        style="width: 150px; max-width: 150px; height: auto; border: 0"
+      />
+    </div>
+
+    <!-- גוף -->
+    <div
+      style="
+        color: #4a342e;
+        font-size: 16px;
+        line-height: 1.85;
+        text-align: right;
+      "
+    >
+      <!--
+        פנייה בשם פרטי: אל תכתבי כאן תגית ידנית. בעורך של רב מסר יש כפתור
+        פרסונליזציה שמכניס את התגית הנכונה לשם הפרטי. בלי זה, "היי," לבד עובד
+        מצוין וזה מה שרץ היום.
+      -->
+      <p style="margin: 0 0 16px">היי,</p>
+
+      <p style="margin: 0 0 16px">{{OPENING_HTML}}</p>
+
+      <p
+        style="
+          margin: 0 0 16px;
+          font-size: 19px;
+          font-weight: 700;
+          color: #4a342e;
+        "
+      >
+        {{HIGHLIGHT}}
+      </p>
+
+      <p style="margin: 0 0 16px">{{INSIDE_HTML}}</p>
+    </div>
+
+    <!-- כפתור הורדה -->
+    <div style="text-align: center; margin: 28px 0">
+      <table
+        role="presentation"
+        cellpadding="0"
+        cellspacing="0"
+        style="margin: 0 auto"
+      >
+        <tr>
+          <td
+            style="background: #8c5a4a; border-radius: 10px; padding: 14px 42px"
+          >
+            <a
+              href="{{DOWNLOAD_URL}}"
+              style="
+                color: #ffffff;
+                font-family: Heebo, Arial, sans-serif;
+                font-size: 17px;
+                font-weight: 700;
+                text-decoration: none;
+                display: inline-block;
+              "
+              >להורדת המדריך</a
+            >
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- נ.ב -->
+    <div
+      style="
+        color: #4a342e;
+        font-size: 16px;
+        line-height: 1.85;
+        text-align: right;
+      "
+    >
+      <p style="margin: 0 0 16px"><strong>נ.ב</strong> {{PS_HTML}}</p>
+    </div>
+
+    <!-- חתימה -->
+    <div
+      style="
+        color: #6b5148;
+        font-size: 15px;
+        margin-top: 22px;
+        text-align: right;
+      "
+    >
+      באהבה,<br />תמי ❤️
+    </div>
+
+    <!-- תמונה למטה, ממורכזת -->
+    <div style="text-align: center; margin-top: 16px">
+      <img
+        src="https://tammy-site.vercel.app/assets/tammy-profile.jpg"
+        alt="תמי שני"
+        width="150"
+        height="150"
+        style="
+          width: 150px;
+          height: 150px;
+          max-width: 150px;
+          border: 0;
+          border-radius: 75px;
+        "
+      />
+    </div>
+
+    <!-- קריאה לפעולה למטה: הקורס -->
+    <div
+      style="
+        margin-top: 26px;
+        padding-top: 24px;
+        border-top: 1px solid #f0e4dc;
+        text-align: center;
+      "
+    >
+      <p
+        style="
+          margin: 0 0 6px;
+          color: #4a342e;
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 1.6;
+        "
+      >
+        רוצה שאבנה איתך את כל הדרך?
+      </p>
+      <p
+        style="
+          margin: 0 0 18px;
+          color: #6b5148;
+          font-size: 15px;
+          line-height: 1.8;
+        "
+      >
+        שלב אחרי שלב, בלי לנחש.<br />
+        השיעור הראשון במתנה, עוד לפני שהחלטת.
+      </p>
+      <table
+        role="presentation"
+        cellpadding="0"
+        cellspacing="0"
+        style="margin: 0 auto"
+      >
+        <tr>
+          <td
+            style="background: #8c5a4a; border-radius: 10px; padding: 14px 38px"
+          >
+            <a
+              href="https://tammyshani.ravpage.co.il/tammybabysleep"
+              style="
+                color: #ffffff;
+                font-family: Heebo, Arial, sans-serif;
+                font-size: 17px;
+                font-weight: 700;
+                text-decoration: none;
+                display: inline-block;
+              "
+              >לשיעור הראשון במתנה</a
+            >
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- פוטר -->
+  <div
+    style="
+      text-align: center;
+      padding: 20px;
+      color: #9b8a83;
+      font-size: 11px;
+      line-height: 1.8;
+    "
+  >
+    תמי שני · יועצת שינה והתפתחות<br />
+    אינסטגרם:
+    <span style="direction: ltr; unicode-bidi: embed">baby.tammy.time</span
+    ><br />
+    קיבלת את המייל הזה כי ביקשת את המדריך באתר.
+  </div>
+</div>
