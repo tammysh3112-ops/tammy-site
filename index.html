@@ -555,19 +555,9 @@
         width: min(34vw, 380px);
         height: auto;
         filter: drop-shadow(0 30px 60px rgba(90, 60, 40, 0.42));
-        /* melt the cutout's straight bottom edge into the meadow */
-        -webkit-mask-image: linear-gradient(
-          180deg,
-          #000 76%,
-          rgba(0, 0, 0, 0.55) 92%,
-          transparent 100%
-        );
-        mask-image: linear-gradient(
-          180deg,
-          #000 76%,
-          rgba(0, 0, 0, 0.55) 92%,
-          transparent 100%
-        );
+        /* The bottom melt into the meadow is baked into the cutout's alpha, not
+           a CSS mask: mask-image + drop-shadow on the same element makes Chrome
+           paint a visible rectangle around the figure's box. */
       }
 
       /* ============================ PANELS ============================ */
@@ -1599,11 +1589,11 @@
           </div>
           <div class="hero-figure" data-reveal>
             <img
-              src="assets/opt/portrait-b-cut.webp"
-              alt="תמי שני מחזיקה תינוק ישן"
+              src="assets/opt/tammy-hero-cut.webp"
+              alt="תמי שני מחזיקה תינוק"
               fetchpriority="high"
-              width="410"
-              height="509"
+              width="820"
+              height="1114"
             />
           </div>
         </div>
@@ -1807,8 +1797,8 @@
         <div class="wrap">
           <figure class="photo-window" data-reveal>
             <img
-              src="assets/opt/mood-baby.webp"
-              alt="תינוק ישן בשלווה"
+              src="assets/opt/tammy-course-baby.webp"
+              alt="תמי שני עם תינוק ישן"
               loading="lazy"
             />
           </figure>
@@ -1881,7 +1871,7 @@
           <div class="about-fig" data-reveal>
             <img
               class="suit"
-              src="assets/opt/suit.webp"
+              src="assets/opt/tammy-about-cut.webp"
               alt="תמי שני, יועצת שינה והתפתחות"
               loading="lazy"
             />
@@ -1912,8 +1902,8 @@
         <div class="wrap">
           <figure class="photo-window" data-reveal>
             <img
-              src="assets/opt/mood-dawn.webp"
-              alt="חדר תינוק באור בוקר רך"
+              src="assets/opt/tammy-final-calm.webp"
+              alt="תמי שני שוכבת לצד תינוק רגוע"
               loading="lazy"
             />
           </figure>
