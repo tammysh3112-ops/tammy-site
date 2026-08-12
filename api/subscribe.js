@@ -10,7 +10,11 @@ const rateLimitMap = new Map();
 const RATE_LIMIT_WINDOW = 60 * 1000;
 const RATE_LIMIT_MAX = 5;
 
+// [0] is also the fallback Access-Control-Allow-Origin, so the live domain
+// leads. www is what actually serves; the apex 308s to it before any fetch.
 const ALLOWED_ORIGINS = [
+  "https://www.tammy-time.com",
+  "https://tammy-time.com",
   "https://tammy-site.vercel.app",
   "http://localhost:3333",
   "http://127.0.0.1:3333",
