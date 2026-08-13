@@ -14,11 +14,11 @@
 @font-face{font-family:"Discovery Fs";src:url("../../assets/fonts/Discovery_Fs-Bold.woff2") format("woff2"),url("../../assets/fonts/Discovery_Fs-Bold.woff") format("woff");font-weight:700;font-style:normal;font-display:swap}
 
 :root{
-  --abyss:#0b0d20;--night:#14162e;--dusk:#241f45;
-  --ivory:#f0e8da;--ivory-2:#f6f0e6;
-  --gold:#d9b878;--gold-lite:#ecd6a6;--gold-deep:#7d5f26;
-  --cream:#efe7d8;--cream-dim:rgba(239,231,216,.82);
-  --ink:#241f3a;--ink-soft:#4a4363;
+  --abyss:#3a2b26;--night:#4a3833;--dusk:#6d5049;
+  --ivory:#f2e3df;--ivory-2:#f9efec;
+  --gold:#c3937f;--gold-lite:#ddbcae;--gold-deep:#7c5348;
+  --cream:#f1e1db;--cream-dim:rgba(239,231,216,.82);
+  --ink:#4a342e;--ink-soft:#7a625a;
   --font-display:"Discovery Fs","Heebo",Georgia,serif;
   --font-body:"Heebo",system-ui,sans-serif;
   --maxw:1140px;--pad-inline:clamp(1.25rem,5vw,2rem);
@@ -43,8 +43,8 @@ h3{font-size:1.28rem;line-height:1.32;font-weight:300}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.55rem 2rem;border-radius:999px;font-family:var(--font-body);font-size:1.02rem;font-weight:600;letter-spacing:.01em;cursor:pointer;border:1px solid transparent;transition:transform .24s ease,box-shadow .24s ease,background .24s ease,border-color .24s ease,color .24s ease;text-align:center}
-.btn-gold{background:linear-gradient(135deg,#e6cd97 0%,#d9b878 52%,#c9a463 100%);color:#241a08;box-shadow:0 14px 34px -14px rgba(201,164,99,.7),inset 0 1px 0 rgba(255,247,227,.55)}
-.btn-gold:hover{transform:translateY(-2px);background:linear-gradient(135deg,#efd9a8 0%,#e2c184 52%,#d0ac6b 100%);box-shadow:0 20px 44px -16px rgba(201,164,99,.82),inset 0 1px 0 rgba(255,247,227,.6)}
+.btn-gold{background:linear-gradient(135deg,#d3ab99 0%,#c3937f 52%,#b07f6b 100%);color:#3a2620;box-shadow:0 14px 34px -14px rgba(201,164,99,.7),inset 0 1px 0 rgba(255,247,227,.55)}
+.btn-gold:hover{transform:translateY(-2px);background:linear-gradient(135deg,#e0c2b4 0%,#cb9d8a 52%,#b58471 100%);box-shadow:0 20px 44px -16px rgba(201,164,99,.82),inset 0 1px 0 rgba(255,247,227,.6)}
 .btn-gold:focus-visible{outline:3px solid rgba(20,16,40,.7);outline-offset:3px}
 .btn-ghost-light{background:rgba(236,214,166,.02);color:var(--cream);border-color:var(--hair-gold)}
 .btn-ghost-light:hover{transform:translateY(-2px);border-color:rgba(217,184,120,.7);background:rgba(236,214,166,.07)}
@@ -77,7 +77,7 @@ h3{font-size:1.28rem;line-height:1.32;font-weight:300}
 @media(max-width:760px){.nav-links a:not(.nav-cta){display:none}}
 
 /* velvet header band (static, stars only) */
-.page-head{position:relative;overflow:hidden;color:var(--cream);background:linear-gradient(180deg,#241f45 0%,#1e1b3c 22%,#191734 48%,#141530 74%,#111228 100%);padding-block:clamp(8rem,17vh,10.5rem) clamp(3.4rem,8vh,5.4rem);text-shadow:0 1px 3px rgba(4,5,16,.55)}
+.page-head{position:relative;overflow:hidden;color:var(--cream);background:linear-gradient(180deg,#6d5049 0%,#56423b 22%,#4f3c36 48%,#46352f 74%,#3f302b 100%);padding-block:clamp(8rem,17vh,10.5rem) clamp(3.4rem,8vh,5.4rem);text-shadow:0 1px 3px rgba(4,5,16,.55)}
 .page-head::after{content:"";position:absolute;inset-block-end:0;inset-inline:0;block-size:1px;background:linear-gradient(90deg,transparent,rgba(236,214,166,.5),transparent)}
 .head-stars{position:absolute;inset:0;inset-block-end:auto;block-size:100%;pointer-events:none;z-index:0}
 .star{position:absolute;border-radius:50%;background:#fff;box-shadow:0 0 6px 1px rgba(255,244,220,.5)}
@@ -191,9 +191,9 @@ h3{font-size:1.28rem;line-height:1.32;font-weight:300}
 .gcard p{color:var(--ink-soft);font-weight:300;font-size:1.03rem;flex:1}
 .gcard .go{margin-block-start:.7rem;color:var(--gold-deep);font-weight:600;font-size:.98rem}
 .gcard.soon{opacity:1;background:rgba(240,235,225,.6);border-style:dashed}
-.gcard.soon .gi,.gcard.soon h3{color:#6a6480}
+.gcard.soon .gi,.gcard.soon h3{color:#9d8a83}
 .gcard.soon .gi{filter:grayscale(1);opacity:.7}
-.badge-soon{align-self:flex-start;margin-block-end:.3rem;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:#6a6480;background:rgba(106,100,128,.12);border:1px solid rgba(106,100,128,.28);border-radius:999px;padding:.28rem .8rem}
+.badge-soon{align-self:flex-start;margin-block-end:.3rem;font-size:.72rem;font-weight:700;letter-spacing:.14em;color:#9d8a83;background:rgba(106,100,128,.12);border:1px solid rgba(106,100,128,.28);border-radius:999px;padding:.28rem .8rem}
 
 /* consult steps (horizontal numbered) */
 .hsteps{display:grid;grid-template-columns:1fr;gap:1.3rem;counter-reset:hs}
