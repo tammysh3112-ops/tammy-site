@@ -527,7 +527,8 @@
         margin-block-end: 0.35rem;
       }
       .field input[type="text"],
-      .field input[type="email"] {
+      .field input[type="email"],
+      .field input[type="tel"] {
         width: 100%;
         min-height: 52px;
         padding: 0.6rem 1.1rem;
@@ -546,7 +547,8 @@
         border-color: var(--gold);
         box-shadow: 0 0 0 3px rgba(195, 147, 127, 0.18);
       }
-      .field input[type="email"] {
+      .field input[type="email"],
+      .field input[type="tel"] {
         direction: ltr;
         text-align: left;
       }
@@ -687,8 +689,8 @@
 
       /* reveal */
       .js .reveal {
-        opacity: 0;
-        transform: translateY(14px);
+        opacity: 1;
+        transform: none;
         transition:
           opacity 0.8s ease,
           transform 0.8s ease;
@@ -781,7 +783,7 @@
             <div class="leadform velvet-panel reveal" id="formPanel">
               <div id="formState">
                 <h3>לאן לשלוח לך את המדריך?</h3>
-                <p class="sub">שם, מייל, וזה אצלך תוך דקה.</p>
+                <p class="sub">שם, מייל ונייד, וזה אצלך תוך דקה.</p>
                 <form id="guideForm" novalidate>
                   <div class="field">
                     <label for="nameInput">שם פרטי</label>
@@ -805,6 +807,18 @@
                       required
                     />
                   </div>
+                  <div class="field">
+                    <label for="phoneInput">מספר נייד</label>
+                    <input
+                      type="tel"
+                      id="phoneInput"
+                      name="phone"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      placeholder="050-0000000"
+                      required
+                    />
+                  </div>
                   <div class="consent">
                     <input type="checkbox" id="consentBox" required />
                     <label for="consentBox"
@@ -820,7 +834,7 @@
                     >
                   </div>
                   <div class="form-err" id="formErr">
-                    רגע, חסר משהו: שם, מייל תקין וסימון של האישור.
+                    רגע, חסר משהו: שם, מייל תקין, נייד וסימון של האישור.
                   </div>
                   <button type="submit" class="btn btn-gold" id="submitBtn">
                     שלחי לי את המדריך
@@ -998,9 +1012,11 @@
           ev.preventDefault();
           var name = document.getElementById("nameInput").value.trim();
           var email = document.getElementById("emailInput").value.trim();
+          var phone = document.getElementById("phoneInput").value.trim();
           var ok =
             name.length > 0 &&
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+            phone.replace(/[^0-9+]/g, "").length >= 9 &&
             document.getElementById("consentBox").checked;
           if (!ok) {
             err.classList.add("show");
@@ -1010,7 +1026,7 @@
           btn.disabled = true;
           btn.textContent = "שולחת...";
           submitLead(
-            { email: email, name: name, source: "mini-hashkava-regua" },
+            { email: email, name: name, phone: phone, source: "mini-hashkava-regua" },
             0,
           );
         });

@@ -35,6 +35,15 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
 }
 
+function cleanPhone(phone) {
+  return sanitize(phone, 30).replace(/[^0-9+]/g, "");
+}
+
+function isValidPhone(phone) {
+  if (!phone) return true;
+  return /^\+?[0-9]{9,15}$/.test(phone);
+}
+
 function sanitize(str, maxLen = 100) {
   if (!str || typeof str !== "string") return "";
   return str.slice(0, maxLen).replace(/[<>"'&]/g, "");
@@ -94,7 +103,9 @@ async function getToken(force = false) {
   return data.token;
 }
 
-async function postSubscriber(jwt, listId, name, email) {
+async function postSubscriber(jwt, listId, name, email, phone) {
+  const payload = { name, email, list_ids: [Number(listId)] };
+  if (phone) payload.phone = phone;
   return fetch(`${RAVMESSER_API}/subscribers`, {
     method: "POST",
     headers: {
@@ -102,15 +113,15 @@ async function postSubscriber(jwt, listId, name, email) {
       Accept: "application/json",
       Authorization: `Bearer ${jwt}`,
     },
-    body: JSON.stringify({ name, email, list_ids: [Number(listId)] }),
+    body: JSON.stringify(payload),
   });
 }
 
-async function addSubscriber(listId, name, email) {
-  let res = await postSubscriber(await getToken(), listId, name, email);
+async function addSubscriber(listId, name, email, phone) {
+  let res = await postSubscriber(await getToken(), listId, name, email, phone);
   // A stale cached JWT is the one failure worth retrying
   if (res.status === 401) {
-    res = await postSubscriber(await getToken(true), listId, name, email);
+    res = await postSubscriber(await getToken(true), listId, name, email, phone);
   }
   const text = await res.text().catch(() => "");
   let data = {};
@@ -173,6 +184,7 @@ export default async function handler(req, res) {
 
   const email = sanitize(req.body?.email, 254).toLowerCase();
   const name = sanitize(req.body?.name, 100);
+  const phone = cleanPhone(req.body?.phone);
   const source = sanitize(req.body?.source, 50);
 
   try {
@@ -187,6 +199,11 @@ export default async function handler(req, res) {
       return res.status(400).json({ ok: false, error: "Invalid email" });
     }
 
+    if (!isValidPhone(phone)) {
+      logFail(400, source, email, "invalid phone");
+      return res.status(400).json({ ok: false, error: "Invalid phone" });
+    }
+
     const guides = loadGuides();
     const guide = guides[source];
     if (!guide || guide.active === false) {
@@ -194,7 +211,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ ok: false, error: "Invalid source" });
     }
 
-    await addSubscriber(guide.list_id, name, email);
+    await addSubscriber(guide.list_id, name, email, phone);
     return res.status(200).json({ ok: true });
   } catch (err) {
     logFail(500, source, email, err.message);
