@@ -35,8 +35,12 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
 }
 
+// One shape for every Israeli number, so the sheet and any later WhatsApp send
+// read the same thing: "+972 50 123 4567" and "050-123-4567" both land as 0501234567
 function cleanPhone(phone) {
-  return sanitize(phone, 30).replace(/[^0-9+]/g, "");
+  return sanitize(phone, 30)
+    .replace(/[^0-9+]/g, "")
+    .replace(/^(\+?972)0?/, "0");
 }
 
 function isValidPhone(phone) {
@@ -211,6 +215,9 @@ export default async function handler(req, res) {
       return res.status(400).json({ ok: false, error: "Invalid source" });
     }
 
+    // The form requires a number, so a lead arriving without one is a stale
+    // cached page or a bot. Worth seeing in the log, never worth dropping a lead.
+    if (!phone) logFail(200, source, email, "no phone");
     await addSubscriber(guide.list_id, name, email, phone);
     return res.status(200).json({ ok: true });
   } catch (err) {

@@ -527,7 +527,8 @@
         margin-block-end: 0.35rem;
       }
       .field input[type="text"],
-      .field input[type="email"] {
+      .field input[type="email"],
+      .field input[type="tel"] {
         width: 100%;
         min-height: 52px;
         padding: 0.6rem 1.1rem;
@@ -546,7 +547,8 @@
         border-color: var(--gold);
         box-shadow: 0 0 0 3px rgba(195, 147, 127, 0.18);
       }
-      .field input[type="email"] {
+      .field input[type="email"],
+      .field input[type="tel"] {
         direction: ltr;
         text-align: left;
       }
@@ -778,7 +780,7 @@
             <div class="leadform velvet-panel reveal" id="formPanel">
               <div id="formState">
                 <h3>לאן לשלוח לך את המדריך?</h3>
-                <p class="sub">שם, מייל, והמדריך אצלך תוך דקה.</p>
+                <p class="sub">שם, מייל ונייד, והמדריך אצלך תוך דקה.</p>
                 <form id="guideForm" novalidate>
                   <div class="field">
                     <label for="nameInput">שם פרטי</label>
@@ -802,11 +804,23 @@
                       required
                     />
                   </div>
+                  <div class="field">
+                    <label for="phoneInput">מספר נייד</label>
+                    <input
+                      type="tel"
+                      id="phoneInput"
+                      name="phone"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      placeholder="050-0000000"
+                      required
+                    />
+                  </div>
                   <div class="consent">
                     <input type="checkbox" id="consentBox" required />
                     <label for="consentBox"
-                      >אני מאשרת קבלת המדריך ומיילים עם טיפים ותוכן מתמי. אפשר
-                      להסיר את עצמך בקליק, בכל מייל.
+                      >אני מאשרת קבלת המדריך, מיילים והודעות וואטסאפ או SMS עם
+                      טיפים ותוכן מתמי. אפשר להסיר את עצמך בקליק, בכל הודעה.
                       <a href="/privacy/" target="_blank" rel="noopener"
                         >מדיניות פרטיות</a
                       >
@@ -817,7 +831,7 @@
                     >
                   </div>
                   <div class="form-err" id="formErr">
-                    רגע, חסר משהו: שם, מייל תקין וסימון של האישור.
+                    רגע, חסר משהו: שם, מייל תקין, נייד וסימון של האישור.
                   </div>
                   <button type="submit" class="btn btn-gold" id="submitBtn">
                     שלחו לי את המדריך למייל
@@ -995,9 +1009,15 @@
           ev.preventDefault();
           var name = document.getElementById("nameInput").value.trim();
           var email = document.getElementById("emailInput").value.trim();
+          /* same normalization the API does, so what we validate is what we send */
+          var phone = document
+            .getElementById("phoneInput")
+            .value.replace(/[^0-9+]/g, "")
+            .replace(/^(\+?972)0?/, "0");
           var ok =
             name.length > 0 &&
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+            /^(0\d{8,9}|\+\d{9,14})$/.test(phone) &&
             document.getElementById("consentBox").checked;
           if (!ok) {
             err.classList.add("show");
@@ -1007,7 +1027,7 @@
           btn.disabled = true;
           btn.textContent = "שולחת...";
           submitLead(
-            { email: email, name: name, source: "gil-4-hodashim" },
+            { email: email, name: name, phone: phone, source: "gil-4-hodashim" },
             0,
           );
         });

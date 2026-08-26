@@ -820,8 +820,8 @@
                   <div class="consent">
                     <input type="checkbox" id="consentBox" required />
                     <label for="consentBox"
-                      >אני מאשרת קבלת המדריך ומיילים עם טיפים ותוכן מתמי. אפשר
-                      להסיר את עצמך בקליק, בכל מייל.
+                      >אני מאשרת קבלת המדריך, מיילים והודעות וואטסאפ או SMS עם
+                      טיפים ותוכן מתמי. אפשר להסיר את עצמך בקליק, בכל הודעה.
                       <a href="/privacy/" target="_blank" rel="noopener"
                         >מדיניות פרטיות</a
                       >
@@ -1011,12 +1011,15 @@
           ev.preventDefault();
           var name = document.getElementById("nameInput").value.trim();
           var email = document.getElementById("emailInput").value.trim();
-          var phone = document.getElementById("phoneInput").value.trim();
-          var phoneClean = phone.replace(/[^0-9+]/g, "");
+          /* same normalization the API does, so what we validate is what we send */
+          var phone = document
+            .getElementById("phoneInput")
+            .value.replace(/[^0-9+]/g, "")
+            .replace(/^(\+?972)0?/, "0");
           var ok =
             name.length > 0 &&
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-            /^\+?[0-9]{9,15}$/.test(phoneClean) &&
+            /^(0\d{8,9}|\+\d{9,14})$/.test(phone) &&
             document.getElementById("consentBox").checked;
           if (!ok) {
             err.classList.add("show");
@@ -1026,7 +1029,7 @@
           btn.disabled = true;
           btn.textContent = "שולחת...";
           submitLead(
-            { email: email, name: name, phone: phoneClean, source: "shnot-laila-lefi-gil" },
+            { email: email, name: name, phone: phone, source: "shnot-laila-lefi-gil" },
             0,
           );
         });

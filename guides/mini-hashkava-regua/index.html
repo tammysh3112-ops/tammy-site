@@ -822,8 +822,8 @@
                   <div class="consent">
                     <input type="checkbox" id="consentBox" required />
                     <label for="consentBox"
-                      >אני מאשרת קבלת המדריך ומיילים עם טיפים ותוכן מתמי. אפשר
-                      להסיר את עצמך בקליק, בכל מייל.
+                      >אני מאשרת קבלת המדריך, מיילים והודעות וואטסאפ או SMS עם
+                      טיפים ותוכן מתמי. אפשר להסיר את עצמך בקליק, בכל הודעה.
                       <a href="/privacy/" target="_blank" rel="noopener"
                         >מדיניות פרטיות</a
                       >
@@ -1012,11 +1012,15 @@
           ev.preventDefault();
           var name = document.getElementById("nameInput").value.trim();
           var email = document.getElementById("emailInput").value.trim();
-          var phone = document.getElementById("phoneInput").value.trim();
+          /* same normalization the API does, so what we validate is what we send */
+          var phone = document
+            .getElementById("phoneInput")
+            .value.replace(/[^0-9+]/g, "")
+            .replace(/^(\+?972)0?/, "0");
           var ok =
             name.length > 0 &&
             /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-            phone.replace(/[^0-9+]/g, "").length >= 9 &&
+            /^(0\d{8,9}|\+\d{9,14})$/.test(phone) &&
             document.getElementById("consentBox").checked;
           if (!ok) {
             err.classList.add("show");
