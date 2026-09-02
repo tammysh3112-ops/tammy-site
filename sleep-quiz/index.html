@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>מצפן השינה של תמי | שאלון קצר לפי גיל</title>
+    <meta name="description" content="שאלון קצר של תמי שני שמכוון אותך למדריך או למענה שמתאים לגיל הבייבי ולקושי המרכזי בשינה." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      @font-face {
+        font-family: "Discovery Fs";
+        src: url("../assets/fonts/Discovery_Fs-Bold.woff2") format("woff2"), url("../assets/fonts/Discovery_Fs-Bold.woff") format("woff");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: "Discovery Fs";
+        src: url("../assets/fonts/Discovery_Fs-Light.woff2") format("woff2"), url("../assets/fonts/Discovery_Fs-Light.woff") format("woff");
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+      :root {
+        --cream: #fbf3ee;
+        --cream-2: #f7e9e4;
+        --clay: #c3998d;
+        --clay-deep: #8c5a4a;
+        --sage: #d2dbc8;
+        --sage-deep: #778a6c;
+        --pink: #f1dfdf;
+        --brown: #6f524c;
+        --espresso: #3a2b26;
+        --ink: #4a342e;
+        --muted: #7c625b;
+        --white: #fffaf7;
+        --shadow: 0 26px 70px rgba(74, 52, 46, 0.18);
+        --font-display: "Discovery Fs", "Heebo", system-ui, sans-serif;
+        --font-body: "Heebo", system-ui, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-body);
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 8% 14%, rgba(210, 219, 200, 0.95), transparent 30%),
+          radial-gradient(circle at 92% 8%, rgba(241, 223, 223, 0.95), transparent 32%),
+          linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 50%, #ead9d3 100%);
+        line-height: 1.7;
+        overflow-x: hidden;
+      }
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        inset: auto auto -110px -80px;
+        width: 280px;
+        height: 280px;
+        border-radius: 999px;
+        background: rgba(195, 153, 141, 0.24);
+        filter: blur(2px);
+        pointer-events: none;
+      }
+      body::after {
+        inset: -120px -90px auto auto;
+        background: rgba(210, 219, 200, 0.42);
+      }
+      a { color: inherit; }
+      button, input { font: inherit; }
+      .page {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0 26px;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+      .logo {
+        width: min(186px, 48vw);
+        height: auto;
+        display: block;
+      }
+      .restart {
+        border: 1px solid rgba(111, 82, 76, 0.25);
+        background: rgba(255, 250, 247, 0.72);
+        color: var(--brown);
+        border-radius: 999px;
+        padding: 10px 16px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: transform 0.2s ease, background 0.2s ease;
+      }
+      .restart:hover { transform: translateY(-1px); background: var(--white); }
+      .shell {
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: clamp(18px, 4vw, 42px);
+        align-items: stretch;
+      }
+      .hero-card,
+      .quiz-card {
+        border: 1px solid rgba(195, 153, 141, 0.28);
+        border-radius: 34px;
+        background: rgba(255, 250, 247, 0.82);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(14px);
+      }
+      .hero-card {
+        position: relative;
+        overflow: hidden;
+        min-height: 680px;
+        padding: clamp(28px, 4vw, 44px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        isolation: isolate;
+      }
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(251, 243, 238, 0.15), rgba(58, 43, 38, 0.52)),
+          url("../assets/opt/tammy-about-cut.webp") left bottom / min(78%, 410px) auto no-repeat;
+        z-index: -1;
+      }
+      .hero-card::after {
+        content: "";
+        position: absolute;
+        right: -32px;
+        bottom: -32px;
+        width: 220px;
+        height: 220px;
+        border-radius: 46% 54% 55% 45%;
+        background: rgba(210, 219, 200, 0.7);
+        z-index: -2;
+      }
+      .pill {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 9px 16px;
+        background: rgba(210, 219, 200, 0.82);
+        color: var(--brown);
+        font-weight: 800;
+        font-size: 0.95rem;
+      }
+      h1, h2, h3, p { margin: 0; }
+      h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; letter-spacing: 0.01em; }
+      h1 {
+        margin-top: 24px;
+        max-width: 11ch;
+        font-size: clamp(3.1rem, 7.6vw, 6.2rem);
+        font-weight: 700;
+        color: var(--espresso);
+      }
+      .hero-text {
+        max-width: 440px;
+        margin-top: 22px;
+        color: var(--brown);
+        font-size: clamp(1.15rem, 2.2vw, 1.42rem);
+        font-weight: 500;
+      }
+      .hero-note {
+        max-width: 360px;
+        border-radius: 24px;
+        padding: 18px 20px;
+        background: rgba(58, 43, 38, 0.82);
+        color: var(--cream);
+        font-weight: 600;
+        font-size: 1.03rem;
+      }
+      .quiz-card {
+        padding: clamp(22px, 4vw, 42px);
+        min-height: 680px;
+        display: flex;
+        flex-direction: column;
+      }
+      .progress-wrap {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+      .progress-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--muted);
+        font-weight: 800;
+        font-size: 0.92rem;
+      }
+      .progress-track {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(111, 82, 76, 0.11);
+        overflow: hidden;
+      }
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--clay-deep), var(--clay), var(--sage-deep));
+        transition: width 0.35s ease;
+      }
+      .screen {
+        display: none;
+        animation: rise 0.28s ease both;
+      }
+      .screen.active { display: block; }
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .intro-screen {
+        min-height: 545px;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .intro-screen.active { display: flex; }
+      .small-title {
+        color: var(--clay-deep);
+        font-size: 1rem;
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+      .question-title {
+        font-size: clamp(2.25rem, 5vw, 4rem);
+        color: var(--espresso);
+      }
+      .question-subtitle {
+        max-width: 620px;
+        margin-top: 14px;
+        font-size: 1.1rem;
+        color: var(--muted);
+      }
+      .options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 28px;
+      }
+      .option {
+        min-height: 76px;
+        border: 1px solid rgba(111, 82, 76, 0.18);
+        border-radius: 22px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.76), rgba(251,243,238,0.82));
+        color: var(--ink);
+        cursor: pointer;
+        padding: 16px 18px;
+        text-align: right;
+        font-weight: 800;
+        font-size: 1.04rem;
+        box-shadow: 0 14px 32px rgba(74, 52, 46, 0.08);
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+      .option:hover,
+      .option:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(140, 90, 74, 0.55);
+        outline: none;
+      }
+      .option.selected {
+        background: linear-gradient(180deg, rgba(210,219,200,0.92), rgba(241,223,223,0.85));
+        border-color: var(--sage-deep);
+      }
+      .nav-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-top: auto;
+        padding-top: 26px;
+      }
+      .primary,
+      .secondary {
+        min-height: 54px;
+        border-radius: 999px;
+        padding: 14px 24px;
+        font-weight: 900;
+        cursor: pointer;
+        border: 0;
+        transition: transform 0.18s ease, opacity 0.18s ease;
+      }
+      .primary {
+        background: var(--clay-deep);
+        color: #fff;
+        box-shadow: 0 16px 30px rgba(140, 90, 74, 0.24);
+      }
+      .secondary {
+        background: rgba(111, 82, 76, 0.1);
+        color: var(--brown);
+      }
+      .primary:hover,
+      .secondary:hover { transform: translateY(-1px); }
+      .primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+      .result-card {
+        border-radius: 28px;
+        padding: clamp(24px, 5vw, 42px);
+        background:
+          radial-gradient(circle at top left, rgba(210, 219, 200, 0.92), transparent 36%),
+          linear-gradient(160deg, #fffaf7 0%, #f4e3df 100%);
+        border: 1px solid rgba(195, 153, 141, 0.28);
+      }
+      .result-label {
+        display: inline-flex;
+        margin-bottom: 14px;
+        border-radius: 999px;
+        padding: 8px 14px;
+        background: rgba(140, 90, 74, 0.12);
+        color: var(--clay-deep);
+        font-weight: 900;
+      }
+      .result-title {
+        font-size: clamp(2.35rem, 5vw, 4.4rem);
+        color: var(--espresso);
+      }
+      .result-text {
+        margin-top: 16px;
+        color: var(--brown);
+        font-size: 1.12rem;
+        font-weight: 500;
+      }
+      .result-list {
+        display: grid;
+        gap: 10px;
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .result-list li {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .result-list li::before {
+        content: "✓";
+        flex: 0 0 25px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--sage);
+        color: var(--brown);
+        font-weight: 900;
+      }
+      .result-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .result-actions a {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 54px;
+        border-radius: 999px;
+        padding: 14px 22px;
+        text-decoration: none;
+        font-weight: 900;
+      }
+      .cta-main { background: var(--clay-deep); color: #fff; }
+      .cta-soft { background: rgba(111, 82, 76, 0.1); color: var(--brown); }
+      .answers-note {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 0.93rem;
+      }
+      .footer {
+        margin-top: 22px;
+        color: var(--brown);
+        text-align: center;
+        font-size: 0.9rem;
+      }
+      .mobile-photo {
+        display: none;
+        margin: 20px auto 0;
+        width: min(240px, 78vw);
+        border-radius: 28px;
+      }
+      @media (max-width: 880px) {
+        .page { width: min(100% - 24px, 650px); padding-top: 14px; }
+        .shell { grid-template-columns: 1fr; }
+        .hero-card { min-height: auto; padding-bottom: 30px; }
+        .hero-card::before { opacity: 0.2; background-size: 320px auto; }
+        .hero-note { margin-top: 28px; }
+        .quiz-card { min-height: auto; }
+        .options { grid-template-columns: 1fr; }
+        .mobile-photo { display: block; }
+        .topbar { align-items: flex-start; }
+      }
+      @media (max-width: 520px) {
+        .topbar { gap: 10px; }
+        .restart { padding: 9px 12px; font-size: 0.88rem; }
+        .logo { width: 150px; }
+        .hero-card, .quiz-card { border-radius: 26px; }
+        .question-title { font-size: 2.32rem; }
+        .option { min-height: 64px; border-radius: 18px; }
+        .nav-row { flex-direction: column-reverse; }
+        .primary, .secondary, .result-actions a { width: 100%; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar" aria-label="כותרת העמוד">
+        <img class="logo" src="../assets/tammy-logo.png" alt="baby TAMMY time - תמי שני" />
+        <button class="restart" type="button" data-restart>התחלה מחדש ↻</button>
+      </header>
+
+      <section class="shell" aria-label="מצפן השינה של תמי">
+        <aside class="hero-card">
+          <div>
+            <span class="pill">שאלון קצר לפי גיל</span>
+            <h1>מצפן השינה של תמי</h1>
+            <p class="hero-text">כמה שאלות קצרות, ואז כיוון ברור: מאיזה מדריך או מענה הכי נכון להתחיל עכשיו.</p>
+          </div>
+          <p class="hero-note">זה לא אבחון רפואי ולא טבלת לחץ. זה מצפן קטן לאמא עייפה שרוצה להבין מה מתאים לבייבי שלה.</p>
+        </aside>
+
+        <section class="quiz-card" aria-live="polite">
+          <div class="progress-wrap" aria-hidden="true">
+            <div class="progress-top">
+              <span data-step-label>מתחילות</span>
+              <span data-step-count>0 מתוך 5</span>
+            </div>
+            <div class="progress-track"><div class="progress-bar" data-progress></div></div>
+          </div>
+
+          <div class="screen intro-screen active" data-screen="intro">
+            <p class="small-title">היי, איזה כיף שאת כאן ❤️</p>
+            <h2 class="question-title">בואי נבין מה הבייבי שלך צריך עכשיו</h2>
+            <p class="question-subtitle">עני על 5 שאלות קצרות. בסוף תקבלי כיוון שמתאים לגיל, לקושי המרכזי ולמה שקורה אצלכם בבית.</p>
+            <img class="mobile-photo" src="../assets/opt/tammy-about-cut.webp" alt="תמי שני" />
+            <div class="nav-row">
+              <span></span>
+              <button class="primary" type="button" data-start>מתחילות ❤️</button>
+            </div>
+          </div>
+
+          <div class="screen" data-screen="question"></div>
+
+          <div class="screen" data-screen="result">
+            <article class="result-card">
+              <span class="result-label">התוצאה שלך</span>
+              <h2 class="result-title" data-result-title></h2>
+              <p class="result-text" data-result-text></p>
+              <ul class="result-list" data-result-list></ul>
+              <div class="result-actions">
+                <a class="cta-main" data-result-link href="#">להמשך שמתאים לך</a>
+                <a class="cta-soft" href="https://wa.me/972508240406?text=%D7%94%D7%99%20%D7%AA%D7%9E%D7%99%2C%0A%D7%A2%D7%A9%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%9E%D7%A6%D7%A4%D7%9F%20%D7%94%D7%A9%D7%99%D7%A0%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%AA%D7%99%D7%99%D7%A2%D7%A5%0A%D7%AA%D7%95%D7%93%D7%94%20%D7%A8%D7%91%D7%94%21" target="_blank" rel="noopener">להתייעצות בוואטסאפ</a>
+              </div>
+              <p class="answers-note" data-answers-note></p>
+            </article>
+            <div class="nav-row">
+              <button class="secondary" type="button" data-back>חזרה לשאלה הקודמת</button>
+              <button class="primary" type="button" data-restart>לעשות שוב</button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <footer class="footer">
+        נבנה באהבה על ידי <a href="https://pelegdror.com" target="_blank" rel="noopener" style="color:inherit;font-weight:600;text-decoration:underline;text-underline-offset:3px">פלג דרור</a>. כל הזכויות שמורות לתמי שני.
+      </footer>
+    </main>
+
+    <script>
+      const GUIDE_SLEEP_TABLE = "https://www.tammy-time.com/guides/shnot-laila-lefi-gil/";
+      const GUIDE_CALM_BEDTIME = "https://www.tammy-time.com/guides/mini-hashkava-regua/";
+      const WEBINAR = "https://tammyshani.ravpage.co.il/webinar";
+      const WHATSAPP = "https://wa.me/972508240406?text=%D7%94%D7%99%20%D7%AA%D7%9E%D7%99%2C%0A%D7%A2%D7%A9%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%9E%D7%A6%D7%A4%D7%9F%20%D7%94%D7%A9%D7%99%D7%A0%D7%94%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%94%D7%AA%D7%99%D7%99%D7%A5%0A%D7%AA%D7%95%D7%93%D7%94%20%D7%A8%D7%91%D7%94%21";
+
+      const questions = [
+        {
+          id: "age",
+          title: "בן כמה הבייבי?",
+          subtitle: "הגיל משנה מאוד. אותו קושי יכול לקבל מענה אחר לגמרי בגיל אחר.",
+          options: [
+            { value: "newborn", label: "0-3 חודשים" },
+            { value: "4-6", label: "4-6 חודשים" },
+            { value: "7-9", label: "7-9 חודשים" },
+            { value: "10-12", label: "10-12 חודשים" },
+            { value: "12-18", label: "שנה עד שנה וחצי" },
+            { value: "18plus", label: "שנה וחצי ומעלה" }
+          ]
+        },
+        {
+          id: "pain",
+          title: "מה הכי קשה כרגע?",
+          subtitle: "תבחרי את מה שהכי מנהל את הבית עכשיו. לא חייבים לסמן הכל, למרות שבטח בא לך.",
+          options: [
+            { value: "bedtime", label: "ההרדמות בערב" },
+            { value: "night", label: "יקיצות בלילה" },
+            { value: "naps", label: "תנומות יום קצרות" },
+            { value: "crying", label: "בכי בהשכבה" },
+            { value: "routine", label: "סדר יום מבולגן" },
+            { value: "normal", label: "לא ברור לי מה תקין לגיל" }
+          ]
+        },
+        {
+          id: "sleepStart",
+          title: "איך הוא נרדם היום?",
+          subtitle: "אין כאן נכון או לא נכון. אנחנו רק מבינות מאיפה מתחילים.",
+          options: [
+            { value: "hands", label: "על הידיים" },
+            { value: "feeding", label: "בהנקה או בקבוק" },
+            { value: "motion", label: "עם נדנוד / עגלה / מנשא" },
+            { value: "presence", label: "עם נוכחות שלי לידו" },
+            { value: "mixed", label: "לפעמים לבד ולפעמים לא" },
+            { value: "independent", label: "נרדם לבד, אבל עדיין קשה" }
+          ]
+        },
+        {
+          id: "momNeed",
+          title: "מה הכי מתאר אותך?",
+          subtitle: "רגע של כנות. כי לפעמים הקושי הוא לא רק בשינה, אלא בכל הרעש מסביב.",
+          options: [
+            { value: "understand", label: "אני רוצה להבין מה תקין" },
+            { value: "tools", label: "אני רוצה כלים להתחיל היום" },
+            { value: "confused", label: "אני כבר מבולבלת מכל המידע" },
+            { value: "personal", label: "אני מרגישה שאני צריכה ליווי אישי" },
+            { value: "guide", label: "אני רוצה מדריך מסודר" },
+            { value: "age", label: "אני רוצה לדעת מה מתאים לגיל" }
+          ]
+        },
+        {
+          id: "next",
+          title: "מה היית רוצה לקבל עכשיו?",
+          subtitle: "התוצאה תכוון אותך לצעד הבא הכי מתאים. תכלס, בשביל זה אנחנו כאן.",
+          options: [
+            { value: "guide", label: "מדריך קצר וברור" },
+            { value: "ageTools", label: "כלים לפי גיל" },
+            { value: "webinar", label: "וובינר / הדרכה" },
+            { value: "whatsapp", label: "שיחה איתך" },
+            { value: "firstStep", label: "רק להבין מאיפה להתחיל" }
+          ]
+        }
+      ];
+
+      const results = {
+        newborn: {
+          title: "בגיל הזה קודם כל עושות סדר. לא אימון שינה.",
+          text: "בגיל 0-3 חודשים השינה עדיין מאוד משתנה. המטרה היא לא ללמד בכוח, אלא להבין סימני עייפות, חלונות ערות ומה באמת מתאים לגיל הזה.",
+          bullets: ["להבין מה תקין לגיל", "לזהות עייפות לפני שמגיעים לקצה", "לבנות התחלה של סדר בלי לחץ"],
+          label: "להתייעצות קצרה עם תמי",
+          url: WHATSAPP
+        },
+        table: {
+          title: "הכי נכון להתחיל מטבלת שינה לפי גיל.",
+          text: "כשלא ברור מה תקין, הטבלה נותנת מצפן. לא מבחן. לא סיבה להילחץ. פשוט דרך להבין אם הקושי קשור לגיל, לתנומות או לסדר היום.",
+          bullets: ["כמה שעות שינה ביממה", "כמה תנומות בדרך כלל מתאימות", "חלונות ערות ככיוון ולא כחוק"],
+          label: "למדריך טבלת השינה",
+          url: GUIDE_SLEEP_TABLE
+        },
+        bedtime: {
+          title: "כאן כנראה מתחילים מהדרך שבה הוא נכנס לשינה.",
+          text: "אם ההרדמות ארוכות, יש בכי או יקיצות שחוזרות על עצמן, הרבה פעמים לא צריך עוד טיפ. צריך להבין מה מחזיק את הקושי.",
+          bullets: ["להבין מה קורה בהשכבה", "להפריד בין צורך לבין הרגל", "לעזור בלי להתעלם מבכי"],
+          label: "למדריך הרדמה רגועה",
+          url: GUIDE_CALM_BEDTIME
+        },
+        webinar: {
+          title: "את לא צריכה עוד 17 טיפים. את צריכה סדר.",
+          text: "אם את מרגישה שכבר קראת הכל ועדיין לא ברור מה מתאים לכם, הדרכה מסודרת יכולה לחבר את כל החלקים לתמונה אחת.",
+          bullets: ["למה אותו טיפ לא עובד בכל בית", "מה באמת עומד מאחורי היקיצות", "איך לבחור צעד שמתאים לכם"],
+          label: "לפרטים על הוובינר",
+          url: WEBINAR
+        },
+        personal: {
+          title: "נשמע שכדאי שמישהי תסתכל איתך על התמונה המלאה.",
+          text: "אם יש כמה קשיים יחד, או שאת כבר מרגישה פול גז בניוטרל, יכול להיות שהצעד הכי נכון הוא לא עוד מדריך אלא הכוונה אישית.",
+          bullets: ["להבין מה הקושי המרכזי", "לבחור סדר פעולות שמתאים לכם", "לקבל ביטחון לפני שמשנים"],
+          label: "לדבר עם תמי בוואטסאפ",
+          url: WHATSAPP
+        }
+      };
+
+      const state = { step: -1, answers: {} };
+      const screens = {
+        intro: document.querySelector('[data-screen="intro"]'),
+        question: document.querySelector('[data-screen="question"]'),
+        result: document.querySelector('[data-screen="result"]')
+      };
+      const progress = document.querySelector('[data-progress]');
+      const stepLabel = document.querySelector('[data-step-label]');
+      const stepCount = document.querySelector('[data-step-count]');
+
+      function showScreen(name) {
+        Object.values(screens).forEach(screen => screen.classList.remove('active'));
+        screens[name].classList.add('active');
+      }
+
+      function updateProgress() {
+        if (state.step < 0) {
+          progress.style.width = '0%';
+          stepLabel.textContent = 'מתחילות';
+          stepCount.textContent = '0 מתוך 5';
+          return;
+        }
+        if (state.step >= questions.length) {
+          progress.style.width = '100%';
+          stepLabel.textContent = 'התוצאה שלך';
+          stepCount.textContent = '5 מתוך 5';
+          return;
+        }
+        const current = state.step + 1;
+        progress.style.width = `${(current / questions.length) * 100}%`;
+        stepLabel.textContent = questions[state.step].title;
+        stepCount.textContent = `${current} מתוך ${questions.length}`;
+      }
+
+      function renderQuestion() {
+        const question = questions[state.step];
+        const selected = state.answers[question.id];
+        screens.question.innerHTML = `
+          <p class="small-title">שאלה ${state.step + 1}</p>
+          <h2 class="question-title">${question.title}</h2>
+          <p class="question-subtitle">${question.subtitle}</p>
+          <div class="options">
+            ${question.options.map(option => `
+              <button class="option${selected === option.value ? ' selected' : ''}" type="button" data-answer="${option.value}">${option.label}</button>
+            `).join('')}
+          </div>
+          <div class="nav-row">
+            <button class="secondary" type="button" data-back>${state.step === 0 ? 'חזרה להתחלה' : 'חזרה'}</button>
+            <button class="primary" type="button" data-next ${selected ? '' : 'disabled'}>המשך</button>
+          </div>
+        `;
+        screens.question.querySelectorAll('[data-answer]').forEach(button => {
+          button.addEventListener('click', () => {
+            state.answers[question.id] = button.dataset.answer;
+            renderQuestion();
+          });
+        });
+        screens.question.querySelector('[data-back]').addEventListener('click', goBack);
+        screens.question.querySelector('[data-next]').addEventListener('click', goNext);
+      }
+
+      function pickResult() {
+        const a = state.answers;
+        if (a.age === 'newborn') return results.newborn;
+        if (a.momNeed === 'personal' || a.next === 'whatsapp') return results.personal;
+        if (a.next === 'webinar' || a.momNeed === 'confused') return results.webinar;
+        if (a.pain === 'normal' || a.pain === 'routine' || a.momNeed === 'understand' || a.momNeed === 'age' || a.next === 'ageTools') return results.table;
+        if (a.pain === 'bedtime' || a.pain === 'night' || a.pain === 'crying' || ['hands', 'feeding', 'motion', 'presence'].includes(a.sleepStart)) return results.bedtime;
+        if (a.pain === 'naps') return results.table;
+        return results.webinar;
+      }
+
+      function renderResult() {
+        const result = pickResult();
+        document.querySelector('[data-result-title]').textContent = result.title;
+        document.querySelector('[data-result-text]').textContent = result.text;
+        document.querySelector('[data-result-list]').innerHTML = result.bullets.map(item => `<li>${item}</li>`).join('');
+        const link = document.querySelector('[data-result-link]');
+        link.href = result.url;
+        link.textContent = result.label;
+        const ageLabel = questions[0].options.find(o => o.value === state.answers.age)?.label || '';
+        const painLabel = questions[1].options.find(o => o.value === state.answers.pain)?.label || '';
+        document.querySelector('[data-answers-note]').textContent = ageLabel && painLabel ? `לפי מה שסימנת: ${ageLabel}, ${painLabel}.` : '';
+      }
+
+      function goNext() {
+        const question = questions[state.step];
+        if (!state.answers[question.id]) return;
+        state.step += 1;
+        if (state.step >= questions.length) {
+          updateProgress();
+          renderResult();
+          showScreen('result');
+          return;
+        }
+        updateProgress();
+        renderQuestion();
+        showScreen('question');
+      }
+
+      function goBack() {
+        if (state.step <= 0) {
+          state.step = -1;
+          updateProgress();
+          showScreen('intro');
+          return;
+        }
+        state.step -= 1;
+        updateProgress();
+        renderQuestion();
+        showScreen('question');
+      }
+
+      function startQuiz() {
+        state.step = 0;
+        updateProgress();
+        renderQuestion();
+        showScreen('question');
+      }
+
+      function restart() {
+        state.step = -1;
+        state.answers = {};
+        updateProgress();
+        showScreen('intro');
+      }
+
+      document.querySelector('[data-start]').addEventListener('click', startQuiz);
+      document.querySelectorAll('[data-restart]').forEach(button => button.addEventListener('click', restart));
+      document.addEventListener('click', event => {
+        if (event.target.matches('[data-screen="result"] [data-back]')) goBack();
+      });
+      updateProgress();
+    </script>
+  </body>
+</html>
