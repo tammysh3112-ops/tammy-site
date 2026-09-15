@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>מה באמת עומד מאחורי הלילות שלכם? | תמי שני</title>
+    <title>מה עומד מאחורי הלילות והשינה של התינוק שלך? | תמי שני</title>
     <meta name="description" content="שאלון אינטראקטיבי קצר של תמי שני שיעזור להבין מה כנראה מקשה על השינה של הבייבי ומה הצעד הראשון שכדאי לעשות." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,15 +36,18 @@
       .restart { border: 1px solid rgba(111, 82, 76, 0.25); background: rgba(255, 250, 247, 0.78); color: var(--brown); border-radius: 999px; padding: 10px 16px; cursor: pointer; font-weight: 800; }
       .shell { display: grid; grid-template-columns: 0.86fr 1.14fr; gap: clamp(18px, 4vw, 42px); align-items: stretch; }
       .hero-card, .quiz-card { border: 1px solid rgba(195, 153, 141, 0.30); border-radius: 34px; background: rgba(255, 250, 247, 0.86); box-shadow: var(--shadow); backdrop-filter: blur(14px); }
-      .hero-card { overflow: hidden; min-height: 720px; display: grid; grid-template-rows: auto 1fr auto; }
-      .hero-copy { padding: clamp(24px, 4vw, 38px); background: linear-gradient(180deg, rgba(255,250,247,0.98), rgba(251,243,238,0.94)); }
-      .hero-photo-wrap { min-height: 315px; background: var(--pink); position: relative; overflow: hidden; }
-      .hero-photo { width: 100%; height: 100%; min-height: 315px; object-fit: cover; object-position: center top; display: block; }
+      .hero-card { overflow: hidden; min-height: 680px; display: grid; grid-template-rows: auto 1fr auto; }
+      .hero-copy { padding: clamp(18px, 3vw, 28px); background: linear-gradient(180deg, rgba(255,250,247,0.98), rgba(251,243,238,0.94)); }
+      .hero-photo-wrap { min-height: 350px; background: var(--pink); position: relative; overflow: hidden; }
+      .hero-photo { width: 100%; height: 100%; min-height: 350px; object-fit: cover; object-position: center top; display: block; animation: photoBreath 7s ease-in-out infinite; transform-origin: center; }
+      .quiz-mark { position: absolute; left: 22px; top: 22px; width: 58px; height: 58px; border-radius: 999px; display: grid; place-items: center; background: rgba(255,250,247,0.88); color: var(--clay-deep); font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; box-shadow: 0 14px 30px rgba(74,52,46,0.16); animation: questionFloat 3.2s ease-in-out infinite; }
+      @keyframes photoBreath { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+      @keyframes questionFloat { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-10px) rotate(7deg); } }
       .hero-note { margin: clamp(20px, 4vw, 30px); border-radius: 26px; padding: 18px 20px; background: rgba(58,43,38,0.92); color: var(--cream); font-weight: 700; font-size: 1.02rem; }
       .pill { display: inline-flex; width: fit-content; align-items: center; border-radius: 999px; padding: 9px 16px; background: rgba(210, 219, 200, 0.92); color: var(--brown); font-weight: 900; font-size: 0.95rem; }
       h1, h2, h3, p { margin: 0; }
       h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; letter-spacing: 0.01em; }
-      h1 { margin-top: 20px; max-width: 10.5ch; font-size: clamp(3rem, 7vw, 5.9rem); font-weight: 700; color: var(--espresso); }
+      h1 { margin-top: 16px; max-width: 15ch; font-size: clamp(2rem, 4.1vw, 3.45rem); font-weight: 700; color: var(--espresso); }
       .hero-text { max-width: 460px; margin-top: 18px; color: var(--brown); font-size: clamp(1.07rem, 2vw, 1.32rem); font-weight: 600; }
       .quiz-card { padding: clamp(22px, 4vw, 42px); min-height: 720px; display: flex; flex-direction: column; }
       .progress-wrap { display: grid; gap: 12px; margin-bottom: 28px; }
@@ -91,8 +94,8 @@
       .form-status { margin-top: 12px; color: var(--brown); font-weight: 800; min-height: 1.3em; }
       .answers-note { margin-top: 18px; color: var(--muted); font-size: 0.93rem; }
       .footer { margin-top: 22px; color: var(--brown); text-align: center; font-size: 0.9rem; }
-      @media (max-width: 900px) { .page { width: min(100% - 24px, 660px); padding-top: 14px; } .shell { grid-template-columns: 1fr; } .hero-card { min-height: auto; } .hero-photo-wrap, .hero-photo { min-height: 250px; } .quiz-card { min-height: auto; } .options { grid-template-columns: 1fr; } .topbar { align-items: flex-start; } }
-      @media (max-width: 540px) { .topbar { gap: 10px; } .restart { padding: 9px 12px; font-size: 0.88rem; } .logo { width: 150px; } .hero-card, .quiz-card { border-radius: 26px; } .question-title { font-size: 2.14rem; } .option { min-height: 62px; border-radius: 18px; } .nav-row { flex-direction: column-reverse; } .primary, .secondary, .result-actions a { width: 100%; } .lead-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 900px) { .page { width: min(100% - 24px, 660px); padding-top: 12px; } .topbar { margin-bottom: 12px; align-items: flex-start; } .shell { grid-template-columns: 1fr; } .hero-card { min-height: auto; } .hero-photo-wrap, .hero-photo { min-height: 260px; } .quiz-card { min-height: auto; } .options { grid-template-columns: 1fr; } }
+      @media (max-width: 540px) { .topbar { gap: 10px; } .restart { padding: 8px 11px; font-size: 0.84rem; } .logo { width: 132px; } .hero-card, .quiz-card { border-radius: 24px; } .hero-copy { padding: 16px 17px 14px; } .pill { padding: 7px 12px; font-size: 0.83rem; } h1 { margin-top: 10px; font-size: clamp(1.72rem, 9vw, 2.55rem); line-height: 1.03; max-width: 13ch; } .hero-text { margin-top: 10px; font-size: 0.94rem; line-height: 1.45; } .hero-note { margin: 14px; padding: 13px 15px; font-size: 0.92rem; line-height: 1.45; } .hero-photo-wrap, .hero-photo { min-height: 230px; } .quiz-mark { width: 45px; height: 45px; left: 15px; top: 15px; font-size: 2rem; } .question-title { font-size: 2.14rem; } .option { min-height: 62px; border-radius: 18px; } .nav-row { flex-direction: column-reverse; } .primary, .secondary, .result-actions a { width: 100%; } .lead-grid { grid-template-columns: 1fr; } }
       @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
     </style>
   </head>
@@ -103,25 +106,25 @@
         <button class="restart" type="button" data-restart>התחלה מחדש ↻</button>
       </header>
 
-      <section class="shell" aria-label="מה באמת עומד מאחורי הלילות שלכם">
+      <section class="shell" aria-label="מה עומד מאחורי הלילות והשינה של התינוק שלך">
         <aside class="hero-card">
           <div class="hero-copy">
             <span class="pill">שאלון קצר לאימהות עייפות</span>
-            <h1>מה באמת עומד מאחורי הלילות שלכם?</h1>
+            <h1>מה עומד מאחורי הלילות והשינה של התינוק שלך?</h1>
             <p class="hero-text">עני על כמה שאלות קצרות ותקבלי כיוון ראשוני: מה כנראה מקשה על השינה של הבייבי שלך, ומה הצעד הראשון שכדאי לעשות.</p>
           </div>
-          <div class="hero-photo-wrap"><img class="hero-photo" src="../assets/opt/sleep-quiz-hero.webp" alt="תמי שני עם תינוק ואיור אמא" /></div>
+          <div class="hero-photo-wrap"><img class="hero-photo" src="../assets/opt/sleep-quiz-hero.webp" alt="תמי שני עם תינוק ואיור אמא" /><span class="quiz-mark" aria-hidden="true">?</span></div>
           <p class="hero-note">השאלון לא בא להגיד לך מה את עושה לא בסדר. הוא בא לעשות קצת סדר בתוך כל העייפות.</p>
         </aside>
 
         <section class="quiz-card" aria-live="polite">
           <div class="progress-wrap" aria-hidden="true">
-            <div class="progress-top"><span data-step-label>מתחילות</span><span data-step-count>0 מתוך 8</span></div>
+            <div class="progress-top"><span data-step-label>מתחילה</span><span data-step-count>0 מתוך 8</span></div>
             <div class="progress-track"><div class="progress-bar" data-progress></div></div>
           </div>
 
           <div class="screen intro-screen active" data-screen="intro">
-            <p class="small-title">רגע לפני שמתחילות ❤️</p>
+            <p class="small-title">רגע לפני שמתחילים ❤️</p>
             <h2 class="question-title">בואי נעשה קצת סדר</h2>
             <p class="intro-copy">השאלון הזה לא בא להגיד לך
 מה את עושה לא בסדר.
@@ -136,8 +139,8 @@
 ועוד כל מיני סיבות אחרות שאת אפילו לא יודעת.
 
 אולי כל מה שציינתי
-ואולי רק חלק.</p>
-            <div class="nav-row"><span></span><button class="primary" type="button" data-start>מתחילות ❤️</button></div>
+ואולי רק חלק מזה.</p>
+            <div class="nav-row"><span></span><button class="primary" type="button" data-start>מתחילה ❤️</button></div>
           </div>
 
           <div class="screen" data-screen="question"></div>
@@ -150,7 +153,7 @@
               <ul class="result-list" data-result-list></ul>
               <div class="result-actions">
                 <a class="cta-main" data-whatsapp-link href="#" target="_blank" rel="noopener">לכתוב לתמי בוואטסאפ</a>
-                <a class="cta-soft" data-restart href="#">לעשות שוב</a>
+                <a class="cta-soft" data-restart href="#">להתחיל מחדש</a>
               </div>
               <div class="lead-box">
                 <h3>רוצה שאחזור אלייך עם הסיכום?</h3>
@@ -166,7 +169,7 @@
               </div>
               <p class="answers-note" data-answers-note></p>
             </article>
-            <div class="nav-row"><button class="secondary" type="button" data-back>חזרה לשאלה הקודמת</button><button class="primary" type="button" data-restart>לעשות שוב</button></div>
+            <div class="nav-row"><button class="secondary" type="button" data-back>חזרה לשאלה הקודמת</button><button class="primary" type="button" data-restart>להתחיל מחדש</button></div>
           </div>
         </section>
       </section>
@@ -184,13 +187,13 @@
         { id: "mainHard", title: "מה הכי קשה לך כרגע?", subtitle: "תבחרי את מה שהכי מנהל את הבית עכשיו. אם הכל מרגיש נכון, יש גם אפשרות לזה.", options: [
           { value: "long-bedtime", label: "ההרדמות לוקחות המון זמן", scores: { dependence: 2 } }, { value: "assisted", label: "הוא נרדם רק על הידיים / בהנקה / בקפיצות / בעגלה", scores: { dependence: 3, feeding: 1 } }, { value: "many-wakes", label: "הוא מתעורר הרבה בלילה", scores: { dependence: 1, feeding: 1 } }, { value: "early", label: "הוא קם ממש מוקדם בבוקר", scores: { routine: 2 } }, { value: "naps", label: "תנומות היום קצרות או לא מסודרות", scores: { routine: 3 } }, { value: "cry-interpret", label: "אני ממש לא יודעת איך להתנהל בכל סיטואציה או לא יודעת לפרש את הבכי", scores: { overwhelm: 3 } }, { value: "no-support", label: "אין לי תמיכה שיכולה לעזור לי", scores: { overwhelm: 3 } }, { value: "all", label: "הכל ביחד, תכלס", scores: { overwhelm: 3, routine: 1, dependence: 1 } }
         ]},
-        { id: "sleepStart", title: "איך הוא נרדם בתחילת הלילה בדרך כלל?", subtitle: "אין כאן נכון או לא נכון. אנחנו רק מבינות מאיפה מתחילים.", options: [
+        { id: "sleepStart", title: "איך הוא נרדם בתחילת הלילה בדרך כלל?", subtitle: "אין כאן נכון או לא נכון. כדי להבין מאיפה מתחילים.", options: [
           { value: "alone", label: "לבד במיטה, יחסית רגוע", scores: {} }, { value: "presence", label: "במיטה עם נוכחות שלי לידו", scores: { dependence: 1 } }, { value: "touch", label: "במיטה עם מגע שלי", scores: { dependence: 2 } }, { value: "hands", label: "על הידיים", scores: { dependence: 3 } }, { value: "feeding", label: "בהנקה / בקבוק", scores: { feeding: 3, dependence: 2 } }, { value: "motion", label: "בעגלה / מנשא / תנועה", scores: { dependence: 3 } }, { value: "mixed", label: "כל ערב משהו אחר, אין באמת קבוע", scores: { overwhelm: 2, routine: 1 } }
         ]},
         { id: "nightWake", title: "מה קורה כשהוא מתעורר בלילה?", subtitle: "מה הכי חוזר על עצמו בלילות האחרונים?", options: [
-          { value: "help-fast", label: "הוא חוזר לישון די מהר עם עזרה שלנו", scores: { dependence: 2 } }, { value: "pacifier", label: "רק מחזירים מוצץ והוא חוזר לישון מיד", scores: { dependence: 1 } }, { value: "same-help", label: "צריך לעזור לו כמו בתחילת הלילה", scores: { dependence: 3 } }, { value: "food", label: "הוא חייב אוכל כדי לחזור לישון", scores: { feeding: 3 } }, { value: "hard-cry", label: "הוא בוכה מאוד וקשה להרגיע אותו", scores: { overwhelm: 2, dependence: 1 } }, { value: "split-night", label: "פותח חלון ערות בלילה של שעה, לפעמים גם שעתיים ויותר", scores: { routine: 3 } }, { value: "no-pattern", label: "אין דפוס קבוע, כל לילה הפתעה אחרת", scores: { routine: 2, overwhelm: 2 } }
+          { value: "help-fast", label: "הוא חוזר לישון די מהר עם עזרה שלך", scores: { dependence: 2 } }, { value: "pacifier", label: "רק מחזירים מוצץ והוא חוזר לישון מיד", scores: { dependence: 1 } }, { value: "same-help", label: "צריך לעזור לו כמו בתחילת הלילה", scores: { dependence: 3 } }, { value: "food", label: "הוא חייב אוכל כדי לחזור לישון", scores: { feeding: 3 } }, { value: "hard-cry", label: "הוא בוכה מאוד וקשה להרגיע אותו", scores: { overwhelm: 2, dependence: 1 } }, { value: "split-night", label: "פותח חלון ערות בלילה של שעה, לפעמים גם שעתיים ויותר", scores: { routine: 3 } }, { value: "no-pattern", label: "אין דפוס קבוע, כל לילה הפתעה אחרת", scores: { routine: 2, overwhelm: 2 } }
         ]},
-        { id: "day", title: "איך נראה היום שלכם מבחינת שינה?", subtitle: "לפעמים הלילה מתחיל להתפרק כבר בבוקר. כן כן, ממש ככה.", options: [
+        { id: "day", title: "איך נראה היום שלך מבחינת שינה?", subtitle: "לפעמים הלילה מתחיל להתפרק כבר בבוקר. כן כן, ממש ככה.", options: [
           { value: "steady", label: "יש סדר יום די קבוע", scores: {} }, { value: "changes", label: "יש בערך סדר, אבל הוא משתנה הרבה", scores: { routine: 2 } }, { value: "flow", label: "אני בעיקר זורמת לפי מתי שהוא עייף", scores: { routine: 2 } }, { value: "short-naps", label: "הוא ישן תנומות קצרות של 20-40 דקות", scores: { routine: 3 } }, { value: "signs", label: "קשה לי להבין מתי הוא עייף", scores: { routine: 2, overwhelm: 1 } }, { value: "lost-day", label: "כל יום אני מרגישה אבודה מחדש ואין לי מושג איך הוא יראה", scores: { overwhelm: 3, routine: 2 } }
         ]},
         { id: "cry", title: "מה את מרגישה סביב הבכי שלו?", subtitle: "רגע של כנות. כי הבכי משפיע גם על הדרך שבה אפשר לעשות שינוי.", options: [
@@ -204,7 +207,7 @@
         ]}
       ];
       const results = {
-        routine: { title: "הקושי המרכזי כנראה קשור לסדר יום ועייפות", text: `נראה שהקושי המרכזי אצלכם
+        routine: { title: "הקושי המרכזי כנראה קשור לסדר יום ועייפות", text: `נראה שהקושי המרכזי אצלך
 קשור לסדר יום ולעייפות.
 
 וזה לא אומר שאת צריכה עכשיו
@@ -226,7 +229,7 @@
 זה עדיין לא תמיד פשוט לדעת מה לשנות.
 
 ופה ליווי מדויק יכול לחסוך
-המון ניסוי וטעייה.`, bullets: ["לעקוב 3 ימים אחרי שינה ועירות", "לא לחפש שעה מושלמת אחת", "לדייק את היום לפי הגיל והמצב בבית"], cta: "רוצה שאבדוק איתך מה כנראה משבש לכם את היום?", prompt: "בן כמה הבייבי + איך נראה היום שלכם" },
+המון ניסוי וטעייה.`, bullets: ["לעקוב 3 ימים אחרי שינה ועירות", "לא לחפש שעה מושלמת אחת", "לדייק את היום לפי הגיל והמצב בבית"], cta: "רוצה שאבדוק איתך מה כנראה משבש לך את היום?", prompt: "בן כמה הבייבי + איך נראה היום שלך" },
         dependence: { title: "הקושי המרכזי כנראה קשור לתלות בהרדמה", text: `נראה שהבייבי שלך רגיל להירדם
 עם עזרה מאוד מסוימת.
 
@@ -262,8 +265,8 @@
 אבל בלילה עצמו הכל נהיה פול גז בניוטרל.
 
 בגלל זה בתהליך כזה
-הליווי היומיומי עושה הבדל גדול.`, bullets: ["לא להוריד הכל בבת אחת", "לבחור עזרה אחת קטנה להתחיל לדייק", "לקבל כיוון ברגעים שבהם יש בכי וספק"], cta: "רוצה שאבדוק איתך מה העזרה שהכי נכון להתחיל להפחית אצלכם?", prompt: "בן כמה הבייבי + איך הוא נרדם היום" },
-        feeding: { title: "הקושי המרכזי כנראה קשור לאוכל ושינה שהתערבבו", text: `נראה שאצלכם
+הליווי היומיומי עושה הבדל גדול.`, bullets: ["לא להוריד הכל בבת אחת", "לבחור עזרה אחת קטנה להתחיל לדייק", "לקבל כיוון ברגעים שבהם יש בכי וספק"], cta: "רוצה שאבדוק איתך מה העזרה שהכי נכון להתחיל להפחית אצלך?", prompt: "בן כמה הבייבי + איך הוא נרדם היום" },
+        feeding: { title: "הקושי המרכזי כנראה קשור לאוכל ושינה שהתערבבו", text: `נראה שאצלך
 האוכל והשינה קצת התערבבו.
 
 וזה סופר נפוץ.
@@ -272,7 +275,7 @@
 לפעמים הוא רגיל להירדם דרך האוכל.
 ולפעמים את כבר כל כך עייפה,
 שהנקה או בקבוק הם פשוט הדרך הכי מהירה
-להחזיר את כולם לישון.
+להחזיר את את שניכם לישון.
 
 ופה חשוב לי להגיד משהו ברור:
 
@@ -289,7 +292,7 @@
 
 כי ההבדל בין להשאיר האכלה נחוצה
 לבין להשאיר הרגל שמפרק את הלילה
-לא תמיד ברור לבד ב-3:00 בבוקר.`, bullets: ["לא מורידים אוכל בבת אחת", "בודקים גיל, אכילה ביום ועלייה במשקל", "מפרידים בין רעב לבין הרגל רק כשזה נכון"], cta: "רוצה שאבדוק איתך אם אצלכם מדובר ברעב, הרגל או שילוב של שניהם?", prompt: "בן כמה הבייבי + כמה פעמים הוא אוכל בלילה" },
+לא תמיד ברור לבד ב-3:00 בבוקר.`, bullets: ["לא מורידים אוכל בבת אחת", "בודקים גיל, אכילה ביום ועלייה במשקל", "מפרידים בין רעב לבין הרגל רק כשזה נכון"], cta: "רוצה שאבדוק איתך אם אצלך מדובר ברעב, הרגל או שילוב של שניהם?", prompt: "בן כמה הבייבי + כמה פעמים הוא אוכל בלילה" },
         overwhelm: { title: "הקושי המרכזי הוא לא רק השינה שלו, אלא העומס שלך", text: `האמת?
 מהתשובות שלך נשמע שאת לא צריכה עוד טיפ אקראי.
 
@@ -318,7 +321,7 @@
 ופה ליווי צמוד עושה הבדל עצום.
 
 לא כי את לא יודעת להיות אמא.
-אלא כי את לא אמורה לעשות את זה לבד.`, bullets: ["לעצור רגע את כל הניסיונות", "להבין מה הקושי המרכזי", "לקבל סדר פעולה שמתאים לכם באמת"], cta: "רוצה שאעזור לך לעשות סדר ראשוני?", prompt: "בן כמה הבייבי + מה הכי קשה לך כרגע" },
+אלא כי את לא אמורה לעשות את זה לבד.`, bullets: ["לעצור רגע את כל הניסיונות", "להבין מה הקושי המרכזי", "לקבל סדר פעולה שמתאים לך באמת"], cta: "רוצה שאעזור לך לעשות סדר ראשוני?", prompt: "בן כמה הבייבי + מה הכי קשה לך כרגע" },
         newborn: { title: "הבייבי שלך בן 0-3 חודשים, והמטרה עכשיו היא הסתגלות וביטחון", text: `אם הבייבי שלך בן 0-3 חודשים,
 קודם כל -
 תנשמי.
@@ -367,7 +370,7 @@
       const screens = { intro: document.querySelector('[data-screen="intro"]'), question: document.querySelector('[data-screen="question"]'), result: document.querySelector('[data-screen="result"]') };
       const progress = document.querySelector('[data-progress]'); const stepLabel = document.querySelector('[data-step-label]'); const stepCount = document.querySelector('[data-step-count]');
       function showScreen(name) { Object.values(screens).forEach(screen => screen.classList.remove('active')); screens[name].classList.add('active'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-      function updateProgress() { if (state.step < 0) { progress.style.width = '0%'; stepLabel.textContent = 'מתחילות'; stepCount.textContent = '0 מתוך 8'; return; } if (state.step >= questions.length) { progress.style.width = '100%'; stepLabel.textContent = 'התוצאה שלך'; stepCount.textContent = '8 מתוך 8'; return; } const current = state.step + 1; progress.style.width = `${(current / questions.length) * 100}%`; stepLabel.textContent = questions[state.step].title; stepCount.textContent = `${current} מתוך ${questions.length}`; }
+      function updateProgress() { if (state.step < 0) { progress.style.width = '0%'; stepLabel.textContent = 'מתחילה'; stepCount.textContent = '0 מתוך 8'; return; } if (state.step >= questions.length) { progress.style.width = '100%'; stepLabel.textContent = 'התוצאה שלך'; stepCount.textContent = '8 מתוך 8'; return; } const current = state.step + 1; progress.style.width = `${(current / questions.length) * 100}%`; stepLabel.textContent = questions[state.step].title; stepCount.textContent = `${current} מתוך ${questions.length}`; }
       function renderQuestion() { const question = questions[state.step]; const selected = state.answers[question.id]; screens.question.innerHTML = `<p class="small-title">שאלה ${state.step + 1}</p><h2 class="question-title">${question.title}</h2><p class="question-subtitle">${question.subtitle}</p><div class="options">${question.options.map(option => `<button class="option${selected === option.value ? ' selected' : ''}" type="button" data-answer="${option.value}">${option.label}</button>`).join('')}</div><div class="nav-row"><button class="secondary" type="button" data-back>${state.step === 0 ? 'חזרה להתחלה' : 'חזרה'}</button><button class="primary" type="button" data-next ${selected ? '' : 'disabled'}>המשך</button></div>`; screens.question.querySelectorAll('[data-answer]').forEach(button => { button.addEventListener('click', () => { state.answers[question.id] = button.dataset.answer; renderQuestion(); }); }); screens.question.querySelector('[data-back]').addEventListener('click', goBack); screens.question.querySelector('[data-next]').addEventListener('click', goNext); }
       function answerLabel(id) { const q = questions.find(item => item.id === id); return q?.options.find(o => o.value === state.answers[id])?.label || ''; }
       function pickResultKey() { if (state.answers.age === 'newborn') return 'newborn'; const scores = { routine: 0, dependence: 0, feeding: 0, overwhelm: 0 }; questions.forEach(q => { const opt = q.options.find(o => o.value === state.answers[q.id]); if (!opt || !opt.scores) return; Object.entries(opt.scores).forEach(([key, value]) => { scores[key] += value; }); }); const priority = ['overwhelm', 'dependence', 'feeding', 'routine']; return priority.reduce((best, key) => scores[key] > scores[best] ? key : best, 'routine'); }
