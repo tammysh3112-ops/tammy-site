@@ -117,7 +117,7 @@
 
         <section class="quiz-card" aria-live="polite">
           <div class="progress-wrap" aria-hidden="true">
-            <div class="progress-top"><span data-step-label>מתחילה</span><span data-step-count>0 מתוך 8</span></div>
+            <div class="progress-top"><span data-step-label>מתחילה</span><span data-step-count>0 מתוך 9</span></div>
             <div class="progress-track"><div class="progress-bar" data-progress></div></div>
           </div>
 
@@ -179,29 +179,36 @@
       const WHATSAPP_BASE = "https://wa.me/972508240406";
       const SOURCE = "sleep-quiz";
       const questions = [
-        { id: "age", title: "בן כמה הבייבי שלך?", subtitle: "הגיל משנה מאוד. אותו קושי יכול לקבל מענה אחר לגמרי בגיל אחר.", options: [
+        { id: "age", type: "single", title: "בן כמה הבייבי שלך?", subtitle: "הגיל משנה מאוד. אותו קושי יכול לקבל מענה אחר לגמרי בגיל אחר.", options: [
           { value: "newborn", label: "0-3 חודשים", scores: {} }, { value: "4-5", label: "4-5 חודשים", scores: {} }, { value: "6-8", label: "6-8 חודשים", scores: {} }, { value: "9-12", label: "9-12 חודשים", scores: {} }, { value: "year-plus", label: "מעל שנה", scores: {} }
         ]},
-        { id: "mainHard", title: "מה הכי קשה לך כרגע?", subtitle: "תבחרי את מה שהכי מנהל את הבית עכשיו. אם הכל מרגיש נכון, יש גם אפשרות לזה.", options: [
+        { id: "mainHard", type: "multiple", title: "מה הכי קשה לך כרגע?", subtitle: "תבחרי את מה שהכי מנהל את הבית עכשיו. אם הכל מרגיש נכון, יש גם אפשרות לזה.", options: [
           { value: "long-bedtime", label: "ההרדמות לוקחות המון זמן", scores: { dependence: 2 } }, { value: "assisted", label: "הוא נרדם רק על הידיים / בהנקה / בקפיצות / בעגלה", scores: { dependence: 3, feeding: 1 } }, { value: "many-wakes", label: "הוא מתעורר הרבה בלילה", scores: { dependence: 1, feeding: 1 } }, { value: "early", label: "הוא קם ממש מוקדם בבוקר", scores: { routine: 2 } }, { value: "naps", label: "תנומות היום קצרות או לא מסודרות", scores: { routine: 3 } }, { value: "cry-interpret", label: "אני ממש לא יודעת איך להתנהל בכל סיטואציה או לא יודעת לפרש את הבכי", scores: { overwhelm: 3 } }, { value: "no-support", label: "אין לי תמיכה שיכולה לעזור לי", scores: { overwhelm: 3 } }, { value: "all", label: "הכל ביחד, תכלס", scores: { overwhelm: 3, routine: 1, dependence: 1 } }
         ]},
-        { id: "sleepStart", title: "איך הוא נרדם בתחילת הלילה בדרך כלל?", subtitle: "אין כאן נכון או לא נכון. כדי להבין מאיפה מתחילים.", options: [
+        { id: "sleepStart", type: "multiple", title: "איך הוא נרדם בתחילת הלילה בדרך כלל?", subtitle: "אין כאן נכון או לא נכון. כדי להבין מאיפה מתחילים.", options: [
           { value: "alone", label: "לבד במיטה, יחסית רגוע", scores: {} }, { value: "presence", label: "במיטה עם נוכחות שלי לידו", scores: { dependence: 1 } }, { value: "touch", label: "במיטה עם מגע שלי", scores: { dependence: 2 } }, { value: "hands", label: "על הידיים", scores: { dependence: 3 } }, { value: "feeding", label: "בהנקה / בקבוק", scores: { feeding: 3, dependence: 2 } }, { value: "motion", label: "בעגלה / מנשא / תנועה", scores: { dependence: 3 } }, { value: "mixed", label: "כל ערב משהו אחר, אין באמת קבוע", scores: { overwhelm: 2, routine: 1 } }
         ]},
-        { id: "nightWake", title: "מה קורה כשהוא מתעורר בלילה?", subtitle: "מה הכי חוזר על עצמו בלילות האחרונים?", options: [
+        { id: "nightWake", type: "multiple", title: "מה קורה כשהוא מתעורר בלילה?", subtitle: "מה הכי חוזר על עצמו בלילות האחרונים?", options: [
           { value: "help-fast", label: "הוא חוזר לישון די מהר עם עזרה שלך", scores: { dependence: 2 } }, { value: "pacifier", label: "רק מחזירים מוצץ והוא חוזר לישון מיד", scores: { dependence: 1 } }, { value: "same-help", label: "צריך לעזור לו כמו בתחילת הלילה", scores: { dependence: 3 } }, { value: "food", label: "הוא חייב אוכל כדי לחזור לישון", scores: { feeding: 3 } }, { value: "hard-cry", label: "הוא בוכה מאוד וקשה להרגיע אותו", scores: { overwhelm: 2, dependence: 1 } }, { value: "split-night", label: "פותח חלון ערות בלילה של שעה, לפעמים גם שעתיים ויותר", scores: { routine: 3 } }, { value: "no-pattern", label: "אין דפוס קבוע, כל לילה הפתעה אחרת", scores: { routine: 2, overwhelm: 2 } }
         ]},
-        { id: "day", title: "איך נראה היום שלך מבחינת שינה?", subtitle: "לפעמים הלילה מתחיל להתפרק כבר בבוקר. כן כן, ממש ככה.", options: [
+        { id: "day", type: "multiple", title: "איך נראה היום שלך מבחינת שינה?", subtitle: "לפעמים הלילה מתחיל להתפרק כבר בבוקר. כן כן, ממש ככה.", options: [
           { value: "steady", label: "יש סדר יום די קבוע", scores: {} }, { value: "changes", label: "יש בערך סדר, אבל הוא משתנה הרבה", scores: { routine: 2 } }, { value: "flow", label: "אני בעיקר זורמת לפי מתי שהוא עייף", scores: { routine: 2 } }, { value: "short-naps", label: "הוא ישן תנומות קצרות של 20-40 דקות", scores: { routine: 3 } }, { value: "signs", label: "קשה לי להבין מתי הוא עייף", scores: { routine: 2, overwhelm: 1 } }, { value: "lost-day", label: "כל יום אני מרגישה אבודה מחדש ואין לי מושג איך הוא יראה", scores: { overwhelm: 3, routine: 2 } }
         ]},
-        { id: "cry", title: "מה את מרגישה סביב הבכי שלו?", subtitle: "רגע של כנות. כי הבכי משפיע גם על הדרך שבה אפשר לעשות שינוי.", options: [
+        { id: "cry", type: "multiple", title: "מה את מרגישה סביב הבכי שלו?", subtitle: "רגע של כנות. כי הבכי משפיע גם על הדרך שבה אפשר לעשות שינוי.", options: [
           { value: "can-hold", label: "אני מצליחה להכיל, אבל רוצה שינוי", scores: { dependence: 1 } }, { value: "panic", label: "אני נלחצת מהר מאוד", scores: { overwhelm: 3 } }, { value: "guilt", label: "אני מרגישה אשמה אם אני לא מרימה מיד", scores: { overwhelm: 3 } }, { value: "no-cry", label: "אני לא רוצה שהוא יבכה בכלל", scores: { overwhelm: 2 } }, { value: "communication", label: "אני מבינה שבכי הוא חלק מתקשורת, אבל לא רוצה שיבכה בכלל", scores: { overwhelm: 2 } }, { value: "no-strength", label: "אני כבר כל כך עייפה שאין לי כוחות להתמודד", scores: { overwhelm: 3 } }
         ]},
-        { id: "tried", title: "מה כבר ניסית?", subtitle: "לא כדי לבדוק אותך. כדי להבין מה כבר היה על השולחן.", options: [
+        { id: "tried", type: "multiple", title: "מה כבר ניסית?", subtitle: "לא כדי לבדוק אותך. כדי להבין מה כבר היה על השולחן.", options: [
           { value: "ritual", label: "טקס שינה", scores: { routine: 1 } }, { value: "windows", label: "חלונות ערות", scores: { routine: 2 } }, { value: "less-help", label: "להוריד עזרה בהרדמה", scores: { dependence: 2 } }, { value: "less-food", label: "להפסיק האכלות לילה / לצמצם", scores: { feeding: 2 } }, { value: "many-tips", label: "קראתי מלא טיפים אבל לא הצלחתי ליישם", scores: { overwhelm: 3 } }, { value: "process", label: "ייעוץ שינה / תהליך שינה / ליווי כלשהו", scores: { overwhelm: 2 } }, { value: "nothing", label: "עוד לא ניסיתי משהו מסודר", scores: { overwhelm: 1 } }
         ]},
-        { id: "want", title: "מה את הכי רוצה שיקרה עכשיו?", subtitle: "התשובה הזו עוזרת להבין איזה צעד באמת נכון לך, לא רק מה נשמע טוב על הנייר.", options: [
-          { value: "age", label: "להבין מה מתאים לגיל שלו", scores: { routine: 1 } }, { value: "routine", label: "לבנות סדר יום ברור", scores: { routine: 3 } }, { value: "independent", label: "ללמד הירדמות עצמאית ולא מוכנה להתפשר ולהתעלם מהבכי", scores: { dependence: 3 } }, { value: "less-wakes", label: "להפחית יקיצות לילה", scores: { feeding: 1, dependence: 1 } }, { value: "naps-long", label: "להאריך תנומות יום", scores: { routine: 3 } }, { value: "step-by-step", label: "שמישהו יעשה לי סדר שלב אחרי שלב ויעזור לי כשאני לא מצליחה לעשות את הדברים", scores: { overwhelm: 4 } }
+        { id: "want", type: "multiple", title: "מה את הכי רוצה שיקרה עכשיו?", subtitle: "אפשר לסמן כמה דברים. זה עוזר להבין מה באמת חשוב לך כרגע.", options: [
+          { value: "age", label: "להבין מה מתאים לגיל שלו", scores: { routine: 1 } }, { value: "routine", label: "לבנות סדר יום ברור", scores: { routine: 3 } }, { value: "independent", label: "ללמד הירדמות עצמאית ולא מוכנה להתפשר ולהתעלם מהבכי", scores: { dependence: 3 } }, { value: "less-wakes", label: "להפחית יקיצות לילה", scores: { feeding: 1, dependence: 1 } }, { value: "naps-long", label: "להאריך תנומות יום", scores: { routine: 3 } }, { value: "step-by-step", label: "שמישהי תעשה לי סדר שלב אחרי שלב ותעזור לי כשאני לא מצליחה לעשות את הדברים", scores: { overwhelm: 4 } }
+        ]},
+        { id: "urgency", type: "multiple", title: "כמה את מרגישה שאת צריכה עזרה כרגע?", subtitle: "אפשר לסמן גם צורך רגשי וגם צורך פרקטי. זה יעזור לי להבין עד כמה דחוף לך לקבל מענה.", options: [
+          { value: "understand", label: "אני בעיקר רוצה להבין מה קורה", urgency: 1, heat: "כיוון ראשוני", scores: { routine: 1 } },
+          { value: "clear-start", label: "אני צריכה כיוון ברור להתחלה", urgency: 2, heat: "ליד מתעניין", scores: { routine: 1, overwhelm: 1 } },
+          { value: "support", label: "אני צריכה שמישהי תעשה לי סדר ותלווה אותי", urgency: 3, heat: "ליד חם", scores: { overwhelm: 2, dependence: 1 } },
+          { value: "urgent", label: "אני מרגישה שאני חייבת עזרה כמה שיותר מהר", urgency: 4, heat: "ליד חם מאוד", scores: { overwhelm: 3 } },
+          { value: "tonight", label: "אני כבר ממש מותשת ולא רוצה להמשיך ככה עוד לילה", urgency: 5, heat: "ליד דחוף מאוד", scores: { overwhelm: 4 } }
         ]}
       ];
       const results = {
@@ -320,6 +327,27 @@
 
 לא כי את לא יודעת להיות אמא.
 אלא כי את לא אמורה לעשות את זה לבד.`, bullets: ["לעצור רגע את כל הניסיונות", "להבין מה הקושי המרכזי", "לקבל סדר פעולה שמתאים לך באמת"], cta: "רוצה שאעזור לך לעשות סדר ראשוני?", prompt: "בן כמה הבייבי + מה הכי קשה לך כרגע" },
+        urgent: { title: "נראה שאת צריכה עזרה ברורה ומהירה, לא עוד טיפ כללי", text: `מה שסימנת מראה שהקושי כבר לא יושב רק על שינה.
+
+הוא יושב גם על עומס.
+על עייפות.
+על חוסר ודאות.
+ועל התחושה שאת צריכה שמישהי תראה את כל התמונה ותעזור לך להבין מה עושים עכשיו.
+
+במצב כזה לא הייתי משאירה אותך עם טיפ כללי.
+
+לא כי את לא יכולה לבד.
+אלא כי כשאת כבר מותשת,
+צריך דרך ברורה,
+מותאמת לגיל שלו,
+לקושי שלו,
+ולמה שאת מסוגלת להכיל עכשיו.
+
+המטרה היא לא לעשות מהלך קשוח.
+המטרה היא להבין מה הכי דחוף לסדר קודם,
+ואיך עושים את זה עם מענה לבכי,
+עם נוכחות,
+ועם גבולות בריאים.`, bullets: ["לזהות מה מפרק את הלילות כרגע", "להחליט מה הצעד הראשון שלא מציף אותך", "לקבל מענה אישי ומהיר במקום עוד ניסוי וטעייה"], cta: "רוצה שאבדוק איתך מה הכי דחוף לטפל בו כבר עכשיו?", prompt: "בן כמה הבייבי + מה סימנת בשאלה של כמה דחוף לך לקבל עזרה" },
         newborn: { title: "הבייבי שלך בן 0-3 חודשים, והמטרה עכשיו היא הסתגלות וביטחון", text: `אם הבייבי שלך בן 0-3 חודשים,
 בגיל הזה המטרה היא לא
 “ללמד אותו לישון לבד”.
@@ -365,13 +393,33 @@
       const screens = { intro: document.querySelector('[data-screen="intro"]'), question: document.querySelector('[data-screen="question"]'), result: document.querySelector('[data-screen="result"]') };
       const progress = document.querySelector('[data-progress]'); const stepLabel = document.querySelector('[data-step-label]'); const stepCount = document.querySelector('[data-step-count]');
       function showScreen(name) { Object.values(screens).forEach(screen => screen.classList.remove('active')); screens[name].classList.add('active'); document.body.classList.toggle('quiz-started', name !== 'intro'); document.body.classList.toggle('quiz-question', name === 'question'); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-      function updateProgress() { if (state.step < 0) { progress.style.width = '0%'; stepLabel.textContent = 'מתחילה'; stepCount.textContent = '0 מתוך 8'; return; } if (state.step >= questions.length) { progress.style.width = '100%'; stepLabel.textContent = 'התוצאה שלך'; stepCount.textContent = '8 מתוך 8'; return; } const current = state.step + 1; progress.style.width = `${(current / questions.length) * 100}%`; stepLabel.textContent = questions[state.step].title; stepCount.textContent = `${current} מתוך ${questions.length}`; }
-      function renderQuestion() { const question = questions[state.step]; const selected = state.answers[question.id]; screens.question.innerHTML = `<p class="small-title">שאלה ${state.step + 1}</p><h2 class="question-title">${question.title}</h2><p class="question-subtitle">${question.subtitle}</p><div class="options">${question.options.map(option => `<button class="option${selected === option.value ? ' selected' : ''}" type="button" data-answer="${option.value}">${option.label}</button>`).join('')}</div><div class="nav-row"><button class="secondary" type="button" data-back>${state.step === 0 ? 'חזרה להתחלה' : 'חזרה'}</button><button class="primary" type="button" data-next ${selected ? '' : 'disabled'}>המשך</button></div>`; screens.question.querySelectorAll('[data-answer]').forEach(button => { button.addEventListener('click', () => { state.answers[question.id] = button.dataset.answer; renderQuestion(); }); }); screens.question.querySelector('[data-back]').addEventListener('click', goBack); screens.question.querySelector('[data-next]').addEventListener('click', goNext); }
-      function answerLabel(id) { const q = questions.find(item => item.id === id); return q?.options.find(o => o.value === state.answers[id])?.label || ''; }
-      function pickResultKey() { if (state.answers.age === 'newborn') return 'newborn'; const scores = { routine: 0, dependence: 0, feeding: 0, overwhelm: 0 }; questions.forEach(q => { const opt = q.options.find(o => o.value === state.answers[q.id]); if (!opt || !opt.scores) return; Object.entries(opt.scores).forEach(([key, value]) => { scores[key] += value; }); }); const priority = ['overwhelm', 'dependence', 'feeding', 'routine']; return priority.reduce((best, key) => scores[key] > scores[best] ? key : best, 'routine'); }
-      function whatsappUrl(result) { const msg = `הי תמי,\nפונה אליך בעקבות השאלון. \nוקיבלתי את התוצאה:\n${result.title}\n\n${result.prompt}\n\nאשמח לשמוע קצת יותר מה עושים עם המצב. אני עייפה!`; return `${WHATSAPP_BASE}?text=${encodeURIComponent(msg)}`; }
-      function renderResult() { const key = pickResultKey(); state.resultKey = key; const result = results[key]; document.querySelector('[data-result-title]').textContent = result.title; document.querySelector('[data-result-text]').textContent = result.text; document.querySelector('[data-result-list]').innerHTML = result.bullets.map(item => `<li>${item}</li>`).join(''); document.querySelector('[data-whatsapp-link]').href = whatsappUrl(result); const age = answerLabel('age'); const hard = answerLabel('mainHard'); document.querySelector('[data-answers-note]').textContent = age && hard ? `לפי מה שסימנת: ${age}, ${hard}.` : ''; }
-      function goNext() { const question = questions[state.step]; if (!state.answers[question.id]) return; state.step += 1; if (state.step >= questions.length) { updateProgress(); renderResult(); showScreen('result'); return; } updateProgress(); renderQuestion(); showScreen('question'); }
+      function updateProgress() { if (state.step < 0) { progress.style.width = '0%'; stepLabel.textContent = 'מתחילה'; stepCount.textContent = `0 מתוך ${questions.length}`; return; } if (state.step >= questions.length) { progress.style.width = '100%'; stepLabel.textContent = 'התוצאה שלך'; stepCount.textContent = `${questions.length} מתוך ${questions.length}`; return; } const current = state.step + 1; progress.style.width = `${(current / questions.length) * 100}%`; stepLabel.textContent = questions[state.step].title; stepCount.textContent = `${current} מתוך ${questions.length}`; }
+      function selectedValues(question) { const saved = state.answers[question.id]; if (!saved) return []; return Array.isArray(saved) ? saved : [saved]; }
+      function hasAnswer(question) { return selectedValues(question).length > 0; }
+      function renderQuestion() { const question = questions[state.step]; const selected = selectedValues(question); const isMultiple = question.type === 'multiple'; screens.question.innerHTML = `<p class="small-title">שאלה ${state.step + 1}${isMultiple ? ' · אפשר לסמן כמה תשובות' : ''}</p><h2 class="question-title">${question.title}</h2><p class="question-subtitle">${question.subtitle}</p><div class="options">${question.options.map(option => `<button class="option${selected.includes(option.value) ? ' selected' : ''}" type="button" data-answer="${option.value}" aria-pressed="${selected.includes(option.value) ? 'true' : 'false'}">${option.label}</button>`).join('')}</div><div class="nav-row"><button class="secondary" type="button" data-back>${state.step === 0 ? 'חזרה להתחלה' : 'חזרה'}</button><button class="primary" type="button" data-next ${hasAnswer(question) ? '' : 'disabled'}>המשך</button></div>`; screens.question.querySelectorAll('[data-answer]').forEach(button => { button.addEventListener('click', () => { if (isMultiple) { const current = selectedValues(question); state.answers[question.id] = current.includes(button.dataset.answer) ? current.filter(value => value !== button.dataset.answer) : [...current, button.dataset.answer]; } else { state.answers[question.id] = button.dataset.answer; } renderQuestion(); }); }); screens.question.querySelector('[data-back]').addEventListener('click', goBack); screens.question.querySelector('[data-next]').addEventListener('click', goNext); }
+      function answerLabel(id) { const q = questions.find(item => item.id === id); if (!q) return ''; const selected = selectedValues(q); return selected.map(value => q.options.find(o => o.value === value)?.label).filter(Boolean).join(', '); }
+      function selectedOptions(question) { if (!question) return []; return selectedValues(question).map(value => question.options.find(o => o.value === value)).filter(Boolean); }
+      function urgencyInfo() { const q = questions.find(item => item.id === 'urgency'); const opts = selectedOptions(q); if (!opts.length) return { level: 0, heat: 'לא סומן', labels: '' }; const max = opts.reduce((best, opt) => (opt.urgency || 0) > (best.urgency || 0) ? opt : best, opts[0]); return { level: max.urgency || 0, heat: max.heat || 'לא סומן', labels: opts.map(opt => opt.label).join(', ') }; }
+      function pickResultKey() { const urgency = urgencyInfo(); if (state.answers.age === 'newborn') return 'newborn'; if (urgency.level >= 4) return 'urgent'; const scores = { routine: 0, dependence: 0, feeding: 0, overwhelm: 0 }; questions.forEach(q => { selectedOptions(q).forEach(opt => { if (!opt.scores) return; Object.entries(opt.scores).forEach(([key, value]) => { scores[key] += value; }); }); }); const priority = ['overwhelm', 'dependence', 'feeding', 'routine']; return priority.reduce((best, key) => scores[key] > scores[best] ? key : best, 'routine'); }
+      function whatsappSummary(result) { const urgency = urgencyInfo(); const rows = questions.map(q => `${q.title}\n${answerLabel(q.id) || 'לא סומן'}`).join('\n\n'); return `הי תמי,
+פונה אליך בעקבות השאלון.
+
+התוצאה שקיבלתי:
+${result.title}
+
+רמת דחיפות / חום ליד:
+${urgency.heat}
+${urgency.labels ? urgency.labels : ''}
+
+מה שסימנתי בשאלון:
+${rows}
+
+${result.prompt}
+
+אשמח לשמוע קצת יותר מה עושים עם המצב. אני עייפה!`; }
+      function whatsappUrl(result) { return `${WHATSAPP_BASE}?text=${encodeURIComponent(whatsappSummary(result))}`; }
+      function renderResult() { const key = pickResultKey(); state.resultKey = key; const result = results[key]; document.querySelector('[data-result-title]').textContent = result.title; document.querySelector('[data-result-text]').textContent = result.text; document.querySelector('[data-result-list]').innerHTML = result.bullets.map(item => `<li>${item}</li>`).join(''); document.querySelector('[data-whatsapp-link]').href = whatsappUrl(result); const age = answerLabel('age'); const hard = answerLabel('mainHard'); const urgency = urgencyInfo(); document.querySelector('[data-answers-note]').textContent = age && hard ? `לפי מה שסימנת: ${age}, ${hard}. רמת דחיפות: ${urgency.heat}.` : ''; }
+      function goNext() { const question = questions[state.step]; if (!hasAnswer(question)) return; state.step += 1; if (state.step >= questions.length) { updateProgress(); renderResult(); showScreen('result'); return; } updateProgress(); renderQuestion(); showScreen('question'); }
       function goBack() { if (state.step <= 0) { state.step = -1; updateProgress(); showScreen('intro'); return; } state.step -= 1; updateProgress(); renderQuestion(); showScreen('question'); }
       function startQuiz() { state.step = 0; updateProgress(); renderQuestion(); showScreen('question'); }
       function restart(event) { if (event) event.preventDefault(); state.step = -1; state.answers = {}; state.resultKey = null; updateProgress(); showScreen('intro'); }
