@@ -401,22 +401,8 @@
       function selectedOptions(question) { if (!question) return []; return selectedValues(question).map(value => question.options.find(o => o.value === value)).filter(Boolean); }
       function urgencyInfo() { const q = questions.find(item => item.id === 'urgency'); const opts = selectedOptions(q); if (!opts.length) return { level: 0, heat: 'לא סומן', labels: '' }; const max = opts.reduce((best, opt) => (opt.urgency || 0) > (best.urgency || 0) ? opt : best, opts[0]); return { level: max.urgency || 0, heat: max.heat || 'לא סומן', labels: opts.map(opt => opt.label).join(', ') }; }
       function pickResultKey() { const urgency = urgencyInfo(); if (state.answers.age === 'newborn') return 'newborn'; if (urgency.level >= 4) return 'urgent'; const scores = { routine: 0, dependence: 0, feeding: 0, overwhelm: 0 }; questions.forEach(q => { selectedOptions(q).forEach(opt => { if (!opt.scores) return; Object.entries(opt.scores).forEach(([key, value]) => { scores[key] += value; }); }); }); const priority = ['overwhelm', 'dependence', 'feeding', 'routine']; return priority.reduce((best, key) => scores[key] > scores[best] ? key : best, 'routine'); }
-      function whatsappSummary(result) { const urgency = urgencyInfo(); const rows = questions.map(q => `${q.title}\n${answerLabel(q.id) || 'לא סומן'}`).join('\n\n'); return `הי תמי,
-פונה אליך בעקבות השאלון.
-
-התוצאה שקיבלתי:
-${result.title}
-
-רמת דחיפות / חום ליד:
-${urgency.heat}
-${urgency.labels ? urgency.labels : ''}
-
-מה שסימנתי בשאלון:
-${rows}
-
-${result.prompt}
-
-אשמח לשמוע קצת יותר מה עושים עם המצב. אני עייפה!`; }
+      function mainHardSummary() { const hard = answerLabel('mainHard'); return hard || 'לא בטוחה לשים את האצבע, אבל קשה לי עם השינה כרגע'; }
+      function whatsappSummary(result) { const urgency = urgencyInfo(); const urgencyLine = urgency.labels ? `\nמבחינת עזרה, ${urgency.labels}` : ''; return `הי תמי,\nפונה אליך בעקבות השאלון.\n${result.title}\nהקושי העיקרי שלי היום הוא: ${mainHardSummary()}${urgencyLine}\nאשמח לשמוע קצת יותר מה עושים עם המצב. אני עייפה!\nתודה רבה ❤️`; }
       function whatsappUrl(result) { return `${WHATSAPP_BASE}?text=${encodeURIComponent(whatsappSummary(result))}`; }
       function renderResult() { const key = pickResultKey(); state.resultKey = key; const result = results[key]; document.querySelector('[data-result-title]').textContent = result.title; document.querySelector('[data-result-text]').textContent = result.text; document.querySelector('[data-result-list]').innerHTML = result.bullets.map(item => `<li>${item}</li>`).join(''); document.querySelector('[data-whatsapp-link]').href = whatsappUrl(result); const age = answerLabel('age'); const hard = answerLabel('mainHard'); const urgency = urgencyInfo(); document.querySelector('[data-answers-note]').textContent = age && hard ? `לפי מה שסימנת: ${age}, ${hard}. רמת דחיפות: ${urgency.heat}.` : ''; }
       function goNext() { const question = questions[state.step]; if (!hasAnswer(question)) return; state.step += 1; if (state.step >= questions.length) { updateProgress(); renderResult(); showScreen('result'); return; } updateProgress(); renderQuestion(); showScreen('question'); }
