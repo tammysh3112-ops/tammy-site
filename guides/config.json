@@ -38,5 +38,10 @@
     "drive_url": "https://drive.google.com/open?id=1nPk4e0oZjPDAmST4n7-3AYES-M_iGLdM",
     "list_id": 114334,
     "active": true
+  },
+  "sleep-quiz": {
+    "name": "שאלון שינה - לידים חמים",
+    "list_id": 119741,
+    "active": true
   }
 }
