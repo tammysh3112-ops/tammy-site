@@ -39,11 +39,7 @@
       .hero-card { overflow: hidden; min-height: 680px; display: grid; grid-template-rows: auto 1fr auto; }
       .hero-copy { padding: clamp(18px, 3vw, 28px); background: linear-gradient(180deg, rgba(255,250,247,0.98), rgba(251,243,238,0.94)); }
       .hero-photo-wrap { min-height: 350px; background: var(--pink); position: relative; overflow: hidden; }
-      .hero-photo { width: 100%; height: 100%; min-height: 350px; object-fit: cover; object-position: center top; display: block; }
-      .quiz-mark { position: absolute; width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center; background: rgba(255,250,247,0.88); color: var(--clay-deep); font-family: var(--font-display); font-size: 2.18rem; font-weight: 700; box-shadow: 0 14px 30px rgba(74,52,46,0.16); animation: questionRun 5.2s ease-in-out infinite; }
-      .quiz-mark.q1 { left: 3%; top: 14%; animation-delay: 0s; }
-      .quiz-mark.q2 { left: 6%; top: 33%; width: 38px; height: 38px; font-size: 1.72rem; animation-delay: -1.4s; }
-      .quiz-mark.q3 { left: 13%; top: 49%; width: 34px; height: 34px; font-size: 1.55rem; animation-delay: -2.7s; }
+      .hero-photo { width: 100%; height: 100%; min-height: 350px; object-fit: cover; object-position: center center; display: block; }
       .tear { position: absolute; width: 8px; height: 14px; border-radius: 999px 999px 999px 0; background: rgba(127, 169, 188, 0.82); transform: rotate(-22deg); opacity: 0; animation: tearDrop 1.65s ease-in-out infinite; }
       .tear.t1 { left: 35%; top: 21.4%; animation-delay: 0s; }
       .tear.t2 { left: 38%; top: 21.8%; animation-delay: -0.42s; }
@@ -52,7 +48,7 @@
       .cry-brow { position: absolute; width: 14px; height: 3px; border-radius: 999px; background: rgba(111,82,76,0.62); opacity: 0.65; animation: cryBrow 0.72s ease-in-out infinite; }
       .cry-brow.b1 { left: 33.9%; top: 20.2%; transform: rotate(18deg); }
       .cry-brow.b2 { left: 38.9%; top: 20.2%; transform: rotate(-18deg); }
-      @keyframes questionRun { 0%, 100% { transform: translate(0, 0) rotate(-8deg); } 25% { transform: translate(14px, -10px) rotate(8deg); } 50% { transform: translate(-10px, 8px) rotate(-3deg); } 75% { transform: translate(10px, 12px) rotate(10deg); } }
+
       @keyframes tearDrop { 0% { opacity: 0; transform: translateY(0) rotate(-22deg) scale(0.72); } 20% { opacity: 0.95; } 100% { opacity: 0; transform: translateY(38px) rotate(-22deg) scale(1.04); } }
       @keyframes cryMouth { 0%, 100% { transform: scaleY(0.82); opacity: 0.55; } 50% { transform: scaleY(1.18); opacity: 0.86; } }
       @keyframes cryBrow { 0%, 100% { opacity: 0.44; } 50% { opacity: 0.78; } }
@@ -108,7 +104,7 @@
       .answers-note { margin-top: 18px; color: var(--muted); font-size: 0.93rem; }
       .footer { margin-top: 22px; color: var(--brown); text-align: center; font-size: 0.9rem; }
       @media (max-width: 900px) { .page { width: min(100% - 24px, 660px); padding-top: 12px; } .topbar { margin-bottom: 12px; align-items: flex-start; } .shell { grid-template-columns: 1fr; } .hero-card { min-height: auto; } .hero-photo-wrap, .hero-photo { min-height: 260px; } .quiz-card { min-height: auto; } .options { grid-template-columns: 1fr; } }
-      @media (max-width: 540px) { .topbar { gap: 10px; } .restart { padding: 8px 11px; font-size: 0.84rem; } .logo { width: 132px; } .hero-card, .quiz-card { border-radius: 24px; } .hero-copy { padding: 16px 17px 14px; } .pill { padding: 7px 12px; font-size: 0.83rem; } h1 { margin-top: 10px; font-size: clamp(1.72rem, 9vw, 2.55rem); line-height: 1.03; max-width: 13ch; } .hero-text { margin-top: 10px; font-size: 0.94rem; line-height: 1.45; } .hero-note { margin: 14px; padding: 13px 15px; font-size: 0.92rem; line-height: 1.45; } .hero-photo-wrap, .hero-photo { min-height: 230px; } .quiz-mark { width: 38px; height: 38px; font-size: 1.72rem; } .quiz-mark.q1 { left: 3%; top: 14%; } .quiz-mark.q2 { left: 6%; top: 33%; width: 31px; height: 31px; font-size: 1.42rem; } .quiz-mark.q3 { left: 13%; top: 49%; width: 29px; height: 29px; font-size: 1.32rem; } .tear { width: 6px; height: 11px; } .tear.t1 { left: 35%; top: 21.6%; } .tear.t2 { left: 38%; top: 22%; } .tear.t3 { left: 36.4%; top: 24.6%; } .cry-mouth { left: 35.7%; top: 27.2%; width: 17px; height: 12px; border-width: 2px; border-top: 0; } .cry-brow { width: 11px; height: 2px; } .cry-brow.b1 { left: 33.9%; top: 20.4%; } .cry-brow.b2 { left: 38.9%; top: 20.4%; } .question-title { font-size: 2.14rem; } .option { min-height: 62px; border-radius: 18px; } .nav-row { flex-direction: column-reverse; } .primary, .secondary, .result-actions a { width: 100%; } .lead-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 540px) { .topbar { gap: 10px; } .restart { padding: 8px 11px; font-size: 0.84rem; } .logo { width: 132px; } .hero-card, .quiz-card { border-radius: 24px; } .hero-copy { padding: 16px 17px 14px; } .pill { padding: 7px 12px; font-size: 0.83rem; } h1 { margin-top: 10px; font-size: clamp(1.72rem, 9vw, 2.55rem); line-height: 1.03; max-width: 13ch; } .hero-text { margin-top: 10px; font-size: 0.94rem; line-height: 1.45; } .hero-note { margin: 14px; padding: 13px 15px; font-size: 0.92rem; line-height: 1.45; } .hero-photo-wrap, .hero-photo { min-height: 230px; } .tear { width: 6px; height: 11px; } .tear.t1 { left: 35%; top: 21.6%; } .tear.t2 { left: 38%; top: 22%; } .tear.t3 { left: 36.4%; top: 24.6%; } .cry-mouth { left: 35.7%; top: 27.2%; width: 17px; height: 12px; border-width: 2px; border-top: 0; } .cry-brow { width: 11px; height: 2px; } .cry-brow.b1 { left: 33.9%; top: 20.4%; } .cry-brow.b2 { left: 38.9%; top: 20.4%; } .question-title { font-size: 2.14rem; } .option { min-height: 62px; border-radius: 18px; } .nav-row { flex-direction: column-reverse; } .primary, .secondary, .result-actions a { width: 100%; } .lead-grid { grid-template-columns: 1fr; } }
       @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
     </style>
   </head>
@@ -126,7 +122,7 @@
             <h1>מה עומד מאחורי הלילות והשינה של התינוק שלך?</h1>
             <p class="hero-text">עני על כמה שאלות קצרות ותקבלי כיוון ראשוני: מה כנראה מקשה על השינה של הבייבי שלך, ומה הצעד הראשון שכדאי לעשות.</p>
           </div>
-          <div class="hero-photo-wrap"><img class="hero-photo" src="../assets/opt/sleep-quiz-hero.webp" alt="תמי שני עם תינוק ואיור אמא" /><span class="quiz-mark q1" aria-hidden="true">?</span><span class="quiz-mark q2" aria-hidden="true">?</span><span class="quiz-mark q3" aria-hidden="true">?</span><span class="tear t1" aria-hidden="true"></span><span class="tear t2" aria-hidden="true"></span><span class="tear t3" aria-hidden="true"></span><span class="cry-brow b1" aria-hidden="true"></span><span class="cry-brow b2" aria-hidden="true"></span><span class="cry-mouth" aria-hidden="true"></span></div>
+          <div class="hero-photo-wrap"><video class="hero-photo" src="../assets/sleep-quiz-hero.mp4" autoplay muted loop playsinline preload="metadata" aria-label="תמי שני עם תינוק ואיור אמא"></video><span class="tear t1" aria-hidden="true"></span><span class="tear t2" aria-hidden="true"></span><span class="tear t3" aria-hidden="true"></span><span class="cry-brow b1" aria-hidden="true"></span><span class="cry-brow b2" aria-hidden="true"></span><span class="cry-mouth" aria-hidden="true"></span></div>
           <p class="hero-note">השאלון לא בא להגיד לך מה את עושה לא בסדר. הוא בא לעשות קצת סדר בתוך כל העייפות.</p>
         </aside>
 
