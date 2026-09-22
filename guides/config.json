@@ -43,5 +43,12 @@
     "name": "שאלון שינה - לידים חמים",
     "list_id": 119741,
     "active": true
+  },
+  "growth-spurt-2page": {
+    "name": "קפיצת גדילה: מה זה באמת?",
+    "pdf_url": "https://www.tammy-time.com/guides/growth-spurt-2page/guide.pdf",
+    "drive_url": "https://drive.google.com/open?id=1BHvR2Zmzznpx_DIf8so5mimmgb2BdXQO",
+    "list_id": 120590,
+    "active": true
   }
 }
